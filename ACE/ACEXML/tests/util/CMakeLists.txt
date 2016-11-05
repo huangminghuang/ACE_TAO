@@ -1,0 +1,3 @@
+add_executable(ACEXML_utiltest  test.cpp)
+target_link_libraries(ACEXML_utiltest ACEXML)
+set_target_properties(ACEXML_utiltest PROPERTIES OUTPUT_NAME test)

@@ -1,0 +1,11 @@
+
+find_package(TCL)
+
+add_ace_lib(ACE_TkReactor
+    SOURCES TkReactor.cpp
+    PUBLIC_HEADER TkReactor.h
+    PUBLIC_LINK_LIBRARIES ACE ${TK_LIBRARY} ${TCL_LIBRARY}
+    PUBLIC_INCLUDE_DIRECTORIES ${TK_INCLUDE_PATH}
+    PACKAGE ACE
+    WHEN TCLTK_FOUND
+)
