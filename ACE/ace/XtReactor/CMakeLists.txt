@@ -1,0 +1,11 @@
+
+find_package(X11 COMPONENTS Xt)
+
+add_ace_lib(ACE_XtReactor
+    SOURCES XtReactor.cpp
+    PUBLIC_HEADER XtReactor.h
+    PUBLIC_LINK_LIBRARIES ACE ${X11_Xt_LIB}
+    PUBLIC_INCLUDE_DIRECTORIES ${X11_INCLUDE_PATH}
+    PACKAGE ACE
+    WHEN X11_Xt_FOUND
+)

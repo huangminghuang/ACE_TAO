@@ -142,9 +142,15 @@ main (int, char **)
               time_stamp (tbuf, BUFSIZ, 'T'),
               program, time_stamp (ybuf, BUFSIZ, 'Y'));
 
-      if ((ace_root = getenv ("ACE_ROOT")) != 0)
+
+      char buf[BUFSIZ]="";
+
+      if ((ace_root = getenv ("ACE_LIB_FILE")) != 0)
         {
-          char buf[BUFSIZ];
+          strcpy (buf, ace_root);
+        }
+      else if ((ace_root = getenv ("ACE_ROOT")) != 0)
+        {
 
           strcpy (buf, ace_root);
           strcat (buf, "/lib/");
@@ -167,7 +173,10 @@ main (int, char **)
 #else
           strcat (buf, ".so");
 #endif /* (__hpux) */
+        }
 
+      if (buf[0])
+        {
           handle = dlopen (buf, RTLD_LAZY);
           if (handle == 0)
             {

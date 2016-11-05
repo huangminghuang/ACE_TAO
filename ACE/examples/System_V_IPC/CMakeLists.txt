@@ -1,0 +1,2 @@
+add_subdirectory(SV_Message_Queues)
+add_subdirectory(SV_Semaphores)

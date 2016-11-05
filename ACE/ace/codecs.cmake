@@ -1,0 +1,1 @@
+add_libary(ace_codecs OBJECT)

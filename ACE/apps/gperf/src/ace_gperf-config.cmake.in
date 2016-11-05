@@ -1,0 +1,5 @@
+@PACKAGE_INIT@
+
+@gperf_function@
+
+include(${CMAKE_CURRENT_LIST_DIR}/gperf_target.cmake)

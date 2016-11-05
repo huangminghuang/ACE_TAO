@@ -1,0 +1,5 @@
+add_subdirectory(get)
+add_subdirectory(next)
+add_subdirectory(set)
+add_subdirectory(trap)
+add_subdirectory(walk)

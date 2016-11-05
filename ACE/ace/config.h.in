@@ -1,0 +1,16 @@
+#ifndef __ACE_CONFIG_H__
+#define __ACE_CONFIG_H__
+
+#cmakedefine ACE_HAS_IPV6
+#cmakedefine ACE_HAS_ATM
+#cmakedefine ACE_HAS_THREADS
+
+#cmakedefine __ACE_INLINE__
+
+#ifdef NDEBUG
+#define ACE_NDEBUG
+#endif
+
+#include "ace/config-${system_name}.h"
+
+#endif
