@@ -23,7 +23,7 @@ if (ACE_HAS_THREADS)
   find_package(AIO)
 endif()
 
-add_ace_lib(ACE
+add_ace_component(ACE
             SOURCES ${ace_sources}
                     ${ace_codecs_source}
                     ${ace_filecache_source}
@@ -55,5 +55,6 @@ add_subdirectory(XML_Utils)
 add_subdirectory(XtReactor)
 
 export_package(ACE VERSION ${ACE_VERSION}
-                   CONFIG_OPTIONS __ACE_INLINE__ ACE_HAS_IPV6 ACE_HAS_THREADS)
+                   CONFIG_OPTIONS __ACE_INLINE__ ACE_HAS_IPV6 ACE_HAS_THREADS
+                   EXTRA_CMAKE_FILES ../cmake/AddAceUtils.cmake)
 

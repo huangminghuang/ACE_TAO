@@ -1,8 +1,9 @@
 file(GLOB sources *.cpp)
 file(GLOB header *.h *.inl)
 
-add_ace_lib(ACE_TMCast
+add_ace_component(ACE_TMCast
   OUTPUT_NAME ACE_TMCast
+  DEFINE_SYMBOL ACE_TMCAST_BUILD_DLL
   SOURCES ${sources}
   PUBLIC_HEADER ${headers}
   PUBLIC_LINK_LIBRARIES ACE

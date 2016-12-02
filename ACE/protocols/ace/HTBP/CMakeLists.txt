@@ -2,8 +2,9 @@
 file(GLOB sources *.cpp)
 file(GLOB header *.h *.inl)
 
-add_ace_lib(ACE_HTBP
+add_ace_component(ACE_HTBP
   OUTPUT_NAME ACE_HTBP
+  DEFINE_SYMBOL ACE_HTBP_BUILD_DLL
   SOURCES ${sources}
   PUBLIC_HEADER ${headers}
   PUBLIC_LINK_LIBRARIES ACE

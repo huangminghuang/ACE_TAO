@@ -1,7 +1,8 @@
 
 find_package(X11 COMPONENTS Xt)
 
-add_ace_lib(ACE_XtReactor
+add_ace_component(ACE_XtReactor
+    DEFINE_SYMBOL ACE_XTREACTOR_BUILD_DLL
     SOURCES XtReactor.cpp
     PUBLIC_HEADER XtReactor.h
     PUBLIC_LINK_LIBRARIES ACE ${X11_Xt_LIB}

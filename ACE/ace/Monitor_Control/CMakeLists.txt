@@ -3,7 +3,8 @@ if (WIN32)
   set(pdh pdh)
 endif()
 
-add_ace_lib(ACE_Monitor_Control
+add_ace_component(ACE_Monitor_Control
+    DEFINE_SYMBOL ACE_MONITOR_CONTROL_BUILD_DLL
     SOURCES     Auto_Update_Starter.cpp
                 BSD_Network_Interface_Monitor.cpp
                 Bytes_Received_Monitor.cpp

@@ -20,7 +20,7 @@ list(APPEND headers
   DSRT_CV_Dispatcher_Impl_T.cpp
 )
 
-add_ace_lib(Kokyu
+add_ace_component(Kokyu
   SOURCES ${sources}
   PUBLIC_HEADER ${headers}
   PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>

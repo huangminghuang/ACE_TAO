@@ -2,7 +2,8 @@
 set(FLTK_SKIP_FLUID TRUE)
 find_package(FLTK)
 
-add_ace_lib(ACE_FlReactor
+add_ace_component(ACE_FlReactor
+  DEFINE_SYMBOL ACE_FLREACTOR_BUILD_DLL
   SOURCES FlReactor.cpp
   PUBLIC_HEADER FlReactor.h ACE_FlReactor_export.h
   PUBLIC_LINK_LIBRARIES ACE ${FLTK_LIBRARIES}

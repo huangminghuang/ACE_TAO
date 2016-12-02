@@ -1,5 +1,5 @@
 
-foreach(_package "@PREREQUISITE_PACKAGES@")
+foreach(_package @PREREQUISITE_PACKAGES@)
   if (_package AND (NOT TARGET ${_package}))
     find_package(${_package} REQUIRED CONFIG)
   endif()
@@ -11,11 +11,9 @@ endforeach()
 get_filename_component(@package_name@_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
 include("${@package_name@_CMAKE_DIR}/@package_name@Targets.cmake" )
 
-if (NOT "@EXTRA_CMAKE_FILES@" STREQUAL "")
-  foreach(_cmake_file "@EXTRA_CMAKE_FILES@")
-    include("${@package_name@_CMAKE_DIR}/${_cmake_file}")
-  endforeach()
-endif()
+foreach(_cmake_file @EXTRA_CMAKE_FILES@)
+  include("${@package_name@_CMAKE_DIR}/${_cmake_file}")
+endforeach()
 
 foreach(_comp ${@package_name@_FIND_COMPONENTS})
   if (TARGET @package_name@_${_comp})

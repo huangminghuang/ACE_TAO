@@ -15,7 +15,7 @@
 # )
 
 add_tao_component(
-  NAME CodeSet
+  NAME Codeset
   ADD_IDL_FLAGS -Sa -St -SS -Sci -Sorb
                 -Wb,export_macro=TAO_Codeset_Export
                 -Wb,export_include=tao/Codeset/codeset_export.h

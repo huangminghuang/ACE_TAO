@@ -1,7 +1,8 @@
 
 find_package(TCL)
 
-add_ace_lib(ACE_TkReactor
+add_ace_component(ACE_TkReactor
+    DEFINE_SYMBOL ACE_TKREACTOR_BUILD_DLL
     SOURCES TkReactor.cpp
     PUBLIC_HEADER TkReactor.h
     PUBLIC_LINK_LIBRARIES ACE ${TK_LIBRARY} ${TCL_LIBRARY}

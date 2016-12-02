@@ -775,10 +775,4 @@ add_subdirectory(ZIOP)
 # add_subdirectory(TkResource)
 # add_subdirectory(XtResource)
 
-export_package(TAO
-  VERSION ${TAO_VERSION}
-  PREREQUISITE ACE
-  CONFIG_OPTIONS ${TAO_OPTIONS}
-  EXTRA_CMAKE_FILE ../cmake/AddTaoIdlTargets.cmake
-                   ../cmake/AddTaoLib.cmake
-)
+

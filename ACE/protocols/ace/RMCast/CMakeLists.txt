@@ -1,8 +1,9 @@
 file(GLOB sources *.cpp)
 file(GLOB header *.h *.inl)
 
-add_ace_lib(ACE_RMCast
+add_ace_component(ACE_RMCast
   OUTPUT_NAME ACE_RMCast
+  DEFINE_SYMBOL ACE_RMCAST_BUILD_DLL
   SOURCES ${sources}
   PUBLIC_HEADER ${headers}
   PUBLIC_LINK_LIBRARIES ACE

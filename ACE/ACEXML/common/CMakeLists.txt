@@ -34,7 +34,7 @@ set(sources
 
 
 file(GLOB headers *.inl *.h)
-add_ace_lib(ACEXML
+add_ace_component(ACEXML
             SOURCES ${sources}
             PUBLIC_HEADER "${headers}"
             DEFINE_SYMBOL ACEXML_BUILD_DLL

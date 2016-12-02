@@ -97,7 +97,7 @@ if (BUILD_ACE_INET)
 
   set(ACE_INet "" CACHE INTERNAL "")
 
-  add_ace_lib(ACE_INet
+  add_ace_component(ACE_INet
     OUTPUT_NAME ACE_INet
     DEFINE_SYMBOL ACE_INET_BUILD_DLL
     SOURCES ${inet_sources}
@@ -141,7 +141,7 @@ if (BUILD_ACE_INET)
       INet_SSL_Export.h
     )
 
-    add_ace_lib(ACE_INet_SSL
+    add_ace_component(ACE_INet_SSL
       OUTPUT_NAME ACE_INet_SSL
       DEFINE_SYMBOL ACE_INET_SSL_BUILD_DLL
       SOURCES ${inet_ssl_sources}

@@ -3,9 +3,9 @@ cmake_minimum_required(VERSION 3.1)
 
 set(ORBSVCS_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/..)
 
-# if (NOT TARGET TAO)
+if (NOT TARGET TAO)
   find_package(TAO ${TAO_VERSION} REQUIRED CONFIG)
-# endif()
+endif()
 
 include(orbsvcs.cmake)
 
@@ -38,7 +38,6 @@ add_orbsvcs_lib(TAO_Svc_Utils
   SOURCES ${sources}
   PUBLIC_HEADER ${headers}
   PUBLIC_LINK_LIBRARIES TAO_PortableServer TAO_AnyTypeCode
-  PACKAGE TAO_orbsvcs
 )
 
 
