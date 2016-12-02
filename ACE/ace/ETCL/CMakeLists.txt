@@ -1,13 +1,14 @@
 
 
-add_ace_lib(ACE_ETCL
+add_ace_component(ACE_ETCL
+    DEFINE_SYMBOL               ACE_ETCL_BUILD_DLL
     SOURCES                     ETCL_Constraint.cpp ETCL_Constraint_Visitor.cpp
     PUBLIC_HEADER               ETCL_Constraint.h ETCL_Constraint_Visitor.h ace_etcl_export.h ETCL_Constraint.inl
     PUBLIC_LINK_LIBRARIES       ACE
     PACKAGE ACE
 )
 
-add_ace_lib(ACE_ETCL_Parser
+add_ace_component(ACE_ETCL_Parser
     SOURCES                     ETCL_Interpreter.cpp ETCL_l.cpp ETCL_y.cpp
     PUBLIC_HEADER               ETCL_Interpreter.h ETCL_y.h etcl_parser_export.h
     DEFINE_SYMBOL               ETCL_PARSER_BUILD_DLL

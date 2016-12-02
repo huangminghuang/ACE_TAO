@@ -14,15 +14,12 @@ function(add_gperf_test test_name)
 
     target_link_libraries(${test_name}_bin ACE)
 
-    add_custom_command(
-        TARGET ${test_name}_bin
-        POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E echo "Running $<TARGET_FILE_NAME:${test_name}_bin> ..."
-        COMMAND ${test_name}_bin -v < ${CMAKE_CURRENT_SOURCE_DIR}/${_gperf_test_INPUT} > ${test_name}.out
-    )
-
     add_test(NAME ${test_name}
-        COMMAND ${CMAKE_COMMAND} -E compare_files ${CMAKE_CURRENT_SOURCE_DIR}/${_gperf_test_VALIDATION_FILE} ${test_name}.out
+      COMMAND ${CMAKE_COMMAND} -Dtest_name=${test_name}
+                               -Dtest_bin=$<TARGET_FILE:${test_name}_bin>
+                               -DINPUT=${CMAKE_CURRENT_SOURCE_DIR}/${_gperf_test_INPUT}
+                               -DVALIDATION_FILE=${CMAKE_CURRENT_SOURCE_DIR}/${_gperf_test_VALIDATION_FILE}
+                               -P ${CMAKE_CURRENT_SOURCE_DIR}/run_test.cmake
     )
 
 endfunction()

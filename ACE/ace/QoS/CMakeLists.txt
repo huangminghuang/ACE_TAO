@@ -8,7 +8,7 @@ endif()
 file(GLOB headers *.h *.inl)
 file(GLOB sources *.cpp)
 
-add_ace_lib(ACE_QoS
+add_ace_component(ACE_QoS
     SOURCES                     ${sources}
     PUBLIC_HEADER               ${headers}
     DEFINE_SYMBOL               ACE_QoS_BUILD_DLL

@@ -8,8 +8,9 @@ set(TAO_VERSION 2.2)
 
 find_package(BISON)
 find_package(FLEX)
+find_program(SED_EXECUTABLE sed)
 
-if (BISON_FOUND AND FLEX_FOUND)
+if (BISON_FOUND AND FLEX_FOUND AND SED_EXECUTABLE)
 
   add_custom_command(
     OUTPUT  ${CMAKE_CURRENT_SOURCE_DIR}/fe/idl.tab.cpp
@@ -22,7 +23,7 @@ if (BISON_FOUND AND FLEX_FOUND)
   add_custom_command(
     OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/fe/idl.yy.cpp
     DEPENDS fe/idl.ll
-    COMMAND ${FLEX_EXECUTABLE} -t -P tao_yy fe/idl.ll | sed -f idl.yy.sed > fe/idl.yy.cpp
+    COMMAND ${FLEX_EXECUTABLE} -t -P tao_yy fe/idl.ll | ${SED_EXECUTABLE} -f idl.yy.sed > fe/idl.yy.cpp
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     VERBATIM
   )
@@ -30,7 +31,7 @@ if (BISON_FOUND AND FLEX_FOUND)
   add_custom_command(
     OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/fe/fe_lookup.cpp
     DEPENDS fe/keywords.dat
-    COMMAND $<TARGET_FILE:ace_gperf>  -M -J -c -C -D -E -T -f 0 -a -o -t -p -K keyword_ -L C++ -Z TAO_IDL_CPP_Keyword_Table -N lookup -k1,2,$  fe/keywords.dat | sed -f fe_lookup.sed > fe/fe_lookup.cpp
+    COMMAND $<TARGET_FILE:ace_gperf>  -M -J -c -C -D -E -T -f 0 -a -o -t -p -K keyword_ -L C++ -Z TAO_IDL_CPP_Keyword_Table -N lookup -k1,2,$  fe/keywords.dat | ${SED_EXECUTABLE} -f fe_lookup.sed > fe/fe_lookup.cpp
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     VERBATIM
   )

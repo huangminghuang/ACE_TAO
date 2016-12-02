@@ -12,7 +12,7 @@ list(APPEND headers
 
 
 add_tao_component(
-  NAME TAO_BiDirGIOP
+  NAME BiDirGIOP
   ADD_IDL_FLAGS  -Gp -Gd -Sci -SS -Sorb -Sa -St
                  -Wb,stub_export_macro=TAO_BIDIRGIOP_Export
                  -Wb,stub_export_include=tao/BiDir_GIOP/bidirgiop_export.h

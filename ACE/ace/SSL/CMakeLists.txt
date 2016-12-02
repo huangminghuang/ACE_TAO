@@ -4,7 +4,8 @@ find_package(OpenSSL)
 file(GLOB headers *.h *.inl)
 file(GLOB sources *.cpp)
 
-add_ace_lib(ACE_SSL
+add_ace_component(ACE_SSL
+    DEFINE_SYMBOL ACE_SSL_BUILD_DLL
     SOURCES ${sources}
     PUBLIC_HEADER ${headers}
     PUBLIC_LINK_LIBRARIES ACE ${OPENSSL_LIBRARIES}

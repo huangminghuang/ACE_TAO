@@ -7,6 +7,7 @@ endif()
 
 set(ADD_INSTALLABLE_LIB_MODULE_DIR ${CMAKE_CURRENT_LIST_DIR})
 
+
 function(add_installable_lib target)
   set(oneValueArgs OUTPUT_NAME DEFINE_SYMBOL PACKAGE WHEN VERSION HEADER_ROOT)
   set(multiValueArgs SOURCES PUBLIC_HEADER
@@ -30,11 +31,6 @@ function(add_installable_lib target)
 
     if (NOT _arg_OUTPUT_NAME)
       set(_arg_OUTPUT_NAME} ${target})
-    endif()
-
-    if (NOT _arg_DEFINE_SYMBOL)
-      string(TOUPPER "${target}" target_uppercase)
-      set(_arg_DEFINE_SYMBOL ${target_uppercase}_BUILD_DLL)
     endif()
 
     if (_arg_PACKAGE AND _arg_HEADERS_INSTALL_DESTINATION)
@@ -70,11 +66,11 @@ function(add_installable_lib target)
               EXPORT  "${_arg_PACKAGE}Targets"
               LIBRARY DESTINATION lib
               ARCHIVE DESTINATION lib
-              PUBLIC_HEADER DESTINATION "include/${HEADERS_INSTALL_DESTINATION}")
+              PUBLIC_HEADER DESTINATION "$[INCLUDE_INSTALL_DIR]/${HEADERS_INSTALL_DESTINATION}")
 
       if (_arg_PUBLIC_HEADER_DIRS)
         install(DIRECTORY ${_arg_PUBLIC_HEADER_DIRS}
-                DESTINATION "include/${HEADERS_INSTALL_DESTINATION}")
+                DESTINATION "$[INCLUDE_INSTALL_DIR]/${HEADERS_INSTALL_DESTINATION}")
       endif(_arg_PUBLIC_HEADER_DIRS)
     endif(_arg_PACKAGE)
   else()
@@ -85,6 +81,8 @@ endfunction()
 function(export_package package_name)
 
   cmake_parse_arguments(_arg "" "VERSION" "CONFIG_OPTIONS;PREREQUISITE;EXTRA_CMAKE_FILES" ${ARGN} )
+
+
 
   write_basic_package_version_file(
     "${package_name}ConfigVersion.cmake"
@@ -102,7 +100,7 @@ function(export_package package_name)
     set(EXTRA_CONFIG_OPTIONS "${EXTRA_CONFIG_OPTIONS}set(${option_name} ${${option_name}})\n")
   endforeach()
 
-  set(ConfigPackageLocation lib/cmake/${package_name})
+  set(ConfigPackageLocation ${LIB_INSTALL_DIR}/cmake/${package_name})
 
   if (_arg_EXTRA_CMAKE_FILES)
     install(
@@ -114,10 +112,12 @@ function(export_package package_name)
         Devel
     )
 
-    foreach(_cmake_file "${_arg_EXTRA_CMAKE_FILES}")
-      get_filename_component(_filename_exclude_dir ${_cmake_file} NAME)
-      list(APPEND EXTRA_CMAKE_FILES ${_filename_exclude_dir})
+    foreach(_cmake_file ${_arg_EXTRA_CMAKE_FILES})
+      file(COPY ${_cmake_file} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+      get_filename_component(_cmake_file_name ${_cmake_file} NAME)
+      list(APPEND EXTRA_CMAKE_FILES ${_cmake_file_name})
     endforeach()
+
   endif()
 
   configure_file(${ADD_INSTALLABLE_LIB_MODULE_DIR}/PackageConfig.cmake.in
@@ -130,6 +130,7 @@ function(export_package package_name)
     DESTINATION
       ${ConfigPackageLocation}
   )
+
   install(
     FILES
       "${CMAKE_CURRENT_BINARY_DIR}/${package_name}Config.cmake"

@@ -4,10 +4,10 @@ as_trinary_option(BUILD_XML_Utils)
 if (BUILD_XML_Utils)
     find_package_ex(XercesC ${BUILD_XML_Utils})
 
-    add_ace_lib(ACE_XML_Utils
-        SOURCES                    XML_Error_Handler.cpp 
-                                   XercesString.cpp 
-                                   XML_Schema_Resolver.cpp 
+    add_ace_component(ACE_XML_Utils
+        SOURCES                    XML_Error_Handler.cpp
+                                   XercesString.cpp
+                                   XML_Schema_Resolver.cpp
                                    XML_Typedefs.cpp
         PUBLIC_HEADER              XML_Utils_Export.h
                                    XML_Error_Handler.h

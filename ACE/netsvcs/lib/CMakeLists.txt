@@ -20,7 +20,7 @@ list(APPEND headers
   Server_Logging_Handler_T.cpp
 )
 
-add_ace_lib(netsvcs
+add_ace_component(netsvcs
   OUTPUT_NAME netsvcs
   DEFINE_SYMBOL ACE_BUILD_SVC_DLL
   SOURCES ${sources}

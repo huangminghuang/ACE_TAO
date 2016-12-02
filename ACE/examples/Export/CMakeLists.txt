@@ -24,7 +24,7 @@ add_executable(Export_test
   test.cpp
 )
 set_target_properties(Export_test PROPERTIES
-  OUTPUT_NAME test
+  OUTPUT_NAME export_test
 	LINK_LIBRARIES "Export_Lib"
 )
 #####################################

@@ -1,4 +1,4 @@
-set(sources 
+set(sources
     address.cpp
     asn1.cpp
     counter.cpp
@@ -16,7 +16,7 @@ set(sources
     wpdu.cpp
     sagent.cpp)
 
-add_ace_lib(asnmp
+add_ace_component(asnmp
             DEFINE_SYMBOL ASNMP_BUILD_DLL
             SOURCES ${sources}
             PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
