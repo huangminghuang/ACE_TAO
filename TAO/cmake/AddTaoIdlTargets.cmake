@@ -23,6 +23,8 @@ function(add_tao_idl_targets name)
   set(multiValueArgs FLAGS IDLS)
   cmake_parse_arguments(_arg "" "" "${multiValueArgs}" ${ARGN})
 
+  set(_arg_FLAGS ${TAO_BASE_IDL_FLAGS} ${_arg_FLAGS})
+
   ## convert all include paths to be relative to binary tree instead of to source tree
   file(RELATIVE_PATH _rel_path_to_source_tree ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
   foreach(flag ${_arg_FLAGS})
@@ -32,12 +34,9 @@ function(add_tao_idl_targets name)
        list(APPEND _converted_flags ${flag})
     endif()
   endforeach()
-  if (MYDEBUG)
-    message("${name} _arg_FLAGS=${_arg_FLAGS}")
-    message("${name} _converted_flags=${_converted_flags}")
-  endif()
 
-  cmake_parse_arguments(_idl_cmd_arg "" "-o;-oS;-oA" "" ${_arg_FLAGS})
+  set(optionArgs -Sch -Sci -Scc -Ssh -SS -GA -GT)
+  cmake_parse_arguments(_idl_cmd_arg "${optionArgs}" "-o;-oS;-oA" "" ${_arg_FLAGS})
 
   if (NOT "${_idl_cmd_arg_-o}" STREQUAL "")
     set(_output_dir "${CMAKE_CURRENT_BINARY_DIR}/${_idl_cmd_arg_-o}")
@@ -61,35 +60,35 @@ function(add_tao_idl_targets name)
   set(_skel_files)
   set(_anyop_files)
 
-  if (NOT ";${_arg_FLAGS};" MATCHES ";-Sch;")
+  if (NOT _idl_cmd_arg_-Sch)
     list(APPEND _stub_files "${_output_dir}/@idl_file_base@C.h")
     list(APPEND _stub_header_files "${_output_dir}/@idl_file_base@C.h")
   endif()
 
-  if (NOT ";${_arg_FLAGS};" MATCHES ";-Sci;")
+  if (NOT _idl_cmd_arg_-Sci)
     list(APPEND _stub_files "${_output_dir}/@idl_file_base@C.inl")
     list(APPEND _stub_header_files "${_output_dir}/@idl_file_base@C.inl")
   endif()
 
-  if (NOT ";${_arg_FLAGS};" MATCHES ";-Scc;")
+  if (NOT _idl_cmd_arg_-Scc)
     list(APPEND _stub_files "${_output_dir}/@idl_file_base@C.cpp")
   endif()
 
-  if (NOT ";${_arg_FLAGS};" MATCHES ";-Ssh;")
+  if (NOT _idl_cmd_arg_-Ssh)
     list(APPEND _skel_files "${_skel_output_dir}/@idl_file_base@S.h")
     list(APPEND _skel_header_files "${_output_dir}/@idl_file_base@S.h")
   endif()
 
-  if (NOT ";${_arg_FLAGS};" MATCHES ";-SS;")
+  if (NOT _idl_cmd_arg_-SS)
     list(APPEND _skel_files "${_skel_output_dir}/@idl_file_base@S.cpp")
   endif()
 
-  if (";${_arg_FLAGS};" MATCHES ";-GA;")
+  if (_idl_cmd_arg_-GA)
     list(APPEND _anyop_header_files "${_anyop_output_dir}/@idl_file_base@A.h")
     list(APPEND _anyop_files "${_anyop_output_dir}/@idl_file_base@A.h" "${_anyop_output_dir}/@idl_file_base@A.cpp")
   endif()
 
-  if (";${_arg_FLAGS};" MATCHES ";-GT;")
+  if (_idl_cmd_arg_-GT)
     list(APPEND _skel_files "${_skel_output_dir}/@idl_file_base@S_T.h")
     list(APPEND _skel_header_files "${_skel_output_dir}/@idl_file_base@S_T.h ${_skel_output_dir}/@idl_file_base@S_T.cpp")
   endif()
@@ -111,7 +110,7 @@ function(add_tao_idl_targets name)
     add_custom_command(
       OUTPUT ${${idl_file_base}_OUTPUT_FILES}
       DEPENDS TAO_IDL_EXE ace_gperf ${idl_file}
-      COMMAND TAO_IDL_EXE -g $<TARGET_FILE:ace_gperf> ${TAO_BASE_IDL_FLAGS} -I${CMAKE_CURRENT_SOURCE_DIR} ${_converted_flags} ${idl_file_path}
+      COMMAND TAO_IDL_EXE -g $<TARGET_FILE:ace_gperf> -I${CMAKE_CURRENT_SOURCE_DIR} ${_converted_flags} ${idl_file_path}
       VERBATIM
     )
 

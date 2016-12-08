@@ -22,6 +22,13 @@ macro(tao_parse_arguments options oneValueArgs multiValueArgs)
   endif()
 
   if (_arg_IDLS)
+    # if the target do not link to  TAO_AnyTypeCode explicitly, we need to
+    # append -Sa -St to IDL flags
+    if (NOT ((";${_arg_LINK_LIBRARY};" MATCHES ";TAO_AnyTypeCode;") OR
+             (";${_arg_PUBLIC_LINK_LIBRARY};" MATCHES ";TAO_AnyTypeCode;")))
+      list(APPEND _arg_IDL_FLAGS -Sa -St)
+    endif()
+
     add_tao_idl_targets(${name}_IDLS
       FLAGS ${_arg_IDL_FLAGS}
       IDLS ${_arg_IDLS}
