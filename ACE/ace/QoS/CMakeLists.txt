@@ -16,5 +16,5 @@ add_ace_component(ACE_QoS
     PUBLIC_INCLUDE_DIRECTORIES  ${RAPI_INCLUDE_DIR}
     PUBLIC_LINK_LIBRARIES       ACE ${RAPI_LIBRARIES}
     PACKAGE                     ACE
-    WHEN                        RAPI_FOUND
+    REQUIRES                        RAPI_FOUND
 )

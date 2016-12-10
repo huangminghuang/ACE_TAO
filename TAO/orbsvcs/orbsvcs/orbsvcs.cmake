@@ -34,7 +34,7 @@ function(find_export_file out_var _Name)
 endfunction()
 
 function(add_orbsvcs_idls _Name)
-  cmake_parse_arguments(_arg "" "EXPORT_PREFIX" "IDLS;FLAGS" ${ARGN})
+  cmake_parse_arguments(_arg "" "EXPORT_PREFIX" "IDL_FILES;FLAGS" ${ARGN})
   string(TOLOWER ${_Name} _name)
 
   if (NOT _arg_EXPORT_PREFIX)
@@ -60,7 +60,7 @@ function(add_orbsvcs_idls _Name)
   endif()
 
   add_tao_idl_targets(${_Name}_IDLS
-    IDLS ${_arg_IDLS}
+    IDL_FILES ${_arg_IDL_FILES}
     FLAGS ${_idlflags} -o orbsvcs ${_arg_FLAGS}
   )
 
@@ -71,6 +71,6 @@ function(add_orbsvcs_idls _Name)
   set(${_Name}_IDLS_OUTPUT_FILES ${${_Name}_IDLS_OUTPUT_FILES} PARENT_SCOPE)
   set(${_Name}_IDLS_HEADER_FILES ${${_Name}_IDLS_HEADER_FILES} PARENT_SCOPE)
 
-  install(FILES ${_arg_IDLS} ${${_Name}_IDLS_HEADER_FILES}}
+  install(FILES ${_arg_IDL_FILES} ${${_Name}_IDLS_HEADER_FILES}}
           DESTINATION include/orbsvcs)
 endfunction()

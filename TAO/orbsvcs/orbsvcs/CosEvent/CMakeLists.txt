@@ -48,7 +48,7 @@ endif()
 
 add_orbsvcs_idls(Event
   FLAGS -GT
-  IDLS ../CosEventComm.idl
+  IDL_FILES ../CosEventComm.idl
        ../CosEventChannelAdmin.idl
        ${OPTIONAL_TYPED_EVENT_IDL_FILES}
 )

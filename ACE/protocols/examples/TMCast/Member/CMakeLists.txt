@@ -7,6 +7,6 @@ if (NOT TARGET ACE_TMCast)
 endif()
 
 add_ace_exe(TMCast_Member
-            OUTPUT_NAME member 
-            SOURCES member.cpp
+            OUTPUT_NAME member
+            SOURCE_FILES member.cpp
             LINK_LIBRARIES ACE_TMCast)

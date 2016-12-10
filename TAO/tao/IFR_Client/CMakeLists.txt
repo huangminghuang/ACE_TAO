@@ -11,14 +11,14 @@ list(APPEND TAO_BASE_IDL_FLAGS
 
 
 add_tao_idl_targets(IFR_Client_IDLS
-  IDLS IFR_Basic.pidl
+  IDL_FILES IFR_Basic.pidl
        IFR_Components.pidl
        IFR_Extended.pidl
 )
 
 add_tao_idl_targets(IFR_Client_IDLS
   FLAGS -Gxhst -Gxhsk
-  IDLS IFR_Base.pidl
+  IDL_FILES IFR_Base.pidl
 )
 
 
@@ -34,7 +34,7 @@ add_tao_component(
 
 add_tao_component(
   NAME IFR_Client_skel
-  IDLS ""
+  IDL_FILES ""
   SOURCES ${IFR_Client_IDLS_SKEL_FILES}
   PUBLIC_HEADER ${IFR_Client_IDLS_SKEL_HEADER_FILES}
   PUBLIC_LINK_LIBRARIES TAO_IFR_Client TAO_PortableServer

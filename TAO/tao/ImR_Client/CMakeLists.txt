@@ -8,12 +8,12 @@ list(APPEND TAO_BASE_IDL_FLAGS
 
 add_tao_idl_targets(ImR_Client_IDLS
   FLAGS -GA
-  IDLS ServerObject.idl
+  IDL_FILES ServerObject.idl
 )
 
 add_tao_idl_targets(ImR_Client_IDLS
   FLAGS -GX -I${CMAKE_CURRENT_SOURCE_DIR}
-  IDLS ImplRepo.idl
+  IDL_FILES ImplRepo.idl
 )
 
 add_tao_component(

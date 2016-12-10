@@ -3,7 +3,7 @@ add_tao_idl_targets(PortableServer_IDLS
         -Wb,export_macro=TAO_PortableServer_Export
         -Wb,export_include=tao/PortableServer/portableserver_export.h
         -iC tao/PortableServer
-  IDLS  ForwardRequest.pidl
+  IDL_FILES  ForwardRequest.pidl
 )
 
 add_tao_idl_targets(PortableServer_IDLS
@@ -11,7 +11,7 @@ add_tao_idl_targets(PortableServer_IDLS
         -Wb,export_macro=TAO_PortableServer_Export
         -Wb,export_include=tao/PortableServer/portableserver_export.h
         -iC tao/PortableServer
-  IDLS  AdapterActivator.pidl
+  IDL_FILES  AdapterActivator.pidl
         IdAssignmentPolicy.pidl
         IdUniquenessPolicy.pidl
         ImplicitActivationPolicy.pidl
@@ -29,7 +29,7 @@ add_tao_idl_targets(PortableServer_IDLS
         -Wb,export_macro=TAO_PortableServer_Export
         -Wb,export_include=tao/PortableServer/portableserver_export.h
         -iC tao/PortableServer
-  IDLS  POAManager.pidl
+  IDL_FILES  POAManager.pidl
         POAManagerFactory.pidl
         POA.pidl
         PS_Current.pidl
@@ -42,7 +42,7 @@ add_tao_idl_targets(PortableServer_IDLS
         -Wb,export_include=tao/PortableServer/portableserver_export.h
         -Wb,unique_include=tao/PortableServer/PortableServer.h
         -iC tao/PortableServer
-  IDLS PortableServer_include.pidl
+  IDL_FILES PortableServer_include.pidl
 )
 
 add_tao_idl_targets(PortableServer_IDLS
@@ -52,7 +52,7 @@ add_tao_idl_targets(PortableServer_IDLS
         -Wb,include_guard=TAO_PORTABLESERVER_SAFE_INCLUDE
         -Wb,safe_include=tao/PortableServer/PortableServer.h
         -iC tao/PortableServer
-  IDLS PortableServer.pidl
+  IDL_FILES PortableServer.pidl
 )
 
 file(GLOB headers *.h *.inl *_T.cpp *.pidl)

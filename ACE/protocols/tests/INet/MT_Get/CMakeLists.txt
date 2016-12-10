@@ -4,7 +4,6 @@ endif()
 
 add_ace_exe(INet_MT_Get
             OUTPUT_NAME mt_get
-            SOURCES Main.cpp
+            SOURCE_FILES Main.cpp
             LINK_LIBRARIES ACE_INet)
-            
-            
+

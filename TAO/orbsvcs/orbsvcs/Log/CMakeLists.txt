@@ -1,7 +1,7 @@
 
 
 add_orbsvcs_idls(Log
-  IDLS ../DsLogAdmin.idl
+  IDL_FILES ../DsLogAdmin.idl
        ../DsLogNotification.idl
 )
 
@@ -55,7 +55,7 @@ add_orbsvcs_lib(TAO_DsLogAdmin_Serv
 )
 
 add_orbsvcs_idls(EventLog
-  IDLS ../DsEventLogAdmin.idl
+  IDL_FILES ../DsEventLogAdmin.idl
 )
 
 add_orbsvcs_lib(TAO_DsEventLogAdmin
@@ -86,7 +86,7 @@ add_orbsvcs_lib(TAO_DsEventLogAdmin_Serv
 )
 
 add_orbsvcs_idls(RTEventLog
-  IDLS ../RTEventLogAdmin.idl
+  IDL_FILES ../RTEventLogAdmin.idl
 )
 
 add_orbsvcs_lib(TAO_RTEventLogAdmin

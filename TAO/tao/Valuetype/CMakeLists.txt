@@ -8,6 +8,6 @@ if (NOT CORBA_E_MICRO)
                   -Wb,export_macro=TAO_Valuetype_Export
                   -Wb,export_include=tao/Valuetype/valuetype_export.h
                   -iC tao/Valuetype
-    IDLS StringValue.pidl
+    IDL_FILES StringValue.pidl
   )
 endif()

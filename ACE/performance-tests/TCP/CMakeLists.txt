@@ -1,5 +1,5 @@
 add_ace_exe(tcp_test
-  SOURCES tcp_test.cpp
+  SOURCE_FILES tcp_test.cpp
 )
 
 # add_test(

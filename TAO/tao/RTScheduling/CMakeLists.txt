@@ -7,7 +7,7 @@ if ((NOT CORBA_E_MICRO) AND CORBA_MESSAGING)
           -Wb,include_guard=TAO_RTSCHEDULER_SAFE_INCLUDE
           -Wb,safe_include=tao/RTScheduling/RTScheduler.h
           -iC RTScheduling
-    IDLS RTScheduler.pidl
+    IDL_FILES RTScheduler.pidl
   )
 
   add_tao_idl_targets(RTScheduling_IDLS
@@ -16,7 +16,7 @@ if ((NOT CORBA_E_MICRO) AND CORBA_MESSAGING)
           -Wb,export_include=tao/RTScheduling/rtscheduler_export.h
           -Wb,unique_include=tao/RTScheduling/RTScheduler.h
           -iC RTScheduling
-    IDLS RTScheduler_include.pidl
+    IDL_FILES RTScheduler_include.pidl
   )
 
   add_tao_component(

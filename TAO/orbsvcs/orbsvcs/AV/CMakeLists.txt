@@ -2,7 +2,7 @@
 add_tao_idl_targets(AV_IDLS
   FLAGS -Wb,export_macro=TAO_AV_Export
         -Wb,export_include=orbsvcs/AV/AV_export.h
-  IDLS  ../AVStreams.idl
+  IDL_FILES  ../AVStreams.idl
         ../Null_MediaCtrl.idl
         ../sfp.idl
 )

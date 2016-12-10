@@ -10,14 +10,14 @@ if (RT_CORBA)
   add_tao_idl_targets(RTCORBA_IDLS
     FLAGS -Sa -St
           -Wb,unique_include=tao/RTCORBA/RTCORBA.h
-    IDLS RTCORBA_include.pidl
+    IDL_FILES RTCORBA_include.pidl
   )
 
   add_tao_idl_targets(RTCORBA_IDLS
     FLAGS -Gp -Gd
           -Wb,include_guard=TAO_RTCORBA_SAFE_INCLUDE
           -Wb,safe_include=tao/RTCORBA/RTCORBA.h
-    IDLS RTCORBA.pidl
+    IDL_FILES RTCORBA.pidl
   )
 
   add_tao_component(

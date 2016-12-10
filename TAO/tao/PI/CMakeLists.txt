@@ -12,21 +12,21 @@ list(APPEND TAO_BASE_IDL_FLAGS
 
 add_tao_idl_targets(PI_IDLS
   FLAGS -Sorb -GX -Wb,unique_include=tao/PI/PI.h
-  IDLS PI_include.pidl
+  IDL_FILES PI_include.pidl
 )
 
 add_tao_idl_targets(PI_IDLS
   FLAGS -Sorb -Sal -GX
         -Wb,include_guard=TAO_PI_SAFE_INCLUDE
         -Wb,safe_include=tao/PI/PI.h
-  IDLS ORBInitInfo.pidl
+  IDL_FILES ORBInitInfo.pidl
 )
 
 add_tao_idl_targets(PI_IDLS
   FLAGS -GA -Sorb -Sal
         -Wb,include_guard=TAO_PI_SAFE_INCLUDE
         -Wb,safe_include=tao/PI/PI.h
-  IDLS  ORBInitializer.pidl
+  IDL_FILES  ORBInitializer.pidl
         ClientRequestInterceptor.pidl
         ClientRequestInfo.pidl
         RequestInfo.pidl
@@ -37,14 +37,14 @@ add_tao_idl_targets(PI_IDLS
 
 add_tao_idl_targets(PI_IDLS
   FLAGS -GA -Sorb -Sal
-  IDLS Interceptor.pidl
+  IDL_FILES Interceptor.pidl
 )
 
 add_tao_idl_targets(PI_IDLS
   FLAGS -GA -Sal
         -Wb,include_guard=TAO_PI_SAFE_INCLUDE
         -Wb,safe_include=tao/PI/PI.h
-  IDLS InvalidSlot.pidl
+  IDL_FILES InvalidSlot.pidl
 )
 
 add_tao_component(

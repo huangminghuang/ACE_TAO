@@ -4,7 +4,7 @@ if(CORBA_E_MICRO)
 endif()
 
 add_orbsvcs_idls(Concurrency
-  IDLS ../CosConcurrencyControl.idl
+  IDL_FILES ../CosConcurrencyControl.idl
 )
 
 

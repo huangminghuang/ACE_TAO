@@ -8,11 +8,11 @@ list(APPEND TAO_BASE_IDL_FLAGS
 add_tao_idl_targets(IORInterceptor_IDLS
   FLAGS -Wb,include_guard=TAO_IORINTERCEPTOR_SAFE_INCLUDE
         -Wb,safe_include=tao/IORInterceptor/IORInterceptor.h
-  IDLS IORInterceptor.pidl
+  IDL_FILES IORInterceptor.pidl
 )
 
 add_tao_idl_targets(IORInterceptor_IDLS
-  IDLS IORInfo.pidl
+  IDL_FILES IORInfo.pidl
 )
 
 add_tao_component(

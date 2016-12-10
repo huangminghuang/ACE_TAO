@@ -9,18 +9,18 @@ add_tao_idl_targets(ObjRefTemplate_IDLS
   FLAGS -Gp -Gd -SS -Sorb -GX
         -Wb,include_guard=TAO_OBJREF_TEMPLATE_SAFE_INCLUDE
         -Wb,safe_include=tao/ObjRefTemplate/ObjectReferenceTemplate.h
-  IDLS ObjectReferenceTemplate.pidl
+  IDL_FILES ObjectReferenceTemplate.pidl
 )
 
 add_tao_idl_targets(ObjRefTemplate_IDLS
   FLAGS -SS -Sorb -GX -Sci -Sa -St
         -Wb,unique_include=tao/ObjRefTemplate/ObjectReferenceTemplate.h
-  IDLS ObjectReferenceTemplate_include.pidl
+  IDL_FILES ObjectReferenceTemplate_include.pidl
 )
 
 add_tao_idl_targets(ObjRefTemplate_IDLS
   FLAGS -Gp -Gd -SS -GA -Sorb
-  IDLS  Default_ORT.pidl
+  IDL_FILES  Default_ORT.pidl
 )
 
 add_tao_component(

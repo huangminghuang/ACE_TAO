@@ -1,7 +1,7 @@
 
 add_orbsvcs_idls(FtNaming_Intf
   FLAGS -GC -I${TAO_ROOT}/tao
-  IDLS ../../FT_NamingManager.idl
+  IDL_FILES ../../FT_NamingManager.idl
 )
 
 add_orbsvcs_lib(TAO_FT_Naming
@@ -14,7 +14,7 @@ add_orbsvcs_lib(TAO_FT_Naming
 
 add_orbsvcs_idls(FtNaming
   FLAGS -GC -I${TAO_ROOT}/tao
-  IDLS ../../FT_NamingReplication.idl
+  IDL_FILES ../../FT_NamingReplication.idl
 )
 
 add_orbsvcs_lib(TAO_FT_Naming_Replication

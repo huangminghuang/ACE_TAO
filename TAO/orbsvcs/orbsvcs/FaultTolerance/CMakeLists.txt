@@ -2,7 +2,7 @@ add_tao_idl_targets(FT_ORB_Utils_IDLS
   FLAGS -Wb,skel_export_include=tao/PortableServer/PolicyS.h
         -Wb,export_macro=TAO_FT_ORB_Utils_Export -Wb,export_include=orbsvcs/FaultTolerance/FT_ORB_Utils_export.h
         -o orbsvcs
-  IDLS ../FT_CORBA_ORB.idl
+  IDL_FILES ../FT_CORBA_ORB.idl
 )
 
 install(FILES ${FT_ORB_Utils_IDLS_HEADER_FILES}
@@ -65,7 +65,7 @@ add_tao_idl_targets(FaultTolerance_IDLS
         -Wb,skel_export_include=tao/PortableServer/PolicyS.h
         -I${TAO_ROOT}/tao
         -o orbsvcs
-  IDLS ../FT_CORBA.idl
+  IDL_FILES ../FT_CORBA.idl
        ../FT_Replica.idl
        ../FT_Notifier.idl
        ../FT_FaultDetectorFactory.idl

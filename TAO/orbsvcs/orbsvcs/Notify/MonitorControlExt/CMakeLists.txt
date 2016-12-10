@@ -3,7 +3,7 @@ add_tao_idl_targets(Notify_MC_Ext_IDLS
         -Wb,export_include=orbsvcs/Notify/MonitorControlExt/notify_mc_ext_export.h
         -I${TAO_ROOT}/tao
         -o orbsvcs/Notify/MonitorControlExt
-  IDLS NotifyMonitoringExt.idl
+  IDL_FILES NotifyMonitoringExt.idl
 )
 
 add_orbsvcs_lib(TAO_CosNotification_MC_Ext

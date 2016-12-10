@@ -1,6 +1,6 @@
 
 add_orbsvcs_idls(Naming
-  IDLS ../CosNaming.idl
+  IDL_FILES ../CosNaming.idl
 )
 
 add_orbsvcs_lib(TAO_CosNaming

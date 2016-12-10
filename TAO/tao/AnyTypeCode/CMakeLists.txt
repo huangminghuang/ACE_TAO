@@ -8,7 +8,7 @@ list(APPEND TAO_BASE_IDL_FALGS
 
 add_tao_idl_targets(AnyTypeCode_IDLS
   FLAGS -Sorb
-  IDLS  AnySeq.pidl
+  IDL_FILES  AnySeq.pidl
         Dynamic_Parameter.pidl
         ValueModifier.pidl
         Visibility.pidl
@@ -16,7 +16,7 @@ add_tao_idl_targets(AnyTypeCode_IDLS
 )
 
 add_tao_idl_targets(AnyTypeCode_IDLS
-  IDLS Bounds.pidl
+  IDL_FILES Bounds.pidl
 )
 
 

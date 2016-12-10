@@ -8,7 +8,7 @@ add_tao_component(
                 -Wb,include_guard=TAO_IORTABLE_SAFE_INCLUDE
                 -Wb,safe_include=tao/IORTable/IORTable.h
                 -iC tao/IORTable -Gxhst
-  IDLS IORTable.pidl
+  IDL_FILES IORTable.pidl
   SOURCES IORTable.cpp
           IOR_Table_Impl.cpp
           Table_Adapter.cpp

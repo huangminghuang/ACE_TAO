@@ -10,5 +10,5 @@ add_tao_component(
                 -Wb,include_guard=TAO_IORMANIP_SAFE_INCLUDE
                 -Wb,safe_include=tao/IORManipulation/IORManip_Loader.h
                 -iC tao/IORManipulation -Gxhst
-  IDLS IOR.pidl
+  IDL_FILES IOR.pidl
 )

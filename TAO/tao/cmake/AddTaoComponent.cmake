@@ -1,15 +1,15 @@
 
 function(add_tao_component)
   set(oneValueArgs NAME DEFINE_SYMBOL)
-  set(multiValueArgs ADD_IDL_FLAGS IDLS INCLUDE_DIRECTORIES
+  set(multiValueArgs ADD_IDL_FLAGS IDL_FILES INCLUDE_DIRECTORIES
                      PUBLIC_LINK_LIBRARIES SOURCES PUBLIC_HEADER)
 
   cmake_parse_arguments(_arg "" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
-  if (_arg_IDLS AND  (NOT ${_arg_NAME}_IDLS_OUTPUT_FILES))
+  if (_arg_IDL_FILES AND  (NOT ${_arg_NAME}_IDLS_OUTPUT_FILES))
     add_tao_idl_targets(${_arg_NAME}_IDLS
       FLAGS ${_arg_ADD_IDL_FLAGS}
-      IDLS ${_arg_IDLS}
+      IDL_FILES ${_arg_IDLS}
     )
   endif()
 

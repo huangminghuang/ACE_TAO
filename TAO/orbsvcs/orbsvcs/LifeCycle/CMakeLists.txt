@@ -1,5 +1,5 @@
 add_orbsvcs_idls(LifeCycle
-  IDLS ../CosLifeCycle.idl
+  IDL_FILES ../CosLifeCycle.idl
 )
 
 add_orbsvcs_lib(TAO_CosLifeCycle
