@@ -1,6 +1,6 @@
 add_orbsvcs_idls(Trading
   # FLAGS -I../../../tao
-  IDLS ../CosTrading.idl
+  IDL_FILES ../CosTrading.idl
        ../CosTradingRepos.idl
        ../CosTradingDynamic.idl
 )

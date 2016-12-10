@@ -20,6 +20,6 @@ if (BUILD_XML_Utils)
         PUBLIC_LINK_LIBRARIES      ACE ${XercesC_LIBRARIES}
         PUBLIC_INCLUDE_DIRECTORIES ${XercesC_INCLUDE_DIRS}
         PACKAGE                    ACE
-        WHEN                       XercesC_FOUND
+        REQUIRES                       XercesC_FOUND
     )
 endif(BUILD_XML_Utils)

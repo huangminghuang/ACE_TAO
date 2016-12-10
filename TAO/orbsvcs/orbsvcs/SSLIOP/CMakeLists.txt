@@ -7,7 +7,7 @@ endif()
 
 add_orbsvcs_idls(SSLIOP
   FLAGS -SS
-  IDLS ../SSLIOP.idl
+  IDL_FILES ../SSLIOP.idl
 )
 
 add_tao_idl_targets(SSLIOP_Endpoint_IDLS
@@ -15,7 +15,7 @@ add_tao_idl_targets(SSLIOP_Endpoint_IDLS
         -Wb,export_include=orbsvcs/SSLIOP/SSLIOP_Export.h
         -SS -Sci -Gp -Gd -Sa -Sorb
         -o SSLIOP
-  IDLS ssl_endpoints.pidl
+  IDL_FILES ssl_endpoints.pidl
 )
 
 file(GLOB headers *.h *.inl)

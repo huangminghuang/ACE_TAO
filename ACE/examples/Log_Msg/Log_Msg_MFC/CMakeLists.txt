@@ -2,7 +2,7 @@
 project(Log_Msg_MFC CXX)
 cmake_minimum_required(VERSION 2.8.12)
 
-if (NOT TARGET ACE)
+if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 find_package(MFC)

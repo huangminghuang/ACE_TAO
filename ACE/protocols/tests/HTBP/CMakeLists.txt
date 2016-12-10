@@ -7,12 +7,12 @@ endif()
 function(add_htbp_test test_name)
   add_ace_exe(${test_name}_server
               OUTPUT_NAME server
-              SOURCES server.cpp
+              SOURCE_FILES server.cpp
               LINK_LIBRARIES ACE_HTBP)
 
   add_ace_exe(${test_name}_client
               OUTPUT_NAME client
-              SOURCES client.cpp
+              SOURCE_FILES client.cpp
               LINK_LIBRARIES ACE_HTBP)
 
   add_test(NAME ${test_name}

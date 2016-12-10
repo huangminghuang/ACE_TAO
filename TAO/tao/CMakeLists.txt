@@ -17,17 +17,17 @@ add_tao_idl_targets(libTAO_IDLS
         -Wb,safe_include=tao/PolicyC.h
         -Wb,skel_export_macro=TAO_PortableServer_Export
         -Wb,skel_export_include=tao/PortableServer/portableserver_export.h
-  IDLS  Policy.pidl
+  IDL_FILES  Policy.pidl
 )
 
 add_tao_idl_targets(libTAO_IDLS
   FLAGS ${idlflags} -SS -Sorb
-  IDLS GIOP.pidl
+  IDL_FILES GIOP.pidl
 )
 
 add_tao_idl_targets(libTAO_IDLS
   FLAGS ${idlflags} -Sci -SS -Sorb
-  IDLS  CONV_FRAME.pidl
+  IDL_FILES  CONV_FRAME.pidl
         Current.pidl
         IIOP.pidl
         IIOP_Endpoints.pidl
@@ -47,17 +47,17 @@ add_tao_idl_targets(libTAO_IDLS
 
 add_tao_idl_targets(libTAO_IDLS
   FLAGS ${idlflags} -Sci -Sa -SS -Sorb
-  IDLS Policy_Forward.pidl
+  IDL_FILES Policy_Forward.pidl
 )
 
 add_tao_idl_targets(libTAO_IDLS
   FLAGS ${idlflags} -Sci -Sat -SS -Sorb
-  IDLS ParameterMode.pidl
+  IDL_FILES ParameterMode.pidl
 )
 
 add_tao_idl_targets(libTAO_IDLS
   FLAGS ${idlflags} -Sci -Gse -Gata -SS -Sorb
-  IDLS  BooleanSeq.pidl
+  IDL_FILES  BooleanSeq.pidl
         CharSeq.pidl
         DoubleSeq.pidl
         FloatSeq.pidl

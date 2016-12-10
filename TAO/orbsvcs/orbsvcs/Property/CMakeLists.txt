@@ -1,6 +1,6 @@
 
 add_orbsvcs_idls(Property
-  IDLS ../CosProperty.idl
+  IDL_FILES ../CosProperty.idl
 )
 
 add_orbsvcs_lib(TAO_CosProperty

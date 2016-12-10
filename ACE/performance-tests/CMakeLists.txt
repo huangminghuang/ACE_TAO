@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.1)
 project (ace-performance-tests CXX)
-if (NOT TARGET ACE)
+if (NOT ACE_ROOT)
     find_package(ACE REQUIRED CONFIG)
 endif()
 

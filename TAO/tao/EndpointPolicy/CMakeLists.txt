@@ -5,7 +5,7 @@ add_tao_component(
                 -Wb,export_macro=TAO_EndpointPolicy_Export
                 -Wb,export_include=tao/EndpointPolicy/EndpointPolicy_Export.h
                 -iC tao/EndpointPolicy
-  IDLS EndpointPolicy.pidl
+  IDL_FILES EndpointPolicy.pidl
         IIOPEndpointValue.pidl
         EndpointPolicyType.pidl
 )

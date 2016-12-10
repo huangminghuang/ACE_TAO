@@ -9,7 +9,7 @@ set(ADD_INSTALLABLE_LIB_MODULE_DIR ${CMAKE_CURRENT_LIST_DIR})
 
 
 function(add_installable_lib target)
-  set(oneValueArgs OUTPUT_NAME DEFINE_SYMBOL PACKAGE WHEN VERSION HEADER_ROOT)
+  set(oneValueArgs OUTPUT_NAME DEFINE_SYMBOL PACKAGE REQUIRES VERSION HEADER_ROOT)
   set(multiValueArgs SOURCES PUBLIC_HEADER
                      PUBLIC_HEADER_DIRS PUBLIC_LINK_LIBRARIES INCLUDE_DIRECTORIES PUBLIC_INCLUDE_DIRECTORIES
                      PUBLIC_COMPILE_DEFINITIONS HEADERS_INSTALL_DESTINATION)
@@ -25,7 +25,7 @@ function(add_installable_lib target)
     endforeach()
   endif()
 
-  if ((NOT _arg_WHEN) OR (${${_arg_WHEN}}))
+  if ((NOT _arg_REQUIRES) OR (${${_arg_REQUIRES}}))
 
     add_library(${target} ${_arg_SOURCES})
 
@@ -74,15 +74,13 @@ function(add_installable_lib target)
       endif(_arg_PUBLIC_HEADER_DIRS)
     endif(_arg_PACKAGE)
   else()
-    message("${target} is disabled because ${_arg_WHEN} not satisfied")
-  endif ((NOT _arg_WHEN) OR (${${_arg_WHEN}}))
+    message("${target} is disabled because ${_arg_REQUIRES} not satisfied")
+  endif ((NOT _arg_REQUIRES) OR (${${_arg_REQUIRES}}))
 endfunction()
 
 function(export_package package_name)
 
   cmake_parse_arguments(_arg "" "VERSION" "CONFIG_OPTIONS;PREREQUISITE;EXTRA_CMAKE_FILES" ${ARGN} )
-
-
 
   write_basic_package_version_file(
     "${package_name}ConfigVersion.cmake"

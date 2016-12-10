@@ -2,7 +2,7 @@
 project(C++NPv2 CXX)
 cmake_minimum_required(VERSION 2.8.12)
 
-if (NOT TARGET ACE)
+if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 

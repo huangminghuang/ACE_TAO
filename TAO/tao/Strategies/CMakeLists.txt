@@ -5,7 +5,7 @@ add_tao_component(
                 -Wb,export_macro=TAO_Strategies_Export
                 -Wb,export_include=tao/Strategies/strategies_export.h
                 -iC tao/Strategies
-  IDLS uiop_endpoints.pidl
+  IDL_FILES uiop_endpoints.pidl
        sciop_endpoints.pidl
        COIOP_Endpoints.pidl
   PUBLIC_LINK_LIBRARIES TAO_PI TAO_AnyTypeCode

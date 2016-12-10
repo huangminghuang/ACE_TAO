@@ -1,5 +1,5 @@
 add_ace_exe(udp_test
-  SOURCES udp_test.cpp
+  SOURCE_FILES udp_test.cpp
 )
 
 # add_test(

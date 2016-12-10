@@ -11,6 +11,6 @@ add_tao_component(
                 -Wb,include_guard=TAO_DIFFSERVPOLICY_SAFE_INCLUDE
                 -Wb,safe_include=tao/DiffServPolicy/DiffServPolicy.h
                 -iC tao/DiffServPolicy
-  IDLS DiffServPolicy.pidl
+  IDL_FILES DiffServPolicy.pidl
   PUBLIC_LINK_LIBRARIES TAO_PortableServer TAO_PI
 )

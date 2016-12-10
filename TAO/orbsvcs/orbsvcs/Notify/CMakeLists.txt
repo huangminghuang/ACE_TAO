@@ -2,7 +2,7 @@
 
 add_orbsvcs_idls(Notify
   FLAGS -I${TAO_ROOT}/tao
-  IDLS ../CosNotification.idl
+  IDL_FILES ../CosNotification.idl
        ../CosNotifyComm.idl
        ../CosNotifyFilter.idl
        ../CosNotifyFilterExt.idl

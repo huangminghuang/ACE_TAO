@@ -1,53 +1,76 @@
-function(convert_include_directories outvar)
-  foreach (dir ${ARGN})
-    if ("${dir}" MATCHES "^\\.\\.")
-      list(APPEND result ${CMAKE_CURRENT_SOURCE_DIR}/${dir})
-    else()
-      list(APPEND result ${dir})
-    endif()
-  endforeach()
-endfunction()
+
+
+macro(ace_parse_arguments options oneValueArgs multiValueArgs)
+  cmake_parse_arguments(_arg "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN} )
+
+  if (_arg_REQUIRES)
+    foreach(cond ${_arg_REQUIRES})
+      if (NOT ${cond})
+        set(_ace_parse_arguments_TO_SKIP TRUE)
+        return()
+      endif()
+    endforeach()
+  endif(_arg_REQUIRES)
+
+  if (_arg_AVOIDS)
+    foreach(cond ${_arg_AVOIDS})
+      if (${cond})
+        set(_ace_parse_arguments_TO_SKIP TRUE)
+        return()
+      endif()
+    endforeach()
+  endif()
+
+  source_group("Source Files" FILES ${_arg_SOURCE_FILES})
+  source_group("Header Files" FILES ${_arg_HEADER_FILES})
+  source_group("Inline Files" FILES ${_arg_INLINE_FILES})
+
+  set(_arg_SOURCES ${_arg_SOURCE_FILES}
+                   ${_arg_HEADER_FILES}
+                   ${_arg_INLINE_FILES}
+                   ${_arg_TEMPLATE_FILES}
+                   ${${name}_IDLS_OUTPUT_FILES}
+                   ${_arg_IDL_FILES}
+  )
+
+  if (_arg_TEMPLATE_FILES)
+    set_source_files_properties(${_arg_TEMPLATE_FILES} PROPERTIES HEADER_FILE_ONLY ON)
+    source_group("Template Files" FILES ${_arg_TEMPLATE_FILES})
+  endif()
+
+endmacro()
+
 
 function(add_ace_exe target)
     set(oneValueArgs OUTPUT_NAME)
-    set(multiValueArgs SOURCES LINK_LIBRARIES INCLUDE_DIRECTORIES REQUIRES AVOIDS)
-    cmake_parse_arguments(_arg "" "${oneValueArgs}" "${multiValueArgs}" ${ARGN} )
+    set(multiValueArgs
+        SOURCE_FILES
+        HEADER_FILES
+        INLINE_FILES
+        TEMPLATE_FILES
+        COMPILE_DEFINITIONS
+        LINK_LIBRARIES
+        INCLUDE_DIRECTORIES
+        REQUIRES
+        AVOIDS
+        FOLDER
+      )
 
-    if (_arg_REQUIRES)
-      foreach(cond ${_arg_REQUIRES})
-        if (NOT ${cond})
-          set(_tao_parse_arguments_TO_SKIP TRUE)
-          return()
-        endif()
-      endforeach()
-    endif(_arg_REQUIRES)
-
-    if (_arg_AVOIDS)
-      foreach(cond ${_arg_AVOIDS})
-        if (${cond})
-          set(_tao_parse_arguments_TO_SKIP TRUE)
-          return()
-        endif()
-      endforeach()
+    ace_parse_arguments("" "${oneValueArgs}"  "${multiValueArgs}" ${ARGN})
+    if (_ace_parse_arguments_TO_SKIP)
+      return()
     endif()
-
-    if ("${_arg_SOURCES}" STREQUAL "GLOB")
-      file(GLOB _arg_SOURCE *.cpp)
-      file(GLOB templates *_T.cpp)
-      list(REMOVE_ITEM _arg_SOURCE "${templates}")
-    endif()
-
 
     add_executable(${target} ${_arg_SOURCES})
     if (NOT _arg_OUTPUT_NAME)
       set(_arg_OUTPUT_NAME ${target})
     endif()
 
-    convert_include_directories(dirs ${_arg_INCLUDE_DIRECTORIES})
-
     set_target_properties(${target} PROPERTIES
       OUTPUT_NAME "${_arg_OUTPUT_NAME}"
-      INCLUDE_DIRECTORIES "${dirs}"
+      INCLUDE_DIRECTORIES "${_arg_INCLUDE_DIRECTORIES}"
+      COMPILE_DEFINITIONS "${_arg_COMPILE_DEFINITIONS}"
+      FOLDER "${_arg_FOLDER}"
     )
 
     target_link_libraries(${target} ACE ${_arg_LINK_LIBRARIES})
@@ -56,44 +79,33 @@ endfunction()
 
 function(add_ace_lib target)
     set(oneValueArgs OUTPUT_NAME)
-    set(multiValueArgs SOURCES PUBLIC_LINK_LIBRARIES PUBLIC_INCLUDE_DIRECTORIES REQUIRES AVOIDS)
-    cmake_parse_arguments(_arg "" "${oneValueArgs}" "${multiValueArgs}" ${ARGN} )
-
-    if (_arg_REQUIRES)
-      foreach(cond ${_arg_REQUIRES})
-        if (NOT ${cond})
-          set(_tao_parse_arguments_TO_SKIP TRUE)
-          return()
-        endif()
-      endforeach()
-    endif(_arg_REQUIRES)
-
-    if (_arg_AVOIDS)
-      foreach(cond ${_arg_AVOIDS})
-        if (${cond})
-          set(_tao_parse_arguments_TO_SKIP TRUE)
-          return()
-        endif()
-      endforeach()
+    set(multiValueArgs
+        SOURCE_FILES
+        HEADER_FILES
+        INLINE_FILES
+        TEMPLATE_FILES
+        PUBLIC_COMPILE_DEFINITIONS
+        PUBLIC_LINK_LIBRARIES
+        PUBLIC_INCLUDE_DIRECTORIES
+        REQUIRES
+        AVOIDS
+        FOLDER
+      )
+    ace_parse_arguments("" "${oneValueArgs}"  "${multiValueArgs}" ${ARGN})
+    if (_ace_parse_arguments_TO_SKIP)
+      return()
     endif()
-
-    if ("${_arg_SOURCES}" STREQUAL "GLOB")
-      file(GLOB _arg_SOURCE *.cpp)
-      file(GLOB templates *_T.cpp)
-      list(REMOVE_ITEM _arg_SOURCE "${templates}")
-    endif()
-
 
     add_library(${target} ${_arg_SOURCES})
     if (NOT _arg_OUTPUT_NAME)
       set(_arg_OUTPUT_NAME ${target})
     endif()
 
-    convert_include_directories(dirs ${_arg_PUBLIC_INCLUDE_DIRECTORIES})
-
     set_target_properties(${target} PROPERTIES
       OUTPUT_NAME "${_arg_OUTPUT_NAME}"
-      PUBLIC_INCLUDE_DIRECTORIES "${dirs}"
+      PUBLIC_INCLUDE_DIRECTORIES "${_arg_PUBLIC_INCLUDE_DIRECTORIES}"
+      PUBLIC_COMPILE_DEFINITIONS "${_arg_PUBLIC_COMPILE_DEFINITIONS}"
+      FOLDER "${_arg_FOLDER}"
     )
 
     target_link_libraries(${target} ACE ${_arg_PUBLIC_LINK_LIBRARIES})

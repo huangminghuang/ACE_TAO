@@ -10,7 +10,7 @@ endif()
 include(orbsvcs.cmake)
 
 add_orbsvcs_idls(Svc_Utils
-  IDLS TimeBase.idl
+  IDL_FILES TimeBase.idl
        RtecBase.idl
 )
 

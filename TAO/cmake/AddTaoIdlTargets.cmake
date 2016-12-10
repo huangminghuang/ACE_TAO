@@ -20,7 +20,7 @@ set(TAO_VERSIONING_IDL_FLAGS
 )
 
 function(add_tao_idl_targets name)
-  set(multiValueArgs FLAGS IDLS)
+  set(multiValueArgs FLAGS IDL_FILES )
   cmake_parse_arguments(_arg "" "" "${multiValueArgs}" ${ARGN})
 
   set(_arg_FLAGS ${TAO_BASE_IDL_FLAGS} ${_arg_FLAGS})
@@ -93,8 +93,8 @@ function(add_tao_idl_targets name)
     list(APPEND _skel_header_files "${_skel_output_dir}/@idl_file_base@S_T.h ${_skel_output_dir}/@idl_file_base@S_T.cpp")
   endif()
 
-  list(APPEND ${name} ${_arg_IDLS})
-  foreach(idl_file ${_arg_IDLS})
+  list(APPEND ${name} ${_arg_IDL_FILES})
+  foreach(idl_file ${_arg_IDL_FILES})
 
     get_filename_component(idl_file_base ${idl_file} NAME_WE)
     string(REGEX REPLACE "@idl_file_base@" "${idl_file_base}" ${idl_file_base}_STUB_FILES "${_stub_files}")

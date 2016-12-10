@@ -10,5 +10,5 @@ add_ace_component(ACE_Qt4Reactor
     PUBLIC_HEADER         QtReactor.h ACE_QtReactor_export.h
     PUBLIC_LINK_LIBRARIES ACE Qt4::QtCore
     PACKAGE               ACE
-    WHEN                  Qt4_FOUND
+    REQUIRES                  Qt4_FOUND
 )

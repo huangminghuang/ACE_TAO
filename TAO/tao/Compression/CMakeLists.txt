@@ -9,12 +9,12 @@ add_tao_idl_targets(Compression_IDLS
   FLAGS -Gp -Gd -Sal
         -Wb,include_guard=TAO_COMPRESSION_SAFE_INCLUDE
         -Wb,safe_include=tao/Compression/Compression.h
-  IDLS  Compression.pidl
+  IDL_FILES  Compression.pidl
 )
 
 add_tao_idl_targets(Compression_IDLS
   FLAGS -Wb,unique_include=tao/Compression/Compression.h
-  IDLS  Compression_include.pidl
+  IDL_FILES  Compression_include.pidl
 )
 
 

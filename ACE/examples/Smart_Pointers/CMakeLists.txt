@@ -1,12 +1,12 @@
 project(Smart_Pointers CXX)
 cmake_minimum_required(VERSION 2.8.12)
 
-if (NOT TARGET ACE)
+if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
 
-add_executable(Smart_Pointers_Gadget 
+add_executable(Smart_Pointers_Gadget
   Gadget.cpp
   Gadget_Factory.cpp
   Gadget_Impl.cpp

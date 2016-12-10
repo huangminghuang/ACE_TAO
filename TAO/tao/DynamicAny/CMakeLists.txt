@@ -7,5 +7,5 @@ add_tao_component(
                 -Wb,include_guard=TAO_DYNAMICANY_SAFE_INCLUDE
                 -Wb,safe_include=tao/DynamicAny/DynamicAny.h
                 -iC tao/DynamicAny
-  IDLS DynamicAny.pidl
+  IDL_FILES DynamicAny.pidl
 )

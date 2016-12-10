@@ -1,5 +1,5 @@
 add_orbsvcs_idls(Time
-  IDLS ../TimeService.idl
+  IDL_FILES ../TimeService.idl
 )
 
 add_orbsvcs_lib(TAO_CosTime

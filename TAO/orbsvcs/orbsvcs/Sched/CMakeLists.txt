@@ -1,7 +1,7 @@
 
 add_orbsvcs_idls(Sched
   EXPORT_PREFIX TAO_RTSched
-  IDLS ../RtecScheduler.idl
+  IDL_FILES ../RtecScheduler.idl
 )
 
 file(GLOB headers *.h *.inl *_T.cpp)

@@ -6,7 +6,7 @@ endif()
 add_tao_idl_targets(HTIOP_IDLS
   FLAGS -Wb,export_macro=HTIOP_Export -Wb,export_include=orbsvcs/HTIOP/HTIOP_Export.h -SS
         -o orbsvcs
-  IDLS ../HTIOP.idl
+  IDL_FILES ../HTIOP.idl
 )
 
 install(FILES ${HTIOP_IDLS} ${HTIOP_IDLS_OUTPUT_FILES}
@@ -16,7 +16,7 @@ add_tao_idl_targets(HTIOP_ENDPOINTS_IDLS
   FLAGS -Wb,export_macro=HTIOP_Export -Wb,export_include=orbsvcs/HTIOP/HTIOP_Export.h -SS
         -Sci -Gp -Gd -Sa -Sorb
         -o orbsvcs/HTIOP
-  IDLS htiop_endpoints.pidl
+  IDL_FILES htiop_endpoints.pidl
 )
 
 install(FILES ${HTIOP_IDLS} ${HTIOP_IDLS_OUTPUT_FILES}

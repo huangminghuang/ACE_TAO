@@ -1,5 +1,5 @@
 add_orbsvcs_idls(Security
-  IDLS ../CSI.idl
+  IDL_FILES ../CSI.idl
        ../CSIIOP.idl
        ../GSSUP.idl
        ../Security.idl

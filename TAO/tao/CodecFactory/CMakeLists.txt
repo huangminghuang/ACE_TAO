@@ -8,7 +8,7 @@ add_tao_idl_targets(CodecFactory_IDLS
           -Wb,include_guard=TAO_CODECFACTORY_SAFE_INCLUDE
           -Wb,safe_include=tao/CodecFactory/CodecFactory.h
           -iC tao/CodecFactory -Gxhst
-  IDLS    IOP_Codec.pidl
+  IDL_FILES    IOP_Codec.pidl
 )
 
 add_tao_idl_targets(CodecFactory_IDLS
@@ -17,7 +17,7 @@ add_tao_idl_targets(CodecFactory_IDLS
         -Wb,export_include=tao/CodecFactory/codecfactory_export.h
         -Wb,unique_include=tao/CodecFactory/CodecFactory.h
         -iC CodecFactory
-  IDLS  IOP_Codec_include.pidl
+  IDL_FILES  IOP_Codec_include.pidl
 )
 
 add_tao_component(

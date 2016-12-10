@@ -5,12 +5,12 @@ endif()
 
 add_ace_exe(RMCast_Test_Sender
             OUTPUT_NAME sender
-            SOURCES Sender.cpp
+            SOURCE_FILES Sender.cpp
             LINK_LIBRARIES ACE_RMCast)
 
 add_ace_exe(RMCast_Test_Receiver
             OUTPUT_NAME receiver
-            SOURCES Receiver.cpp
+            SOURCE_FILES Receiver.cpp
             LINK_LIBRARIES ACE_RMCast)
 
 add_test(NAME RMCast

@@ -6,7 +6,7 @@ if(INTERCEPTOR)
           -Wb,export_macro=TAO_Transport_Current_Export
           -iC tao/TransportCurrent -I./TransportCurrent -SS -Sci
           -Sa -St
-    IDLS TC.idl
+    IDL_FILES TC.idl
   )
 
   add_tao_component(
@@ -31,7 +31,7 @@ if(INTERCEPTOR)
     FLAGS -Wb,export_include=tao/TransportCurrent/Transport_Current_Export.h
           -Wb,export_macro=TAO_Transport_Current_Export
           -iC tao/TransportCurrent -I./TransportCurrent -SS -Sci
-    IDLS TC_IIOP.idl
+    IDL_FILES TC_IIOP.idl
   )
 
   add_tao_component(

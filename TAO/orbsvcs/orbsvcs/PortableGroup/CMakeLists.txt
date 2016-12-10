@@ -3,13 +3,13 @@ if (MINIMUM_CORBA OR CORBA_E_MICRO OR CORBA_E_COMPACT OR (NOT TARGET TAO_Messagi
 endif()
 
 add_orbsvcs_idls(PortableGroup
-  IDLS  ../miop.idl
+  IDL_FILES  ../miop.idl
         ../PortableGroup_Simple_DS.idl
 )
 
 add_orbsvcs_idls(PortableGroup
   FLAGS -GC
-  IDLS  ../PortableGroup.idl
+  IDL_FILES  ../PortableGroup.idl
 )
 
 file(GLOB sources *.cpp)

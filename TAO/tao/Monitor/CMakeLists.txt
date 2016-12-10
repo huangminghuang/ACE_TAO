@@ -7,20 +7,20 @@ list(APPEND TAO_BASE_IDL_FLAGS
 
 add_tao_idl_targets(Monitor_IDLS
   FLAGS -Wb,unique_include=tao/Monitor/Monitor.h -SS -Sci -Sa -St
-  IDLS Monitor_include.pidl
+  IDL_FILES Monitor_include.pidl
 )
 
 add_tao_idl_targets(Monitor_IDLS
   FLAGS -Sa -St
         -Wb,include_guard=TAO_MONITOR_SAFE_INCLUDE
         -Wb,safe_include=tao/Monitor/Monitor.h
-  IDLS  Monitor.pidl
+  IDL_FILES  Monitor.pidl
 )
 
 add_tao_idl_targets(Monitor_IDLS
   FLAGS -SS -Wb,include_guard=TAO_MONITOR_SAFE_INCLUDE
         -Wb,safe_include=tao/Monitor/Monitor.h
-  IDLS Monitor_Types.pidl
+  IDL_FILES Monitor_Types.pidl
 )
 
 add_tao_component(

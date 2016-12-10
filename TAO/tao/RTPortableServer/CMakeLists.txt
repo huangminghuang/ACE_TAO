@@ -11,12 +11,12 @@ if (NOT CORBA_E_MICRO)
     FLAGS -Gp -Gd
           -Wb,include_guard=TAO_RT_PORTABLESERVER_SAFE_INCLUDE
           -Wb,safe_include=tao/RTPortableServer/RTPortableServer.h
-    IDLS RTPortableServer.pidl
+    IDL_FILES RTPortableServer.pidl
   )
 
   add_tao_idl_targets(RTPortableServer_IDLS
     FLAGS -Wb,unique_include=tao/RTPortableServer/RTPortableServer.h
-    IDLS RTPortableServer_include.pidl
+    IDL_FILES RTPortableServer_include.pidl
   )
 
   add_tao_component(

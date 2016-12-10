@@ -43,11 +43,11 @@ target_link_libraries(drwho ACE)
 
 add_ace_exe(drwho-Client
             OUTPUT_NAME client
-            SOURCES client.cpp
+            SOURCE_FILES client.cpp
             LINK_LIBRARIES drwho)
 
 add_ace_exe(drwho-Server
             OUTPUT_NAME server
-            SOURCES server.cpp
+            SOURCE_FILES server.cpp
             LINK_LIBRARIES drwho)
-                            
+

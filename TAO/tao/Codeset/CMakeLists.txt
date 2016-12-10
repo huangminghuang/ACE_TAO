@@ -20,7 +20,7 @@ add_tao_component(
                 -Wb,export_macro=TAO_Codeset_Export
                 -Wb,export_include=tao/Codeset/codeset_export.h
                 -iC tao/Codeset
-  IDLS CodeSetContext.pidl
+  IDL_FILES CodeSetContext.pidl
   # SOURCES ${sources}
   # PUBLIC_HEADER "${headers}"
   PUBLIC_LINK_LIBRARIES TAO_AnyTypeCode

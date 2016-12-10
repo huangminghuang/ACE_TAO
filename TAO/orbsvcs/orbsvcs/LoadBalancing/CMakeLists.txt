@@ -1,7 +1,7 @@
 
 add_orbsvcs_idls(LoadBalancing
   FLAGS -GC
-  IDLS  ../CosLoadBalancing.idl
+  IDL_FILES  ../CosLoadBalancing.idl
         ../LB_ORT.idl
 )
 

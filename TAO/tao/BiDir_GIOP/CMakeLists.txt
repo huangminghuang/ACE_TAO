@@ -20,7 +20,7 @@ add_tao_component(
                  -Wb,include_guard=TAO_BIDIRGIOP_SAFE_INCLUDE
                  -Wb,safe_include=tao/BiDir_GIOP/BiDirGIOP.h
                  -iC BiDir_GIOP -Gxhst
-  IDLS  BiDirPolicy.pidl
+  IDL_FILES  BiDirPolicy.pidl
   PUBLIC_LINK_LIBRARIES TAO_PI
 )
 

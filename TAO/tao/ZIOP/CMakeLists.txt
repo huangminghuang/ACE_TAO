@@ -7,6 +7,6 @@ add_tao_component(
                 -Wb,include_guard=TAO_ZIOP_SAFE_INCLUDE
                 -Wb,safe_include=tao/ZIOP/ZIOP.h
                 -iC tao/ZIOP -Gxhst
-  IDLS ZIOP.pidl
+  IDL_FILES ZIOP.pidl
   PUBLIC_LINK_LIBRARIES TAO_Compression TAO_PI
 )

@@ -1,12 +1,12 @@
 
 
 add_orbsvcs_idls(FtRtEvent
-  IDLS ../../FtRtecEventChannelAdmin.idl
+  IDL_FILES ../../FtRtecEventChannelAdmin.idl
 )
 
 add_orbsvcs_idls(FtRtEvent
   FLAGS -GC
-  IDLS ../../FTRT.idl
+  IDL_FILES ../../FTRT.idl
        ../../FtRtecEventComm.idl
        ../../FTRT_GroupManager.idl
 )

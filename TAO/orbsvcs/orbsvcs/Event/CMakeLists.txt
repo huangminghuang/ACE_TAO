@@ -1,7 +1,7 @@
 add_orbsvcs_idls(Event
   EXPORT_PREFIX TAO_RTEvent
   FLAGS -GT
-  IDLS ../RtecDefaultEventData.idl
+  IDL_FILES ../RtecDefaultEventData.idl
        ../RtecEventComm.idl
        ../RtecEventChannelAdmin.idl
        ../RtecUDPAdmin.idl
