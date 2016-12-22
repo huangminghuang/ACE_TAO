@@ -7,14 +7,14 @@ if (RT_CORBA)
   )
 
 
-  add_tao_idl_targets(RTCORBA_IDLS
-    FLAGS -Sa -St
+  add_tao_idl_command(RTCORBA_IDLS
+    IDL_FLAGS -Sa -St
           -Wb,unique_include=tao/RTCORBA/RTCORBA.h
     IDL_FILES RTCORBA_include.pidl
   )
 
-  add_tao_idl_targets(RTCORBA_IDLS
-    FLAGS -Gp -Gd
+  add_tao_idl_command(RTCORBA_IDLS
+    IDL_FLAGS -Gp -Gd
           -Wb,include_guard=TAO_RTCORBA_SAFE_INCLUDE
           -Wb,safe_include=tao/RTCORBA/RTCORBA.h
     IDL_FILES RTCORBA.pidl

@@ -10,8 +10,8 @@ add_orbsvcs_idls(SSLIOP
   IDL_FILES ../SSLIOP.idl
 )
 
-add_tao_idl_targets(SSLIOP_Endpoint_IDLS
-  FLAGS -Wb,export_macro=TAO_SSLIOP_Export
+add_tao_idl_command(SSLIOP_Endpoint_IDLS
+  IDL_FLAGS -Wb,export_macro=TAO_SSLIOP_Export
         -Wb,export_include=orbsvcs/SSLIOP/SSLIOP_Export.h
         -SS -Sci -Gp -Gd -Sa -Sorb
         -o SSLIOP

@@ -59,9 +59,9 @@ function(add_orbsvcs_idls _Name)
     message(SEND_ERROR "no ${CMAKE_CURRENT_SOURCE_DIR}/${_Name}_export.h is found")
   endif()
 
-  add_tao_idl_targets(${_Name}_IDLS
+  add_tao_idl_command(${_Name}_IDLS
     IDL_FILES ${_arg_IDL_FILES}
-    FLAGS ${_idlflags} -o orbsvcs ${_arg_FLAGS}
+    IDL_FLAGS ${_idlflags} -o orbsvcs ${_arg_FLAGS}
   )
 
   set(${_Name}_IDLS_STUB_FILES ${${_Name}_IDLS_STUB_FILES} PARENT_SCOPE)

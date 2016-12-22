@@ -4,13 +4,13 @@ list(APPEND TAO_BASE_IDL_FLAGS
   -iC tao/PI_Server
 )
 
-add_tao_idl_targets(PI_Server_IDLS
-  FLAGS -Sci -SS -GA -Gp -Gd -Sorb -Sal
+add_tao_idl_command(PI_Server_IDLS
+  IDL_FLAGS -Sci -SS -GA -Gp -Gd -Sorb -Sal
   IDL_FILES ServerRequestInfo.pidl
 )
 
-add_tao_idl_targets(PI_Server_IDLS
-  FLAGS -SS -Sorb -GX -Sci -Sa -St
+add_tao_idl_command(PI_Server_IDLS
+  IDL_FLAGS -SS -Sorb -GX -Sci -Sa -St
         -Wb,unique_include=tao/PI_Server/PI_Server.h
   IDL_FILES  PI_Server_include.pidl
 )

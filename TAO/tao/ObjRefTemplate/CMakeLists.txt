@@ -5,21 +5,21 @@ list(APPEND TAO_BASE_IDL_FLAGS
   -iC tao/ObjRefTemplate
 )
 
-add_tao_idl_targets(ObjRefTemplate_IDLS
-  FLAGS -Gp -Gd -SS -Sorb -GX
+add_tao_idl_command(ObjRefTemplate_IDLS
+  IDL_FLAGS -Gp -Gd -SS -Sorb -GX
         -Wb,include_guard=TAO_OBJREF_TEMPLATE_SAFE_INCLUDE
         -Wb,safe_include=tao/ObjRefTemplate/ObjectReferenceTemplate.h
   IDL_FILES ObjectReferenceTemplate.pidl
 )
 
-add_tao_idl_targets(ObjRefTemplate_IDLS
-  FLAGS -SS -Sorb -GX -Sci -Sa -St
+add_tao_idl_command(ObjRefTemplate_IDLS
+  IDL_FLAGS -SS -Sorb -GX -Sci -Sa -St
         -Wb,unique_include=tao/ObjRefTemplate/ObjectReferenceTemplate.h
   IDL_FILES ObjectReferenceTemplate_include.pidl
 )
 
-add_tao_idl_targets(ObjRefTemplate_IDLS
-  FLAGS -Gp -Gd -SS -GA -Sorb
+add_tao_idl_command(ObjRefTemplate_IDLS
+  IDL_FLAGS -Gp -Gd -SS -GA -Sorb
   IDL_FILES  Default_ORT.pidl
 )
 

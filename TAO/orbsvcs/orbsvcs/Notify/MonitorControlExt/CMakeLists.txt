@@ -1,5 +1,5 @@
-add_tao_idl_targets(Notify_MC_Ext_IDLS
-  FLAGS -Wb,export_macro=TAO_Notify_MC_Ext_Export
+add_tao_idl_command(Notify_MC_Ext_IDLS
+  IDL_FLAGS -Wb,export_macro=TAO_Notify_MC_Ext_Export
         -Wb,export_include=orbsvcs/Notify/MonitorControlExt/notify_mc_ext_export.h
         -I${TAO_ROOT}/tao
         -o orbsvcs/Notify/MonitorControlExt
