@@ -1,13 +1,13 @@
-add_tao_idl_targets(PortableServer_IDLS
-  FLAGS -Gp -Gd -Sci -SS -Sorb -GA
+add_tao_idl_command(PortableServer_IDLS
+  IDL_FLAGS -Gp -Gd -Sci -SS -Sorb -GA
         -Wb,export_macro=TAO_PortableServer_Export
         -Wb,export_include=tao/PortableServer/portableserver_export.h
         -iC tao/PortableServer
   IDL_FILES  ForwardRequest.pidl
 )
 
-add_tao_idl_targets(PortableServer_IDLS
-  FLAGS -Gp -Gd -Sci -SS -Sorb -GA -Sal
+add_tao_idl_command(PortableServer_IDLS
+  IDL_FLAGS -Gp -Gd -Sci -SS -Sorb -GA -Sal
         -Wb,export_macro=TAO_PortableServer_Export
         -Wb,export_include=tao/PortableServer/portableserver_export.h
         -iC tao/PortableServer
@@ -24,8 +24,8 @@ add_tao_idl_targets(PortableServer_IDLS
         ThreadPolicy.pidl
 )
 
-add_tao_idl_targets(PortableServer_IDLS
-  FLAGS -Gp -Gd -Sci -SS -Sorb
+add_tao_idl_command(PortableServer_IDLS
+  IDL_FLAGS -Gp -Gd -Sci -SS -Sorb
         -Wb,export_macro=TAO_PortableServer_Export
         -Wb,export_include=tao/PortableServer/portableserver_export.h
         -iC tao/PortableServer
@@ -36,8 +36,8 @@ add_tao_idl_targets(PortableServer_IDLS
 )
 
 
-add_tao_idl_targets(PortableServer_IDLS
-  FLAGS -Sci -SS -Sorb -Sa -GX
+add_tao_idl_command(PortableServer_IDLS
+  IDL_FLAGS -Sci -SS -Sorb -Sa -GX
         -Wb,export_macro=TAO_PortableServer_Export
         -Wb,export_include=tao/PortableServer/portableserver_export.h
         -Wb,unique_include=tao/PortableServer/PortableServer.h
@@ -45,8 +45,8 @@ add_tao_idl_targets(PortableServer_IDLS
   IDL_FILES PortableServer_include.pidl
 )
 
-add_tao_idl_targets(PortableServer_IDLS
-  FLAGS -Sci -SS -Sorb -Sa -GX
+add_tao_idl_command(PortableServer_IDLS
+  IDL_FLAGS -Sci -SS -Sorb -Sa -GX
         -Wb,export_macro=TAO_PortableServer_Export
         -Wb,export_include=tao/PortableServer/portableserver_export.h
         -Wb,include_guard=TAO_PORTABLESERVER_SAFE_INCLUDE

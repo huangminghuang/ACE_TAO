@@ -5,16 +5,16 @@ list(APPEND TAO_BASE_IDL_FLAGS
             -iC tao/Compression
 )
 
-add_tao_idl_targets(Compression_IDLS
-  FLAGS -Gp -Gd -Sal
+add_tao_idl_command(Compression_IDLS
+  IDL_FLAGS -Gp -Gd -Sal
         -Wb,include_guard=TAO_COMPRESSION_SAFE_INCLUDE
         -Wb,safe_include=tao/Compression/Compression.h
   IDL_FILES  Compression.pidl
 )
 
-add_tao_idl_targets(Compression_IDLS
-  FLAGS -Wb,unique_include=tao/Compression/Compression.h
-  IDL_FILES  Compression_include.pidl
+add_tao_idl_command(Compression_IDLS
+  IDL_FLAGS -Sa -St -Wb,unique_include=tao/Compression/Compression.h
+  IDL_FILES Compression_include.pidl
 )
 
 

@@ -1,25 +1,27 @@
 
 
+macro(requires)
+  foreach(cond ${ARGN})
+    string(REPLACE " "  ";" cond ${cond})
+    if (${cond})
+    else()
+      message("Skipping ${CMAKE_CURRENT_LIST_FILE} because it requires ${cond}")
+      return()
+    endif()
+  endforeach()
+endmacro()
+
 macro(ace_parse_arguments options oneValueArgs multiValueArgs)
   cmake_parse_arguments(_arg "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN} )
 
-  if (_arg_REQUIRES)
-    foreach(cond ${_arg_REQUIRES})
-      if (NOT ${cond})
-        set(_ace_parse_arguments_TO_SKIP TRUE)
-        return()
-      endif()
-    endforeach()
-  endif(_arg_REQUIRES)
-
-  if (_arg_AVOIDS)
-    foreach(cond ${_arg_AVOIDS})
-      if (${cond})
-        set(_ace_parse_arguments_TO_SKIP TRUE)
-        return()
-      endif()
-    endforeach()
-  endif()
+  foreach(cond ${_arg_REQUIRES})
+    string(REPLACE " " ";" cond ${cond})
+    if (${cond})
+    else()
+      message("Skipping ${target} because it requires ${cond}")
+      return()
+    endif()
+  endforeach()
 
   source_group("Source Files" FILES ${_arg_SOURCE_FILES})
   source_group("Header Files" FILES ${_arg_HEADER_FILES})
@@ -52,16 +54,12 @@ function(add_ace_exe target)
         LINK_LIBRARIES
         INCLUDE_DIRECTORIES
         REQUIRES
-        AVOIDS
         FOLDER
       )
 
     ace_parse_arguments("" "${oneValueArgs}"  "${multiValueArgs}" ${ARGN})
-    if (_ace_parse_arguments_TO_SKIP)
-      return()
-    endif()
 
-    add_executable(${target} ${_arg_SOURCES})
+    add_executable(${target} "${_arg_SOURCES}")
     if (NOT _arg_OUTPUT_NAME)
       set(_arg_OUTPUT_NAME ${target})
     endif()
@@ -80,31 +78,37 @@ endfunction()
 function(add_ace_lib target)
     set(oneValueArgs OUTPUT_NAME)
     set(multiValueArgs
+        DEFINE_SYMBOL
         SOURCE_FILES
         HEADER_FILES
         INLINE_FILES
         TEMPLATE_FILES
+        COMPILE_DEFINITIONS
         PUBLIC_COMPILE_DEFINITIONS
         PUBLIC_LINK_LIBRARIES
+        INCLUDE_DIRECTORIES
         PUBLIC_INCLUDE_DIRECTORIES
         REQUIRES
-        AVOIDS
         FOLDER
       )
     ace_parse_arguments("" "${oneValueArgs}"  "${multiValueArgs}" ${ARGN})
-    if (_ace_parse_arguments_TO_SKIP)
-      return()
+
+    if (NOT "${_arg_DEFINE_SYMBOL}")
+      set(_lib_type "STATIC")
     endif()
 
-    add_library(${target} ${_arg_SOURCES})
+    add_library(${target} ${_lib_type} "${_arg_SOURCES}")
     if (NOT _arg_OUTPUT_NAME)
       set(_arg_OUTPUT_NAME ${target})
     endif()
 
     set_target_properties(${target} PROPERTIES
       OUTPUT_NAME "${_arg_OUTPUT_NAME}"
-      PUBLIC_INCLUDE_DIRECTORIES "${_arg_PUBLIC_INCLUDE_DIRECTORIES}"
-      PUBLIC_COMPILE_DEFINITIONS "${_arg_PUBLIC_COMPILE_DEFINITIONS}"
+      DEFINE_SYMBOL "${_arg_DEFINE_SYMBOL}"
+      INCLUDE_DIRECTORIES "${_arg_INCLUDE_DIRECTORIES};${_arg_PUBLIC_INCLUDE_DIRECTORIES}"
+      INTERFACE_INCLUDE_DIRECTORIES "${_arg_PUBLIC_INCLUDE_DIRECTORIES}"
+      COMPILE_DEFINITIONS "${_arg_COMPILE_DEFINITIONS};${_arg_PUBLIC_COMPILE_DEFINITIONS}"
+      PUBLIC_COMPILE_DEFINITIONS "${_arg_COMPILE_DEFINITIONS};${_arg_PUBLIC_COMPILE_DEFINITIONS}"
       FOLDER "${_arg_FOLDER}"
     )
 

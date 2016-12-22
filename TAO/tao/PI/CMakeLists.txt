@@ -10,20 +10,20 @@ list(APPEND TAO_BASE_IDL_FLAGS
   -iC tao/PI
 )
 
-add_tao_idl_targets(PI_IDLS
-  FLAGS -Sorb -GX -Wb,unique_include=tao/PI/PI.h
+add_tao_idl_command(PI_IDLS
+  IDL_FLAGS -Sorb -GX -Wb,unique_include=tao/PI/PI.h
   IDL_FILES PI_include.pidl
 )
 
-add_tao_idl_targets(PI_IDLS
-  FLAGS -Sorb -Sal -GX
+add_tao_idl_command(PI_IDLS
+  IDL_FLAGS -Sorb -Sal -GX
         -Wb,include_guard=TAO_PI_SAFE_INCLUDE
         -Wb,safe_include=tao/PI/PI.h
   IDL_FILES ORBInitInfo.pidl
 )
 
-add_tao_idl_targets(PI_IDLS
-  FLAGS -GA -Sorb -Sal
+add_tao_idl_command(PI_IDLS
+  IDL_FLAGS -GA -Sorb -Sal
         -Wb,include_guard=TAO_PI_SAFE_INCLUDE
         -Wb,safe_include=tao/PI/PI.h
   IDL_FILES  ORBInitializer.pidl
@@ -35,13 +35,13 @@ add_tao_idl_targets(PI_IDLS
         ProcessingModePolicy.pidl
 )
 
-add_tao_idl_targets(PI_IDLS
-  FLAGS -GA -Sorb -Sal
+add_tao_idl_command(PI_IDLS
+  IDL_FLAGS -GA -Sorb -Sal
   IDL_FILES Interceptor.pidl
 )
 
-add_tao_idl_targets(PI_IDLS
-  FLAGS -GA -Sal
+add_tao_idl_command(PI_IDLS
+  IDL_FLAGS -GA -Sal
         -Wb,include_guard=TAO_PI_SAFE_INCLUDE
         -Wb,safe_include=tao/PI/PI.h
   IDL_FILES InvalidSlot.pidl

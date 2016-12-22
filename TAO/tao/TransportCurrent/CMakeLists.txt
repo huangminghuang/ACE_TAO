@@ -1,8 +1,8 @@
 
 if(INTERCEPTOR)
 
-  add_tao_idl_targets(TC_IDLS
-    FLAGS -Wb,export_include=tao/TransportCurrent/Transport_Current_Export.h
+  add_tao_idl_command(TC_IDLS
+    IDL_FLAGS -Wb,export_include=tao/TransportCurrent/Transport_Current_Export.h
           -Wb,export_macro=TAO_Transport_Current_Export
           -iC tao/TransportCurrent -I./TransportCurrent -SS -Sci
           -Sa -St
@@ -27,8 +27,8 @@ if(INTERCEPTOR)
     PUBLIC_LINK_LIBRARIES TAO_PI TAO_PortableServer
   )
 
-  add_tao_idl_targets(TC_IIOP_IDLS
-    FLAGS -Wb,export_include=tao/TransportCurrent/Transport_Current_Export.h
+  add_tao_idl_command(TC_IIOP_IDLS
+    IDL_FLAGS -Wb,export_include=tao/TransportCurrent/Transport_Current_Export.h
           -Wb,export_macro=TAO_Transport_Current_Export
           -iC tao/TransportCurrent -I./TransportCurrent -SS -Sci
     IDL_FILES TC_IIOP.idl

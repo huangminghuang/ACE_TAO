@@ -6,13 +6,13 @@ list(APPEND TAO_BASE_IDL_FLAGS
   -iC tao/ImR_Client
 )
 
-add_tao_idl_targets(ImR_Client_IDLS
-  FLAGS -GA
+add_tao_idl_command(ImR_Client_IDLS
+  IDL_FLAGS -GA
   IDL_FILES ServerObject.idl
 )
 
-add_tao_idl_targets(ImR_Client_IDLS
-  FLAGS -GX -I${CMAKE_CURRENT_SOURCE_DIR}
+add_tao_idl_command(ImR_Client_IDLS
+  IDL_FLAGS -GX -I${CMAKE_CURRENT_SOURCE_DIR}
   IDL_FILES ImplRepo.idl
 )
 

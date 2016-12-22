@@ -6,37 +6,37 @@ list(APPEND TAO_BASE_IDL_FLAGS
   -iC tao/Messaging
 )
 
-add_tao_idl_targets(Messaging_IDLS
-  FLAGS -SS -GA -Gp -Gd -Sorb -Sal
+add_tao_idl_command(Messaging_IDLS
+  IDL_FLAGS -SS -GA -Gp -Gd -Sorb -Sal
   IDL_FILES  ExceptionHolder.pidl
 )
 
-add_tao_idl_targets(Messaging_IDLS
-  FLAGS -Sci -SS -Gp -Gd -Sorb -Sal -GX
+add_tao_idl_command(Messaging_IDLS
+  IDL_FLAGS -Sci -SS -Gp -Gd -Sorb -Sal -GX
   IDL_FILES  Pollable.pidl
 )
 
-add_tao_idl_targets(Messaging_IDLS
-  FLAGS -Sci -SS -Gp -Gd -Sorb -Sal -GX
+add_tao_idl_command(Messaging_IDLS
+  IDL_FLAGS -Sci -SS -Gp -Gd -Sorb -Sal -GX
   IDL_FILES  Messaging_Types.pidl
 )
 
-add_tao_idl_targets(Messaging_IDLS
-  FLAGS -Sci -SS -GA -Gp -Gd -Sorb -Sal
+add_tao_idl_command(Messaging_IDLS
+  IDL_FLAGS -Sci -SS -GA -Gp -Gd -Sorb -Sal
   IDL_FILES  TAO_Ext.pidl
         Messaging_RT_Policy.pidl
         Messaging_SyncScope_Policy.pidl
 )
 
-add_tao_idl_targets(Messaging_IDLS
-  FLAGS -Sci -SS -GA -Gp -Gd -Sorb -Sal
+add_tao_idl_command(Messaging_IDLS
+  IDL_FLAGS -Sci -SS -GA -Gp -Gd -Sorb -Sal
         -Wb,include_guard=TAO_MESSAGING_SAFE_INCLUDE
         -Wb,safe_include=tao/Messaging/Messaging.h
   IDL_FILES  Messaging_No_Impl.pidl
 )
 
-add_tao_idl_targets(Messaging_IDLS
-  FLAGS -GA -Gp -Gd -Sorb -Sal
+add_tao_idl_command(Messaging_IDLS
+  IDL_FLAGS -GA -Gp -Gd -Sorb -Sal
         -Wb,include_guard=TAO_MESSAGING_SAFE_INCLUDE
         -Wb,safe_include=tao/Messaging/Messaging.h
   IDL_FILES  Messaging.pidl

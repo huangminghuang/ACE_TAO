@@ -1,6 +1,6 @@
 
-add_tao_idl_targets(Notify_MC_IDLS
-  FLAGS -Wb,export_macro=TAO_Notify_MC_Export
+add_tao_idl_command(Notify_MC_IDLS
+  IDL_FLAGS -Wb,export_macro=TAO_Notify_MC_Export
         -Wb,export_include=orbsvcs/Notify/MonitorControl/notify_mc_export.h
         -o orbsvcs/Notify/MonitorControl
   IDL_FILES NotificationServiceMC.idl

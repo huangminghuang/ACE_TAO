@@ -5,13 +5,13 @@ list(APPEND TAO_BASE_IDL_FLAGS
   -iC IORInterceptor
 )
 
-add_tao_idl_targets(IORInterceptor_IDLS
-  FLAGS -Wb,include_guard=TAO_IORINTERCEPTOR_SAFE_INCLUDE
+add_tao_idl_command(IORInterceptor_IDLS
+  IDL_FLAGS -Wb,include_guard=TAO_IORINTERCEPTOR_SAFE_INCLUDE
         -Wb,safe_include=tao/IORInterceptor/IORInterceptor.h
   IDL_FILES IORInterceptor.pidl
 )
 
-add_tao_idl_targets(IORInterceptor_IDLS
+add_tao_idl_command(IORInterceptor_IDLS
   IDL_FILES IORInfo.pidl
 )
 

@@ -7,15 +7,15 @@ if (NOT CORBA_E_MICRO)
     -iC RTPortableServer
   )
 
-  add_tao_idl_targets(RTPortableServer_IDLS
-    FLAGS -Gp -Gd
+  add_tao_idl_command(RTPortableServer_IDLS
+    IDL_FLAGS -Gp -Gd
           -Wb,include_guard=TAO_RT_PORTABLESERVER_SAFE_INCLUDE
           -Wb,safe_include=tao/RTPortableServer/RTPortableServer.h
     IDL_FILES RTPortableServer.pidl
   )
 
-  add_tao_idl_targets(RTPortableServer_IDLS
-    FLAGS -Wb,unique_include=tao/RTPortableServer/RTPortableServer.h
+  add_tao_idl_command(RTPortableServer_IDLS
+    IDL_FLAGS -Wb,unique_include=tao/RTPortableServer/RTPortableServer.h
     IDL_FILES RTPortableServer_include.pidl
   )
 

@@ -1,7 +1,7 @@
 
 
-add_tao_idl_targets(CodecFactory_IDLS
-  FLAGS   -Gp -Gd -Sci -SS -Sorb -Sal -GX
+add_tao_idl_command(CodecFactory_IDLS
+  IDL_FLAGS   -Gp -Gd -Sci -SS -Sorb -Sal -GX
           -Wb,stub_export_macro=TAO_CODECFACTORY_Export
           -Wb,stub_export_include=tao/CodecFactory/codecfactory_export.h
           -Wb,stub_export_file=codecfactory_export.h
@@ -11,8 +11,8 @@ add_tao_idl_targets(CodecFactory_IDLS
   IDL_FILES    IOP_Codec.pidl
 )
 
-add_tao_idl_targets(CodecFactory_IDLS
-  FLAGS -Sci -SS -Sorb -Sa -GX
+add_tao_idl_command(CodecFactory_IDLS
+  IDL_FLAGS -Sci -SS -Sorb -Sa -GX
         -Wb,export_macro=TAO_CODECFACTORY_Export
         -Wb,export_include=tao/CodecFactory/codecfactory_export.h
         -Wb,unique_include=tao/CodecFactory/CodecFactory.h

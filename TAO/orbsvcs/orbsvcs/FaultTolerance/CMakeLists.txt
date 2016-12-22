@@ -1,7 +1,8 @@
-add_tao_idl_targets(FT_ORB_Utils_IDLS
-  FLAGS -Wb,skel_export_include=tao/PortableServer/PolicyS.h
-        -Wb,export_macro=TAO_FT_ORB_Utils_Export -Wb,export_include=orbsvcs/FaultTolerance/FT_ORB_Utils_export.h
-        -o orbsvcs
+add_tao_idl_command(FT_ORB_Utils_IDLS
+  IDL_FLAGS -Wb,skel_export_include=tao/PortableServer/PolicyS.h
+            -Wb,export_macro=TAO_FT_ORB_Utils_Export
+            -Wb,export_include=orbsvcs/FaultTolerance/FT_ORB_Utils_export.h
+            -o orbsvcs
   IDL_FILES ../FT_CORBA_ORB.idl
 )
 
@@ -59,8 +60,8 @@ add_orbsvcs_lib(TAO_FT_ServerORB
 
 )
 
-add_tao_idl_targets(FaultTolerance_IDLS
-  FLAGS -Wb,export_macro=TAO_FT_Export
+add_tao_idl_command(FaultTolerance_IDLS
+  IDL_FLAGS -Wb,export_macro=TAO_FT_Export
         -Wb,export_include=orbsvcs/FaultTolerance/fault_tol_export.h
         -Wb,skel_export_include=tao/PortableServer/PolicyS.h
         -I${TAO_ROOT}/tao

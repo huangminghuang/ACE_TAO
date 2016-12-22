@@ -3,8 +3,8 @@ if (NOT TARGET ACE_HTBP)
   find_package(ACE_HTBP)
 endif()
 
-add_tao_idl_targets(HTIOP_IDLS
-  FLAGS -Wb,export_macro=HTIOP_Export -Wb,export_include=orbsvcs/HTIOP/HTIOP_Export.h -SS
+add_tao_idl_command(HTIOP_IDLS
+  IDL_FLAGS -Wb,export_macro=HTIOP_Export -Wb,export_include=orbsvcs/HTIOP/HTIOP_Export.h -SS
         -o orbsvcs
   IDL_FILES ../HTIOP.idl
 )
@@ -12,8 +12,8 @@ add_tao_idl_targets(HTIOP_IDLS
 install(FILES ${HTIOP_IDLS} ${HTIOP_IDLS_OUTPUT_FILES}
         DESTINATION include/orbsvcs)
 
-add_tao_idl_targets(HTIOP_ENDPOINTS_IDLS
-  FLAGS -Wb,export_macro=HTIOP_Export -Wb,export_include=orbsvcs/HTIOP/HTIOP_Export.h -SS
+add_tao_idl_command(HTIOP_ENDPOINTS_IDLS
+  IDL_FLAGS -Wb,export_macro=HTIOP_Export -Wb,export_include=orbsvcs/HTIOP/HTIOP_Export.h -SS
         -Sci -Gp -Gd -Sa -Sorb
         -o orbsvcs/HTIOP
   IDL_FILES htiop_endpoints.pidl

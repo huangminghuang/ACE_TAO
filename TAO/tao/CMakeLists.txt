@@ -11,8 +11,8 @@ set(idlflags
   -Wb,anyop_export_include=tao/AnyTypeCode/TAO_AnyTypeCode_Export.h
 )
 
-add_tao_idl_targets(libTAO_IDLS
-  FLAGS ${idlflags}
+add_tao_idl_command(libTAO_IDLS
+  IDL_FLAGS ${idlflags}
         -GT -oS PortableServer -Gd
         -Wb,safe_include=tao/PolicyC.h
         -Wb,skel_export_macro=TAO_PortableServer_Export
@@ -20,13 +20,13 @@ add_tao_idl_targets(libTAO_IDLS
   IDL_FILES  Policy.pidl
 )
 
-add_tao_idl_targets(libTAO_IDLS
-  FLAGS ${idlflags} -SS -Sorb
+add_tao_idl_command(libTAO_IDLS
+  IDL_FLAGS ${idlflags} -SS -Sorb
   IDL_FILES GIOP.pidl
 )
 
-add_tao_idl_targets(libTAO_IDLS
-  FLAGS ${idlflags} -Sci -SS -Sorb
+add_tao_idl_command(libTAO_IDLS
+  IDL_FLAGS ${idlflags} -Sci -SS -Sorb
   IDL_FILES  CONV_FRAME.pidl
         Current.pidl
         IIOP.pidl
@@ -45,18 +45,18 @@ add_tao_idl_targets(libTAO_IDLS
         TimeBase.pidl
 )
 
-add_tao_idl_targets(libTAO_IDLS
-  FLAGS ${idlflags} -Sci -Sa -SS -Sorb
+add_tao_idl_command(libTAO_IDLS
+  IDL_FLAGS ${idlflags} -Sci -Sa -SS -Sorb
   IDL_FILES Policy_Forward.pidl
 )
 
-add_tao_idl_targets(libTAO_IDLS
-  FLAGS ${idlflags} -Sci -Sat -SS -Sorb
+add_tao_idl_command(libTAO_IDLS
+  IDL_FLAGS ${idlflags} -Sci -Sat -SS -Sorb
   IDL_FILES ParameterMode.pidl
 )
 
-add_tao_idl_targets(libTAO_IDLS
-  FLAGS ${idlflags} -Sci -Gse -Gata -SS -Sorb
+add_tao_idl_command(libTAO_IDLS
+  IDL_FLAGS ${idlflags} -Sci -Gse -Gata -SS -Sorb
   IDL_FILES  BooleanSeq.pidl
         CharSeq.pidl
         DoubleSeq.pidl

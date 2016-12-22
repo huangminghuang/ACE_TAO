@@ -10,14 +10,14 @@ list(APPEND TAO_BASE_IDL_FLAGS
 )
 
 
-add_tao_idl_targets(IFR_Client_IDLS
+add_tao_idl_command(IFR_Client_IDLS
   IDL_FILES IFR_Basic.pidl
        IFR_Components.pidl
        IFR_Extended.pidl
 )
 
-add_tao_idl_targets(IFR_Client_IDLS
-  FLAGS -Gxhst -Gxhsk
+add_tao_idl_command(IFR_Client_IDLS
+  IDL_FLAGS -Gxhst -Gxhsk
   IDL_FILES IFR_Base.pidl
 )
 
