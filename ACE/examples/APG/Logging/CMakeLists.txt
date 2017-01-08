@@ -1,173 +1,188 @@
 
 project(logging CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-##############################
-add_executable(Simple1
-  Simple1.cpp
-)
-set_target_properties(Simple1 PROPERTIES
+
+add_ace_exe(Simple1
   OUTPUT_NAME Simple1
+  FOLDER examples/APG/Logging
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Simple2
-  Simple2.cpp
+target_cxx_sources(Simple1
+  SOURCE_FILES Simple1.cpp
 )
-set_target_properties(Simple2 PROPERTIES
+
+
+add_ace_exe(Simple2
   OUTPUT_NAME Simple2
+  FOLDER examples/APG/Logging
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Change_Mask
-  Change_Mask.cpp
+target_cxx_sources(Simple2
+  SOURCE_FILES Simple2.cpp
 )
-set_target_properties(Change_Mask PROPERTIES
+
+
+add_ace_exe(Change_Mask
   OUTPUT_NAME Change_Mask
+  FOLDER examples/APG/Logging
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Change_Instance_Default
-  Change_Instance_Default.cpp
+target_cxx_sources(Change_Mask
+  SOURCE_FILES Change_Mask.cpp
 )
-set_target_properties(Change_Instance_Default PROPERTIES
+
+
+add_ace_exe(Change_Instance_Default
   OUTPUT_NAME Change_Instance_Default
+  FOLDER examples/APG/Logging
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Wrap_Macros
-  Wrap_Macros.cpp
+target_cxx_sources(Change_Instance_Default
+  SOURCE_FILES Change_Instance_Default.cpp
 )
-set_target_properties(Wrap_Macros PROPERTIES
+
+
+add_ace_exe(Wrap_Macros
   OUTPUT_NAME Wrap_Macros
+  FOLDER examples/APG/Logging
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Wrap_Macros_Alt
-  Wrap_Macros_Alt.cpp
+target_cxx_sources(Wrap_Macros
+  SOURCE_FILES Wrap_Macros.cpp
 )
-set_target_properties(Wrap_Macros_Alt PROPERTIES
+
+
+add_ace_exe(Wrap_Macros_Alt
   OUTPUT_NAME Wrap_Macros_Alt
+  FOLDER examples/APG/Logging
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Trace_Return
-  Trace_Return.cpp
+target_cxx_sources(Wrap_Macros_Alt
+  SOURCE_FILES Wrap_Macros_Alt.cpp
 )
-set_target_properties(Trace_Return PROPERTIES
+
+
+add_ace_exe(Trace_Return
   OUTPUT_NAME Trace_Return
+  FOLDER examples/APG/Logging
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Use_Stderr
-  Use_Stderr.cpp
+target_cxx_sources(Trace_Return
+  SOURCE_FILES Trace_Return.cpp
 )
-set_target_properties(Use_Stderr PROPERTIES
+
+
+add_ace_exe(Use_Stderr
   OUTPUT_NAME Use_Stderr
+  FOLDER examples/APG/Logging
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Howto_Syslog
-  Howto_Syslog.cpp
+target_cxx_sources(Use_Stderr
+  SOURCE_FILES Use_Stderr.cpp
 )
-set_target_properties(Howto_Syslog PROPERTIES
+
+
+add_ace_exe(Howto_Syslog
   OUTPUT_NAME Howto_Syslog
+  FOLDER examples/APG/Logging
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Use_Syslog
-  Use_Syslog.cpp
+target_cxx_sources(Howto_Syslog
+  SOURCE_FILES Howto_Syslog.cpp
 )
-set_target_properties(Use_Syslog PROPERTIES
+
+
+add_ace_exe(Use_Syslog
   OUTPUT_NAME Use_Syslog
+  FOLDER examples/APG/Logging
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Use_Ostream
-  Use_Ostream.cpp
+target_cxx_sources(Use_Syslog
+  SOURCE_FILES Use_Syslog.cpp
 )
-set_target_properties(Use_Ostream PROPERTIES
+
+
+add_ace_exe(Use_Ostream
   OUTPUT_NAME Use_Ostream
+  FOLDER examples/APG/Logging
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Use_Multiple_Sinks
-  Use_Multiple_Sinks.cpp
+target_cxx_sources(Use_Ostream
+  SOURCE_FILES Use_Ostream.cpp
 )
-set_target_properties(Use_Multiple_Sinks PROPERTIES
+
+
+add_ace_exe(Use_Multiple_Sinks
   OUTPUT_NAME Use_Multiple_Sinks
+  FOLDER examples/APG/Logging
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Use_Callback
-  Use_Callback.cpp
+target_cxx_sources(Use_Multiple_Sinks
+  SOURCE_FILES Use_Multiple_Sinks.cpp
 )
-set_target_properties(Use_Callback PROPERTIES
+
+
+add_ace_exe(Use_Callback
   OUTPUT_NAME Use_Callback
+  FOLDER examples/APG/Logging
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Use_Callback2
-  Use_Callback2.cpp
+target_cxx_sources(Use_Callback
+  SOURCE_FILES Use_Callback.cpp
 )
-set_target_properties(Use_Callback2 PROPERTIES
+
+
+add_ace_exe(Use_Callback2
   OUTPUT_NAME Use_Callback2
+  FOLDER examples/APG/Logging
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Use_Logger
-  Use_Logger.cpp
+target_cxx_sources(Use_Callback2
+  SOURCE_FILES Use_Callback2.cpp
 )
-set_target_properties(Use_Logger PROPERTIES
+
+
+add_ace_exe(Use_Logger
   OUTPUT_NAME Use_Logger
+  FOLDER examples/APG/Logging
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Use_Logging_Server
-  Use_Logging_Server.cpp
+target_cxx_sources(Use_Logger
+  SOURCE_FILES Use_Logger.cpp
 )
-set_target_properties(Use_Logging_Server PROPERTIES
+
+
+add_ace_exe(Use_Logging_Server
   OUTPUT_NAME Use_Logging_Server
+  FOLDER examples/APG/Logging
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Use_LogManager
-  Use_LogManager.cpp
+target_cxx_sources(Use_Logging_Server
+  SOURCE_FILES Use_Logging_Server.cpp
 )
-set_target_properties(Use_LogManager PROPERTIES
+
+
+add_ace_exe(Use_LogManager
   OUTPUT_NAME Use_LogManager
+  FOLDER examples/APG/Logging
   LINK_LIBRARIES ACE
+)
+target_cxx_sources(Use_LogManager
+  SOURCE_FILES Use_LogManager.cpp
 )
 
-##############################
-add_executable(Use_Logging_Strategy
-  Use_Logging_Strategy.cpp
-)
-set_target_properties(Use_Logging_Strategy PROPERTIES
+
+add_ace_exe(Use_Logging_Strategy
   OUTPUT_NAME Use_Logging_Strategy
+  FOLDER examples/APG/Logging
   LINK_LIBRARIES ACE
 )
-#####################################
-configure_file(client.conf client.conf COPYONLY)
-configure_file(logging_strategy.conf logging_strategy.conf COPYONLY)
-configure_file(server.conf server.conf COPYONLY)
+target_cxx_sources(Use_Logging_Strategy
+  SOURCE_FILES Use_Logging_Strategy.cpp
+)
+

@@ -1,50 +1,61 @@
 
 project(Shared_Malloc CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-##############################
-add_executable(Shared_Malloc
-  Malloc.cpp
-  Options.cpp
-  test_malloc.cpp
-)
-set_target_properties(Shared_Malloc PROPERTIES
+
+add_ace_exe(Shared_Malloc
   OUTPUT_NAME malloc
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/Shared_Malloc
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(Shared_Malloc
+  SOURCE_FILES Options.cpp
+               test_malloc.cpp
+               Malloc.cpp
+  HEADER_FILES Options.h
+               Malloc.h
 )
 
-##############################
-add_executable(Shared_Malloc_multiple
-  Malloc.cpp
-  Options.cpp
-  test_multiple_mallocs.cpp
-)
-set_target_properties(Shared_Malloc_multiple PROPERTIES
+
+add_ace_exe(Shared_Malloc_Multiple
   OUTPUT_NAME multiple
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/Shared_Malloc
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(Shared_Malloc_Multiple
+  SOURCE_FILES Options.cpp
+               test_multiple_mallocs.cpp
+               Malloc.cpp
+  HEADER_FILES Options.h
+               Malloc.h
 )
 
-##############################
-add_executable(Shared_Malloc_persistence
-  test_persistence.cpp
-)
-set_target_properties(Shared_Malloc_persistence PROPERTIES
+
+add_ace_exe(Shared_Malloc_Persistence
   OUTPUT_NAME persistence
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/Shared_Malloc
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(Shared_Malloc_Persistence
+  SOURCE_FILES test_persistence.cpp
 )
 
-##############################
-add_executable(Shared_Malloc_posind
-  Malloc.cpp
-  Options.cpp
-  test_position_independent_malloc.cpp
-)
-set_target_properties(Shared_Malloc_posind PROPERTIES
+
+add_ace_exe(Shared_Malloc_Posind
   OUTPUT_NAME posind
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/Shared_Malloc
+  LINK_LIBRARIES ACE
 )
-#####################################
+target_cxx_sources(Shared_Malloc_Posind
+  SOURCE_FILES Options.cpp
+               test_position_independent_malloc.cpp
+               Malloc.cpp
+  HEADER_FILES test_position_independent_malloc.h
+               Options.h
+               Malloc.h
+)
+

@@ -1,37 +1,40 @@
 
 project(DLL CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-########################
-add_library(DLL_Newsweek MODULE
-  Newsweek.cpp
-)
-set_target_properties(DLL_Newsweek PROPERTIES
+
+add_ace_lib(DLL_Newsweek
   OUTPUT_NAME DLL_Newsweek
-	DEFINE_SYMBOL ""
-	LINK_LIBRARIES ACE
+  FOLDER examples/DLL
+  PUBLIC_LINK_LIBRARIES ACE
+)
+target_cxx_sources(DLL_Newsweek
+  SOURCE_FILES Newsweek.cpp
+  HEADER_FILES Newsweek.h
 )
 
-########################
-add_library(DLL_Today MODULE
-  Today.cpp
-)
-set_target_properties(DLL_Today PROPERTIES
+
+add_ace_lib(DLL_Today
   OUTPUT_NAME DLL_Today
-	DEFINE_SYMBOL ""
-	LINK_LIBRARIES ACE
+  FOLDER examples/DLL
+  PUBLIC_LINK_LIBRARIES ACE
+)
+target_cxx_sources(DLL_Today
+  SOURCE_FILES Today.cpp
+  HEADER_FILES Today.h
 )
 
-########################
-add_executable(DLL_Main
-  test_dll.cpp
-)
-set_target_properties(DLL_Main PROPERTIES
+
+add_ace_exe(DLL_Main
   OUTPUT_NAME test_dll
-	LINK_LIBRARIES ACE
+  FOLDER examples/DLL
+  LINK_LIBRARIES ACE
 )
-#####################################
+target_cxx_sources(DLL_Main
+  SOURCE_FILES test_dll.cpp
+)
+

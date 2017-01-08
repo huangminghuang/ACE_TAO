@@ -1,19 +1,13 @@
 
-project(Constraint CXX)
-cmake_minimum_required(VERSION 2.8.12)
 
-if (NOT ACE_ROOT)
-  find_package(ACE REQUIRED CONFIG)
-endif()
+add_ace_exe(Constraint
+  OUTPUT_NAME constraint
+  FOLDER examples/Monitor/Constraint
+  LINK_LIBRARIES MC_Test_Utilities
+                 ACE
+                 ACE_Monitor_Control
+)
+target_cxx_sources(Constraint
+  SOURCE_FILES constraint.cpp
+)
 
-##############################
-if(TARGET ACE_Monitor)
-  add_executable(Constraint
-    constraint.cpp
-  )
-  set_target_properties(Constraint PROPERTIES
-    OUTPUT_NAME constraint
-    LINK_LIBRARIES ACE_Monitor MC_Test_Utilities
-  )
-endif()
-#####################################

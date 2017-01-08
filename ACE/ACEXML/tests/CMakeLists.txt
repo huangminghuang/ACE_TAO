@@ -1,10 +1,46 @@
-function(add_acexml_tests)
-  foreach(_target ${ARGN})
-    add_executable(${_target}  ${_target}.cpp)
-    target_link_libraries(${_target} ACEXML)
-  endforeach()
-endfunction(add_acexml_tests)
 
 
-add_acexml_tests(ContentHandler_Test HttpCharStream_Test NamespaceSupport_Test Transcoder_Test)
+add_ace_exe(Transcoder_Test
+  OUTPUT_NAME Transcoder_Test
+  FOLDER ACEXML/tests
+  LINK_LIBRARIES ACE
+                 ACEXML_Parser
+)
+target_cxx_sources(Transcoder_Test
+  SOURCE_FILES Transcoder_Test.cpp
+)
+
+
+add_ace_exe(NamespaceSupport_Test
+  OUTPUT_NAME NamespaceSupport_Test
+  FOLDER ACEXML/tests
+  LINK_LIBRARIES ACE
+                 ACEXML_Parser
+)
+target_cxx_sources(NamespaceSupport_Test
+  SOURCE_FILES NamespaceSupport_Test.cpp
+)
+
+
+add_ace_exe(HttpCharStream_Test
+  OUTPUT_NAME HttpCharStream_Test
+  FOLDER ACEXML/tests
+  LINK_LIBRARIES ACE
+                 ACEXML_Parser
+)
+target_cxx_sources(HttpCharStream_Test
+  SOURCE_FILES HttpCharStream_Test.cpp
+)
+
+
+add_ace_exe(ContentHandler_Test
+  OUTPUT_NAME ContentHandler_Test
+  FOLDER ACEXML/tests
+  LINK_LIBRARIES ACE
+                 ACEXML_Parser
+)
+target_cxx_sources(ContentHandler_Test
+  SOURCE_FILES ContentHandler_Test.cpp
+)
+
 add_subdirectory(util)

@@ -1,6 +1,18 @@
 
-add_tao_component(
-  NAME RLECompressor
-  PUBLIC_LINK_LIBRARIES TAO_Compression ACE_RLECompression
+
+add_ace_lib(TAO_RLECompressor
+  OUTPUT_NAME TAO_RLECompressor
+  PACKAGE TAO
+  FOLDER tao/Compression/rle
+  ASPECTS TAO
+  DEFINE_SYMBOL TAO_RLECOMPRESSOR_BUILD_DLL
+  PUBLIC_LINK_LIBRARIES TAO_Compression
+                        ACE_RLECompression
+)
+target_cxx_sources(TAO_RLECompressor
+  SOURCE_FILES RLECompressor.cpp
+               RLECompressor_Factory.cpp
+  HEADER_FILES RLECompressor.h
+               RLECompressor_Factory.h
 )
 

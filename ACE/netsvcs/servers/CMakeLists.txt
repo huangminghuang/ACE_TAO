@@ -1,20 +1,13 @@
 
-project(servers CXX)
-cmake_minimum_required(VERSION 2.8.12)
 
-if (NOT ACE_ROOT)
-  find_package(ACE REQUIRED CONFIG)
-endif()
-
-##############################
-add_executable(Netsvcs_server
-  main.cpp
-)
-set_target_properties(Netsvcs_server PROPERTIES
+add_ace_exe(Netsvcs_server
   OUTPUT_NAME ace_netsvcs
-  INCLUDE_DIRECTORIES ${CMAKE_CURRENT_SOURCE_DIR}/../lib
-  LINK_LIBRARIES netsvcs
+  FOLDER netsvcs/servers
+  INCLUDE_DIRECTORIES ${ACE_ROOT}/netsvcs/lib
+  LINK_LIBRARIES ACE
+                 netsvcs
 )
-#####################################
-configure_file(svc.conf svc.conf COPYONLY)
-configure_file(svc.conf.xml svc.conf.xml COPYONLY)
+target_cxx_sources(Netsvcs_server
+  SOURCE_FILES main.cpp
+)
+

@@ -1,119 +1,210 @@
 
 
-add_orbsvcs_idls(Log
-  IDL_FILES ../DsLogAdmin.idl
-       ../DsLogNotification.idl
-)
 
-add_orbsvcs_lib(TAO_DsLogAdmin
+add_ace_lib(TAO_DsLogAdmin
   DEFINE_SYMBOL TAO_LOG_BUILD_DLL
-  SOURCES ${Log_IDLS_STUB_FILES}
-  PUBLIC_HEADER log_export.h
+  PACKAGE TAO
+  PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../..>
+                             $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/../..>
+                             $<INSTALL_INTERFACE:${TAO_INSTALL_DIR}/orbsvcs>
   PUBLIC_LINK_LIBRARIES TAO_AnyTypeCode
-
 )
 
-add_orbsvcs_lib(TAO_DsLogAdmin_Skel
+target_cxx_sources(TAO_DsLogAdmin
+  HEADER_FILES log_export.h
+)
+
+add_ace_lib(TAO_DsLogAdmin_Skel
   DEFINE_SYMBOL TAO_LOG_SKEL_BUILD_DLL
-  SOURCES ${Log_IDLS_SKEL_FILES}
-  PUBLIC_HEADER log_skel_export.h
-  PUBLIC_LINK_LIBRARIES TAO_DsLogAdmin TAO_PortableServer
-
+  PACKAGE TAO
+  PUBLIC_LINK_LIBRARIES TAO_DsLogAdmin
+                        TAO_PortableServer
 )
 
-set(log_serv_sources
-  BasicLogFactory_i.cpp
-  BasicLog_i.cpp
-  Hash_Iterator_i.cpp
-  Hash_LogRecordStore.cpp
-  Hash_LogStore.cpp
-  Hash_Persistence_Strategy.cpp
-  Iterator_i.cpp
-  LogActivator.cpp
-  LogMgr_i.cpp
-  LogNotification.cpp
-  LogRecordStore.cpp
-  Log_Compaction_Handler.cpp
-  Log_Constraint_Interpreter.cpp
-  Log_Constraint_Visitors.cpp
-  Log_Flush_Handler.cpp
-  Log_i.cpp
+target_cxx_sources(TAO_DsLogAdmin_Skel
+  HEADER_FILES log_skel_export.h
 )
 
-set(log_serv_headers
-  LogStore.h
-  Log_Persistence_Strategy.h
-  log_serv_export.h
+tao_idl_sources(
+  STUB_TARGETS TAO_DsLogAdmin
+  SKEL_TARGETS TAO_DsLogAdmin_Skel
+  IDL_FLAGS ${TAO_VERSIONING_IDL_FLAGS}
+            -I${CMAKE_CURRENT_SOURCE_DIR}/../..
+            -I${CMAKE_CURRENT_SOURCE_DIR}/..
+            -Wb,stub_export_macro=TAO_Log_Export
+            -Wb,stub_export_include=orbsvcs/Log/log_export.h
+            -Wb,skel_export_macro=TAO_Log_Skel_Export
+            -Wb,skel_export_include=orbsvcs/Log/log_skel_export.h
+  IDL_FILES ../DsLogAdmin.idl
+            ../DsLogNotification.idl
+  WORKING_DIRECTORY ..
 )
 
-add_orbsvcs_lib(TAO_DsLogAdmin_Serv
+
+add_ace_lib(TAO_DsLogAdmin_Serv
   DEFINE_SYMBOL TAO_LOG_SERV_BUILD_DLL
-  SOURCES ${log_serv_sources}
-  PUBLIC_HEADER ${log_serv_headers}
-  PUBLIC_LINK_LIBRARIES TAO_DsLogAdmin_Skel TAO_DynamicAny TAO_Utils TAO_Svc_Utils TAO_ETCL ACE_ETCL_Parser
-
+  PACKAGE TAO
+  PUBLIC_LINK_LIBRARIES TAO_DsLogAdmin_Skel
+                        TAO_DynamicAny
+                        TAO_Utils
+                        TAO_Svc_Utils
+                        TAO_ETCL
+                        ACE_ETCL_Parser
 )
 
-add_orbsvcs_idls(EventLog
-  IDL_FILES ../DsEventLogAdmin.idl
+target_cxx_sources(TAO_DsLogAdmin_Serv
+  SOURCE_FILES BasicLogFactory_i.cpp
+               BasicLog_i.cpp
+               Hash_Iterator_i.cpp
+               Hash_LogRecordStore.cpp
+               Hash_LogStore.cpp
+               Hash_Persistence_Strategy.cpp
+               Iterator_i.cpp
+               LogActivator.cpp
+               LogMgr_i.cpp
+               LogNotification.cpp
+               LogRecordStore.cpp
+               Log_Compaction_Handler.cpp
+               Log_Constraint_Interpreter.cpp
+               Log_Constraint_Visitors.cpp
+               Log_Flush_Handler.cpp
+               Log_i.cpp
+  HEADER_FILES BasicLogFactory_i.h
+               BasicLog_i.h
+               Hash_Iterator_i.h
+               Hash_LogRecordStore.h
+               Hash_LogStore.h
+               Hash_Persistence_Strategy.h
+               Iterator_i.h
+               LogActivator.h
+               LogMgr_i.h
+               LogNotification.h
+               LogRecordStore.h
+               Log_Compaction_Handler.h
+               Log_Constraint_Interpreter.h
+               Log_Constraint_Visitors.h
+               Log_Flush_Handler.h
+               Log_i.h
+               LogStore.h
+               Log_Persistence_Strategy.h
+               log_serv_export.h
 )
 
-add_orbsvcs_lib(TAO_DsEventLogAdmin
+add_ace_lib(TAO_DsEventLogAdmin
   DEFINE_SYMBOL TAO_EVENTLOG_BUILD_DLL
-  SOURCES ${EventLog_IDLS_STUB_FILES}
-  PUBLIC_HEADER eventlog_export.h
-  PUBLIC_LINK_LIBRARIES TAO_DsLogAdmin TAO_CosEvent
-
+  PACKAGE TAO
+  PUBLIC_LINK_LIBRARIES TAO_DsLogAdmin
+                        TAO_CosEvent
 )
 
-add_orbsvcs_lib(TAO_DsEventLogAdmin_Skel
+target_cxx_sources(TAO_DsEventLogAdmin
+  HEADER_FILES eventlog_export.h
+)
+
+
+add_ace_lib(TAO_DsEventLogAdmin_Skel
   DEFINE_SYMBOL TAO_EVENTLOG_SKEL_BUILD_DLL
-  SOURCES ${EventLog_IDLS_SKEL_FILES}
-  PUBLIC_HEADER eventlog_skel_export.h
-  PUBLIC_LINK_LIBRARIES TAO_DsEventLogAdmin TAO_DsLogAdmin_Skel TAO_CosEvent_Skel
+  PACKAGE TAO
+  PUBLIC_LINK_LIBRARIES TAO_DsEventLogAdmin
+                        TAO_DsLogAdmin_Skel
+                        TAO_CosEvent_Skel
 
 )
 
-add_orbsvcs_lib(TAO_DsEventLogAdmin_Serv
+target_cxx_sources(TAO_DsEventLogAdmin_Skel
+  HEADER_FILES eventlog_skel_export.h
+)
+
+tao_idl_sources(
+  STUB_TARGETS TAO_DsEventLogAdmin
+  SKEL_TARGETS TAO_DsEventLogAdmin_Skel
+  IDL_FLAGS ${TAO_VERSIONING_IDL_FLAGS}
+            -I${CMAKE_CURRENT_SOURCE_DIR}/../..
+            -I${CMAKE_CURRENT_SOURCE_DIR}/..
+            -Wb,stub_export_macro=TAO_EventLog_Export
+            -Wb,stub_export_include=orbsvcs/Log/eventlog_export.h
+            -Wb,skel_export_macro=TAO_EventLog_Skel_Export
+            -Wb,skel_export_include=orbsvcs/Log/eventlog_skel_export.h
+  IDL_FILES ../DsEventLogAdmin.idl
+  WORKING_DIRECTORY ..
+)
+
+add_ace_lib(TAO_DsEventLogAdmin_Serv
   DEFINE_SYMBOL TAO_EVENTLOG_SERV_BUILD_DLL
-  SOURCES EventLogConsumer.cpp
-          EventLogFactory_i.cpp
-          EventLogNotification.cpp
-          EventLog_i.cpp
-  PUBLIC_HEADER eventlog_serv_export.h
-  PUBLIC_LINK_LIBRARIES TAO_DsEventLogAdmin_Skel TAO_DsLogAdmin_Serv TAO_CosEvent_Serv
+  PACKAGE TAO
+  PUBLIC_LINK_LIBRARIES TAO_DsEventLogAdmin_Skel
+                        TAO_DsLogAdmin_Serv
+                        TAO_CosEvent_Serv
 
 )
 
-add_orbsvcs_idls(RTEventLog
-  IDL_FILES ../RTEventLogAdmin.idl
+target_cxx_sources(TAO_DsEventLogAdmin_Serv
+  SOURCE_FILES EventLogConsumer.cpp
+               EventLogFactory_i.cpp
+               EventLogNotification.cpp
+               EventLog_i.cpp
+  HEADER_FILES eventlog_serv_export.h
 )
 
-add_orbsvcs_lib(TAO_RTEventLogAdmin
+
+add_ace_lib(TAO_RTEventLogAdmin
   DEFINE_SYMBOL TAO_RTEVENTLOG_BUILD_DLL
-  SOURCES ${RTEventLog_IDLS_STUB_FILES}
-  PUBLIC_HEADER rteventlog_export.h
-  PUBLIC_LINK_LIBRARIES TAO_DsLogAdmin TAO_RTEvent
-
+  PACKAGE TAO
+  PUBLIC_LINK_LIBRARIES TAO_DsLogAdmin
+                        TAO_RTEvent
 )
 
-add_orbsvcs_lib(TAO_RTEventLogAdmin_Skel
+target_cxx_sources(TAO_RTEventLogAdmin
+  HEADER_FILES rteventlog_export.h
+)
+
+
+add_ace_lib(TAO_RTEventLogAdmin_Skel
   DEFINE_SYMBOL TAO_RTEVENTLOG_SKEL_BUILD_DLL
-  SOURCES ${RTEventLog_IDLS_SKEL_FILES}
-  PUBLIC_HEADER log_skel_export.h
-  PUBLIC_LINK_LIBRARIES TAO_RTEventLogAdmin TAO_DsEventLogAdmin_Skel TAO_RTEvent_Skel
-
+  PACKAGE TAO
+  PUBLIC_LINK_LIBRARIES TAO_RTEventLogAdmin
+                        TAO_DsEventLogAdmin_Skel
+                        TAO_RTEvent_Skel
 )
 
-add_orbsvcs_lib(TAO_RTEventLogAdmin_Serv
+target_cxx_sources(TAO_RTEventLogAdmin_Skel
+  HEADER_FILES log_skel_export.h
+)
+
+tao_idl_sources(
+  STUB_TARGETS TAO_RTEventLogAdmin
+  SKEL_TARGETS TAO_RTEventLogAdmin_Skel
+  IDL_FLAGS ${TAO_VERSIONING_IDL_FLAGS}
+            -I${TAO_ROOT}/tao
+            -I${CMAKE_CURRENT_SOURCE_DIR}/../..
+            -I${CMAKE_CURRENT_SOURCE_DIR}/..
+            -Wb,stub_export_macro=TAO_RTEventLog_Export
+            -Wb,stub_export_include=orbsvcs/Log/rteventlog_export.h
+            -Wb,skel_export_macro=TAO_RTEventLog_Skel_Export
+            -Wb,skel_export_include=orbsvcs/Log/rteventlog_skel_export.h
+  IDL_FILES ../RTEventLogAdmin.idl
+  WORKING_DIRECTORY ..
+)
+
+
+add_ace_lib(TAO_RTEventLogAdmin_Serv
   DEFINE_SYMBOL TAO_RTEVENTLOG_SERV_BUILD_DLL
-  SOURCES RTEventLogConsumer.cpp
-          RTEventLogFactory_i.cpp
-          RTEventLogNotification.cpp
-          RTEventLog_i.cpp
-  PUBLIC_HEADER rteventlog_serv_export.h
-  PUBLIC_LINK_LIBRARIES TAO_RTEventLogAdmin_Skel TAO_DsEventLogAdmin_Serv TAO_RTEvent_Serv TAO_RTSched
-
+  PACKAGE TAO
+  PUBLIC_LINK_LIBRARIES TAO_RTEventLogAdmin_Skel
+                        TAO_DsEventLogAdmin_Serv
+                        TAO_RTEvent_Serv
+                        TAO_RTSched
 )
 
+target_cxx_sources(TAO_RTEventLogAdmin_Serv
+  SOURCE_FILES RTEventLogConsumer.cpp
+               RTEventLogFactory_i.cpp
+               RTEventLogNotification.cpp
+               RTEventLog_i.cpp
+  HEADER_FILES RTEventLogConsumer.h
+               RTEventLogFactory_i.h
+               RTEventLogNotification.h
+               RTEventLog_i.h
+               rteventlog_serv_export.h
+)
 

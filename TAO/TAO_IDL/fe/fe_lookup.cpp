@@ -1,7 +1,7 @@
 #include "fe_private.h"
 #include "ace/OS_NS_string.h"
 /* C++ code produced by gperf version 2.8 (ACE version) */
-/* Command-line: /Users/huangming/build/ACE/apps/gperf/src/ace_gperf -M -J -c -C -D -E -T -f 0 -a -o -t -p -K keyword_ -L C++ -Z TAO_IDL_CPP_Keyword_Table -N lookup -k1,2,$ fe/keywords.dat  */
+/* Command-line: /Users/huangming/builds/ACE/bin/ace_gperf-6.4.1 -M -J -c -C -D -E -T -f 0 -a -o -t -p -K keyword_ -L C++ -Z TAO_IDL_CPP_Keyword_Table -N lookup -k1,2,$ fe/keywords.dat  */
 unsigned int
 TAO_IDL_CPP_Keyword_Table::hash (const char *str, unsigned int len)
 {

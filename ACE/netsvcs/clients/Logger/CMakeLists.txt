@@ -1,26 +1,23 @@
 
-project(Logger CXX)
-cmake_minimum_required(VERSION 2.8.12)
 
-if (NOT ACE_ROOT)
-  find_package(ACE REQUIRED CONFIG)
-endif()
-
-##############################
-add_executable(direct_logging
-  direct_logging.cpp
-)
-set_target_properties(direct_logging PROPERTIES
+add_ace_exe(direct_logging
   OUTPUT_NAME direct_logging
-  LINK_LIBRARIES netsvcs
+  FOLDER netsvcs/clients/Logger
+  LINK_LIBRARIES ACE
+                 netsvcs
+)
+target_cxx_sources(direct_logging
+  SOURCE_FILES direct_logging.cpp
 )
 
-##############################
-add_executable(indirect_logging
-  indirect_logging.cpp
-)
-set_target_properties(indirect_logging PROPERTIES
+
+add_ace_exe(indirect_logging
   OUTPUT_NAME indirect_logging
-  LINK_LIBRARIES netsvcs
+  FOLDER netsvcs/clients/Logger
+  LINK_LIBRARIES ACE
+                 netsvcs
 )
-#####################################
+target_cxx_sources(indirect_logging
+  SOURCE_FILES indirect_logging.cpp
+)
+

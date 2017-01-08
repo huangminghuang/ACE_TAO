@@ -1,16 +1,56 @@
 
 
-if (NOT CORBA_E_MICRO)
+requires("NOT CORBA_E_COMPACT")
 
-  add_tao_component(
-    NAME CSD_Framework
-    DEFINE_SYMBOL TAO_CSD_FW_BUILD_DLL
-    PUBLIC_LINK_LIBRARIES TAO_PI TAO_PortableServer
-    ADD_IDL_FLAGS -Sci -SS -Gp -Gd -Sorb -GA -Sal
-                   -Wb,export_macro=TAO_CSD_FW_Export
-                   -Wb,export_include=tao/CSD_Framework/CSD_FW_Export.h
-                   -iC tao/CSD_Framework
-    IDL_FILES CSD_Framework.pidl
-  )
+add_ace_lib(TAO_CSD_Framework
+  OUTPUT_NAME TAO_CSD_Framework
+  PACKAGE TAO
+  FOLDER tao/CSD_Framework
+  ASPECTS TAO
+  DEFINE_SYMBOL TAO_CSD_FW_BUILD_DLL
+  PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+                             $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
+                             $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
+  PUBLIC_LINK_LIBRARIES TAO_PI
+                        TAO_PortableServer
+)
+target_cxx_sources(TAO_CSD_Framework
+  SOURCE_FILES CSD_Default_Servant_Dispatcher.cpp
+               CSD_FW_Server_Request_Wrapper.cpp
+               CSD_Framework_Loader.cpp
+               CSD_ORBInitializer.cpp
+               CSD_Object_Adapter.cpp
+               CSD_Object_Adapter_Factory.cpp
+               CSD_POA.cpp
+               CSD_Strategy_Base.cpp
+               CSD_Strategy_Proxy.cpp
+               CSD_Strategy_Repository.cpp
+  HEADER_FILES CSD_Default_Servant_Dispatcher.h
+               CSD_FW_Export.h
+               CSD_FW_Server_Request_Wrapper.h
+               CSD_Framework_Loader.h
+               CSD_ORBInitializer.h
+               CSD_Object_Adapter.h
+               CSD_Object_Adapter_Factory.h
+               CSD_POA.h
+               CSD_Strategy_Base.h
+               CSD_Strategy_Proxy.h
+               CSD_Strategy_Repository.h
+  INLINE_FILES CSD_FW_Server_Request_Wrapper.inl
+               CSD_POA.inl
+               CSD_Strategy_Base.inl
+               CSD_Strategy_Proxy.inl
+)
 
-endif()
+
+tao_idl_sources(
+  TARGETS TAO_CSD_Framework
+  IDL_FLAGS ${TAO_VERSIONING_IDL_FLAGS}
+            -Sci -SS -Gp -Gd -Sorb -GA
+            -Sal
+            -Wb,export_macro=TAO_CSD_FW_Export
+            -Wb,export_include=tao/CSD_Framework/CSD_FW_Export.h
+            -iC tao/CSD_Framework
+  IDL_FILES CSD_Framework.pidl
+)
+

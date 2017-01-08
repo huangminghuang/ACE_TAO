@@ -1,14 +1,35 @@
-file(GLOB sources *.cpp)
-file(GLOB header *.h *.inl)
 
-add_ace_component(ACE_RMCast
+
+requires(ACE_HAS_THREADS)
+
+add_ace_lib(ACE_RMCast
   OUTPUT_NAME ACE_RMCast
+  PACKAGE ACE
+  FOLDER protocols/ace/RMCast
   DEFINE_SYMBOL ACE_RMCAST_BUILD_DLL
-  SOURCES ${sources}
-  PUBLIC_HEADER ${headers}
-  PUBLIC_LINK_LIBRARIES ACE
   PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../..>
-  HEADERS_INSTALL_DESTINATION ace/RNCast
-  PACKAGE ACE_RMCast
+  PUBLIC_LINK_LIBRARIES ACE
 )
-export_ace_package(ACE_RMCast)
+target_cxx_sources(ACE_RMCast
+  SOURCE_FILES Flow.cpp
+               Protocol.cpp
+               Acknowledge.cpp
+               Socket.cpp
+               Fragment.cpp
+               Stack.cpp
+               Retransmit.cpp
+               Link.cpp
+               Reassemble.cpp
+               Simulator.cpp
+  HEADER_FILES Acknowledge.h
+               Flow.h
+               Fragment.h
+               Link.h
+               Protocol.h
+               Reassemble.h
+               Retransmit.h
+               Simulator.h
+               Socket.h
+               Stack.h
+)
+

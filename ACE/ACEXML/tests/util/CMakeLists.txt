@@ -1,3 +1,12 @@
-add_executable(ACEXML_utiltest  test.cpp)
-target_link_libraries(ACEXML_utiltest ACEXML)
-set_target_properties(ACEXML_utiltest PROPERTIES OUTPUT_NAME test)
+
+
+add_ace_exe(util
+  OUTPUT_NAME tester
+  FOLDER ACEXML/tests/util
+  LINK_LIBRARIES ACE
+                 ACEXML_Parser
+)
+target_cxx_sources(util
+  SOURCE_FILES test.cpp
+)
+

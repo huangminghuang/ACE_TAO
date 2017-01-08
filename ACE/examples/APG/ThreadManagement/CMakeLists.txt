@@ -1,89 +1,98 @@
 
 project(threadmgmt CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-##############################
-add_executable(Async_Cancel
-  Async_Cancel.cpp
-)
-set_target_properties(Async_Cancel PROPERTIES
+
+add_ace_exe(Async_Cancel
   OUTPUT_NAME Async_Cancel
+  FOLDER examples/APG/ThreadManagement
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Coop_Cancel
-  Coop_Cancel.cpp
+target_cxx_sources(Async_Cancel
+  SOURCE_FILES Async_Cancel.cpp
 )
-set_target_properties(Coop_Cancel PROPERTIES
+
+
+add_ace_exe(Coop_Cancel
   OUTPUT_NAME Coop_Cancel
+  FOLDER examples/APG/ThreadManagement
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(ExitHandler
-  ExitHandler.cpp
+target_cxx_sources(Coop_Cancel
+  SOURCE_FILES Coop_Cancel.cpp
 )
-set_target_properties(ExitHandler PROPERTIES
+
+
+add_ace_exe(ExitHandler
   OUTPUT_NAME ExitHandler
+  FOLDER examples/APG/ThreadManagement
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Pool
-  Pool.cpp
+target_cxx_sources(ExitHandler
+  SOURCE_FILES ExitHandler.cpp
 )
-set_target_properties(Pool PROPERTIES
+
+
+add_ace_exe(Pool
   OUTPUT_NAME Pool
+  FOLDER examples/APG/ThreadManagement
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Priorities
-  Priorities.cpp
+target_cxx_sources(Pool
+  SOURCE_FILES Pool.cpp
 )
-set_target_properties(Priorities PROPERTIES
+
+
+add_ace_exe(Priorities
   OUTPUT_NAME Priorities
+  FOLDER examples/APG/ThreadManagement
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Signals
-  Signals.cpp
+target_cxx_sources(Priorities
+  SOURCE_FILES Priorities.cpp
 )
-set_target_properties(Signals PROPERTIES
+
+
+add_ace_exe(Signals
   OUTPUT_NAME Signals
+  FOLDER examples/APG/ThreadManagement
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Signals2
-  Signals2.cpp
+target_cxx_sources(Signals
+  SOURCE_FILES Signals.cpp
 )
-set_target_properties(Signals2 PROPERTIES
+
+
+add_ace_exe(Signals2
   OUTPUT_NAME Signals2
+  FOLDER examples/APG/ThreadManagement
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Start_Hook
-  Start_Hook.cpp
+target_cxx_sources(Signals2
+  SOURCE_FILES Signals2.cpp
 )
-set_target_properties(Start_Hook PROPERTIES
+
+
+add_ace_exe(Start_Hook
   OUTPUT_NAME Start_Hook
+  FOLDER examples/APG/ThreadManagement
   LINK_LIBRARIES ACE
+)
+target_cxx_sources(Start_Hook
+  SOURCE_FILES Start_Hook.cpp
 )
 
-##############################
-add_executable(State
-  State.cpp
-)
-set_target_properties(State PROPERTIES
+
+add_ace_exe(State
   OUTPUT_NAME State
+  FOLDER examples/APG/ThreadManagement
   LINK_LIBRARIES ACE
 )
-#####################################
+target_cxx_sources(State
+  SOURCE_FILES State.cpp
+)
+

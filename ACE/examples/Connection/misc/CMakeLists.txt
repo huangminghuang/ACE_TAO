@@ -1,25 +1,30 @@
 
 project(Connection_Misc CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
-##############################
-add_executable(Connection_Misc_Handler
-  Connection_Handler.cpp
-)
-set_target_properties(Connection_Misc_Handler PROPERTIES
+
+
+add_ace_exe(Connection_Misc_Handler
   OUTPUT_NAME handler
-	LINK_LIBRARIES ACE
+  FOLDER examples/Connection/misc
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(Connection_Misc_Handler
+  SOURCE_FILES Connection_Handler.cpp
+  HEADER_FILES Connection_Handler.h
 )
 
-##############################
-add_executable(Connection_Misc_test_upipe
-  test_upipe.cpp
-)
-set_target_properties(Connection_Misc_test_upipe PROPERTIES
+
+add_ace_exe(Connection_Misc_Test_upipe
   OUTPUT_NAME test_upipe
-	LINK_LIBRARIES ACE
+  FOLDER examples/Connection/misc
+  LINK_LIBRARIES ACE
 )
-#####################################
+target_cxx_sources(Connection_Misc_Test_upipe
+  SOURCE_FILES test_upipe.cpp
+  HEADER_FILES test_upipe.h
+)
+

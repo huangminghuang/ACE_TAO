@@ -1,13 +1,14 @@
 
-
 function(add_gperf_test test_name)
     set(oneValueArgs INPUT VALIDATION_FILE)
     set(multiValueArgs OPTIONS)
     cmake_parse_arguments(_gperf_test "" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
-
-    gperf(${_gperf_test_INPUT}
+        
+    add_custom_command(
         OUTPUT ${test_name}.cpp
-        OPTIONS ${_gperf_test_OPTIONS})
+        COMMAND ace_gperf ${_gperf_test_OPTIONS} "${CMAKE_CURRENT_SOURCE_DIR}/${_gperf_test_INPUT}" >  ${test_name}.cpp
+        MAIN_DEPENDENCY ${_gperf_test_INPUT}
+        DEPENDS ace_gperf)
 
     add_executable(${test_name}_bin # EXCLUDE_FROM_ALL
          ${CMAKE_CURRENT_BINARY_DIR}/${test_name}.cpp test.cpp)
@@ -21,7 +22,6 @@ function(add_gperf_test test_name)
                                -DVALIDATION_FILE=${CMAKE_CURRENT_SOURCE_DIR}/${_gperf_test_VALIDATION_FILE}
                                -P ${CMAKE_CURRENT_SOURCE_DIR}/run_test.cmake
     )
-
 endfunction()
 
 add_gperf_test(cinset

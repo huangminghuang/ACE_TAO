@@ -1,80 +1,89 @@
 
 project(reactor CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-##############################
-add_executable(Client
-  Client.cpp
-)
-set_target_properties(Client PROPERTIES
+
+add_ace_exe(Client
   OUTPUT_NAME Client
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/APG/Reactor
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(Client
+  SOURCE_FILES Client.cpp
+  HEADER_FILES Client.h
 )
 
-##############################
-add_executable(HAStatus
-  HAStatus.cpp
-)
-set_target_properties(HAStatus PROPERTIES
+
+add_ace_exe(HAStatus
   OUTPUT_NAME HAStatus
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/APG/Reactor
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(HAStatus
+  SOURCE_FILES HAStatus.cpp
 )
 
-##############################
-add_executable(HAStatus_AC
-  HAStatus-AC.cpp
-)
-set_target_properties(HAStatus_AC PROPERTIES
+
+add_ace_exe(HAStatus_AC
   OUTPUT_NAME HAStatus-AC
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/APG/Reactor
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(HAStatus_AC
+  SOURCE_FILES HAStatus-AC.cpp
 )
 
-##############################
-add_executable(Reschedule
-  Reschedule.cpp
-)
-set_target_properties(Reschedule PROPERTIES
+
+add_ace_exe(Reschedule
   OUTPUT_NAME Reschedule
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/APG/Reactor
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(Reschedule
+  SOURCE_FILES Reschedule.cpp
 )
 
-##############################
-add_executable(Schedule_Timers
-  Schedule_Timers.cpp
-)
-set_target_properties(Schedule_Timers PROPERTIES
+
+add_ace_exe(Schedule_Timers
   OUTPUT_NAME Schedule_Timers
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/APG/Reactor
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(Schedule_Timers
+  SOURCE_FILES Schedule_Timers.cpp
 )
 
-##############################
-add_executable(Timer_Cancel
-  Timer_Cancel.cpp
-)
-set_target_properties(Timer_Cancel PROPERTIES
+
+add_ace_exe(Timer_Cancel
   OUTPUT_NAME Timer_Cancel
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/APG/Reactor
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(Timer_Cancel
+  SOURCE_FILES Timer_Cancel.cpp
 )
 
-##############################
-add_executable(reactor_Timers
-  Timers.cpp
-)
-set_target_properties(reactor_Timers PROPERTIES
+
+add_ace_exe(reactor_Timers
   OUTPUT_NAME Timers
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/APG/Reactor
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(reactor_Timers
+  SOURCE_FILES Timers.cpp
 )
 
-##############################
-add_executable(Timer_State_Data
-  Timer_State_Data.cpp
-)
-set_target_properties(Timer_State_Data PROPERTIES
+
+add_ace_exe(Timer_State_Data
   OUTPUT_NAME Timer_State_Data
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/APG/Reactor
+  LINK_LIBRARIES ACE
 )
-#####################################
+target_cxx_sources(Timer_State_Data
+  SOURCE_FILES Timer_State_Data.cpp
+)
+

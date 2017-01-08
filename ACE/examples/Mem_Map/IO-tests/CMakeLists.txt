@@ -1,18 +1,20 @@
 
 project(Mem_Map_IO_Tests CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-##############################
-add_executable(Mem_Map_IO_Tests
-  IO_Test.cpp
-  test_io.cpp
-)
-set_target_properties(Mem_Map_IO_Tests PROPERTIES
+
+add_ace_exe(Mem_Map_IO_Tests
   OUTPUT_NAME test_io
+  FOLDER examples/Mem_Map/IO-tests
   LINK_LIBRARIES ACE
 )
-#####################################
+target_cxx_sources(Mem_Map_IO_Tests
+  SOURCE_FILES test_io.cpp
+               IO_Test.cpp
+  HEADER_FILES IO_Test.h
+)
+

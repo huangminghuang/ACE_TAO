@@ -1,21 +1,67 @@
-list(APPEND TAO_BASE_IDL_FLAGS
-  -Wb,export_macro=TAO_PI_Server_Export
-  -Wb,export_include=tao/PI_Server/pi_server_export.h
-  -iC tao/PI_Server
+
+
+add_ace_lib(TAO_PI_Server
+  OUTPUT_NAME TAO_PI_Server
+  PACKAGE TAO
+  FOLDER tao/PI_Server
+  ASPECTS TAO
+  DEFINE_SYMBOL TAO_PI_SERVER_BUILD_DLL
+  PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+                             $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
+  PUBLIC_LINK_LIBRARIES TAO_PI
+                        TAO_PortableServer
+)
+target_cxx_sources(TAO_PI_Server
+  SOURCE_FILES PICurrent_Guard.cpp
+               PI_Server.cpp
+               PI_Server_Loader.cpp
+               PortableServer_ORBInitializer.cpp
+               PortableServer_PolicyFactory.cpp
+               ServerInterceptorAdapter.cpp
+               ServerRequestDetails.cpp
+               ServerRequestInfo.cpp
+               ServerRequestInterceptorA.cpp
+               ServerRequestInterceptorC.cpp
+               ServerRequestInterceptor_Factory_Impl.cpp
+  HEADER_FILES PICurrent_Guard.h
+               PI_Server.h
+               PI_Server_Loader.h
+               Policy_Creator_T.h
+               PortableServer_ORBInitializer.h
+               PortableServer_PolicyFactory.h
+               ServerInterceptorAdapter.h
+               ServerRequestDetails.h
+               ServerRequestInfo.h
+               ServerRequestInterceptorA.h
+               ServerRequestInterceptorC.h
+               ServerRequestInterceptorS.h
+               ServerRequestInterceptor_Factory_Impl.h
+               pi_server_export.h
+  INLINE_FILES ServerRequestDetails.inl
+               ServerRequestInfo.inl
 )
 
-add_tao_idl_command(PI_Server_IDLS
-  IDL_FLAGS -Sci -SS -GA -Gp -Gd -Sorb -Sal
+
+set(PI_Server_Idl_FLAGS ${TAO_VERSIONING_IDL_FLAGS}
+                        -Wb,export_macro=TAO_PI_Server_Export
+                        -Wb,export_include=tao/PI_Server/pi_server_export.h
+                        -iC tao/PI_Server)
+tao_idl_sources(
+  TARGETS TAO_PI_Server
+  IDL_FLAGS ${PI_Server_Idl_FLAGS} -Sci
+            -SS -GA -Gp -Gd -Sorb -Sal
   IDL_FILES ServerRequestInfo.pidl
 )
 
-add_tao_idl_command(PI_Server_IDLS
-  IDL_FLAGS -SS -Sorb -GX -Sci -Sa -St
-        -Wb,unique_include=tao/PI_Server/PI_Server.h
-  IDL_FILES  PI_Server_include.pidl
+tao_idl_sources(
+  TARGETS TAO_PI_Server
+  IDL_FLAGS ${PI_Server_Idl_FLAGS} -Sa
+            -St -SS -Sorb -GX -Sci
+            -Wb,unique_include=tao/PI_Server/PI_Server.h
+  IDL_FILES PI_Server_include.pidl
 )
 
-add_tao_component(
-  NAME PI_Server
-  PUBLIC_LINK_LIBRARIES TAO_PI TAO_PortableServer
+install_package_files(TAO
+  ServerRequestInterceptor.pidl
 )
+

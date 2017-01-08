@@ -1,17 +1,19 @@
 
 project(Transceiver CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-##############################
-add_executable(Transceiver
-  transceiver.cpp
-)
-set_target_properties(Transceiver PROPERTIES
+
+add_ace_exe(Transceiver
   OUTPUT_NAME Transceiver
+  FOLDER examples/ASX/Event_Server/Transceiver
   LINK_LIBRARIES ACE
 )
-#####################################
+target_cxx_sources(Transceiver
+  SOURCE_FILES transceiver.cpp
+  HEADER_FILES transceiver.h
+)
+

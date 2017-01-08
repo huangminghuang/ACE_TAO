@@ -1,0 +1,35 @@
+
+option(ACE_HAS_IPV6 "" ON)
+option(ACE_INLINE "" ON)
+option(ACE_HAS_ATM "" OFF)
+option(ACE_HAS_THREADS "" ON)
+option(ACE_USES_WCHAR "" OFF)
+
+option(ACE_SVCCONF "" ON)
+option(ACE_TOKEN "" ON)
+option(ACE_OTHER "" ON)
+option(ACE_CODECS "" ON)
+option(ACE_FILECACHE "" ON)
+option(ACE_UUID "" ON)
+option(GEN_OSTREAM "" OFF)
+option(ACE_HAS_VERSIONED_NAMESPACE "" 0)
+
+if (ACE_INLINE)
+  set(__ACE_INLINE__ ON)
+endif()
+
+if (NOT ACE_SVCCONF)
+  set(ACE_LACKS_ACE_SVCCONF ON)
+endif()
+
+if (NOT ACE_TOKEN)
+  set(ACE_LACKS_ACE_TOKEN ON)
+endif()
+
+if (GEN_OSTREAM)
+  # used by config.h.in
+  set(GEN_OSTREAM_OPS ON)
+endif()
+
+
+set(ACE_OPTIONS ACE_INLINE ACE_HAS_IPV6 ACE_HAS_THREADS ACE_USES_WCHAR ACE_SVCCONF ACE_TOKEN ACE_OTHER ACE_HAS_VERSIONED_NAMESPACE GEN_OSTREAM)

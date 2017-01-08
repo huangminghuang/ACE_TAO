@@ -1,6 +1,12 @@
-add_executable(MIF
-  MIF.cpp
+
+
+add_ace_exe(DSRT_MIF
+  OUTPUT_NAME MIF
+  FOLDER Kokyu/tests/DSRT_MIF
+  LINK_LIBRARIES ACE
+                 Kokyu
+)
+target_cxx_sources(DSRT_MIF
+  SOURCE_FILES MIF.cpp
 )
 
-target_link_libraries(MIF Kokyu)
-file(COPY svc.conf svc.conf.xml DESTINATION ${CMAKE_CURRENT_BINARY_DIR})

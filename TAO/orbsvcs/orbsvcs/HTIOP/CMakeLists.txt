@@ -1,34 +1,51 @@
+requires("TARGET ACE_HTBP")
 
-if (NOT TARGET ACE_HTBP)
-  find_package(ACE_HTBP)
-endif()
-
-add_tao_idl_command(HTIOP_IDLS
-  IDL_FLAGS -Wb,export_macro=HTIOP_Export -Wb,export_include=orbsvcs/HTIOP/HTIOP_Export.h -SS
-        -o orbsvcs
-  IDL_FILES ../HTIOP.idl
+add_ace_lib(TAO_HTIOP
+  DEFINE_SYMBOL HTIOP_BUILD_DLL
+  PACKAGE TAO
+  PUBLIC_LINK_LIBRARIES ACE_HTBP TAO_Svc_Utils
 )
 
-install(FILES ${HTIOP_IDLS} ${HTIOP_IDLS_OUTPUT_FILES}
-        DESTINATION include/orbsvcs)
+target_cxx_sources(TAO_HTIOP
+  SOURCE_FILES HTIOP_Acceptor.cpp
+               HTIOP_Acceptor_Impl.cpp
+               HTIOP_Completion_Handler.cpp
+               HTIOP_Connection_Handler.cpp
+               HTIOP_Connector.cpp
+               HTIOP_Connector_Impl.cpp
+               HTIOP_Endpoint.cpp
+               HTIOP_Factory.cpp
+               HTIOP_Profile.cpp
+               HTIOP_Transport.cpp
+  HEADER_FILES HTIOP_Acceptor.h
+               HTIOP_Acceptor_Impl.h
+               HTIOP_Completion_Handler.h
+               HTIOP_Connection_Handler.h
+               HTIOP_Connector.h
+               HTIOP_Connector_Impl.h
+               HTIOP_Endpoint.h
+               HTIOP_Export.h
+               HTIOP_Factory.h
+               HTIOP_Profile.h
+               HTIOP_Transport.h
+  INLINE_FILES HTIOP_Acceptor.inl
+               HTIOP_Endpoint.inl
+)
 
-add_tao_idl_command(HTIOP_ENDPOINTS_IDLS
-  IDL_FLAGS -Wb,export_macro=HTIOP_Export -Wb,export_include=orbsvcs/HTIOP/HTIOP_Export.h -SS
-        -Sci -Gp -Gd -Sa -Sorb
-        -o orbsvcs/HTIOP
+tao_idl_sources(
+  TARGETS TAO_HTIOP
+  IDL_FLAGS ${TAO_VERSIONING_IDL_FLAGS}
+            -Wb,export_macro=HTIOP_Export
+            -Wb,export_include=orbsvcs/HTIOP/HTIOP_Export.h -SS
+  IDL_FILES ../HTIOP.idl
+  WORKING_DIRECTORY ..
+)
+
+tao_idl_sources(
+  TARGETS TAO_HTIOP
+  IDL_FLAGS ${TAO_VERSIONING_IDL_FLAGS}
+            -Wb,export_macro=HTIOP_Export
+            -Wb,export_include=orbsvcs/HTIOP/HTIOP_Export.h
+            -SS -Sci -Gp -Gd -Sa -Sorb
   IDL_FILES htiop_endpoints.pidl
 )
-
-install(FILES ${HTIOP_IDLS} ${HTIOP_IDLS_OUTPUT_FILES}
-        DESTINATION include/orbsvcs/HTIOP)
-
-file(GLOB sources *.cpp)
-file(GLOB headers *.h *.inl)
-add_orbsvcs_lib(TAO_HTIOP
-  DEFINE_SYMBOL HTIOP_BUILD_DLL
-  SOURCES ${HTIOP_IDLS_OUTPUT_FILES} ${HTIOP_ENDPOINTS_IDLS_OUTPUT_FILES} ${sources}
-  PUBLIC_HEADER ${headers}
-  PUBLIC_LINK_LIBRARIES ACE_HTBP TAO_Svc_Utils
-
-)
-

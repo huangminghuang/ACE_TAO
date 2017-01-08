@@ -1,116 +1,130 @@
 
 project(containers CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-##############################
-add_executable(DLList
-  DLList.cpp
-)
-set_target_properties(DLList PROPERTIES
+
+add_ace_exe(DLList
   OUTPUT_NAME DLList
+  FOLDER examples/APG/Containers
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Stacks
-  Stacks.cpp
+target_cxx_sources(DLList
+  SOURCE_FILES DLList.cpp
 )
-set_target_properties(Stacks PROPERTIES
+
+
+add_ace_exe(Stacks
   OUTPUT_NAME Stacks
+  FOLDER examples/APG/Containers
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Queues
-  Queues.cpp
+target_cxx_sources(Stacks
+  SOURCE_FILES Stacks.cpp
 )
-set_target_properties(Queues PROPERTIES
+
+
+add_ace_exe(Queues
   OUTPUT_NAME Queues
+  FOLDER examples/APG/Containers
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Array
-  Array.cpp
+target_cxx_sources(Queues
+  SOURCE_FILES Queues.cpp
 )
-set_target_properties(Array PROPERTIES
+
+
+add_ace_exe(Array
   OUTPUT_NAME Array
+  FOLDER examples/APG/Containers
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Sets
-  Sets.cpp
+target_cxx_sources(Array
+  SOURCE_FILES Array.cpp
 )
-set_target_properties(Sets PROPERTIES
+
+
+add_ace_exe(Sets
   OUTPUT_NAME Sets
+  FOLDER examples/APG/Containers
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(containers_Map_Manager
-  Map_Manager.cpp
+target_cxx_sources(Sets
+  SOURCE_FILES Sets.cpp
 )
-set_target_properties(containers_Map_Manager PROPERTIES
+
+
+add_ace_exe(containers_Map_manager
   OUTPUT_NAME Map_Manager
+  FOLDER examples/APG/Containers
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Map_Manager_Specialization
-  Map_Manager_Specialization.cpp
+target_cxx_sources(containers_Map_manager
+  SOURCE_FILES Map_Manager.cpp
 )
-set_target_properties(Map_Manager_Specialization PROPERTIES
+
+
+add_ace_exe(Map_Manager_Specialization
   OUTPUT_NAME Map_Manager_Specialization
+  FOLDER examples/APG/Containers
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(containers_Hash_Map
-  Hash_Map.cpp
+target_cxx_sources(Map_Manager_Specialization
+  SOURCE_FILES Map_Manager_Specialization.cpp
 )
-set_target_properties(containers_Hash_Map PROPERTIES
+
+
+add_ace_exe(containers_Hash_map
   OUTPUT_NAME Hash_Map
+  FOLDER examples/APG/Containers
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Hash_Map_Hash
-  Hash_Map_Hash.cpp
+target_cxx_sources(containers_Hash_map
+  SOURCE_FILES Hash_Map.cpp
 )
-set_target_properties(Hash_Map_Hash PROPERTIES
+
+
+add_ace_exe(Hash_Map_Hash
   OUTPUT_NAME Hash_Map_Hash
+  FOLDER examples/APG/Containers
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(RB_Tree
-  RB_Tree.cpp
+target_cxx_sources(Hash_Map_Hash
+  SOURCE_FILES Hash_Map_Hash.cpp
+  HEADER_FILES Hash_Map_Hash.h
 )
-set_target_properties(RB_Tree PROPERTIES
+
+
+add_ace_exe(RB_Tree
   OUTPUT_NAME RB_Tree
+  FOLDER examples/APG/Containers
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(RB_Tree_Functors
-  RB_Tree_Functors.cpp
+target_cxx_sources(RB_Tree
+  SOURCE_FILES RB_Tree.cpp
 )
-set_target_properties(RB_Tree_Functors PROPERTIES
+
+
+add_ace_exe(RB_Tree_Functors
   OUTPUT_NAME RB_Tree_Functors
+  FOLDER examples/APG/Containers
   LINK_LIBRARIES ACE
+)
+target_cxx_sources(RB_Tree_Functors
+  SOURCE_FILES RB_Tree_Functors.cpp
+  HEADER_FILES RB_Tree_Functors.h
 )
 
-##############################
-add_executable(Allocator
-  Allocator.cpp
-)
-set_target_properties(Allocator PROPERTIES
+
+add_ace_exe(Allocator
   OUTPUT_NAME Allocator
+  FOLDER examples/APG/Containers
   LINK_LIBRARIES ACE
 )
-#####################################
+target_cxx_sources(Allocator
+  SOURCE_FILES Allocator.cpp
+)
+

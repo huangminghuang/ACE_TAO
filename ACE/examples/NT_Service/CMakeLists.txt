@@ -1,12 +1,22 @@
+
 project(NT_Service CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
 
-if (WIN32)
-  add_executable(ntsvc main.cpp ntsvc.cpp)
-  target_link_libraries(ntsvc ACE)
-endif()
+requires(WIN32)
+
+add_ace_exe(NT_Service
+  OUTPUT_NAME main
+  FOLDER examples/NT_Service
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(NT_Service
+  SOURCE_FILES main.cpp
+               ntsvc.cpp
+  HEADER_FILES ntsvc.h
+)
+

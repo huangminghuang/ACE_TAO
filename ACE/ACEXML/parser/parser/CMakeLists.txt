@@ -1,16 +1,24 @@
-set(sources
-  Entity_Manager.cpp
-  Parser.cpp
-  ParserContext.cpp
-  ParserInternals.cpp
+
+
+add_ace_lib(ACEXML_Parser
+  OUTPUT_NAME ACEXML_Parser
+  PACKAGE ACE
+  FOLDER ACEXML/parser/parser
+  DEFINE_SYMBOL ACEXML_PARSER_BUILD_DLL
+  PUBLIC_LINK_LIBRARIES ACEXML
+                        ACE
 )
-
-file(GLOB headers *.inl *.h)
-
-add_ace_component(ACEXML_Parser
-            SOURCES ${sources}
-            PUBLIC_HEADER "${headers}"
-            DEFINE_SYMBOL ACEXML_PARSER_BUILD_DLL
-            PUBLIC_LINK_LIBRARIES ACEXML
-            PACKAGE ACEXML)
+target_cxx_sources(ACEXML_Parser
+  SOURCE_FILES Parser.cpp
+               ParserInternals.cpp
+               ParserContext.cpp
+               Entity_Manager.cpp
+  HEADER_FILES Entity_Manager.h
+               Parser.h
+               ParserContext.h
+               ParserInternals.h
+  INLINE_FILES Entity_Manager.inl
+               Parser.inl
+               ParserContext.inl
+)
 

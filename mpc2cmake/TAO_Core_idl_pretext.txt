@@ -1,0 +1,6 @@
+## we need to use include() instead of add_subdirectory() here,
+## otherwise, cmake have trouble to deduce the dependencies of
+## the generated files in the current directory
+include(AnyTypeCode/CMakeLists.txt)
+include(PortableServer/CMakeLists.txt)
+

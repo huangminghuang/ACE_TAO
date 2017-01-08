@@ -1,33 +1,31 @@
-project(libnetsvcs CXX)
 
 
-include(../../cmake/common.cmake)
-
-set(sources
-  Time_Request_Reply.cpp
-  TS_Server_Handler.cpp
-  TS_Clerk_Handler.cpp
-  Client_Logging_Handler.cpp
-  Name_Handler.cpp
-  Log_Message_Receiver.cpp
-  Server_Logging_Handler.cpp
-  Token_Handler.cpp
-)
-
-file(GLOB headers *.h *.inl)
-list(APPEND headers
-  Base_Optimizer.cpp
-  Server_Logging_Handler_T.cpp
-)
-
-add_ace_component(netsvcs
+add_ace_lib(netsvcs
   OUTPUT_NAME netsvcs
+  FOLDER netsvcs/lib
   DEFINE_SYMBOL ACE_BUILD_SVC_DLL
-  SOURCES ${sources}
-  PUBLIC_HEADER ${headers}
-  PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
   PUBLIC_LINK_LIBRARIES ACE
-  PACKAGE netsvcs
+)
+target_cxx_sources(netsvcs
+  SOURCE_FILES Time_Request_Reply.cpp
+               TS_Clerk_Handler.cpp
+               TS_Server_Handler.cpp
+               Log_Message_Receiver.cpp
+               Name_Handler.cpp
+               Server_Logging_Handler.cpp
+               Token_Handler.cpp
+               Client_Logging_Handler.cpp
+  HEADER_FILES Time_Request_Reply.h
+               TS_Server_Handler.h
+               TS_Clerk_Handler.h
+               Client_Logging_Handler.h
+               Name_Handler.h
+               Log_Message_Receiver.h
+               Server_Logging_Handler.h
+               Token_Handler.h
+               Base_Optimizer.h
+               Server_Logging_Handler_T.h
+  TEMPLATE_FILES Base_Optimizer.cpp
+                 Server_Logging_Handler_T.cpp
 )
 
-export_ace_package(netsvcs)

@@ -1,25 +1,28 @@
-set(BUILD_XML_Utils OPTIONAL CACHE STRING "Whether to build ACE_XML_Utils component")
-as_trinary_option(BUILD_XML_Utils)
+find_package(XercesC)
 
-if (BUILD_XML_Utils)
-    find_package_ex(XercesC ${BUILD_XML_Utils})
+requires(XercesC_FOUND)
 
-    add_ace_component(ACE_XML_Utils
-        SOURCES                    XML_Error_Handler.cpp
-                                   XercesString.cpp
-                                   XML_Schema_Resolver.cpp
-                                   XML_Typedefs.cpp
-        PUBLIC_HEADER              XML_Utils_Export.h
-                                   XML_Error_Handler.h
-                                   XercesString.h
-                                   XML_Schema_Resolver.h
-                                   XML_Typedefs.h
-                                   XML_Helper.h
-        PUBLIC_HEADER_DIRS         XMLSchema XSCRT
-        DEFINE_SYMBOL              XML_UTILS_BUILD_DLL
-        PUBLIC_LINK_LIBRARIES      ACE ${XercesC_LIBRARIES}
-        PUBLIC_INCLUDE_DIRECTORIES ${XercesC_INCLUDE_DIRS}
-        PACKAGE                    ACE
-        REQUIRES                       XercesC_FOUND
-    )
-endif(BUILD_XML_Utils)
+add_ace_lib(ACE_XML_Utils
+  OUTPUT_NAME ACE_XML_Utils
+  PACKAGE ACE
+  FOLDER ace/XML_Utils
+  DEFINE_SYMBOL XML_UTILS_BUILD_DLL
+  PUBLIC_INCLUDE_DIRECTORIES ${XercesC_INCLUDE_DIRS}
+  PUBLIC_LINK_LIBRARIES ACE
+                        ${XercesC_LIBRARIES}
+)
+target_cxx_sources(ACE_XML_Utils
+  SOURCE_FILES XML_Error_Handler.cpp
+               XML_Schema_Resolver.cpp
+               XML_Typedefs.cpp
+               XercesString.cpp
+  HEADER_FILES XML_Error_Handler.h
+               XML_Helper.h
+               XML_Schema_Resolver.h
+               XML_Typedefs.h
+               XML_Utils_Export.h
+               XercesString.h
+)
+
+include("XSCRT/CMakeLists.txt")
+include("XMLSchema/CMakeLists.txt")

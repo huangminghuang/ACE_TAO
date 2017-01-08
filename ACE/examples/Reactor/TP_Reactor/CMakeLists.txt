@@ -1,28 +1,32 @@
 
 project(TP_Reactor CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-##############################
-add_executable(TP_Reactor_client
-  client.cpp
-)
-set_target_properties(TP_Reactor_client PROPERTIES
+
+add_ace_exe(TP_Reactor_Client
   OUTPUT_NAME client
+  FOLDER examples/Reactor/TP_Reactor
   LINK_LIBRARIES ACE
+)
+target_cxx_sources(TP_Reactor_Client
+  SOURCE_FILES client.cpp
 )
 
-##############################
-add_executable(TP_Reactor_server
-  server.cpp
-  AcceptHandler.cpp
-  ReadHandler.cpp
-)
-set_target_properties(TP_Reactor_server PROPERTIES
+
+add_ace_exe(TP_Reactor_Server
   OUTPUT_NAME server
+  FOLDER examples/Reactor/TP_Reactor
   LINK_LIBRARIES ACE
 )
-#####################################
+target_cxx_sources(TP_Reactor_Server
+  SOURCE_FILES AcceptHandler.cpp
+               server.cpp
+               ReadHandler.cpp
+  HEADER_FILES AcceptHandler.h
+               ReadHandler.h
+)
+

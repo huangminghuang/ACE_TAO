@@ -1,23 +1,48 @@
 
-list(APPEND TAO_BASE_IDL_FLAGS
-  -Gp -Gd -Sorb
-  -Wb,export_macro=TAO_IMR_Client_Export
-  -Wb,export_include=tao/ImR_Client/imr_client_export.h
-  -iC tao/ImR_Client
+
+requires("NOT CORBA_E_COMPACT")
+
+add_ace_lib(TAO_ImR_Client
+  OUTPUT_NAME TAO_ImR_Client
+  PACKAGE TAO
+  FOLDER tao/ImR_Client
+  ASPECTS TAO
+  DEFINE_SYMBOL TAO_IMR_CLIENT_BUILD_DLL
+  PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+                             $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
+  PUBLIC_LINK_LIBRARIES TAO_AnyTypeCode
+                        TAO_IORManip
+                        TAO_Valuetype
+                        TAO_PortableServer
+)
+target_cxx_sources(TAO_ImR_Client
+  SOURCE_FILES ImR_Client.cpp
+               ServerObject_i.cpp
+  HEADER_FILES ImR_Client.h
+               ServerObject_i.h
+               imr_client_export.h
 )
 
-add_tao_idl_command(ImR_Client_IDLS
-  IDL_FLAGS -GA
+
+set(ImR_Client_Idl_FLAGS ${TAO_VERSIONING_IDL_FLAGS})
+tao_idl_sources(
+  TARGETS TAO_ImR_Client
+  IDL_FLAGS ${ImR_Client_Idl_FLAGS} -Gp
+            -Gd -Sorb -GA
+            -Wb,export_macro=TAO_IMR_Client_Export
+            -Wb,export_include=tao/ImR_Client/imr_client_export.h
+            -iC tao/ImR_Client
   IDL_FILES ServerObject.idl
 )
 
-add_tao_idl_command(ImR_Client_IDLS
-  IDL_FLAGS -GX -I${CMAKE_CURRENT_SOURCE_DIR}
+tao_idl_sources(
+  TARGETS TAO_ImR_Client
+  IDL_FLAGS ${ImR_Client_Idl_FLAGS} -Gp
+            -Gd -Sorb -GX
+            -I${TAO_ROOT}/tao/ImR_Client
+            -Wb,export_macro=TAO_IMR_Client_Export
+            -Wb,export_include=tao/ImR_Client/imr_client_export.h
+            -iC tao/ImR_Client
   IDL_FILES ImplRepo.idl
-)
-
-add_tao_component(
-  NAME ImR_Client
-  PUBLIC_LINK_LIBRARIES TAO_PortableServer TAO_IORManip
 )
 

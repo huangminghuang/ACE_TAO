@@ -1,44 +1,48 @@
 
 project(sockets CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-##############################
-add_executable(sockets_Basic
-  Basic.cpp
-)
-set_target_properties(sockets_Basic PROPERTIES
+
+add_ace_exe(sockets_Basic
   OUTPUT_NAME Basic
+  FOLDER examples/APG/Sockets
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(sockets_Basic_Robust
-  Basic_Robust.cpp
+target_cxx_sources(sockets_Basic
+  SOURCE_FILES Basic.cpp
 )
-set_target_properties(sockets_Basic_Robust PROPERTIES
+
+
+add_ace_exe(sockets_Basic_robust
   OUTPUT_NAME Basic_Robust
+  FOLDER examples/APG/Sockets
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(sockets_Iovec
-  Iovec.cpp
+target_cxx_sources(sockets_Basic_robust
+  SOURCE_FILES Basic_Robust.cpp
 )
-set_target_properties(sockets_Iovec PROPERTIES
+
+
+add_ace_exe(sockets_Iovec
   OUTPUT_NAME Iovec
+  FOLDER examples/APG/Sockets
   LINK_LIBRARIES ACE
+)
+target_cxx_sources(sockets_Iovec
+  SOURCE_FILES Iovec.cpp
 )
 
-##############################
-add_executable(sockets_Server
-  Server.cpp
-)
-set_target_properties(sockets_Server PROPERTIES
+
+add_ace_exe(sockets_Server
   OUTPUT_NAME Server
+  FOLDER examples/APG/Sockets
   LINK_LIBRARIES ACE
 )
-#####################################
+target_cxx_sources(sockets_Server
+  SOURCE_FILES Server.cpp
+)
+

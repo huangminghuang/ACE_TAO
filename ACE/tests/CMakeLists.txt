@@ -337,7 +337,6 @@ if (TARGET ACE_QtReactor)
 endif(TARGET ACE_QtReactor)
 
 
-message("BUILD_SHARED_LIBS = ${BUILD_SHARED_LIBS}")
 if (BUILD_SHARED_LIBS)
   message("include shared_lib_tests.cmake")
   include(shared_lib_tests.cmake)

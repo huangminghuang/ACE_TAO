@@ -1,38 +1,52 @@
 
 project(QOS_Simple CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-##############################
-if(TARGET ACE_QoS)
-  add_executable(QOS_Simple_receiver
-    Fill_ACE_QoS.cpp
-    QoS_Signal_Handler.cpp
-    QoS_Util.cpp
-    receiver.cpp
-    Receiver_QoS_Event_Handler.cpp
-  )
-  set_target_properties(QOS_Simple_receiver PROPERTIES
-    OUTPUT_NAME receiver
-    LINK_LIBRARIES ACE_QoS
-  )
-endif()
 
-##############################
-if(TARGET ACE_QoS)
-  add_executable(QOS_Simple_sender
-    Fill_ACE_QoS.cpp
-    QoS_Signal_Handler.cpp
-    QoS_Util.cpp
-    sender.cpp
-    Sender_QoS_Event_Handler.cpp
-  )
-  set_target_properties(QOS_Simple_sender PROPERTIES
-    OUTPUT_NAME sender
-    LINK_LIBRARIES ACE_QoS
-  )
-endif()
-#####################################
+requires(RAPI_FOUND)
+
+add_ace_exe(QOS_Simple_Receiver
+  OUTPUT_NAME receiver
+  FOLDER examples/QOS/Simple
+  INCLUDE_DIRECTORIES ${RAPI_INCLUDE_DIR}
+  LINK_LIBRARIES ACE_QoS
+                 ACE
+                 ${RAPI_LIBRARIES}
+)
+target_cxx_sources(QOS_Simple_Receiver
+  SOURCE_FILES Fill_ACE_QoS.cpp
+               Receiver_QoS_Event_Handler.cpp
+               QoS_Util.cpp
+               QoS_Signal_Handler.cpp
+               receiver.cpp
+  HEADER_FILES Fill_ACE_QoS.h
+               Receiver_QoS_Event_Handler.h
+               QoS_Signal_Handler.h
+               QoS_Util.h
+)
+
+
+add_ace_exe(QOS_Simple_Sender
+  OUTPUT_NAME sender
+  FOLDER examples/QOS/Simple
+  INCLUDE_DIRECTORIES ${RAPI_INCLUDE_DIR}
+  LINK_LIBRARIES ACE_QoS
+                 ACE
+                 ${RAPI_LIBRARIES}
+)
+target_cxx_sources(QOS_Simple_Sender
+  SOURCE_FILES sender.cpp
+               QoS_Util.cpp
+               QoS_Signal_Handler.cpp
+               Fill_ACE_QoS.cpp
+               Sender_QoS_Event_Handler.cpp
+  HEADER_FILES Fill_ACE_QoS.h
+               QoS_Signal_Handler.h
+               QoS_Util.h
+               Sender_QoS_Event_Handler.h
+)
+

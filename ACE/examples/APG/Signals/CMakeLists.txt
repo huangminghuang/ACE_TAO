@@ -1,53 +1,58 @@
 
 project(signals CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-##############################
-add_executable(SigAction
-  SigAction.cpp
-)
-set_target_properties(SigAction PROPERTIES
+
+add_ace_exe(SigAction
   OUTPUT_NAME SigAction
+  FOLDER examples/APG/Signals
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(SigGuard
-  SigGuard.cpp
+target_cxx_sources(SigAction
+  SOURCE_FILES SigAction.cpp
 )
-set_target_properties(SigGuard PROPERTIES
+
+
+add_ace_exe(SigGuard
   OUTPUT_NAME SigGuard
+  FOLDER examples/APG/Signals
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(SigHandler
-  SigHandler.cpp
+target_cxx_sources(SigGuard
+  SOURCE_FILES SigGuard.cpp
 )
-set_target_properties(SigHandler PROPERTIES
+
+
+add_ace_exe(SigHandler
   OUTPUT_NAME SigHandler
+  FOLDER examples/APG/Signals
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(SigHandlers
-  SigHandlers.cpp
+target_cxx_sources(SigHandler
+  SOURCE_FILES SigHandler.cpp
 )
-set_target_properties(SigHandlers PROPERTIES
+
+
+add_ace_exe(SigHandlers
   OUTPUT_NAME SigHandlers
+  FOLDER examples/APG/Signals
   LINK_LIBRARIES ACE
+)
+target_cxx_sources(SigHandlers
+  SOURCE_FILES SigHandlers.cpp
 )
 
-##############################
-add_executable(SigInfo
-  SigInfo.cpp
-)
-set_target_properties(SigInfo PROPERTIES
+
+add_ace_exe(SigInfo
   OUTPUT_NAME SigInfo
+  FOLDER examples/APG/Signals
   LINK_LIBRARIES ACE
 )
-#####################################
+target_cxx_sources(SigInfo
+  SOURCE_FILES SigInfo.cpp
+)
+

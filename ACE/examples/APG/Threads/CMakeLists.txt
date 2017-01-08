@@ -1,62 +1,68 @@
 
 project(threads CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-##############################
-add_executable(Activate
-  Activate.cpp
-)
-set_target_properties(Activate PROPERTIES
+
+add_ace_exe(Activate
   OUTPUT_NAME Activate
+  FOLDER examples/APG/Threads
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Condition_Variables
-  Condition_Variables.cpp
+target_cxx_sources(Activate
+  SOURCE_FILES Activate.cpp
 )
-set_target_properties(Condition_Variables PROPERTIES
+
+
+add_ace_exe(Condition_Variables
   OUTPUT_NAME Condition_Variables
+  FOLDER examples/APG/Threads
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Guards
-  Guards.cpp
+target_cxx_sources(Condition_Variables
+  SOURCE_FILES Condition_Variables.cpp
 )
-set_target_properties(Guards PROPERTIES
+
+
+add_ace_exe(Guards
   OUTPUT_NAME Guards
+  FOLDER examples/APG/Threads
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Message_Blocks
-  Message_Blocks.cpp
+target_cxx_sources(Guards
+  SOURCE_FILES Guards.cpp
 )
-set_target_properties(Message_Blocks PROPERTIES
+
+
+add_ace_exe(Message_Blocks
   OUTPUT_NAME Message_Blocks
+  FOLDER examples/APG/Threads
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Message_Queue
-  Message_Queue.cpp
+target_cxx_sources(Message_Blocks
+  SOURCE_FILES Message_Blocks.cpp
 )
-set_target_properties(Message_Queue PROPERTIES
+
+
+add_ace_exe(Message_Queue
   OUTPUT_NAME Message_Queue
+  FOLDER examples/APG/Threads
   LINK_LIBRARIES ACE
+)
+target_cxx_sources(Message_Queue
+  SOURCE_FILES Message_Queue.cpp
 )
 
-##############################
-add_executable(Mutexes
-  Mutexes.cpp
-)
-set_target_properties(Mutexes PROPERTIES
+
+add_ace_exe(Mutexes
   OUTPUT_NAME Mutexes
+  FOLDER examples/APG/Threads
   LINK_LIBRARIES ACE
 )
-#####################################
+target_cxx_sources(Mutexes
+  SOURCE_FILES Mutexes.cpp
+)
+

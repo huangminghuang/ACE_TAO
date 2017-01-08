@@ -1,23 +1,32 @@
 
 project(streams CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-##############################
-add_executable(Answerer
-  Answerer.cpp
-  CommandModule.cpp
-  CommandStream.cpp
-  CommandTask.cpp
-  CommandTasks.cpp
-  RecordingDeviceFactory.cpp
-  RecordingDevice_Text.cpp
-)
-set_target_properties(Answerer PROPERTIES
+
+requires(ACE_HAS_THREADS)
+
+add_ace_exe(Answerer
   OUTPUT_NAME Answerer
+  FOLDER examples/APG/Streams
   LINK_LIBRARIES ACE
 )
-#####################################
+target_cxx_sources(Answerer
+  SOURCE_FILES Answerer.cpp
+               CommandTask.cpp
+               CommandTasks.cpp
+               CommandStream.cpp
+               RecordingDevice_Text.cpp
+               RecordingDeviceFactory.cpp
+               CommandModule.cpp
+  HEADER_FILES RecordingDevice_Text.h
+               RecordingDeviceFactory.h
+               CommandTask.h
+               CommandStream.h
+               CommandTasks.h
+               CommandModule.h
+)
+

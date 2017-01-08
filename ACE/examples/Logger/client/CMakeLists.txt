@@ -1,17 +1,18 @@
 
 project(Logger_client CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-##############################
-add_executable(Logger_client
-  logging_app.cpp
-)
-set_target_properties(Logger_client PROPERTIES
+
+add_ace_exe(Logger_client
   OUTPUT_NAME logging_app
+  FOLDER examples/Logger/client
   LINK_LIBRARIES ACE
 )
-#####################################
+target_cxx_sources(Logger_client
+  SOURCE_FILES logging_app.cpp
+)
+

@@ -1,14 +1,28 @@
-project(Shared_Malloc CXX)
-cmake_minimum_required(VERSION 2.8.12)
+
+project(Semaphores CXX)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-add_executable(Semaphores_starter starter.cpp)
-set_target_properties(Semaphores_starter PROPERTIES OUTPUT_NAME starter)
-target_link_libraries(Semaphores_starter ACE)
 
-add_executable(Semaphores_worker worker.cpp)
-set_target_properties(Semaphores_worker PROPERTIES OUTPUT_NAME worker)
-target_link_libraries(Semaphores_worker ACE)
+add_ace_exe(Semaphores_Starter
+  OUTPUT_NAME starter
+  FOLDER examples/Semaphores
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(Semaphores_Starter
+  SOURCE_FILES starter.cpp
+)
+
+
+add_ace_exe(Semaphores_Worker
+  OUTPUT_NAME worker
+  FOLDER examples/Semaphores
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(Semaphores_Worker
+  SOURCE_FILES worker.cpp
+)
+

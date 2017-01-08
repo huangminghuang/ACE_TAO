@@ -1,19 +1,13 @@
 
-project(Num_Threads CXX)
-cmake_minimum_required(VERSION 2.8.12)
 
-if (NOT ACE_ROOT)
-  find_package(ACE REQUIRED CONFIG)
-endif()
+add_ace_exe(Num_Threads
+  OUTPUT_NAME num_threads
+  FOLDER examples/Monitor/Num_Threads
+  LINK_LIBRARIES MC_Test_Utilities
+                 ACE
+                 ACE_Monitor_Control
+)
+target_cxx_sources(Num_Threads
+  SOURCE_FILES num_threads.cpp
+)
 
-##############################
-if(TARGET ACE_Monitor)
-  add_executable(Num_Threads
-    num_threads.cpp
-  )
-  set_target_properties(Num_Threads PROPERTIES
-    OUTPUT_NAME num_threads
-    LINK_LIBRARIES ACE_Monitor MC_Test_Utilities
-  )
-endif()
-#####################################

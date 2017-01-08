@@ -1,24 +1,20 @@
 find_package(BZip2)
 
-if (BZIP2_FOUND)
-  set(sources
-    Bzip2Compressor.cpp
-    Bzip2Compressor_Factory.cpp
-  )
+requires(BZIP2_FOUND)
 
-  set(headers
-    Bzip2Compressor.h
-    Bzip2Compressor_Factory.h
-    Bzip2Compressor_export.h
-  )
+add_ace_lib(TAO_Bzip2Compressor
+  OUTPUT_NAME TAO_Bzip2Compressor
+  PACKAGE TAO
+  FOLDER tao/Compression/bzip2
+  ASPECTS TAO
+  DEFINE_SYMBOL TAO_BZIP2COMPRESSOR_BUILD_DLL
+  PUBLIC_LINK_LIBRARIES TAO_Compression
+                        ${BZIP2_LIBRARIES}
+)
+target_cxx_sources(TAO_Bzip2Compressor
+  SOURCE_FILES Bzip2Compressor.cpp
+               Bzip2Compressor_Factory.cpp
+  HEADER_FILES Bzip2Compressor.h
+               Bzip2Compressor_Factory.h
+)
 
-  add_tao_component(
-    NAME Bzip2Compressor
-    SOURCES ${sources}
-    PUBLIC_HEADER "${headers}"
-    INCLUDE_DIRECTORIES ${BZIP2_INCLUDE_DIR}
-    PUBLIC_LINK_LIBRARIES TAO_Compression ${BZIP2_LIBRARIES}
-  )
-else()
-  message("Skipping ${CMAKE_CURRENT_SOURCE_DIR} because BZip2 not found" )
-endif()

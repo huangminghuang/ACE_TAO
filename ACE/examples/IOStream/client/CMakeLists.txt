@@ -1,9 +1,18 @@
-project(IOStreamClient CXX)
-cmake_minimum_required(VERSION 2.8.12)
+
+project(IOStream_Client CXX)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-add_executable(iostream_client iostream_client.cpp)
-target_link_libraries(iostream_client ACE)
+
+add_ace_exe(IOStream_Client
+  OUTPUT_NAME iostream_client
+  FOLDER examples/IOStream/client
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(IOStream_Client
+  SOURCE_FILES iostream_client.cpp
+)
+

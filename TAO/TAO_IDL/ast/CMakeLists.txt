@@ -1,0 +1,64 @@
+target_cxx_sources(TAO_IDL_FE
+  SOURCE_FILES ast_check.cpp
+               ast_array.cpp
+               ast_interface.cpp
+               ast_fixed.cpp
+               ast_type.cpp
+               ast_extended_port.cpp
+               ast_publishes.cpp
+               ast_factory.cpp
+               ast_visitor_tmpl_module_inst.cpp
+               ast_union_branch.cpp
+               ast_component_fwd.cpp
+               ast_enum.cpp
+               ast_decl.cpp
+               ast_string.cpp
+               ast_connector.cpp
+               ast_recursive.cpp
+               ast_eventtype_fwd.cpp
+               ast_enum_val.cpp
+               ast_valuebox.cpp
+               ast_exception.cpp
+               ast_porttype.cpp
+               ast_generator.cpp
+               ast_visitor_reifying.cpp
+               ast_eventtype.cpp
+               ast_visitor_tmpl_module_ref.cpp
+               ast_provides.cpp
+               ast_attribute.cpp
+               ast_structure.cpp
+               ast_valuetype_fwd.cpp
+               ast_template_module_ref.cpp
+               ast_consumes.cpp
+               ast_param_holder.cpp
+               ast_sequence.cpp
+               ast_visitor_context.cpp
+               ast_operation.cpp
+               ast_union_label.cpp
+               ast_template_module_inst.cpp
+               ast_home.cpp
+               ast_union.cpp
+               ast_emits.cpp
+               ast_finder.cpp
+               ast_valuetype.cpp
+               ast_template_module.cpp
+               ast_field.cpp
+               ast_concrete_type.cpp
+               ast_union_fwd.cpp
+               ast_module.cpp
+               ast_component.cpp
+               ast_root.cpp
+               ast_interface_fwd.cpp
+               ast_typedef.cpp
+               ast_predefined_type.cpp
+               ast_expression.cpp
+               ast_structure_fwd.cpp
+               ast_mirror_port.cpp
+               ast_argument.cpp
+               ast_uses.cpp
+               ast_visitor.cpp
+               ast_constant.cpp
+               ast_native.cpp
+  SUBGROUP \\ast
+)
+

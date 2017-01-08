@@ -1,26 +1,28 @@
 
 project(active_objects CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-##############################
-add_executable(AO
-  AO.cpp
-)
-set_target_properties(AO PROPERTIES
+
+add_ace_exe(AO
   OUTPUT_NAME AO
+  FOLDER examples/APG/Active_Objects
   LINK_LIBRARIES ACE
+)
+target_cxx_sources(AO
+  SOURCE_FILES AO.cpp
 )
 
-##############################
-add_executable(AO2
-  AO2.cpp
-)
-set_target_properties(AO2 PROPERTIES
+
+add_ace_exe(AO2
   OUTPUT_NAME AO2
+  FOLDER examples/APG/Active_Objects
   LINK_LIBRARIES ACE
 )
-#####################################
+target_cxx_sources(AO2
+  SOURCE_FILES AO2.cpp
+)
+

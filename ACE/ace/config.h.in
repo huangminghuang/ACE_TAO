@@ -4,8 +4,12 @@
 #cmakedefine ACE_HAS_IPV6
 #cmakedefine ACE_HAS_ATM
 #cmakedefine ACE_HAS_THREADS
-
+#cmakedefine ACE_USES_WCHAR
 #cmakedefine __ACE_INLINE__
+#cmakedefine ACE_LACKS_ACE_SVCCONF
+#cmakedefine ACE_LACKS_ACE_TOKEN
+#cmakedefine GEN_OSTREAM_OPS
+#cmakedefine ACE_HAS_VERSIONED_NAMESPACE @ACE_HAS_VERSIONED_NAMESPACE@
 
 #ifdef NDEBUG
 #define ACE_NDEBUG

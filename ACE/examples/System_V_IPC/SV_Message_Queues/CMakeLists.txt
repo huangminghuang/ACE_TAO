@@ -1,16 +1,48 @@
+
 project(SV_Message_Queues CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-function(add_exes)
-  foreach(_name ${ARGN})
-    add_executable(${_name} ${_name}.cpp)
-    target_link_libraries(${_name} ACE)
-  endforeach()
-endfunction()
+
+add_ace_exe(SV_Message_Queues_Mq_client
+  OUTPUT_NAME mqclient
+  FOLDER examples/System_V_IPC/SV_Message_Queues
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(SV_Message_Queues_Mq_client
+  SOURCE_FILES MQ_Client.cpp
+)
 
 
-add_exes(MQ_Client MQ_Server TMQ_Client TMQ_Server)
+add_ace_exe(SV_Message_Queues_Mq_server
+  OUTPUT_NAME mqserver
+  FOLDER examples/System_V_IPC/SV_Message_Queues
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(SV_Message_Queues_Mq_server
+  SOURCE_FILES MQ_Server.cpp
+)
+
+
+add_ace_exe(SV_Message_Queues_Tmq_client
+  OUTPUT_NAME tmqclient
+  FOLDER examples/System_V_IPC/SV_Message_Queues
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(SV_Message_Queues_Tmq_client
+  SOURCE_FILES TMQ_Client.cpp
+)
+
+
+add_ace_exe(SV_Message_Queues_Tmq_server
+  OUTPUT_NAME tmqserver
+  FOLDER examples/System_V_IPC/SV_Message_Queues
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(SV_Message_Queues_Tmq_server
+  SOURCE_FILES TMQ_Server.cpp
+)
+
