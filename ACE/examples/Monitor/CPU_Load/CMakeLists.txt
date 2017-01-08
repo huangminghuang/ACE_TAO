@@ -1,19 +1,13 @@
 
-project(CPU_Load CXX)
-cmake_minimum_required(VERSION 2.8.12)
 
-if (NOT ACE_ROOT)
-  find_package(ACE REQUIRED CONFIG)
-endif()
+add_ace_exe(CPU_Load
+  OUTPUT_NAME cpu_load
+  FOLDER examples/Monitor/CPU_Load
+  LINK_LIBRARIES MC_Test_Utilities
+                 ACE
+                 ACE_Monitor_Control
+)
+target_cxx_sources(CPU_Load
+  SOURCE_FILES cpu_load.cpp
+)
 
-##############################
-if(TARGET ACE_Monitor)
-  add_executable(CPU_Load
-    cpu_load.cpp
-  )
-  set_target_properties(CPU_Load PROPERTIES
-    OUTPUT_NAME cpu_load
-    LINK_LIBRARIES ACE_Monitor MC_Test_Utilities
-  )
-endif()
-#####################################

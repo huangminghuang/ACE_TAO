@@ -1,18 +1,13 @@
 
-project(Dump_Restore CXX)
-cmake_minimum_required(VERSION 2.8.12)
 
-if (NOT ACE_ROOT)
-  find_package(ACE REQUIRED CONFIG)
-endif()
-
-##############################
-add_executable(Netsvcs_Dump_Restore
-  main.cpp
-  Dump_Restore.cpp
-)
-set_target_properties(Netsvcs_Dump_Restore PROPERTIES
+add_ace_exe(Netsvcs_Dump_Restore
   OUTPUT_NAME dump_restore
+  FOLDER netsvcs/clients/Naming/Dump_Restore
   LINK_LIBRARIES ACE
 )
-#####################################
+target_cxx_sources(Netsvcs_Dump_Restore
+  SOURCE_FILES main.cpp
+               Dump_Restore.cpp
+  HEADER_FILES Dump_Restore.h
+)
+

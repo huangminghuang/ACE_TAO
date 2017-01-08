@@ -1,38 +1,38 @@
 
 project(ASX_CCM_App CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-##############################
-add_library(ASX_CCM_App_Lib MODULE
-  CCM_App.cpp
-)
-set_target_properties(ASX_CCM_App_Lib PROPERTIES
+
+add_ace_lib(ASX_CCM_App_Lib
   OUTPUT_NAME CCM_App
-  DEFINE_SYMBOL ""
-  LINK_LIBRARIES ACE
+  FOLDER examples/ASX/CCM_App
+  PUBLIC_LINK_LIBRARIES ACE
+)
+target_cxx_sources(ASX_CCM_App_Lib
+  SOURCE_FILES CCM_App.cpp
 )
 
-##############################
-add_executable(ASX_CCM_App_Server
-  SC_Server.cpp
-)
-set_target_properties(ASX_CCM_App_Server PROPERTIES
+
+add_ace_exe(ASX_CCM_App_Server
   OUTPUT_NAME server
+  FOLDER examples/ASX/CCM_App
   LINK_LIBRARIES ACE
+)
+target_cxx_sources(ASX_CCM_App_Server
+  SOURCE_FILES SC_Server.cpp
 )
 
-##############################
-add_executable(ASX_CCM_App_Client
-  SC_Client.cpp
-)
-set_target_properties(ASX_CCM_App_Client PROPERTIES
+
+add_ace_exe(ASX_CCM_App_Client
   OUTPUT_NAME client
+  FOLDER examples/ASX/CCM_App
   LINK_LIBRARIES ACE
 )
-#####################################
-configure_file(svc.conf svc.conf COPYONLY)
-configure_file(svc.conf.xml svc.conf.xml COPYONLY)
+target_cxx_sources(ASX_CCM_App_Client
+  SOURCE_FILES SC_Client.cpp
+)
+

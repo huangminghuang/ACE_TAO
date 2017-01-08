@@ -1,17 +1,18 @@
 
 project(dev_sap_reader CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-##############################
-add_executable(dev_sap_reader
-  reader.cpp
-)
-set_target_properties(dev_sap_reader PROPERTIES
+
+add_ace_exe(dev_sap_reader
   OUTPUT_NAME reader
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/IPC_SAP/DEV_SAP/reader
+  LINK_LIBRARIES ACE
 )
-#####################################
+target_cxx_sources(dev_sap_reader
+  SOURCE_FILES reader.cpp
+)
+

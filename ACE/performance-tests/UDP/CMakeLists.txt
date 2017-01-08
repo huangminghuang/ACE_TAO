@@ -1,10 +1,11 @@
-add_ace_exe(udp_test
+
+
+add_ace_exe(UDP
+  OUTPUT_NAME udp_test
+  FOLDER performance-tests/UDP
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(UDP
   SOURCE_FILES udp_test.cpp
 )
 
-# add_test(
-#   NAME udp_test
-#   COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/run_test.pl
-# )
-# set_tests_properties(udp_test PROPERTIES
-#   ENVIRONMENT ACE_ROOT=${CMAKE_CURRENT_SOURCE_DIR}/../..)

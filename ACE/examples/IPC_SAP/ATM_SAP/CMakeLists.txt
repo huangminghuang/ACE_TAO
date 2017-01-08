@@ -1,26 +1,28 @@
 
 project(atm_sap CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-##############################
-add_executable(atm_sap_client
-  CPP-client.cpp
-)
-set_target_properties(atm_sap_client PROPERTIES
+
+add_ace_exe(atm_sap_Client
   OUTPUT_NAME client
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/IPC_SAP/ATM_SAP
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(atm_sap_Client
+  SOURCE_FILES CPP-client.cpp
 )
 
-##############################
-add_executable(atm_sap_server
-  CPP-server.cpp
-)
-set_target_properties(atm_sap_server PROPERTIES
+
+add_ace_exe(atm_sap_Server
   OUTPUT_NAME server
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/IPC_SAP/ATM_SAP
+  LINK_LIBRARIES ACE
 )
-#####################################
+target_cxx_sources(atm_sap_Server
+  SOURCE_FILES CPP-server.cpp
+)
+

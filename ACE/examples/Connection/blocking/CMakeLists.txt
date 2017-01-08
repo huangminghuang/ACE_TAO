@@ -1,27 +1,32 @@
 
 project(Connection_Blocking CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
-##############################
-add_executable(Connection_Blocking_acceptor
-  SPIPE-acceptor.cpp
-  test_spipe_acceptor.cpp
-)
-set_target_properties(Connection_Blocking_acceptor PROPERTIES
+
+
+add_ace_exe(Connection_Blocking_Acceptor
   OUTPUT_NAME acceptor
-	LINK_LIBRARIES ACE
+  FOLDER examples/Connection/blocking
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(Connection_Blocking_Acceptor
+  SOURCE_FILES SPIPE-acceptor.cpp
+               test_spipe_acceptor.cpp
+  HEADER_FILES SPIPE-acceptor.h
 )
 
-##############################
-add_executable(Connection_Blocking_connector
-  SPIPE-connector.cpp
-  test_spipe_connector.cpp
-)
-set_target_properties(Connection_Blocking_connector PROPERTIES
+
+add_ace_exe(Connection_Blocking_Connector
   OUTPUT_NAME connector
-	LINK_LIBRARIES ACE
+  FOLDER examples/Connection/blocking
+  LINK_LIBRARIES ACE
 )
-#####################################
+target_cxx_sources(Connection_Blocking_Connector
+  SOURCE_FILES SPIPE-connector.cpp
+               test_spipe_connector.cpp
+  HEADER_FILES SPIPE-connector.h
+)
+

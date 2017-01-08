@@ -1,44 +1,48 @@
 
 project(processes CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-##############################
-add_executable(Process_Manager_Death
-  Process_Manager_Death.cpp
-)
-set_target_properties(Process_Manager_Death PROPERTIES
+
+add_ace_exe(Process_Manager_Death
   OUTPUT_NAME Process_Manager_Death
+  FOLDER examples/APG/Processes
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Process_Manager_Spawn
-  Process_Manager_Spawn.cpp
+target_cxx_sources(Process_Manager_Death
+  SOURCE_FILES Process_Manager_Death.cpp
 )
-set_target_properties(Process_Manager_Spawn PROPERTIES
+
+
+add_ace_exe(Process_Manager_Spawn
   OUTPUT_NAME Process_Manager_Spawn
+  FOLDER examples/APG/Processes
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Process_Mutex
-  Process_Mutex.cpp
+target_cxx_sources(Process_Manager_Spawn
+  SOURCE_FILES Process_Manager_Spawn.cpp
 )
-set_target_properties(Process_Mutex PROPERTIES
+
+
+add_ace_exe(Process_Mutex
   OUTPUT_NAME Process_Mutex
+  FOLDER examples/APG/Processes
   LINK_LIBRARIES ACE
+)
+target_cxx_sources(Process_Mutex
+  SOURCE_FILES Process_Mutex.cpp
 )
 
-##############################
-add_executable(Spawn
-  Spawn.cpp
-)
-set_target_properties(Spawn PROPERTIES
+
+add_ace_exe(Spawn
   OUTPUT_NAME Spawn
+  FOLDER examples/APG/Processes
   LINK_LIBRARIES ACE
 )
-#####################################
+target_cxx_sources(Spawn
+  SOURCE_FILES Spawn.cpp
+)
+

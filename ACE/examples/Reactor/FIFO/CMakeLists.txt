@@ -1,26 +1,28 @@
 
 project(Reactor_FIFO CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-##############################
-add_executable(Reactor_FIFO_client
-  client.cpp
-)
-set_target_properties(Reactor_FIFO_client PROPERTIES
+
+add_ace_exe(Reactor_FIFO_Client
   OUTPUT_NAME client
+  FOLDER examples/Reactor/FIFO
   LINK_LIBRARIES ACE
+)
+target_cxx_sources(Reactor_FIFO_Client
+  SOURCE_FILES client.cpp
 )
 
-##############################
-add_executable(Reactor_FIFO_server
-  server.cpp
-)
-set_target_properties(Reactor_FIFO_server PROPERTIES
+
+add_ace_exe(Reactor_FIFO_Server
   OUTPUT_NAME server
+  FOLDER examples/Reactor/FIFO
   LINK_LIBRARIES ACE
 )
-#####################################
+target_cxx_sources(Reactor_FIFO_Server
+  SOURCE_FILES server.cpp
+)
+

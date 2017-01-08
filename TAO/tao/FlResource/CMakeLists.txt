@@ -1,6 +1,18 @@
 
 
-add_tao_component(
-  NAME FlResource
-  PUBLIC_LINK_LIBRARIES ACE_FlReactor TAO
+add_ace_lib(TAO_FlResource
+  OUTPUT_NAME TAO_FlResource
+  PACKAGE TAO
+  FOLDER tao/FlResource
+  ASPECTS TAO
+  DEFINE_SYMBOL TAO_FLRESOURCE_BUILD_DLL
+  PUBLIC_LINK_LIBRARIES ACE_FlReactor
+                        TAO
 )
+target_cxx_sources(TAO_FlResource
+  SOURCE_FILES FlResource_Factory.cpp
+               FlResource_Loader.cpp
+  HEADER_FILES FlResource_Factory.h
+               FlResource_Loader.h
+)
+

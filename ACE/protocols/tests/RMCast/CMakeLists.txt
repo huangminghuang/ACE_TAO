@@ -1,20 +1,25 @@
 
-if (NOT TARGET ACE_RMCast)
-  find_package(ACE_RMCast REQUIRED CONFIG)
-endif()
 
-add_ace_exe(RMCast_Test_Sender
-            OUTPUT_NAME sender
-            SOURCE_FILES Sender.cpp
-            LINK_LIBRARIES ACE_RMCast)
+requires(ACE_HAS_THREADS)
 
-add_ace_exe(RMCast_Test_Receiver
-            OUTPUT_NAME receiver
-            SOURCE_FILES Receiver.cpp
-            LINK_LIBRARIES ACE_RMCast)
+add_ace_exe(RMCast_Sender
+  OUTPUT_NAME sender
+  FOLDER protocols/tests/RMCast
+  LINK_LIBRARIES ACE_RMCast
+                 ACE
+)
+target_cxx_sources(RMCast_Sender
+  SOURCE_FILES Sender.cpp
+)
 
-add_test(NAME RMCast
-         COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/run_test.pl)
 
-set_tests_properties(RMCast PROPERTIES
-  ENVIRONMENT ACE_ROOT=${CMAKE_CURRENT_SOURCE_DIR}/../../..)
+add_ace_exe(RMCast_Receiver
+  OUTPUT_NAME receiver
+  FOLDER protocols/tests/RMCast
+  LINK_LIBRARIES ACE_RMCast
+                 ACE
+)
+target_cxx_sources(RMCast_Receiver
+  SOURCE_FILES Receiver.cpp
+)
+

@@ -1,7 +1,9 @@
 /* -*- C++ -*- */
 #ifndef _ConfigurationViewer_ValueDlg_H
 #define _ConfigurationViewer_ValueDlg_H
-
+#include <wx/dialog.h>
+#include <wx/stattext.h>
+#include <wx/valtext.h>
 class ValueDlg : public wxDialog
 {
 public:

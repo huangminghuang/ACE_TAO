@@ -1,15 +1,30 @@
+
 project(Registry CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
 
-if (WIN32)
-  add_executable(test_registry_iterator test_registry_iterator.cpp)
-  target_link_libraries(test_registry_iterator ACE)
+requires(WIN32)
 
-  add_executable(test_registry_update test_registry_update.cpp)
-  target_link_libraries(test_registry_update ACE)
-endif()
+add_ace_exe(Registry_Iterator
+  OUTPUT_NAME iterator
+  FOLDER examples/Registry
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(Registry_Iterator
+  SOURCE_FILES test_registry_iterator.cpp
+)
+
+
+add_ace_exe(Registry_Update
+  OUTPUT_NAME update
+  FOLDER examples/Registry
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(Registry_Update
+  SOURCE_FILES test_registry_update.cpp
+)
+

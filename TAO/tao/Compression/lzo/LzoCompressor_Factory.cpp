@@ -1,6 +1,6 @@
 #include "tao/Compression/lzo/LzoCompressor_Factory.h"
 #include "tao/Compression/lzo/LzoCompressor.h"
-#include <lzo1x.h>
+#include <lzo/lzo1x.h>
 
 TAO_BEGIN_VERSIONED_NAMESPACE_DECL
 

@@ -1,13 +1,58 @@
 
 
-if (NOT CORBA_E_MICRO)
-  add_tao_component(
-    NAME Valuetype
-    PUBLIC_LINK_LIBRARIES TAO_AnyTypeCode
-    ADD_IDL_FLAGS -SS -Sorb -GA
-                  -Wb,export_macro=TAO_Valuetype_Export
-                  -Wb,export_include=tao/Valuetype/valuetype_export.h
-                  -iC tao/Valuetype
-    IDL_FILES StringValue.pidl
-  )
-endif()
+requires("NOT CORBA_E_COMPACT")
+
+add_ace_lib(TAO_Valuetype
+  OUTPUT_NAME TAO_Valuetype
+  PACKAGE TAO
+  FOLDER tao/Valuetype
+  ASPECTS VALUETYPE_OUT_INDIRECTION
+          TAO
+  PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+                             $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
+  PUBLIC_LINK_LIBRARIES TAO_AnyTypeCode
+)
+target_cxx_sources(TAO_Valuetype
+  SOURCE_FILES AbstractBase.cpp
+               AbstractBase_Invocation_Adapter.cpp
+               ValueBase.cpp
+               ValueFactory.cpp
+               ValueFactory_Map.cpp
+               Valuetype_Adapter_Factory_Impl.cpp
+               Valuetype_Adapter_Impl.cpp
+  HEADER_FILES AbstractBase.h
+               AbstractBase_Invocation_Adapter.h
+               AbstractBase_T.h
+               Bounded_Valuetype_Allocation_Traits_T.h
+               Bounded_Valuetype_Sequence_T.h
+               Sequence_T.h
+               Unbounded_Valuetype_Allocation_Traits_T.h
+               Unbounded_Valuetype_Sequence_T.h
+               ValueBase.h
+               ValueFactory.h
+               ValueFactory_Map.h
+               Value_CORBA_methods.h
+               Value_VarOut_T.h
+               Valuetype_Adapter_Factory_Impl.h
+               Valuetype_Adapter_Impl.h
+               Valuetype_Sequence_Element_T.h
+               Valuetype_Traits_Base_T.h
+               Valuetype_Traits_T.h
+               valuetype_export.h
+  INLINE_FILES AbstractBase.inl
+               ValueBase.inl
+  TEMPLATE_FILES AbstractBase_T.cpp
+                 Value_VarOut_T.cpp
+)
+
+
+tao_idl_sources(
+  TARGETS TAO_Valuetype
+  IDL_FLAGS ${TAO_VERSIONING_IDL_FLAGS}
+            -SS -Sorb -GA
+            -Wb,export_macro=TAO_Valuetype_Export
+            -Wb,export_include=tao/Valuetype/valuetype_export.h
+            -iC tao/Valuetype
+  IDL_FILES StringValue.pidl
+)
+

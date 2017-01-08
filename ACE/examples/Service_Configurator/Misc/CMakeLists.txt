@@ -1,21 +1,31 @@
+
 project(Service_Configurator_Misc CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-set(CMAKE_MACOSX_RPATH 1)
 
-
-add_library(Service_Configurator_Timer Timer_Service.cpp)
-set_target_properties(Service_Configurator_Timer PROPERTIES
+add_ace_lib(Service_Configurator_Misc_Timer
   OUTPUT_NAME Timer
+  FOLDER examples/Service_Configurator/Misc
   DEFINE_SYMBOL ACE_BUILD_SVC_DLL
+  PUBLIC_LINK_LIBRARIES ACE
 )
-target_link_libraries(Service_Configurator_Timer ACE)
+target_cxx_sources(Service_Configurator_Misc_Timer
+  SOURCE_FILES Timer_Service.cpp
+  HEADER_FILES Timer_Service.h
+)
 
 
-add_executable(Service_Configurator_Misc_main main.cpp)
-set_target_properties(Service_Configurator_Misc_main PROPERTIES OUTPUT_NAME main)
-target_link_libraries(Service_Configurator_Misc_main Service_Configurator_Timer)
+add_ace_exe(Service_Configurator_Misc_Main
+  OUTPUT_NAME main
+  FOLDER examples/Service_Configurator/Misc
+  LINK_LIBRARIES ACE
+                 Service_Configurator_Misc_Timer
+)
+target_cxx_sources(Service_Configurator_Misc_Main
+  SOURCE_FILES main.cpp
+)
+

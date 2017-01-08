@@ -1,6 +1,17 @@
+
+
 add_ace_exe(asnmp_agent
-            OUTPUT_NAME agent
-            SOURCES agent_impl.cpp
-                    main.cpp
-                    snmp_agent.cpp
-            LINK_LIBRARIES asnmp)
+  OUTPUT_NAME agent
+  FOLDER ASNMP/agent
+  INCLUDE_DIRECTORIES ${ACE_ROOT}/ASNMP
+  LINK_LIBRARIES asnmp_lib
+                 ACE
+)
+target_cxx_sources(asnmp_agent
+  SOURCE_FILES main.cpp
+               snmp_agent.cpp
+               agent_impl.cpp
+  HEADER_FILES agent_impl.h
+               snmp_agent.h
+)
+

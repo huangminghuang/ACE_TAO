@@ -1,30 +1,31 @@
 
 project(Export CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-set(CMAKE_MACOSX_RPATH 1)
 
-########################
-add_library(Export_Lib
-  dll.cpp
-)
-set_target_properties(Export_Lib PROPERTIES
+add_ace_lib(Export_Lib
   OUTPUT_NAME Export_Lib
-	DEFINE_SYMBOL TEST_BUILD_DLL
-	LINK_LIBRARIES ACE
-  INTERFACE_LINK_LIBRARIES ACE
+  FOLDER examples/Export
+  DEFINE_SYMBOL TEST_BUILD_DLL
+  PUBLIC_LINK_LIBRARIES ACE
+)
+target_cxx_sources(Export_Lib
+  SOURCE_FILES dll.cpp
+  HEADER_FILES dll.h
 )
 
-########################
-add_executable(Export_test
-  test.cpp
+
+add_ace_exe(Export_Test
+  OUTPUT_NAME tester
+  FOLDER examples/Export
+  LINK_LIBRARIES Export_Lib
+                 ACE
 )
-set_target_properties(Export_test PROPERTIES
-  OUTPUT_NAME export_test
-	LINK_LIBRARIES "Export_Lib"
+target_cxx_sources(Export_Test
+  SOURCE_FILES test.cpp
 )
-#####################################
+

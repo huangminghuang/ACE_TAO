@@ -1,14 +1,28 @@
+
 project(Shared_Memory CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-add_executable(Shared_Memory_test_MM test_MM.cpp)
-set_target_properties(Shared_Memory_test_MM PROPERTIES OUTPUT_NAME testmm)
-target_link_libraries(Shared_Memory_test_MM ACE)
 
-add_executable(Shared_Memory_test_SV test_SV.cpp)
-set_target_properties(Shared_Memory_test_SV PROPERTIES OUTPUT_NAME testsv)
-target_link_libraries(Shared_Memory_test_SV ACE)
+add_ace_exe(Shared_Memory_Mm
+  OUTPUT_NAME testmm
+  FOLDER examples/Shared_Memory
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(Shared_Memory_Mm
+  SOURCE_FILES test_MM.cpp
+)
+
+
+add_ace_exe(Shared_Memory_Sv
+  OUTPUT_NAME testsv
+  FOLDER examples/Shared_Memory
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(Shared_Memory_Sv
+  SOURCE_FILES test_SV.cpp
+)
+

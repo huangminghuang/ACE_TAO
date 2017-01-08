@@ -1,62 +1,76 @@
 
 project(naming CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-##############################
-add_executable(Netlocal
-  Netlocal.cpp
-  Temperature_Monitor2.cpp
-)
-set_target_properties(Netlocal PROPERTIES
+
+requires(ACE_OTHER)
+
+add_ace_exe(Netlocal
   OUTPUT_NAME Netlocal
+  FOLDER examples/APG/Naming
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Netlocal_Reader
-  Netlocal_reader.cpp
-  Graph.cpp
-  Temperature_Grapher.cpp
+target_cxx_sources(Netlocal
+  SOURCE_FILES Temperature_Monitor2.cpp
+               Netlocal.cpp
+  HEADER_FILES Temperature_Monitor2.h
 )
-set_target_properties(Netlocal_Reader PROPERTIES
+
+
+add_ace_exe(Netlocal_Reader
   OUTPUT_NAME Netlocal_reader
+  FOLDER examples/APG/Naming
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Nodelocal
-  Nodelocal.cpp
-  Temperature_Monitor.cpp
+target_cxx_sources(Netlocal_Reader
+  SOURCE_FILES Graph.cpp
+               Netlocal_reader.cpp
+               Temperature_Grapher.cpp
+  HEADER_FILES Graph.h
+               Temperature_Grapher.h
 )
-set_target_properties(Nodelocal PROPERTIES
+
+
+add_ace_exe(Nodelocal
   OUTPUT_NAME Nodelocal
+  FOLDER examples/APG/Naming
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Nodelocal_Shared
-  Nodelocal_shared.cpp
-  Temperature_Monitor2.cpp
+target_cxx_sources(Nodelocal
+  SOURCE_FILES Nodelocal.cpp
+               Temperature_Monitor.cpp
+  HEADER_FILES Temperature_Monitor.h
 )
-set_target_properties(Nodelocal_Shared PROPERTIES
+
+
+add_ace_exe(Nodelocal_Shared
   OUTPUT_NAME Nodelocal_shared
+  FOLDER examples/APG/Naming
   LINK_LIBRARIES ACE
+)
+target_cxx_sources(Nodelocal_Shared
+  SOURCE_FILES Temperature_Monitor2.cpp
+               Nodelocal_shared.cpp
+  HEADER_FILES Temperature_Monitor2.h
 )
 
-##############################
-add_executable(Nodelocal_Shared_Reader
-  Nodelocal_shared_reader.cpp
-  Graph.cpp
-  Temperature_Grapher.cpp
-  Temperature_Monitor.cpp
-)
-set_target_properties(Nodelocal_Shared_Reader PROPERTIES
+
+add_ace_exe(Nodelocal_Shared_Reader
   OUTPUT_NAME Nodelocal_shared_reader
+  FOLDER examples/APG/Naming
   LINK_LIBRARIES ACE
 )
-#####################################
-configure_file(svc.conf svc.conf COPYONLY)
+target_cxx_sources(Nodelocal_Shared_Reader
+  SOURCE_FILES Graph.cpp
+               Temperature_Grapher.cpp
+               Nodelocal_shared_reader.cpp
+               Temperature_Monitor.cpp
+  HEADER_FILES Graph.h
+               Temperature_Grapher.h
+               Temperature_Monitor.h
+)
+

@@ -1,0 +1,11 @@
+file(GLOB config_files config-*.h)
+
+target_cxx_sources(ACE
+  HEADER_FILES ${config_files}
+  SUBGROUP \\config
+)
+
+if (NOT BUILD_SHARED_LIBS)
+  target_compile_definitions(ACE INTERFACE ACE_AS_STATIC_LIBS)
+endif(NOT BUILD_SHARED_LIBS)
+

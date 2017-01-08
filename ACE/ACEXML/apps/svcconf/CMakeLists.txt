@@ -1,12 +1,17 @@
-set(sources Svcconf_Handler.cpp
-            Svcconf.cpp)
 
-set(headers Svcconf_Handler.h Svcconf_Handler.inl Svcconf.h)
 
-add_ace_component(ACEXML_XML_Svc_Conf_Parser
-  DEFINE_SYMBOL ACEXML_XML_SVC_CONF_PARSER_BUILD_DLL
-  SOURCES ${sources}
-  PUBLIC_HEADER "${headers}"
-  PUBLIC_LINK_LIBRARIES ACEXML
-  PACKAGE ACEXML
+add_ace_lib(ACEXML_XML_Svc_Conf_Parser
+  OUTPUT_NAME ACEXML_XML_Svc_Conf_Parser
+  PACKAGE ACE
+  FOLDER ACEXML/apps/svcconf
+  PUBLIC_LINK_LIBRARIES ACE
+                        ACEXML_Parser
 )
+target_cxx_sources(ACEXML_XML_Svc_Conf_Parser
+  SOURCE_FILES Svcconf.cpp
+               Svcconf_Handler.cpp
+  HEADER_FILES Svcconf.h
+               Svcconf_Handler.h
+  INLINE_FILES Svcconf_Handler.inl
+)
+

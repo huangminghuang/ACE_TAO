@@ -1,12 +1,18 @@
-
 find_package(X11 COMPONENTS Xt)
 
-add_ace_component(ACE_XtReactor
-    DEFINE_SYMBOL ACE_XTREACTOR_BUILD_DLL
-    SOURCES XtReactor.cpp
-    PUBLIC_HEADER XtReactor.h
-    PUBLIC_LINK_LIBRARIES ACE ${X11_Xt_LIB}
-    PUBLIC_INCLUDE_DIRECTORIES ${X11_INCLUDE_PATH}
-    PACKAGE ACE
-    REQUIRES X11_Xt_FOUND
+requires(X11_Xt_FOUND)
+
+add_ace_lib(ACE_XtReactor
+  OUTPUT_NAME ACE_XtReactor
+  PACKAGE ACE
+  FOLDER ace/XtReactor
+  DEFINE_SYMBOL ACE_XTREACTOR_BUILD_DLL
+  PUBLIC_INCLUDE_DIRECTORIES ${X11_INCLUDE_PATH}
+  PUBLIC_LINK_LIBRARIES ${X11_Xt_LIB}
+                        ACE
 )
+target_cxx_sources(ACE_XtReactor
+  SOURCE_FILES XtReactor.cpp
+  HEADER_FILES XtReactor.h
+)
+

@@ -1,17 +1,18 @@
 
 project(Mem_Map_File_Reverse CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-##############################
-add_executable(Mem_Map_File_Reverse
-  file-reverse.cpp
-)
-set_target_properties(Mem_Map_File_Reverse PROPERTIES
-  OUTPUT_NAME file
+
+add_ace_exe(Mem_Map_File_Reverse
+  OUTPUT_NAME file-reverse
+  FOLDER examples/Mem_Map/file-reverse
   LINK_LIBRARIES ACE
 )
-#####################################
+target_cxx_sources(Mem_Map_File_Reverse
+  SOURCE_FILES file-reverse.cpp
+)
+

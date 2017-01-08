@@ -1,17 +1,19 @@
 
 project(proactor CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-##############################
-add_executable(HA_Proactive_Status
-  HA_Proactive_Status.cpp
-)
-set_target_properties(HA_Proactive_Status PROPERTIES
+
+add_ace_exe(HA_Proactive_Status
   OUTPUT_NAME HA_Proactive_Status
+  FOLDER examples/APG/Proactor
   LINK_LIBRARIES ACE
 )
-#####################################
+target_cxx_sources(HA_Proactive_Status
+  SOURCE_FILES HA_Proactive_Status.cpp
+  HEADER_FILES HA_Proactive_Status.h
+)
+

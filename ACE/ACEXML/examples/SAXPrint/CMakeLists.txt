@@ -1,7 +1,17 @@
 
+
 add_ace_exe(SAXPrint
-  SOURCES main.cpp SAXPrint_Handler.cpp
-  LINK_LIBRARIES ACEXML)
-  
-file(GLOB xml_files *.xml)
-file(COPY ${xml_files} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+  OUTPUT_NAME SAXPrint
+  FOLDER ACEXML/examples/SAXPrint
+  LINK_LIBRARIES ACE
+                 ACEXML_Parser
+)
+target_cxx_sources(SAXPrint
+  SOURCE_FILES SAXPrint_Handler.cpp
+               main.cpp
+               Print_Handler.cpp
+  HEADER_FILES Print_Handler.h
+               SAXPrint_Handler.h
+  INLINE_FILES SAXPrint_Handler.inl
+)
+

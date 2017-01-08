@@ -1,26 +1,28 @@
 
 project(Reactor_Dgram CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-##############################
-add_executable(Reactor_Dgram_CO
-  CODgram.cpp
-)
-set_target_properties(Reactor_Dgram_CO PROPERTIES
+
+add_ace_exe(Reactor_Dgram_Co
   OUTPUT_NAME codgram
+  FOLDER examples/Reactor/Dgram
   LINK_LIBRARIES ACE
+)
+target_cxx_sources(Reactor_Dgram_Co
+  SOURCE_FILES CODgram.cpp
 )
 
-##############################
-add_executable(Reactor_Dgram
-  Dgram.cpp
-)
-set_target_properties(Reactor_Dgram PROPERTIES
+
+add_ace_exe(Reactor_Dgram
   OUTPUT_NAME dgram
+  FOLDER examples/Reactor/Dgram
   LINK_LIBRARIES ACE
 )
-#####################################
+target_cxx_sources(Reactor_Dgram
+  SOURCE_FILES Dgram.cpp
+)
+

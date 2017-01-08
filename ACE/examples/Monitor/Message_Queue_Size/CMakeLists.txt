@@ -1,19 +1,13 @@
 
-project(Message_Queue_Size CXX)
-cmake_minimum_required(VERSION 2.8.12)
 
-if (NOT ACE_ROOT)
-  find_package(ACE REQUIRED CONFIG)
-endif()
+add_ace_exe(Message_Queue_Size
+  OUTPUT_NAME message_queue_size
+  FOLDER examples/Monitor/Message_Queue_Size
+  LINK_LIBRARIES MC_Test_Utilities
+                 ACE
+                 ACE_Monitor_Control
+)
+target_cxx_sources(Message_Queue_Size
+  SOURCE_FILES message_queue_size.cpp
+)
 
-##############################
-if(TARGET ACE_Monitor)
-  add_executable(Message_Queue_Size
-    message_queue_size.cpp
-  )
-  set_target_properties(Message_Queue_Size PROPERTIES
-    OUTPUT_NAME message_queue_size
-    LINK_LIBRARIES ACE_Monitor MC_Test_Utilities
-  )
-endif()
-#####################################

@@ -1,89 +1,98 @@
 
 project(Reactor_Misc CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-##############################
-add_executable(Reactor_Misc_event_handler_t
-  test_event_handler_t.cpp
-)
-set_target_properties(Reactor_Misc_event_handler_t PROPERTIES
+
+add_ace_exe(Reactor_Misc_Event_handler_t
   OUTPUT_NAME event_handler_t
+  FOLDER examples/Reactor/Misc
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Reactor_Misc_demuxing
-  test_demuxing.cpp
+target_cxx_sources(Reactor_Misc_Event_handler_t
+  SOURCE_FILES test_event_handler_t.cpp
 )
-set_target_properties(Reactor_Misc_demuxing PROPERTIES
+
+
+add_ace_exe(Reactor_Misc_Demuxing
   OUTPUT_NAME demuxing
+  FOLDER examples/Reactor/Misc
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Reactor_Misc_early_timeouts
-  test_early_timeouts.cpp
+target_cxx_sources(Reactor_Misc_Demuxing
+  SOURCE_FILES test_demuxing.cpp
 )
-set_target_properties(Reactor_Misc_early_timeouts PROPERTIES
+
+
+add_ace_exe(Reactor_Misc_Early_timeouts
   OUTPUT_NAME early_timeouts
+  FOLDER examples/Reactor/Misc
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Reactor_Misc_notification
-  notification.cpp
+target_cxx_sources(Reactor_Misc_Early_timeouts
+  SOURCE_FILES test_early_timeouts.cpp
 )
-set_target_properties(Reactor_Misc_notification PROPERTIES
+
+
+add_ace_exe(Reactor_Misc_Notification
   OUTPUT_NAME notification
+  FOLDER examples/Reactor/Misc
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Reactor_Misc_pingpong
-  pingpong.cpp
+target_cxx_sources(Reactor_Misc_Notification
+  SOURCE_FILES notification.cpp
 )
-set_target_properties(Reactor_Misc_pingpong PROPERTIES
+
+
+add_ace_exe(Reactor_Misc_Pingpong
   OUTPUT_NAME pingpong
+  FOLDER examples/Reactor/Misc
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Reactor_Misc_reactors
-  test_reactors.cpp
+target_cxx_sources(Reactor_Misc_Pingpong
+  SOURCE_FILES pingpong.cpp
 )
-set_target_properties(Reactor_Misc_reactors PROPERTIES
+
+
+add_ace_exe(Reactor_Misc_Reactors
   OUTPUT_NAME reactors
+  FOLDER examples/Reactor/Misc
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Reactor_Misc_signals_1
-  test_signals_1.cpp
+target_cxx_sources(Reactor_Misc_Reactors
+  SOURCE_FILES test_reactors.cpp
 )
-set_target_properties(Reactor_Misc_signals_1 PROPERTIES
+
+
+add_ace_exe(Reactor_Misc_Signals_1
   OUTPUT_NAME signals_1
+  FOLDER examples/Reactor/Misc
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Reactor_Misc_signals_2
-  test_signals_2.cpp
+target_cxx_sources(Reactor_Misc_Signals_1
+  SOURCE_FILES test_signals_1.cpp
 )
-set_target_properties(Reactor_Misc_signals_2 PROPERTIES
+
+
+add_ace_exe(Reactor_Misc_Signals_2
   OUTPUT_NAME signals_2
+  FOLDER examples/Reactor/Misc
   LINK_LIBRARIES ACE
+)
+target_cxx_sources(Reactor_Misc_Signals_2
+  SOURCE_FILES test_signals_2.cpp
 )
 
-##############################
-add_executable(Reactor_Misc_timer_queue
-  test_timer_queue.cpp
-)
-set_target_properties(Reactor_Misc_timer_queue PROPERTIES
+
+add_ace_exe(Reactor_Misc_Timer_queue
   OUTPUT_NAME timer_queue
+  FOLDER examples/Reactor/Misc
   LINK_LIBRARIES ACE
 )
-#####################################
+target_cxx_sources(Reactor_Misc_Timer_queue
+  SOURCE_FILES test_timer_queue.cpp
+)
+

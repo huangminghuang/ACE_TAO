@@ -1,13 +1,28 @@
-project(SV_Message_Queues CXX)
-cmake_minimum_required(VERSION 2.8.12)
+
+project(SV_Semaphores CXX)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
 
-add_executable(Semaphores_1 Semaphores_1.cpp)
-target_link_libraries(Semaphores_1 ACE)
+add_ace_exe(SV_Semaphores_1
+  OUTPUT_NAME sem1
+  FOLDER examples/System_V_IPC/SV_Semaphores
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(SV_Semaphores_1
+  SOURCE_FILES Semaphores_1.cpp
+)
 
-add_executable(Semaphores_2 Semaphores_1.cpp)
-target_link_libraries(Semaphores_2 ACE)
+
+add_ace_exe(SV_Semaphores_2
+  OUTPUT_NAME sem2
+  FOLDER examples/System_V_IPC/SV_Semaphores
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(SV_Semaphores_2
+  SOURCE_FILES Semaphores_2.cpp
+)
+

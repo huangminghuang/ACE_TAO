@@ -1,71 +1,80 @@
 
 project(Proactor CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-##############################
-add_executable(Proactor_cancel
-  test_cancel.cpp
-)
-set_target_properties(Proactor_cancel PROPERTIES
+
+add_ace_exe(Proactor_Cancel
   OUTPUT_NAME test_cancel
+  FOLDER examples/Reactor/Proactor
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Proactor_end_event_loops
-  test_end_event_loop.cpp
+target_cxx_sources(Proactor_Cancel
+  SOURCE_FILES test_cancel.cpp
+  HEADER_FILES test_cancel.h
 )
-set_target_properties(Proactor_end_event_loops PROPERTIES
+
+
+add_ace_exe(Proactor_End_event_loops
   OUTPUT_NAME test_end_event_loop
+  FOLDER examples/Reactor/Proactor
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Proactor_multiple_loops
-  test_multiple_loops.cpp
+target_cxx_sources(Proactor_End_event_loops
+  SOURCE_FILES test_end_event_loop.cpp
 )
-set_target_properties(Proactor_multiple_loops PROPERTIES
+
+
+add_ace_exe(Proactor_Multiple_loops
   OUTPUT_NAME test_multiple_loops
+  FOLDER examples/Reactor/Proactor
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Proactor_post_completions
-  post_completions.cpp
+target_cxx_sources(Proactor_Multiple_loops
+  SOURCE_FILES test_multiple_loops.cpp
 )
-set_target_properties(Proactor_post_completions PROPERTIES
+
+
+add_ace_exe(Proactor_Post_completions
   OUTPUT_NAME test_post_completions
+  FOLDER examples/Reactor/Proactor
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Proactor_proactor
-  test_proactor.cpp
+target_cxx_sources(Proactor_Post_completions
+  SOURCE_FILES post_completions.cpp
 )
-set_target_properties(Proactor_proactor PROPERTIES
+
+
+add_ace_exe(Proactor_Proactor
   OUTPUT_NAME test_proactor
+  FOLDER examples/Reactor/Proactor
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Proactor_timeout
-  test_timeout.cpp
+target_cxx_sources(Proactor_Proactor
+  SOURCE_FILES test_proactor.cpp
+  HEADER_FILES test_proactor.h
 )
-set_target_properties(Proactor_timeout PROPERTIES
+
+
+add_ace_exe(Proactor_Timeout
   OUTPUT_NAME test_timeout
+  FOLDER examples/Reactor/Proactor
   LINK_LIBRARIES ACE
+)
+target_cxx_sources(Proactor_Timeout
+  SOURCE_FILES test_timeout.cpp
 )
 
-##############################
-add_executable(Proactor_udp_proactor
-  test_udp_proactor.cpp
-)
-set_target_properties(Proactor_udp_proactor PROPERTIES
+
+add_ace_exe(Proactor_Udp_proactor
   OUTPUT_NAME test_udp_proactor
+  FOLDER examples/Reactor/Proactor
   LINK_LIBRARIES ACE
 )
-#####################################
+target_cxx_sources(Proactor_Udp_proactor
+  SOURCE_FILES test_udp_proactor.cpp
+)
+

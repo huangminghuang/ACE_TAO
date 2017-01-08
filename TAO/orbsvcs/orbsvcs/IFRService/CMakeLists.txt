@@ -1,11 +1,117 @@
-file(GLOB sources *_i.cpp IFR_Service_Loader.cpp IFR_Service_Utils.cpp Options.cpp)
-file(GLOB headers *.h IFR_Service_Utils_T.cpp)
 
-add_orbsvcs_lib(TAO_IFRService
+add_ace_lib(TAO_IFRService
   DEFINE_SYMBOL TAO_IFRSERVICE_BUILD_DLL
-  SOURCES ${sources}
-  PUBLIC_HEADER ${headers}
+  PACKAGE TAO
   PUBLIC_LINK_LIBRARIES TAO_TypeCodeFactory TAO_Svc_Utils TAO_IORTable TAO_IFR_Client_skel
-
 )
-
+target_cxx_sources(TAO_IFRService
+  SOURCE_FILES AbstractInterfaceDef_i.cpp
+               AliasDef_i.cpp
+               ArrayDef_i.cpp
+               AttributeDef_i.cpp
+               ComponentContainer_i.cpp
+               ComponentDef_i.cpp
+               ComponentModuleDef_i.cpp
+               ComponentRepository_i.cpp
+               ConstantDef_i.cpp
+               ConsumesDef_i.cpp
+               Contained_i.cpp
+               Container_i.cpp
+               EmitsDef_i.cpp
+               EnumDef_i.cpp
+               EventDef_i.cpp
+               EventPortDef_i.cpp
+               ExceptionDef_i.cpp
+               ExtAbstractInterfaceDef_i.cpp
+               ExtAttributeDef_i.cpp
+               ExtInterfaceDef_i.cpp
+               ExtLocalInterfaceDef_i.cpp
+               ExtValueDef_i.cpp
+               FactoryDef_i.cpp
+               FinderDef_i.cpp
+               FixedDef_i.cpp
+               HomeDef_i.cpp
+               IDLType_i.cpp
+               IFR_Service_Loader.cpp
+               IFR_Service_Utils.cpp
+               IRObject_i.cpp
+               InterfaceAttrExtension_i.cpp
+               InterfaceDef_i.cpp
+               LocalInterfaceDef_i.cpp
+               ModuleDef_i.cpp
+               NativeDef_i.cpp
+               OperationDef_i.cpp
+               Options.cpp
+               PrimitiveDef_i.cpp
+               ProvidesDef_i.cpp
+               PublishesDef_i.cpp
+               RecursDef_i.cpp
+               Repository_i.cpp
+               SequenceDef_i.cpp
+               StringDef_i.cpp
+               StructDef_i.cpp
+               TypedefDef_i.cpp
+               UnionDef_i.cpp
+               UsesDef_i.cpp
+               ValueBoxDef_i.cpp
+               ValueDef_i.cpp
+               ValueMemberDef_i.cpp
+               WstringDef_i.cpp
+  HEADER_FILES AbstractInterfaceDef_i.h
+               AliasDef_i.h
+               ArrayDef_i.h
+               AttributeDef_i.h
+               ComponentContainer_i.h
+               ComponentDef_i.h
+               ComponentModuleDef_i.h
+               ComponentRepository_i.h
+               ConstantDef_i.h
+               ConsumesDef_i.h
+               Contained_i.h
+               Container_i.h
+               EmitsDef_i.h
+               EnumDef_i.h
+               EventDef_i.h
+               EventPortDef_i.h
+               ExceptionDef_i.h
+               ExtAbstractInterfaceDef_i.h
+               ExtAttributeDef_i.h
+               ExtInterfaceDef_i.h
+               ExtLocalInterfaceDef_i.h
+               ExtValueDef_i.h
+               FactoryDef_i.h
+               FinderDef_i.h
+               FixedDef_i.h
+               HomeDef_i.h
+               IDLType_i.h
+               IFR_Service_Loader.h
+               IFR_Service_Utils.h
+               IFR_Service_Utils_T.h
+               IFR_macro.h
+               IRObject_i.h
+               InterfaceAttrExtension_i.h
+               InterfaceDef_i.h
+               LocalInterfaceDef_i.h
+               ModuleDef_i.h
+               NativeDef_i.h
+               OperationDef_i.h
+               Options.h
+               PrimitiveDef_i.h
+               ProvidesDef_i.h
+               PublishesDef_i.h
+               RecursDef_i.h
+               Repository_i.h
+               SequenceDef_i.h
+               StringDef_i.h
+               StructDef_i.h
+               TypedefDef_i.h
+               UnionDef_i.h
+               UsesDef_i.h
+               ValueBoxDef_i.h
+               ValueDef_i.h
+               ValueMemberDef_i.h
+               WstringDef_i.h
+               concrete_classes.h
+               ifr_service_export.h
+  TEMPLATE_FILES IFR_Service_Utils_T.cpp
+)

@@ -1,20 +1,13 @@
 
-project(Synch_Benchmarks_Synch_Lib CXX)
-cmake_minimum_required(VERSION 2.8.12)
 
-if (NOT ACE_ROOT)
-  find_package(ACE REQUIRED CONFIG)
-endif()
-
-set(CMAKE_MACOSX_RPATH 1)
-##############################
-add_library(Synch_Lib
-  Benchmark_Base.cpp
-)
-set_target_properties(Synch_Lib PROPERTIES
+add_ace_lib(Synch_Lib
   OUTPUT_NAME Synch_Lib
-  DEFINE_SYMBOL "SYNCHLIB_BUILD_DLL"
-  LINK_LIBRARIES "ACE"
-	INTERFACE_LINK_LIBRARIES ACE
+  FOLDER performance-tests/Synch-Benchmarks/Synch_Lib
+  DEFINE_SYMBOL SYNCHLIB_BUILD_DLL
+  PUBLIC_LINK_LIBRARIES ACE
 )
-#####################################
+target_cxx_sources(Synch_Lib
+  SOURCE_FILES Benchmark_Base.cpp
+  HEADER_FILES Benchmark_Base.h
+)
+

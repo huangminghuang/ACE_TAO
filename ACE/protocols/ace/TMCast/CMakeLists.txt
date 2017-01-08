@@ -1,14 +1,18 @@
-file(GLOB sources *.cpp)
-file(GLOB header *.h *.inl)
 
-add_ace_component(ACE_TMCast
+
+requires(ACE_HAS_THREADS)
+
+add_ace_lib(ACE_TMCast
   OUTPUT_NAME ACE_TMCast
-  DEFINE_SYMBOL ACE_TMCAST_BUILD_DLL
-  SOURCES ${sources}
-  PUBLIC_HEADER ${headers}
-  PUBLIC_LINK_LIBRARIES ACE
+  PACKAGE ACE
+  FOLDER protocols/ace/TMCast
+  DEFINE_SYMBOL TMCAST_BUILD_DLL
   PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../..>
-  HEADERS_INSTALL_DESTINATION ace/TMCast
-  PACKAGE ACE_TMCast
+  PUBLIC_LINK_LIBRARIES ACE
 )
-export_ace_package(ACE_TMCast)
+target_cxx_sources(ACE_TMCast
+  SOURCE_FILES Protocol.cpp
+               Group.cpp
+               MTQueue.cpp
+)
+

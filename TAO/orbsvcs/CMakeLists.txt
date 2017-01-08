@@ -1,1 +1,3 @@
 add_subdirectory(orbsvcs)
+add_subdirectory(ImplRepo_Service)
+add_subdirectory(Naming_Service)

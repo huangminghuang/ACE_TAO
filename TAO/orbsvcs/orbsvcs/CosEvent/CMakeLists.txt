@@ -1,146 +1,156 @@
 
 
-if (MINIMUM_CORBA OR CORBA_E_MICRO OR CORBA_E_COMPACT)
-  return()
-endif()
+requires("NOT MINIMUM_CORBA"
+         "NOT CORBA_E_MICRO"
+         "NOT CORBA_E_COMPACT"
+)
 
+add_ace_lib(TAO_CosEvent
+  DEFINE_SYMBOL TAO_COSEVENT_BUILD_DLL
+  PACKAGE TAO
+  PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../..>
+                             $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/../..>
+                             $<INSTALL_INTERFACE:${TAO_INSTALL_DIR}/orbsvcs>
+  PUBLIC_LINK_LIBRARIES TAO_AnyTypeCode
+)
+
+target_cxx_sources(TAO_CosEvent
+  HEADER_FILES event_export.h
+)
+
+add_ace_lib(TAO_CosEvent_Skel
+  DEFINE_SYMBOL TAO_COSEVENT_SKEL_BUILD_DLL
+  PACKAGE TAO
+  PUBLIC_LINK_LIBRARIES TAO_CosEvent TAO_PortableServer
+)
+
+target_cxx_sources(TAO_CosEvent_Skel
+  HEADER_FILES event_skel_export.h
+)
+
+set(CosEvent_IDL_FLAGS ${TAO_VERSIONING_IDL_FLAGS}
+                       -I${CMAKE_CURRENT_SOURCE_DIR}/../..
+                       -I${CMAKE_CURRENT_SOURCE_DIR}/..
+                       -GT -Wb,stub_export_macro=TAO_Event_Export
+                       -Wb,stub_export_include=orbsvcs/CosEvent/event_export.h
+                       -Wb,skel_export_macro=TAO_Event_Skel_Export
+                       -Wb,skel_export_include=orbsvcs/CosEvent/event_skel_export.h
+
+)
+
+
+tao_idl_sources(
+  STUB_TARGETS TAO_CosEvent
+  SKEL_TARGETS TAO_CosEvent_Skel
+  IDL_FLAGS ${CosEvent_IDL_FLAGS}
+  IDL_FILES ../CosEventComm.idl
+            ../CosEventChannelAdmin.idl
+  WORKING_DIRECTORY ..
+)
+
+add_ace_lib(TAO_CosEvent_Serv
+  DEFINE_SYMBOL TAO_COSEVENT_SERV_BUILD_DLL
+  PACKAGE TAO
+  PUBLIC_LINK_LIBRARIES TAO_Svc_Utils
+                        TAO_CosNaming
+                        TAO_CosEvent_Skel
+  ASPECTS MESSAGING_OPTIONAL
+)
+
+target_cxx_sources(TAO_CosEvent_Serv
+  SOURCE_FILES CEC_ConsumerAdmin.cpp
+               CEC_ConsumerControl.cpp
+               CEC_Default_Factory.cpp
+               CEC_Dispatching.cpp
+               CEC_Dispatching_Task.cpp
+               CEC_EventChannel.cpp
+               CEC_Event_Loader.cpp
+               CEC_Factory.cpp
+               CEC_MT_Dispatching.cpp
+               CEC_ProxyPullConsumer.cpp
+               CEC_ProxyPullSupplier.cpp
+               CEC_ProxyPushConsumer.cpp
+               CEC_ProxyPushSupplier.cpp
+               CEC_Pulling_Strategy.cpp
+               CEC_Reactive_ConsumerControl.cpp
+               CEC_Reactive_Pulling_Strategy.cpp
+               CEC_Reactive_SupplierControl.cpp
+               CEC_SupplierAdmin.cpp
+               CEC_SupplierControl.cpp
+  HEADER_FILES CEC_ConsumerAdmin.h
+               CEC_ConsumerControl.h
+               CEC_Default_Factory.h
+               CEC_Defaults.h
+               CEC_Dispatching.h
+               CEC_Dispatching_Task.h
+               CEC_EventChannel.h
+               CEC_Event_Loader.h
+               CEC_Factory.h
+               CEC_MT_Dispatching.h
+               CEC_ProxyPullConsumer.h
+               CEC_ProxyPullSupplier.h
+               CEC_ProxyPushConsumer.h
+               CEC_ProxyPushSupplier.h
+               CEC_Pulling_Strategy.h
+               CEC_Reactive_ConsumerControl.h
+               CEC_Reactive_Pulling_Strategy.h
+               CEC_Reactive_SupplierControl.h
+               CEC_SupplierAdmin.h
+               CEC_SupplierControl.h
+  INLINE_FILES CEC_ConsumerAdmin.inl
+               CEC_Default_Factory.inl
+               CEC_Dispatching_Task.inl
+               CEC_EventChannel.inl
+               CEC_ProxyPullConsumer.inl
+               CEC_ProxyPullSupplier.inl
+               CEC_ProxyPushConsumer.inl
+               CEC_ProxyPushSupplier.inl
+               CEC_Reactive_ConsumerControl.inl
+               CEC_Reactive_Pulling_Strategy.inl
+               CEC_Reactive_SupplierControl.inl
+               CEC_SupplierAdmin.inl
+)
 
 option(EC_TYPED_EVENT "" ON)
 
 if (EC_TYPED_EVENT)
-  set(OPTIONAL_TYPED_EVENT_IDL_FILES
-    ../CosTypedEventComm.idl
-    ../CosTypedEventChannelAdmin.idl
+
+  tao_idl_sources(
+    STUB_TARGETS TAO_CosEvent
+    SKEL_TARGETS TAO_CosEvent_Skel
+    IDL_FLAGS ${CosEvent_IDL_FLAGS}
+    IDL_FILES ../CosTypedEventComm.idl
+              ../CosTypedEventChannelAdmin.idl
+    WORKING_DIRECTORY ..
+  )
+  target_compile_definitions(TAO_CosEvent PUBLIC TAO_HAS_TYPED_EVENT_CHANNEL)
+
+  target_cxx_sources(TAO_CosEvent_Serv
+    SOURCE_FILES CEC_TypedEvent.cpp
+                 CEC_TypedEventChannel.cpp
+                 CEC_TypedProxyPushConsumer.cpp
+                 CEC_TypedConsumerAdmin.cpp
+                 CEC_TypedSupplierAdmin.cpp
+                 CEC_DynamicImplementation.cpp
+    HEADER_FILES CEC_TypedConsumerAdmin.h
+                 CEC_TypedEvent.h
+                 CEC_TypedEventChannel.h
+                 CEC_TypedProxyPushConsumer.h
+                 CEC_TypedSupplierAdmin.h
+                 CEC_DynamicImplementation.h
+    INLINE_FILES CEC_TypedConsumerAdmin.inl
+                 CEC_TypedEvent.inl
+                 CEC_TypedEventChannel.inl
+                 CEC_TypedEventChannel.inl
+                 CEC_TypedProxyPushConsumer.inl
+                 CEC_TypedSupplierAdmin.inl
+                 CEC_DynamicImplementation.inl
   )
 
-  set(OPTIONAL_TYPED_EVENT TAO_HAS_TYPED_EVENT_CHANNEL)
-
-  set(OPTIONAL_TYPED_EVENT_SERV_SOURCES
-    CEC_TypedEvent.cpp
-    CEC_TypedEventChannel.cpp
-    CEC_TypedProxyPushConsumer.cpp
-    CEC_TypedConsumerAdmin.cpp
-    CEC_TypedSupplierAdmin.cpp
-    CEC_DynamicImplementation.cpp
-  )
-
-  set(OPTIONAL_TYPED_EVENT_SERV_HEADERS
-    CEC_TypedConsumerAdmin.h
-    CEC_TypedConsumerAdmin.inl
-    CEC_TypedEvent.h
-    CEC_TypedEvent.inl
-    CEC_TypedEventChannel.h
-    CEC_TypedEventChannel.inl
-    CEC_TypedProxyPushConsumer.h
-    CEC_TypedProxyPushConsumer.inl
-    CEC_TypedSupplierAdmin.h
-    CEC_TypedSupplierAdmin.inl
-    CEC_DynamicImplementation.h
-    CEC_DynamicImplementation.inl
-  )
-
-  set(OPTIONAL_TYPED_EVENT_SERV_LINK_LIBS
+  target_link_libraries(TAO_CosEvent_Serv PUBLIC
     TAO_IFR_Client
     TAO_DynamicInterface
   )
-endif()
 
-
-add_orbsvcs_idls(Event
-  FLAGS -GT
-  IDL_FILES ../CosEventComm.idl
-       ../CosEventChannelAdmin.idl
-       ${OPTIONAL_TYPED_EVENT_IDL_FILES}
-)
-
-
-add_orbsvcs_lib(TAO_CosEvent
-  DEFINE_SYMBOL TAO_COSEVENT_BUILD_DLL
-  SOURCES ${Event_IDLS_STUB_FILES}
-  PUBLIC_HEADER event_export.h
-  PUBLIC_COMPILE_DEFINITIONS ${OPTIONAL_TYPED_EVENT}
-  PUBLIC_LINK_LIBRARIES TAO TAO_AnyTypeCode
-
-)
-
-add_orbsvcs_lib(TAO_CosEvent_Skel
-  DEFINE_SYMBOL TAO_COSEVENT_SKEL_BUILD_DLL
-  SOURCES ${Event_IDLS_SKEL_FILES}
-  PUBLIC_HEADER event_skel_export.h
-  PUBLIC_LINK_LIBRARIES TAO_CosEvent TAO_PortableServer
-
-)
-
-set(sources
-  CEC_ConsumerAdmin.cpp
-  CEC_ConsumerControl.cpp
-  CEC_Default_Factory.cpp
-  CEC_Dispatching.cpp
-  CEC_Dispatching_Task.cpp
-  CEC_EventChannel.cpp
-  CEC_Event_Loader.cpp
-  CEC_Factory.cpp
-  CEC_MT_Dispatching.cpp
-  CEC_ProxyPullConsumer.cpp
-  CEC_ProxyPullSupplier.cpp
-  CEC_ProxyPushConsumer.cpp
-  CEC_ProxyPushSupplier.cpp
-  CEC_Pulling_Strategy.cpp
-  CEC_Reactive_ConsumerControl.cpp
-  CEC_Reactive_Pulling_Strategy.cpp
-  CEC_Reactive_SupplierControl.cpp
-  CEC_SupplierAdmin.cpp
-  CEC_SupplierControl.cpp
-  ${OPTIONAL_TYPED_EVENT_SERV_SOURCES}
-)
-
-set(headers
-  CEC_ConsumerAdmin.h
-  CEC_ConsumerAdmin.inl
-  CEC_ConsumerControl.h
-  CEC_Default_Factory.h
-  CEC_Default_Factory.inl
-  CEC_Defaults.h
-  CEC_Dispatching.h
-  CEC_Dispatching_Task.h
-  CEC_Dispatching_Task.inl
-  CEC_EventChannel.h
-  CEC_EventChannel.inl
-  CEC_Event_Loader.h
-  CEC_Factory.h
-  CEC_MT_Dispatching.h
-  CEC_ProxyPullConsumer.h
-  CEC_ProxyPullConsumer.inl
-  CEC_ProxyPullSupplier.h
-  CEC_ProxyPullSupplier.inl
-  CEC_ProxyPushConsumer.h
-  CEC_ProxyPushConsumer.inl
-  CEC_ProxyPushSupplier.h
-  CEC_ProxyPushSupplier.inl
-  CEC_Pulling_Strategy.h
-  CEC_Reactive_ConsumerControl.h
-  CEC_Reactive_ConsumerControl.inl
-  CEC_Reactive_Pulling_Strategy.h
-  CEC_Reactive_Pulling_Strategy.inl
-  CEC_Reactive_SupplierControl.h
-  CEC_Reactive_SupplierControl.inl
-  CEC_SupplierAdmin.h
-  CEC_SupplierAdmin.inl
-  CEC_SupplierControl.h
-  ${OPTIONAL_TYPED_EVENT_SERV_HEADERS}
-)
-
-add_orbsvcs_lib(TAO_CosEvent_Serv
-  DEFINE_SYMBOL TAO_COSEVENT_SERV_BUILD_DLL
-  SOURCES ${sources}
-  PUBLIC_HEADER ${headers}
-  PUBLIC_LINK_LIBRARIES TAO_Svc_Utils
-                        TAO_CosNaming
-                        TAO_CosEvent_Skel
-                        ${OPTIONAL_MESSAGING}
-                        ${OPTIONAL_TYPED_EVENT_SERV_LINK_LIBS}
-
-)
-
-
+endif(EC_TYPED_EVENT)
 

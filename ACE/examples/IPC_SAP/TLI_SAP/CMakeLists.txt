@@ -1,80 +1,88 @@
 
 project(TLI_SAP CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-##############################
-add_executable(TLI_SAP_ATM_client
-  CPP-ATM-client.cpp
-)
-set_target_properties(TLI_SAP_ATM_client PROPERTIES
+
+add_ace_exe(TLI_SAP_Atm_client
   OUTPUT_NAME ATM-client
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/IPC_SAP/TLI_SAP
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(TLI_SAP_Atm_client
+  SOURCE_FILES CPP-ATM-client.cpp
 )
 
-##############################
-add_executable(TLI_SAP_ATM_server
-  CPP-ATM-server.cpp
-)
-set_target_properties(TLI_SAP_ATM_server PROPERTIES
+
+add_ace_exe(TLI_SAP_Atm_server
   OUTPUT_NAME ATM-server
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/IPC_SAP/TLI_SAP
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(TLI_SAP_Atm_server
+  SOURCE_FILES CPP-ATM-server.cpp
 )
 
-##############################
-add_executable(TLI_SAP_CPP_client
-  CPP-client.cpp
-)
-set_target_properties(TLI_SAP_CPP_client PROPERTIES
+
+add_ace_exe(TLI_SAP_Cpp_client
   OUTPUT_NAME CPP-client
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/IPC_SAP/TLI_SAP
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(TLI_SAP_Cpp_client
+  SOURCE_FILES CPP-client.cpp
 )
 
-##############################
-add_executable(TLI_SAP_CPP_server
-  CPP-server.cpp
-)
-set_target_properties(TLI_SAP_CPP_server PROPERTIES
+
+add_ace_exe(TLI_SAP_Cpp_server
   OUTPUT_NAME CPP-server
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/IPC_SAP/TLI_SAP
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(TLI_SAP_Cpp_server
+  SOURCE_FILES CPP-server.cpp
 )
 
-##############################
-add_executable(TLI_SAP_db_client
-  db-client.cpp
-)
-set_target_properties(TLI_SAP_db_client PROPERTIES
+
+add_ace_exe(TLI_SAP_Db_client
   OUTPUT_NAME db-client
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/IPC_SAP/TLI_SAP
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(TLI_SAP_Db_client
+  SOURCE_FILES db-client.cpp
 )
 
-##############################
-add_executable(TLI_SAP_db_server
-  db-server.cpp
-)
-set_target_properties(TLI_SAP_db_server PROPERTIES
+
+add_ace_exe(TLI_SAP_Db_server
   OUTPUT_NAME db-server
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/IPC_SAP/TLI_SAP
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(TLI_SAP_Db_server
+  SOURCE_FILES db-server.cpp
 )
 
-##############################
-add_executable(TLI_SAP_ftp_client
-  ftp-client.cpp
-)
-set_target_properties(TLI_SAP_ftp_client PROPERTIES
+
+add_ace_exe(TLI_SAP_Ftp_client
   OUTPUT_NAME ftp-client
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/IPC_SAP/TLI_SAP
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(TLI_SAP_Ftp_client
+  SOURCE_FILES ftp-client.cpp
 )
 
-##############################
-add_executable(TLI_SAP_ftp_server
-  ftp-server.cpp
-)
-set_target_properties(TLI_SAP_ftp_server PROPERTIES
+
+add_ace_exe(TLI_SAP_Ftp_server
   OUTPUT_NAME ftp-server
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/IPC_SAP/TLI_SAP
+  LINK_LIBRARIES ACE
 )
-#####################################
+target_cxx_sources(TLI_SAP_Ftp_server
+  SOURCE_FILES ftp-server.cpp
+)
+

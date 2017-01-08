@@ -1,74 +1,77 @@
 
 project(SSL_SAP CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-##############################
-if(TARGET ACE_SSL)
-add_executable(SSL_SAP_client
-  SSL-client.cpp
-)
-set_target_properties(SSL_SAP_client PROPERTIES
+
+add_ace_exe(SSL_SAP_Client
   OUTPUT_NAME client
-  LINK_LIBRARIES "ACE_SSL"
+  FOLDER examples/IPC_SAP/SSL_SAP
+  LINK_LIBRARIES ACE_SSL
+                 ACE
 )
-endif()
+target_cxx_sources(SSL_SAP_Client
+  SOURCE_FILES SSL-client.cpp
+  HEADER_FILES SSL-client.h
+)
 
-##############################
-if(TARGET ACE_SSL)
-add_executable(SSL_SAP_client_simple
-  SSL-client-simple.cpp
-)
-set_target_properties(SSL_SAP_client_simple PROPERTIES
+
+add_ace_exe(SSL_SAP_Client_simple
   OUTPUT_NAME client-simple
-  LINK_LIBRARIES "ACE_SSL"
+  FOLDER examples/IPC_SAP/SSL_SAP
+  LINK_LIBRARIES ACE_SSL
+                 ACE
 )
-endif()
+target_cxx_sources(SSL_SAP_Client_simple
+  SOURCE_FILES SSL-client-simple.cpp
+  HEADER_FILES SSL-client-simple.h
+)
 
-##############################
-if(TARGET ACE_SSL)
-add_executable(SSL_SAP_server
-  SSL-server.cpp
-)
-set_target_properties(SSL_SAP_server PROPERTIES
+
+add_ace_exe(SSL_SAP_Server
   OUTPUT_NAME server
-  LINK_LIBRARIES "ACE_SSL"
+  FOLDER examples/IPC_SAP/SSL_SAP
+  LINK_LIBRARIES ACE_SSL
+                 ACE
 )
-endif()
+target_cxx_sources(SSL_SAP_Server
+  SOURCE_FILES SSL-server.cpp
+)
 
-##############################
-if(TARGET ACE_SSL)
-add_executable(SSL_SAP_server_fancy
-  SSL-server-fancy.cpp
-)
-set_target_properties(SSL_SAP_server_fancy PROPERTIES
+
+add_ace_exe(SSL_SAP_Server_fancy
   OUTPUT_NAME server-fancy
-  LINK_LIBRARIES "ACE_SSL"
+  FOLDER examples/IPC_SAP/SSL_SAP
+  LINK_LIBRARIES ACE_SSL
+                 ACE
 )
-endif()
+target_cxx_sources(SSL_SAP_Server_fancy
+  SOURCE_FILES SSL-server-fancy.cpp
+  HEADER_FILES SSL-server-fancy.h
+)
 
-##############################
-if(TARGET ACE_SSL)
-add_executable(SSL_SAP_server_poll
-  SSL-server-poll.cpp
-)
-set_target_properties(SSL_SAP_server_poll PROPERTIES
+
+add_ace_exe(SSL_SAP_Server_poll
   OUTPUT_NAME server-poll
-  LINK_LIBRARIES "ACE_SSL"
+  FOLDER examples/IPC_SAP/SSL_SAP
+  LINK_LIBRARIES ACE_SSL
+                 ACE
 )
-endif()
+target_cxx_sources(SSL_SAP_Server_poll
+  SOURCE_FILES SSL-server-poll.cpp
+)
 
-##############################
-if(TARGET ACE_SSL)
-add_executable(SSL_SAP_server_simple
-  SSL-server-simple.cpp
-)
-set_target_properties(SSL_SAP_server_simple PROPERTIES
+
+add_ace_exe(SSL_SAP_Server_simple
   OUTPUT_NAME server-simple
-  LINK_LIBRARIES "ACE_SSL"
+  FOLDER examples/IPC_SAP/SSL_SAP
+  LINK_LIBRARIES ACE_SSL
+                 ACE
 )
-endif()
-#####################################
+target_cxx_sources(SSL_SAP_Server_simple
+  SOURCE_FILES SSL-server-simple.cpp
+)
+

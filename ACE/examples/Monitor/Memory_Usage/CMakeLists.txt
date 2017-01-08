@@ -1,19 +1,13 @@
 
-project(Memory_Usage CXX)
-cmake_minimum_required(VERSION 2.8.12)
 
-if (NOT ACE_ROOT)
-  find_package(ACE REQUIRED CONFIG)
-endif()
+add_ace_exe(Memory_Usage
+  OUTPUT_NAME memory_usage
+  FOLDER examples/Monitor/Memory_Usage
+  LINK_LIBRARIES MC_Test_Utilities
+                 ACE
+                 ACE_Monitor_Control
+)
+target_cxx_sources(Memory_Usage
+  SOURCE_FILES memory_usage.cpp
+)
 
-##############################
-if(TARGET ACE_Monitor)
-  add_executable(Memory_Usage
-    memory_usage.cpp
-  )
-  set_target_properties(Memory_Usage PROPERTIES
-    OUTPUT_NAME memory_usage
-    LINK_LIBRARIES ACE_Monitor MC_Test_Utilities
-  )
-endif()
-#####################################

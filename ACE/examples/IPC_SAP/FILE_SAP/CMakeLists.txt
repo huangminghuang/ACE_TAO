@@ -1,17 +1,18 @@
 
 project(file_sap_client CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-##############################
-add_executable(file_sap_client
-  client.cpp
-)
-set_target_properties(file_sap_client PROPERTIES
+
+add_ace_exe(file_sap_client
   OUTPUT_NAME client
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/IPC_SAP/FILE_SAP
+  LINK_LIBRARIES ACE
 )
-#####################################
+target_cxx_sources(file_sap_client
+  SOURCE_FILES client.cpp
+)
+

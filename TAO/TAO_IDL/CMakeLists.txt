@@ -1,10 +1,3 @@
-project(TAO_IDL CXX)
-cmake_minimum_required(VERSION 3.1)
-include(CMakePackageConfigHelpers)
-
-set(TAO_VERSION 2.2)
-
-
 
 find_package(BISON)
 find_package(FLEX)
@@ -38,49 +31,41 @@ if (BISON_FOUND AND FLEX_FOUND AND SED_EXECUTABLE)
 
 endif()
 
-file(GLOB_RECURSE fe_sources fe/*.cpp ast/*.cpp util/*.cpp narrow/*.cpp)
-#set(fe_sources  ${CMAKE_CURRENT_BINARY_DIR}/fe/fe_lookup.cpp ${CMAKE_CURRENT_BINARY_DIR}/fe/idl.yy.cpp ${CMAKE_CURRENT_BINARY_DIR}/fe/idl.tab.cpp)
-add_library(TAO_IDL_FE ${fe_sources})
-
-set(fe_include_dirs ${CMAKE_CURRENT_SOURCE_DIR}/include ${CMAKE_CURRENT_SOURCE_DIR}/fe ${CMAKE_CURRENT_SOURCE_DIR}/..)
-set_target_properties(TAO_IDL_FE PROPERTIES
+add_ace_lib(TAO_IDL_FE
+  PACKAGE TAO
   DEFINE_SYMBOL TAO_IDL_FE_BUILD_DLL
-  INCLUDE_DIRECTORIES "${fe_include_dirs}"
-  INTERFACE_INCLUDE_DIRECTORIES "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>;$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/fe>;$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>"
-  LINK_LIBRARIES ACE
-  INTERFACE_LINK_LIBRARIES ACE
+  PUBLIC_INCLUDE_DIRECTORIES "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>;$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/fe>;$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>"
+  PUBLIC_LINK_LIBRARIES ACE
 )
 
-file(GLOB_RECURSE be_sources be/*.cpp)
-add_library(TAO_IDL_BE ${be_sources})
-set_target_properties(TAO_IDL_BE PROPERTIES
+include(ast/CMakeLists.txt)
+include(fe/CMakeLists.txt)
+include(include/CMakeLists.txt)
+include(narrow/CMakeLists.txt)
+include(util/CMakeLists.txt)
+
+add_ace_lib(TAO_IDL_BE
+  PACKAGE TAO
   DEFINE_SYMBOL TAO_IDL_BE_BUILD_DLL
-  INCLUDE_DIRECTORIES ${CMAKE_CURRENT_SOURCE_DIR}/be_include
-  INTERFACE_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/be_include>
-  LINK_LIBRARIES TAO_IDL_FE
-  INTERFACE_LINK_LIBRARIES TAO_IDL_FE
+  PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/be_include>
+  PUBLIC_LINK_LIBRARIES TAO_IDL_FE
 )
 
-add_executable(TAO_IDL_EXE
-  driver/drv_args.cpp
-  driver/drv_preproc.cpp
-  tao_idl.cpp
-)
+file(GLOB_RECURSE sublists be/CMakeList*.txt be_include/CMakeList*.txt)
+foreach(list ${sublists})
+  include(${list})
+endforeach()
 
-set_target_properties(TAO_IDL_EXE PROPERTIES
+add_ace_exe(TAO_IDL_EXE
+  PACKAGE TAO
   OUTPUT_NAME tao_idl
   LINK_LIBRARIES "TAO_IDL_BE"
   COMPILE_DEFINITIONS TAO_IDL_PREPROCESSOR=\"${CMAKE_CXX_COMPILER}\"
 )
 
-if (BUILD_SHARED_LIBS)
-  install(TARGETS TAO_IDL_FE TAO_IDL_BE TAO_IDL_EXE
-          EXPORT  TAOTargets
-          LIBRARY DESTINATION lib
-          RUNTIME DESTINATION bin)
-else()
-  install(TARGETS TAO_IDL_EXE
-          EXPORT  TAOTargets
-          RUNTIME DESTINATION bin)
-endif()
-
+target_cxx_sources(TAO_IDL_EXE
+  SOURCE_FILES driver/drv_args.cpp
+               driver/drv_preproc.cpp
+               tao_idl.cpp
+  HEADER_FILES include/drv_extern.h
+)

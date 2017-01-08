@@ -1,48 +1,57 @@
 
 project(timers CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-##############################
-add_executable(Alarm
-  Alarm.cpp
-)
-set_target_properties(Alarm PROPERTIES
+
+add_ace_exe(Alarm
   OUTPUT_NAME Alarm
+  FOLDER examples/APG/Timers
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Task
-  Task.cpp
+target_cxx_sources(Alarm
+  SOURCE_FILES Alarm.cpp
 )
-set_target_properties(Task PROPERTIES
+
+
+add_ace_exe(Task
   OUTPUT_NAME Task
+  FOLDER examples/APG/Timers
   LINK_LIBRARIES ACE
 )
-
-##############################
-add_executable(Timers
-  Timers.cpp
-  CB.cpp
-  TimerDispatcher.cpp
+target_cxx_sources(Task
+  SOURCE_FILES Task.cpp
 )
-set_target_properties(Timers PROPERTIES
+
+
+add_ace_exe(Timers
   OUTPUT_NAME Timers
+  FOLDER examples/APG/Timers
   LINK_LIBRARIES ACE
+)
+target_cxx_sources(Timers
+  SOURCE_FILES CB.cpp
+               Timers.cpp
+               TimerDispatcher.cpp
+  HEADER_FILES CB.h
+               TimerDispatcher.h
 )
 
-##############################
-add_executable(Upcall
-  Upcall.cpp
-  PCB.cpp
-  PTimerDispatcher.cpp
-)
-set_target_properties(Upcall PROPERTIES
+
+add_ace_exe(Upcall
   OUTPUT_NAME Upcall
+  FOLDER examples/APG/Timers
   LINK_LIBRARIES ACE
 )
-#####################################
+target_cxx_sources(Upcall
+  SOURCE_FILES PCB.cpp
+               Upcall.cpp
+               PTimerDispatcher.cpp
+  HEADER_FILES PCB.h
+               PTimerDispatcher.h
+               Upcall.h
+)
+

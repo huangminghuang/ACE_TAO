@@ -1,161 +1,242 @@
 
 project(C++NPv2 CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-set(CMAKE_MACOSX_RPATH 1)
 
-find_package(OpenSSL)
-
-
-add_library(C++NPv2_Logging_Lib STATIC
-  Logging_Acceptor.cpp
-  Logging_Event_Handler.cpp
-  Logging_Event_Handler_Ex.cpp
-  Logging_Handler.cpp
-)
-
-set_target_properties(C++NPv2_Logging_Lib PROPERTIES
-  POSITION_INDEPENDENT_CODE True
-  LINK_LIBRARIES ACE
-  INTERFACE_LINK_LIBRARIES ACE
-)
-
-########################
-
-if (OPENSSL_FOUND)
-add_library(C++NPv2_AC_CLD MODULE
-  AC_Client_Logging_Daemon.cpp
-)
-set_target_properties(C++NPv2_AC_CLD PROPERTIES
+add_ace_lib(C++NPv2_Ac_cld
   OUTPUT_NAME AC_CLD
-	DEFINE_SYMBOL AC_CLD_BUILD_DLL
-  INCLUDE_DIRECTORIES ${OPENSSL_INCLUDE_DIR}
-  LINK_LIBRARIES C++NPv2_Logging_Lib ${OPENSSL_LIBRARIES}
+  REQUIRES "NOT USES_WCHAR"
+           ACE_HAS_THREADS
+  FOLDER examples/C++NPv2
+  DEFINE_SYMBOL AC_CLD_BUILD_DLL
+  PUBLIC_LINK_LIBRARIES ACE_SSL
+                        ACE
 )
-endif()
-########################
-if (OPENSLL_FOUND)
-add_library(C++NPv2_AIO_CLD MODULE
-  AIO_Client_Logging_Daemon.cpp
+target_cxx_sources(C++NPv2_Ac_cld
+  SOURCE_FILES AC_Client_Logging_Daemon.cpp
+               Logging_Handler.cpp
+  HEADER_FILES Logging_Handler.h
+               AC_Client_Logging_Daemon.h
 )
-set_target_properties(C++NPv2_AIO_CLD PROPERTIES
+
+
+add_ace_lib(C++NPv2_Aio_cld
   OUTPUT_NAME AIO_CLD
-	DEFINE_SYMBOL AIO_CLD_BUILD_DLL
-  INCLUDE_DIRECTORIES ${OPENSSL_INCLUDE_DIR}
-  LINK_LIBRARIES ACE ${OPENSSL_LIBRARIES}
+  FOLDER examples/C++NPv2
+  DEFINE_SYMBOL AIO_CLD_BUILD_DLL
+  PUBLIC_LINK_LIBRARIES ACE_SSL
+                        ACE
 )
-endif()
-########################
-add_library(C++NPv2_CLD MODULE
-  Client_Logging_Daemon.cpp
+target_cxx_sources(C++NPv2_Aio_cld
+  SOURCE_FILES AIO_Client_Logging_Daemon.cpp
+  HEADER_FILES AIO_Client_Logging_Daemon.h
 )
-set_target_properties(C++NPv2_CLD PROPERTIES
+
+
+add_ace_lib(C++NPv2_Cld
   OUTPUT_NAME CLD
-	DEFINE_SYMBOL CLD_BUILD_DLL
+  REQUIRES "NOT USES_WCHAR"
+  FOLDER examples/C++NPv2
+  DEFINE_SYMBOL CLD_BUILD_DLL
+  PUBLIC_LINK_LIBRARIES ACE
 )
-target_link_libraries(C++NPv2_CLD C++NPv2_Logging_Lib)
+target_cxx_sources(C++NPv2_Cld
+  SOURCE_FILES Logging_Acceptor.cpp
+               Client_Logging_Daemon.cpp
+               Logging_Event_Handler.cpp
+               Logging_Handler.cpp
+  HEADER_FILES Logging_Acceptor.h
+               Logging_Handler.h
+               Logging_Event_Handler.h
+)
 
-########################
-add_executable(C++NPv2_Configurable_Log_Server
-  Configurable_Logging_Server.cpp
-  Service_Reporter.cpp
-)
-target_link_libraries(C++NPv2_Configurable_Log_Server ACE)
-set_target_properties(C++NPv2_Configurable_Log_Server PROPERTIES OUTPUT_NAME configurable_logging_server)
 
-########################
-add_executable(C++NPv2_Display_Logfile
-  display_logfile.cpp
+add_ace_exe(C++NPv2_Configurable_log_server
+  OUTPUT_NAME configurable_logging_server
+  REQUIRES "NOT USES_WCHAR"
+  FOLDER examples/C++NPv2
+  LINK_LIBRARIES ACE
 )
-target_link_libraries(C++NPv2_Display_Logfile ACE)
-set_target_properties(C++NPv2_Display_Logfile PROPERTIES OUTPUT_NAME display_logfile)
+target_cxx_sources(C++NPv2_Configurable_log_server
+  SOURCE_FILES Service_Reporter.cpp
+               Configurable_Logging_Server.cpp
+  HEADER_FILES Service_Reporter.h
+)
 
-########################
-add_executable(C++NPv2_Reactor_Log_Server
-  Reactor_Logging_Server.cpp
-)
-target_link_libraries(C++NPv2_Reactor_Log_Server C++NPv2_Logging_Lib)
-set_target_properties(C++NPv2_Reactor_Log_Server PROPERTIES OUTPUT_NAME reactor_logging_server)
 
-########################
-add_executable(C++NPv2_Select_Reactor_Log_Server
-  Select_Reactor_Logging_Server.cpp
+add_ace_exe(C++NPv2_Display_logfile
+  OUTPUT_NAME display_logfile
+  FOLDER examples/C++NPv2
+  LINK_LIBRARIES ACE
 )
-target_link_libraries(C++NPv2_Select_Reactor_Log_Server C++NPv2_Logging_Lib)
-set_target_properties(C++NPv2_Select_Reactor_Log_Server PROPERTIES OUTPUT_NAME select_reactor_logging_server)
+target_cxx_sources(C++NPv2_Display_logfile
+  SOURCE_FILES display_logfile.cpp
+)
 
-########################
-add_library(C++NPv2_SLD MODULE
-  SLD.cpp
+
+add_ace_exe(C++NPv2_Reactor_log_server
+  OUTPUT_NAME reactor_logging_server
+  REQUIRES "NOT USES_WCHAR"
+  FOLDER examples/C++NPv2
+  LINK_LIBRARIES ACE
 )
-set_target_properties(C++NPv2_SLD PROPERTIES
+target_cxx_sources(C++NPv2_Reactor_log_server
+  SOURCE_FILES Logging_Event_Handler_Ex.cpp
+               Logging_Acceptor.cpp
+               Logging_Event_Handler.cpp
+               Logging_Handler.cpp
+               Reactor_Logging_Server.cpp
+  HEADER_FILES Logging_Acceptor.h
+               Logging_Event_Handler_Ex.h
+               Logging_Event_Handler.h
+               Logging_Handler.h
+)
+
+
+add_ace_exe(C++NPv2_Select_reactor_log_server
+  OUTPUT_NAME select_reactor_logging_server
+  REQUIRES "NOT USES_WCHAR"
+  FOLDER examples/C++NPv2
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(C++NPv2_Select_reactor_log_server
+  SOURCE_FILES Logging_Event_Handler_Ex.cpp
+               Logging_Acceptor.cpp
+               Logging_Event_Handler.cpp
+               Logging_Handler.cpp
+               Select_Reactor_Logging_Server.cpp
+  HEADER_FILES Logging_Acceptor.h
+               Logging_Event_Handler_Ex.h
+               Logging_Event_Handler.h
+               Logging_Handler.h
+)
+
+
+add_ace_lib(C++NPv2_Sld
   OUTPUT_NAME SLD
-	DEFINE_SYMBOL SLD_BUILD_DLL
+  REQUIRES "NOT USES_WCHAR"
+  FOLDER examples/C++NPv2
+  DEFINE_SYMBOL SLD_BUILD_DLL
+  PUBLIC_LINK_LIBRARIES ACE
 )
-target_link_libraries(C++NPv2_SLD C++NPv2_Logging_Lib)
+target_cxx_sources(C++NPv2_Sld
+  SOURCE_FILES Logging_Acceptor.cpp
+               SLD.cpp
+               Logging_Event_Handler.cpp
+               Logging_Handler.cpp
+  HEADER_FILES Logging_Acceptor.h
+               Logging_Handler.h
+               Logging_Event_Handler.h
+)
 
-########################
-add_library(C++NPv2_SLDex
-  Reactor_Logging_Server_Adapter.cpp
-  Server_Shutdown.cpp
-  SLDex.cpp
-)
-set_target_properties(C++NPv2_SLDex PROPERTIES
+
+add_ace_lib(C++NPv2_Sldex
   OUTPUT_NAME SLDex
-	DEFINE_SYMBOL SLDEX_BUILD_DLL
+  REQUIRES "NOT USES_WCHAR"
+  FOLDER examples/C++NPv2
+  DEFINE_SYMBOL SLDEX_BUILD_DLL
+  PUBLIC_LINK_LIBRARIES ACE
 )
-target_link_libraries(C++NPv2_SLDex C++NPv2_Logging_Lib)
+target_cxx_sources(C++NPv2_Sldex
+  SOURCE_FILES Logging_Event_Handler_Ex.cpp
+               SLDex.cpp
+               Logging_Event_Handler.cpp
+               Server_Shutdown.cpp
+               Logging_Handler.cpp
+               Logging_Acceptor.cpp
+               Reactor_Logging_Server_Adapter.cpp
+  HEADER_FILES Logging_Acceptor.h
+               Reactor_Logging_Server_Adapter.h
+               Logging_Event_Handler_Ex.h
+               Logging_Event_Handler.h
+               Logging_Handler.h
+)
 
-########################
-add_executable(C++NPv2_SR_Configurable_Log_Server
-  SR_Configurable_Logging_Server.cpp
-)
-target_link_libraries(C++NPv2_SR_Configurable_Log_Server ACE)
-set_target_properties(C++NPv2_SR_Configurable_Log_Server PROPERTIES OUTPUT_NAME sr_configurable_logging_server)
 
-########################
-add_executable(C++NPv2_TP_Reactor_Log_Server
-  TP_Reactor_Logging_Server.cpp
+add_ace_exe(C++NPv2_Sr_configurable_log_server
+  OUTPUT_NAME sr_configurable_logging_server
+  FOLDER examples/C++NPv2
+  LINK_LIBRARIES ACE
 )
-target_link_libraries(C++NPv2_TP_Reactor_Log_Server C++NPv2_Logging_Lib)
-set_target_properties(C++NPv2_TP_Reactor_Log_Server PROPERTIES OUTPUT_NAME tp_reactor_logging_server)
+target_cxx_sources(C++NPv2_Sr_configurable_log_server
+  SOURCE_FILES SR_Configurable_Logging_Server.cpp
+)
 
-########################
-if (OPENSSL_FOUND)
-add_library(C++NPv2_TPCLS MODULE
-  TPC_Logging_Server.cpp
-  # Logging_Handler.cpp
+
+add_ace_exe(C++NPv2_Tp_reactor_log_server
+  OUTPUT_NAME tp_reactor_logging_server
+  REQUIRES "NOT USES_WCHAR"
+  FOLDER examples/C++NPv2
+  LINK_LIBRARIES ACE
 )
-set_target_properties(C++NPv2_TPCLS PROPERTIES
+target_cxx_sources(C++NPv2_Tp_reactor_log_server
+  SOURCE_FILES Logging_Event_Handler_Ex.cpp
+               Logging_Acceptor.cpp
+               Logging_Event_Handler.cpp
+               Logging_Handler.cpp
+               TP_Reactor_Logging_Server.cpp
+  HEADER_FILES Logging_Acceptor.h
+               Logging_Event_Handler_Ex.h
+               Logging_Event_Handler.h
+               Logging_Handler.h
+)
+
+
+add_ace_lib(C++NPv2_Tpcls
   OUTPUT_NAME TPCLS
-	DEFINE_SYMBOL TPCLS_BUILD_DLL
-  INCLUDE_DIRECTORIES ${OPENSSL_INCLUDE_DIR}
-  LINK_LIBRARIES C++NPv2_Logging_Lib ${OPENSSL_LIBRARIES}
+  REQUIRES "NOT USES_WCHAR"
+  FOLDER examples/C++NPv2
+  DEFINE_SYMBOL TPCLS_BUILD_DLL
+  PUBLIC_LINK_LIBRARIES ACE_SSL
+                        ACE
 )
-endif()
-########################
-add_library(C++NPv2_TPLS MODULE
-  TP_Logging_Server.cpp
+target_cxx_sources(C++NPv2_Tpcls
+  SOURCE_FILES TPC_Logging_Server.cpp
+               Logging_Handler.cpp
+  HEADER_FILES TPC_Logging_Server.h
+               Logging_Handler.h
 )
-set_target_properties(C++NPv2_TPLS PROPERTIES
+
+
+add_ace_lib(C++NPv2_Tpls
   OUTPUT_NAME TPLS
-	DEFINE_SYMBOL TPLS_BUILD_DLL
+  REQUIRES "NOT USES_WCHAR"
+  FOLDER examples/C++NPv2
+  DEFINE_SYMBOL TPLS_BUILD_DLL
+  PUBLIC_LINK_LIBRARIES ACE
 )
-target_link_libraries(C++NPv2_TPLS C++NPv2_Logging_Lib)
-
-########################
-
-if (WIN32)
-add_executable(C++NPv2_WFMO_Reactor_Log_Server
-  WFMO_Reactor_Logging_Server.cpp
+target_cxx_sources(C++NPv2_Tpls
+  SOURCE_FILES TP_Logging_Server.cpp
+               Logging_Acceptor.cpp
+               Logging_Event_Handler.cpp
+               Logging_Handler.cpp
+  HEADER_FILES Logging_Acceptor.h
+               TP_Logging_Server.h
+               Logging_Event_Handler.h
+               Logging_Handler.h
 )
-target_link_libraries(C++NPv2_WFMO_Reactor_Log_Server C++NPv2_Logging_Lib)
-set_target_properties(C++NPv2_WFMO_Reactor_Log_Server PROPERTIES OUTPUT_NAME wfmo_reactor_logging_server)
 
-endif()
 
-configure_file(svc.conf svc.conf COPYONLY)
+add_ace_exe(C++NPv2_Wfmo_reactor_log_server
+  OUTPUT_NAME wfmo_reactor_logging_server
+  REQUIRES WIN32
+           "NOT USES_WCHAR"
+  FOLDER examples/C++NPv2
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(C++NPv2_Wfmo_reactor_log_server
+  SOURCE_FILES Logging_Event_Handler_Ex.cpp
+               Logging_Acceptor.cpp
+               WFMO_Reactor_Logging_Server.cpp
+               Logging_Event_Handler.cpp
+               Logging_Handler.cpp
+  HEADER_FILES Logging_Acceptor.h
+               Logging_Event_Handler_Ex.h
+               Logging_Event_Handler.h
+               Logging_Handler.h
+)
+

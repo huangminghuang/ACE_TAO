@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "ValueDlg.h"
+#include <wx/button.h>
 
 ValueDlg::ValueDlg(wxWindow* pParent, bool String)
 : wxDialog(pParent, -1, String ? "New String" : "New Value", wxDefaultPosition, wxSize(300,140))
@@ -57,6 +58,6 @@ const wxString& ValueDlg::GetStringValue()
 
 u_int ValueDlg::GetUINTValue()
 {
-  return ACE_OS::atoi(m_Value);
+  return ACE_OS::atoi(m_Value.mb_str());
 }
 

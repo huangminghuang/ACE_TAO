@@ -1,23 +1,44 @@
-set(sources
-    address.cpp
-    asn1.cpp
-    counter.cpp
-    ctr64.cpp
-    gauge.cpp
-    integer.cpp
-    octet.cpp
-    oid.cpp
-    pdu.cpp
-    snmp.cpp
-    target.cpp
-    timetick.cpp
-    transaction.cpp
-    vb.cpp
-    wpdu.cpp
-    sagent.cpp)
 
-add_ace_component(asnmp
-            DEFINE_SYMBOL ASNMP_BUILD_DLL
-            SOURCES ${sources}
-            PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
-            PUBLIC_LINK_LIBRARIES ACE)
+
+add_ace_lib(asnmp_lib
+  OUTPUT_NAME asnmp
+  FOLDER ASNMP/asnmp
+  DEFINE_SYMBOL ASNMP_BUILD_DLL
+  PUBLIC_INCLUDE_DIRECTORIES ${ACE_ROOT}/ASNMP
+  PUBLIC_LINK_LIBRARIES ACE
+)
+target_cxx_sources(asnmp_lib
+  SOURCE_FILES snmp.cpp
+               ctr64.cpp
+               wpdu.cpp
+               transaction.cpp
+               sagent.cpp
+               address.cpp
+               target.cpp
+               timetick.cpp
+               counter.cpp
+               oid.cpp
+               asn1.cpp
+               vb.cpp
+               pdu.cpp
+               integer.cpp
+               gauge.cpp
+               octet.cpp
+  HEADER_FILES address.h
+               asn1.h
+               counter.h
+               ctr64.h
+               gauge.h
+               integer.h
+               octet.h
+               oid.h
+               pdu.h
+               snmp.h
+               target.h
+               timetick.h
+               transaction.h
+               vb.h
+               wpdu.h
+               sagent.h
+)
+

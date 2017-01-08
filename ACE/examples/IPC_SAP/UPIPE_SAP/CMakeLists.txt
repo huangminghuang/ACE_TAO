@@ -1,35 +1,38 @@
 
 project(UPIPE_SAP CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-##############################
-add_executable(UPIPE_SAP_ex1
-  ex1.cpp
-)
-set_target_properties(UPIPE_SAP_ex1 PROPERTIES
+
+add_ace_exe(UPIPE_SAP_Ex1
   OUTPUT_NAME ex1
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/IPC_SAP/UPIPE_SAP
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(UPIPE_SAP_Ex1
+  SOURCE_FILES ex1.cpp
 )
 
-##############################
-add_executable(UPIPE_SAP_ex2
-  ex2.cpp
-)
-set_target_properties(UPIPE_SAP_ex2 PROPERTIES
+
+add_ace_exe(UPIPE_SAP_Ex2
   OUTPUT_NAME ex2
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/IPC_SAP/UPIPE_SAP
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(UPIPE_SAP_Ex2
+  SOURCE_FILES ex2.cpp
 )
 
-##############################
-add_executable(UPIPE_SAP_ex3
-  ex3.cpp
-)
-set_target_properties(UPIPE_SAP_ex3 PROPERTIES
+
+add_ace_exe(UPIPE_SAP_Ex3
   OUTPUT_NAME ex3
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/IPC_SAP/UPIPE_SAP
+  LINK_LIBRARIES ACE
 )
-#####################################
+target_cxx_sources(UPIPE_SAP_Ex3
+  SOURCE_FILES ex3.cpp
+)
+

@@ -1,40 +1,110 @@
-project(CXXNPv1 CXX)
-cmake_minimum_required(VERSION 2.8.12)
+
+project(C++NPv1 CXX)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
 
-add_library(C++NPv1_Logging_Lib STATIC
-  Logging_Server.cpp
-  Logging_Handler.cpp
-)
+requires("NOT USES_WCHAR")
 
-set_target_properties(C++NPv1_Logging_Lib PROPERTIES
-  POSITION_INDEPENDENT_CODE "${BUILD_SHARED_LIBS}"
+add_ace_exe(C++NPv1_Iterative_logging_server
+  OUTPUT_NAME iterative_logging_server
+  FOLDER examples/C++NPv1
   LINK_LIBRARIES ACE
-  INTERFACE_LINK_LIBRARIES ACE
+)
+target_cxx_sources(C++NPv1_Iterative_logging_server
+  SOURCE_FILES Logging_Server.cpp
+               Logging_Handler.cpp
+               Iterative_Logging_Server.cpp
+  HEADER_FILES Logging_Server.h
+               Iterative_Logging_Server.h
+               Logging_Handler.h
 )
 
 
-function(add_Server_exes)
-  foreach(_name ${ARGN})
-    add_executable(CXXNPv1_${_name} ${_name}.cpp)
-    set_target_properties(CXXNPv1_${_name} PROPERTIES OUTPUT_NAME ${_name})
-    target_link_libraries(CXXNPv1_${_name} C++NPv1_Logging_Lib)
-  endforeach()
-endfunction()
-
-add_Server_exes(
-  Iterative_Logging_Server
-  Process_Per_Connection_Logging_Server
-  RT_Thread_Per_Connection_Logging_Server
-  Reactive_Logging_Server
-  Reactive_Logging_Server_Ex
-  Thread_Per_Connection_Logging_Server
+add_ace_exe(C++NPv1_Logging_client
+  OUTPUT_NAME logging_client
+  FOLDER examples/C++NPv1
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(C++NPv1_Logging_client
+  SOURCE_FILES Logging_Client.cpp
 )
 
-add_executable(CXXNPv1_Logging_Client Logging_Client.cpp)
-set_target_properties(CXXNPv1_Logging_Client PROPERTIES OUTPUT_NAME logging_client)
-target_link_libraries(CXXNPv1_Logging_Client ACE)
+
+add_ace_exe(C++NPv1_Ppc_logging_server
+  OUTPUT_NAME ppc_logging_server
+  FOLDER examples/C++NPv1
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(C++NPv1_Ppc_logging_server
+  SOURCE_FILES Logging_Server.cpp
+               Logging_Handler.cpp
+               Process_Per_Connection_Logging_Server.cpp
+  HEADER_FILES Logging_Server.h
+               Process_Per_Connection_Logging_Server.h
+               Logging_Handler.h
+)
+
+
+add_ace_exe(C++NPv1_Reactive_logging_server
+  OUTPUT_NAME reactive_logging_server
+  FOLDER examples/C++NPv1
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(C++NPv1_Reactive_logging_server
+  SOURCE_FILES Logging_Server.cpp
+               Logging_Handler.cpp
+               Reactive_Logging_Server.cpp
+  HEADER_FILES Logging_Server.h
+               Reactive_Logging_Server.h
+               Logging_Handler.h
+)
+
+
+add_ace_exe(C++NPv1_Reactive_logging_server_ex
+  OUTPUT_NAME reactive_logging_server_ex
+  FOLDER examples/C++NPv1
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(C++NPv1_Reactive_logging_server_ex
+  SOURCE_FILES Logging_Server.cpp
+               Logging_Handler.cpp
+               Reactive_Logging_Server_Ex.cpp
+  HEADER_FILES Logging_Server.h
+               Logging_Handler.h
+               Reactive_Logging_Server_Ex.h
+)
+
+
+add_ace_exe(C++NPv1_Rttpc_logging_server
+  OUTPUT_NAME RTTPC_logging_server
+  FOLDER examples/C++NPv1
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(C++NPv1_Rttpc_logging_server
+  SOURCE_FILES Logging_Server.cpp
+               Logging_Handler.cpp
+               RT_Thread_Per_Connection_Logging_Server.cpp
+  HEADER_FILES Logging_Server.h
+               Logging_Handler.h
+               RT_Thread_Per_Connection_Logging_Server.h
+)
+
+
+add_ace_exe(C++NPv1_Tpc_logging_server
+  OUTPUT_NAME tpc_logging_server
+  FOLDER examples/C++NPv1
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(C++NPv1_Tpc_logging_server
+  SOURCE_FILES Logging_Server.cpp
+               Thread_Per_Connection_Logging_Server.cpp
+               Logging_Handler.cpp
+  HEADER_FILES Logging_Server.h
+               Logging_Handler.h
+               Thread_Per_Connection_Logging_Server.h
+)
+

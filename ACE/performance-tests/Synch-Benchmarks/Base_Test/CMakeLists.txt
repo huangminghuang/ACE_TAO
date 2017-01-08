@@ -1,22 +1,17 @@
 
-project(Synch_Benchmarks_Base_Test CXX)
-cmake_minimum_required(VERSION 2.8.12)
 
-if (NOT ACE_ROOT)
-  find_package(ACE REQUIRED CONFIG)
-endif()
-
-##############################
-add_library(Synch_Benchmarks_Base_Test MODULE
-  Baseline_Test.cpp
-  base_test.cpp
-  mutex_test.cpp
-)
-set_target_properties(Synch_Benchmarks_Base_Test PROPERTIES
+add_ace_lib(Synch_Benchmarks_Base_Test
   OUTPUT_NAME Base_Test
-  DEFINE_SYMBOL ""
-  INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/.."
-  LINK_LIBRARIES "Synch_Lib"
-	INTERFACE_LINK_LIBRARIES "Synch_Lib"
+  FOLDER performance-tests/Synch-Benchmarks/Base_Test
+  PUBLIC_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_SOURCE_DIR}/..
+  PUBLIC_LINK_LIBRARIES Synch_Lib
+                        ACE
 )
-#####################################
+target_cxx_sources(Synch_Benchmarks_Base_Test
+  SOURCE_FILES Baseline_Test.cpp
+               base_test.cpp
+               mutex_test.cpp
+  HEADER_FILES Baseline_Test.h
+  INLINE_FILES Baseline_Test.inl
+)
+

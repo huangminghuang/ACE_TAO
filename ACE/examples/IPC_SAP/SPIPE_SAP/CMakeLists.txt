@@ -1,80 +1,88 @@
 
 project(SPIPE_SAP CXX)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 if (NOT ACE_ROOT)
   find_package(ACE REQUIRED CONFIG)
 endif()
 
-##############################
-add_executable(SPIPE_SAP_client
-  client.cpp
-)
-set_target_properties(SPIPE_SAP_client PROPERTIES
+
+add_ace_exe(SPIPE_SAP_Client
   OUTPUT_NAME client
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/IPC_SAP/SPIPE_SAP
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(SPIPE_SAP_Client
+  SOURCE_FILES client.cpp
 )
 
-##############################
-add_executable(SPIPE_SAP_consumer_msg
-  consumer_msg.cpp
-)
-set_target_properties(SPIPE_SAP_consumer_msg PROPERTIES
+
+add_ace_exe(SPIPE_SAP_Consumer_msg
   OUTPUT_NAME consumer_msg
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/IPC_SAP/SPIPE_SAP
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(SPIPE_SAP_Consumer_msg
+  SOURCE_FILES consumer_msg.cpp
 )
 
-##############################
-add_executable(SPIPE_SAP_consumer_read
-  consumer_read.cpp
-)
-set_target_properties(SPIPE_SAP_consumer_read PROPERTIES
+
+add_ace_exe(SPIPE_SAP_Consumer_read
   OUTPUT_NAME consumer_read
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/IPC_SAP/SPIPE_SAP
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(SPIPE_SAP_Consumer_read
+  SOURCE_FILES consumer_read.cpp
 )
 
-##############################
-add_executable(SPIPE_SAP_NPClient
-  NPClient.cpp
-)
-set_target_properties(SPIPE_SAP_NPClient PROPERTIES
+
+add_ace_exe(SPIPE_SAP_Npclient
   OUTPUT_NAME NPClient
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/IPC_SAP/SPIPE_SAP
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(SPIPE_SAP_Npclient
+  SOURCE_FILES NPClient.cpp
 )
 
-##############################
-add_executable(SPIPE_SAP_NPServer
-  NPServer.cpp
-)
-set_target_properties(SPIPE_SAP_NPServer PROPERTIES
+
+add_ace_exe(SPIPE_SAP_Npserver
   OUTPUT_NAME NPServer
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/IPC_SAP/SPIPE_SAP
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(SPIPE_SAP_Npserver
+  SOURCE_FILES NPServer.cpp
 )
 
-##############################
-add_executable(SPIPE_SAP_producer_msg
-  producer_msg.cpp
-)
-set_target_properties(SPIPE_SAP_producer_msg PROPERTIES
+
+add_ace_exe(SPIPE_SAP_Producer_msg
   OUTPUT_NAME producer_msg
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/IPC_SAP/SPIPE_SAP
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(SPIPE_SAP_Producer_msg
+  SOURCE_FILES producer_msg.cpp
 )
 
-##############################
-add_executable(SPIPE_SAP_producer_read
-  producer_read.cpp
-)
-set_target_properties(SPIPE_SAP_producer_read PROPERTIES
+
+add_ace_exe(SPIPE_SAP_Producer_read
   OUTPUT_NAME producer_read
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/IPC_SAP/SPIPE_SAP
+  LINK_LIBRARIES ACE
+)
+target_cxx_sources(SPIPE_SAP_Producer_read
+  SOURCE_FILES producer_read.cpp
 )
 
-##############################
-add_executable(SPIPE_SAP_server
-  server.cpp
-)
-set_target_properties(SPIPE_SAP_server PROPERTIES
+
+add_ace_exe(SPIPE_SAP_Server
   OUTPUT_NAME server
-  LINK_LIBRARIES "ACE"
+  FOLDER examples/IPC_SAP/SPIPE_SAP
+  LINK_LIBRARIES ACE
 )
-#####################################
+target_cxx_sources(SPIPE_SAP_Server
+  SOURCE_FILES server.cpp
+)
+

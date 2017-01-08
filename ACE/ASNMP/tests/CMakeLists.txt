@@ -1,25 +1,109 @@
-function(add_asnmp_tests)
-  foreach(_name ${ARGN})
-    add_ace_exe(ASNMP_${_name}
-                OUTPUT_NAME ${_name}
-                SOURCES ${_name}.cpp
-                LINK_LIBRARIES asnmp)
-    add_test(NAME ASNMP_${_name}
-             COMMAND ${_name})
-  endforeach()
-endfunction()
 
 
-enable_testing()
-
-add_asnmp_tests(
-  Oid_Test 
-  Counter_Test 
-  Counter64_Test 
-  Integer_Test
-  Octet_Test
-  Gauge_Test
-  Address_Test
-  Target_Test
-  Varbind_Test
+add_ace_exe(asnmp_tests_Oid_Test
+  OUTPUT_NAME Oid_Test
+  FOLDER ASNMP/tests
+  INCLUDE_DIRECTORIES ${ACE_ROOT}/ASNMP
+  LINK_LIBRARIES asnmp_lib
+                 ACE
 )
+target_cxx_sources(asnmp_tests_Oid_Test
+  SOURCE_FILES Oid_Test.cpp
+)
+
+
+add_ace_exe(asnmp_tests_Counter_Test
+  OUTPUT_NAME Counter_Test
+  FOLDER ASNMP/tests
+  INCLUDE_DIRECTORIES ${ACE_ROOT}/ASNMP
+  LINK_LIBRARIES asnmp_lib
+                 ACE
+)
+target_cxx_sources(asnmp_tests_Counter_Test
+  SOURCE_FILES Counter_Test.cpp
+)
+
+
+add_ace_exe(asnmp_tests_Counter64_Test
+  OUTPUT_NAME Counter64_Test
+  FOLDER ASNMP/tests
+  INCLUDE_DIRECTORIES ${ACE_ROOT}/ASNMP
+  LINK_LIBRARIES asnmp_lib
+                 ACE
+)
+target_cxx_sources(asnmp_tests_Counter64_Test
+  SOURCE_FILES Counter64_Test.cpp
+)
+
+
+add_ace_exe(asnmp_tests_Integer_Test
+  OUTPUT_NAME Integer_Test
+  FOLDER ASNMP/tests
+  INCLUDE_DIRECTORIES ${ACE_ROOT}/ASNMP
+  LINK_LIBRARIES asnmp_lib
+                 ACE
+)
+target_cxx_sources(asnmp_tests_Integer_Test
+  SOURCE_FILES Integer_Test.cpp
+)
+
+
+add_ace_exe(asnmp_tests_Octet_Test
+  OUTPUT_NAME Octet_Test
+  FOLDER ASNMP/tests
+  INCLUDE_DIRECTORIES ${ACE_ROOT}/ASNMP
+  LINK_LIBRARIES asnmp_lib
+                 ACE
+)
+target_cxx_sources(asnmp_tests_Octet_Test
+  SOURCE_FILES Octet_Test.cpp
+)
+
+
+add_ace_exe(asnmp_tests_Gauge_Test
+  OUTPUT_NAME Gauge_Test
+  FOLDER ASNMP/tests
+  INCLUDE_DIRECTORIES ${ACE_ROOT}/ASNMP
+  LINK_LIBRARIES asnmp_lib
+                 ACE
+)
+target_cxx_sources(asnmp_tests_Gauge_Test
+  SOURCE_FILES Gauge_Test.cpp
+)
+
+
+add_ace_exe(asnmp_tests_Address_Test
+  OUTPUT_NAME Address_Test
+  FOLDER ASNMP/tests
+  INCLUDE_DIRECTORIES ${ACE_ROOT}/ASNMP
+  LINK_LIBRARIES asnmp_lib
+                 ACE
+)
+target_cxx_sources(asnmp_tests_Address_Test
+  SOURCE_FILES Address_Test.cpp
+)
+
+
+add_ace_exe(asnmp_tests_Target_Test
+  OUTPUT_NAME Target_Test
+  FOLDER ASNMP/tests
+  INCLUDE_DIRECTORIES ${ACE_ROOT}/ASNMP
+  LINK_LIBRARIES asnmp_lib
+                 ACE
+)
+target_cxx_sources(asnmp_tests_Target_Test
+  SOURCE_FILES Target_Test.cpp
+)
+
+
+add_ace_exe(asnmp_tests_Varbind_Test
+  OUTPUT_NAME Varbind_Test
+  FOLDER ASNMP/tests
+  INCLUDE_DIRECTORIES ${ACE_ROOT}/ASNMP
+  LINK_LIBRARIES asnmp_lib
+                 ACE
+)
+target_cxx_sources(asnmp_tests_Varbind_Test
+  SOURCE_FILES Varbind_Test.cpp
+)
+
