@@ -113,7 +113,7 @@ target_cxx_sources(TAO_CosEvent_Serv
 
 option(EC_TYPED_EVENT "" ON)
 
-if (EC_TYPED_EVENT)
+if (EC_TYPED_EVENT AND TARGET TAO_CosEvent)
 
   tao_idl_sources(
     STUB_TARGETS TAO_CosEvent
@@ -152,5 +152,5 @@ if (EC_TYPED_EVENT)
     TAO_DynamicInterface
   )
 
-endif(EC_TYPED_EVENT)
+endif(EC_TYPED_EVENT AND TARGET TAO_CosEvent)
 
