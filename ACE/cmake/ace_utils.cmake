@@ -5,7 +5,8 @@ if (POLICY CMP0063)
   cmake_policy(SET CMP0063 NEW)
 endif()
 
-set(ADD_PACKAGE_LIST_DIR ${CMAKE_CURRENT_LIST_DIR})
+set(ACE_CMAKE_DIR ${CMAKE_CURRENT_LIST_DIR} CACHE INTERNAL "")
+message("ACE_CMAKE_DIR=${ACE_CMAKE_DIR}")
 
 function(add_package name)
   set(oneValueArgs VERSION INSTALL_DIRECTORY)
@@ -304,7 +305,7 @@ function(install_package package_name)
 
   endif()
   set(OPTIONAL_PACKAGES ${_arg_OPTIONAL_PACKAGES})
-  configure_file(${ADD_PACKAGE_LIST_DIR}/PackageConfig.cmake.in
+  configure_file(${ACE_CMAKE_DIR}/PackageConfig.cmake.in
                  ${CMAKE_CURRENT_BINARY_DIR}/cmake/${package_name}Config.cmake
                  @ONLY)
 

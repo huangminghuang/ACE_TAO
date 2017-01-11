@@ -1,5 +1,5 @@
-add_subdirectory(parser)
 add_subdirectory(common)
+add_subdirectory(parser)
 add_subdirectory(apps)
 add_subdirectory(examples)
 add_subdirectory(tests)
