@@ -140,7 +140,7 @@ endmacro()
 
 macro(ace_parse_arguments options oneValueArgs multiValueArgs)
   if (WHITELIST_TARGETS)
-    if (NOT ";${WHITELIST_TARGETS};" MATCHES ";${target};")
+    if (NOT target IN_LIST WHITELIST_TARGETS)
       return()
     endif()
   endif()

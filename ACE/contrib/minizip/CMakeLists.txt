@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.3)
 project(minizip C)
 include(../../ace_version.cmake)
 find_package(zlib)
@@ -14,7 +14,7 @@ if (ZLIB_FOUND)
                         INTERFACE_INCLUDE_DIRECTORIES ${ZLIB_INCLUDE_DIRS}
                         LINK_LIBRARIES ${ZLIB_LIBRARIES}
                         INTERFACE_LINK_LIBRARIES ${ZLIB_LIBRARIES})
-  
+
   install(TARGETS minizip
           EXPORT  minizipConfig
           LIBRARY DESTINATION lib
@@ -24,5 +24,5 @@ if (ZLIB_FOUND)
   install(EXPORT minizipConfig DESTINATION lib/minizip/cmake)
   # This makes the project importable from the build directory
   export(PACKAGE minizip)
-  export(TARGETS minizip FILE minizipConfig.cmake)          
+  export(TARGETS minizip FILE minizipConfig.cmake)
 endif(ZLIB_FOUND)

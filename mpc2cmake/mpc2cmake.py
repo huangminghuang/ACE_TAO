@@ -24,7 +24,7 @@ file_dir = os.path.dirname(os.path.realpath(__file__))
 
 cmake_file_preemble = '''
 project({0} CXX)
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.3)
 
 if (NOT {1})
   find_package({2} REQUIRED CONFIG)
