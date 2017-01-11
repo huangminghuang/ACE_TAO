@@ -6,7 +6,6 @@ if (POLICY CMP0063)
 endif()
 
 set(ACE_CMAKE_DIR ${CMAKE_CURRENT_LIST_DIR} CACHE INTERNAL "")
-message("ACE_CMAKE_DIR=${ACE_CMAKE_DIR}")
 
 function(add_package name)
   set(oneValueArgs VERSION INSTALL_DIRECTORY)
