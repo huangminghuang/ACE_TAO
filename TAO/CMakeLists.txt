@@ -12,6 +12,7 @@ if (NOT TAO_VERSION)
 endif()
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/cmake)
+set(WHITELIST_TARGETS "" CACHE STRING "")
 
 include(cmake/tao_options.cmake)
 include(cmake/tao_aspects.cmake)
