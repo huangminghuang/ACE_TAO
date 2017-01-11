@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.3)
 project (ACE)
 
 set(CMAKE_CXX_STANDARD 98 CACHE STRING "specifies the C++ standard requested to build this project")
