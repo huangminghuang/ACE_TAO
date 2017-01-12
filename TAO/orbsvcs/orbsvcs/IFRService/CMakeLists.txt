@@ -2,6 +2,7 @@
 add_ace_lib(TAO_IFRService
   DEFINE_SYMBOL TAO_IFRSERVICE_BUILD_DLL
   PACKAGE TAO
+  FOLDER orbsvcs/orbsvcs
   PUBLIC_LINK_LIBRARIES TAO_TypeCodeFactory TAO_Svc_Utils TAO_IORTable TAO_IFR_Client_skel
 )
 target_cxx_sources(TAO_IFRService

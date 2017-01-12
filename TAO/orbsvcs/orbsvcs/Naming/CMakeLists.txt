@@ -2,6 +2,7 @@
 add_ace_lib(TAO_CosNaming
   DEFINE_SYMBOL TAO_NAMING_BUILD_DLL
   PACKAGE TAO
+  FOLDER orbsvcs/orbsvcs
   PUBLIC_LINK_LIBRARIES TAO_Svc_Utils
 )
 
@@ -14,6 +15,7 @@ target_cxx_sources(TAO_CosNaming
 add_ace_lib(TAO_CosNaming_Skel
   DEFINE_SYMBOL TAO_NAMING_SKEL_BUILD_DLL
   PACKAGE TAO
+  FOLDER orbsvcs/orbsvcs
   PUBLIC_LINK_LIBRARIES TAO_CosNaming
 )
 
@@ -38,6 +40,7 @@ tao_idl_sources(
 add_ace_lib(TAO_CosNaming_Serv
   DEFINE_SYMBOL TAO_NAMING_SERV_BUILD_DLL
   PACKAGE TAO
+  FOLDER orbsvcs/orbsvcs
   PUBLIC_LINK_LIBRARIES TAO_CosNaming_Skel
                         TAO_IORTable
   ASPECTS MESSAGING_OPTIONAL

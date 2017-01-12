@@ -3,6 +3,7 @@
 add_ace_lib(TAO_Svc_Utils
   DEFINE_SYMBOL TAO_SVC_UTILS_BUILD_DLL
   PACKAGE TAO
+  FOLDER orbsvcs/orbsvcs
   PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
                              $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/..>
                              $<INSTALL_INTERFACE:${TAO_INSTALL_DIR}/orbsvcs>
