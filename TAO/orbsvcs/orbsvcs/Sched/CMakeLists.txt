@@ -2,6 +2,7 @@
 add_ace_lib(TAO_RTSched
   DEFINE_SYMBOL TAO_RTSched
   PACKAGE TAO
+  FOLDER orbsvcs/orbsvcs
   PUBLIC_LINK_LIBRARIES TAO_PortableServer
                         TAO_CosNaming
                         TAO_Svc_Utils

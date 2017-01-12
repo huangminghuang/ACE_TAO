@@ -8,6 +8,7 @@ requires("NOT MINIMUM_CORBA"
 add_ace_lib(TAO_CosEvent
   DEFINE_SYMBOL TAO_COSEVENT_BUILD_DLL
   PACKAGE TAO
+  FOLDER orbsvcs/orbsvcs
   PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../..>
                              $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/../..>
                              $<INSTALL_INTERFACE:${TAO_INSTALL_DIR}/orbsvcs>
@@ -21,6 +22,7 @@ target_cxx_sources(TAO_CosEvent
 add_ace_lib(TAO_CosEvent_Skel
   DEFINE_SYMBOL TAO_COSEVENT_SKEL_BUILD_DLL
   PACKAGE TAO
+  FOLDER orbsvcs/orbsvcs
   PUBLIC_LINK_LIBRARIES TAO_CosEvent TAO_PortableServer
 )
 
@@ -51,6 +53,7 @@ tao_idl_sources(
 add_ace_lib(TAO_CosEvent_Serv
   DEFINE_SYMBOL TAO_COSEVENT_SERV_BUILD_DLL
   PACKAGE TAO
+  FOLDER orbsvcs/orbsvcs
   PUBLIC_LINK_LIBRARIES TAO_Svc_Utils
                         TAO_CosNaming
                         TAO_CosEvent_Skel

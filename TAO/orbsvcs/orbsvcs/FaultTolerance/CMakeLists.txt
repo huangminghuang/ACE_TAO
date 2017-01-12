@@ -2,6 +2,7 @@
 add_ace_lib(TAO_FTORB_Utils
   DEFINE_SYMBOL TAO_FT_ORB_UTILS_BUILD_DLL
   PACKAGE TAO
+  FOLDER orbsvcs/orbsvcs
   PUBLIC_LINK_LIBRARIES TAO_AnyTypeCode
                         TAO_IORManip
                         TAO_PortableServer
@@ -31,6 +32,7 @@ tao_idl_sources(
 add_ace_lib(TAO_FT_ClientORB
   DEFINE_SYMBOL TAO_FT_CLIENTORB_BUILD_DLL
   PACKAGE TAO
+  FOLDER orbsvcs/orbsvcs
   PUBLIC_LINK_LIBRARIES TAO_FTORB_Utils
                         TAO_Messaging
                         TAO_PortableGroup
@@ -62,6 +64,7 @@ target_cxx_sources(TAO_FT_ClientORB
 add_ace_lib(TAO_FT_ServerORB
   DEFINE_SYMBOL TAO_FT_SERVERORB_BUILD_DL
   PACKAGE TAO
+  FOLDER orbsvcs/orbsvcs
   PUBLIC_LINK_LIBRARIES TAO_FTORB_Utils
                         TAO_Messaging
                         TAO_PortableGroup
@@ -90,6 +93,7 @@ target_cxx_sources(TAO_FT_ServerORB
 add_ace_lib(TAO_FaultTolerance
   DEFINE_SYMBOL TAO_FT_BUILD_DLL
   PACKAGE TAO
+  FOLDER orbsvcs/orbsvcs
   PUBLIC_LINK_LIBRARIES TAO_PI
                         TAO_PI_Server
                         TAO_CosNotification

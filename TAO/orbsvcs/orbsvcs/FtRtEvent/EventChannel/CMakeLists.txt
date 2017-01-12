@@ -1,6 +1,7 @@
 add_ace_lib(TAO_FTRT_EventChannel
   DEFINE_SYMBOL TAO_FTRTEC_BUILD_DLL
   PACKAGE TAO
+  FOLDER orbsvcs/orbsvcs
   PUBLIC_LINK_LIBRARIES TAO_FtRtEvent
                         TAO_RTEvent_Serv
                         TAO_PI_Server

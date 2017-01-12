@@ -4,6 +4,7 @@
 add_ace_lib(TAO_DsLogAdmin
   DEFINE_SYMBOL TAO_LOG_BUILD_DLL
   PACKAGE TAO
+  FOLDER orbsvcs/orbsvcs
   PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../..>
                              $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/../..>
                              $<INSTALL_INTERFACE:${TAO_INSTALL_DIR}/orbsvcs>
@@ -17,6 +18,7 @@ target_cxx_sources(TAO_DsLogAdmin
 add_ace_lib(TAO_DsLogAdmin_Skel
   DEFINE_SYMBOL TAO_LOG_SKEL_BUILD_DLL
   PACKAGE TAO
+  FOLDER orbsvcs/orbsvcs
   PUBLIC_LINK_LIBRARIES TAO_DsLogAdmin
                         TAO_PortableServer
 )
@@ -44,6 +46,7 @@ tao_idl_sources(
 add_ace_lib(TAO_DsLogAdmin_Serv
   DEFINE_SYMBOL TAO_LOG_SERV_BUILD_DLL
   PACKAGE TAO
+  FOLDER orbsvcs/orbsvcs
   PUBLIC_LINK_LIBRARIES TAO_DsLogAdmin_Skel
                         TAO_DynamicAny
                         TAO_Utils
@@ -93,6 +96,7 @@ target_cxx_sources(TAO_DsLogAdmin_Serv
 add_ace_lib(TAO_DsEventLogAdmin
   DEFINE_SYMBOL TAO_EVENTLOG_BUILD_DLL
   PACKAGE TAO
+  FOLDER orbsvcs/orbsvcs
   PUBLIC_LINK_LIBRARIES TAO_DsLogAdmin
                         TAO_CosEvent
 )
@@ -105,6 +109,7 @@ target_cxx_sources(TAO_DsEventLogAdmin
 add_ace_lib(TAO_DsEventLogAdmin_Skel
   DEFINE_SYMBOL TAO_EVENTLOG_SKEL_BUILD_DLL
   PACKAGE TAO
+  FOLDER orbsvcs/orbsvcs
   PUBLIC_LINK_LIBRARIES TAO_DsEventLogAdmin
                         TAO_DsLogAdmin_Skel
                         TAO_CosEvent_Skel
@@ -132,6 +137,7 @@ tao_idl_sources(
 add_ace_lib(TAO_DsEventLogAdmin_Serv
   DEFINE_SYMBOL TAO_EVENTLOG_SERV_BUILD_DLL
   PACKAGE TAO
+  FOLDER orbsvcs/orbsvcs
   PUBLIC_LINK_LIBRARIES TAO_DsEventLogAdmin_Skel
                         TAO_DsLogAdmin_Serv
                         TAO_CosEvent_Serv
@@ -150,6 +156,7 @@ target_cxx_sources(TAO_DsEventLogAdmin_Serv
 add_ace_lib(TAO_RTEventLogAdmin
   DEFINE_SYMBOL TAO_RTEVENTLOG_BUILD_DLL
   PACKAGE TAO
+  FOLDER orbsvcs/orbsvcs
   PUBLIC_LINK_LIBRARIES TAO_DsLogAdmin
                         TAO_RTEvent
 )
@@ -162,6 +169,7 @@ target_cxx_sources(TAO_RTEventLogAdmin
 add_ace_lib(TAO_RTEventLogAdmin_Skel
   DEFINE_SYMBOL TAO_RTEVENTLOG_SKEL_BUILD_DLL
   PACKAGE TAO
+  FOLDER orbsvcs/orbsvcs
   PUBLIC_LINK_LIBRARIES TAO_RTEventLogAdmin
                         TAO_DsEventLogAdmin_Skel
                         TAO_RTEvent_Skel
@@ -190,6 +198,7 @@ tao_idl_sources(
 add_ace_lib(TAO_RTEventLogAdmin_Serv
   DEFINE_SYMBOL TAO_RTEVENTLOG_SERV_BUILD_DLL
   PACKAGE TAO
+  FOLDER orbsvcs/orbsvcs
   PUBLIC_LINK_LIBRARIES TAO_RTEventLogAdmin_Skel
                         TAO_DsEventLogAdmin_Serv
                         TAO_RTEvent_Serv
