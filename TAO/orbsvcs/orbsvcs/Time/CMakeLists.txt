@@ -1,5 +1,5 @@
 
-add_ace_lib(TAO_CosTime
+ace_add_lib(TAO_CosTime
   DEFINE_SYMBOL TAO_TIME_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -9,18 +9,18 @@ add_ace_lib(TAO_CosTime
   PUBLIC_LINK_LIBRARIES TAO TAO_AnyTypeCode
 )
 
-target_cxx_sources(TAO_CosTime
+ace_target_cxx_sources(TAO_CosTime
   HEADER_FILES time_export.h
 )
 
-add_ace_lib(TAO_CosTime_Skel
+ace_add_lib(TAO_CosTime_Skel
   DEFINE_SYMBOL TAO_TIME_SKEL_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
   PUBLIC_LINK_LIBRARIES TAO_CosTime TAO_PortableServer
 )
 
-target_cxx_sources(TAO_CosTime_Skel
+ace_target_cxx_sources(TAO_CosTime_Skel
   HEADER_FILES time_skel_export.h
 )
 
@@ -39,14 +39,14 @@ tao_idl_sources(
 )
 
 
-add_ace_lib(TAO_CosTime_Serv
+ace_add_lib(TAO_CosTime_Serv
   DEFINE_SYMBOL TAO_TIME_SERV_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
   PUBLIC_LINK_LIBRARIES TAO_CosTime_Skel TAO_Svc_Utils
 )
 
-target_cxx_sources(TAO_CosTime_Serv
+ace_target_cxx_sources(TAO_CosTime_Serv
   SOURCE_FILES TAO_TIO.cpp
                TAO_Time_Service_Clerk.cpp
                TAO_Time_Service_Server.cpp

@@ -1,6 +1,6 @@
 
 
-add_ace_lib(TAO_PortableServer
+ace_add_lib(TAO_PortableServer
   OUTPUT_NAME TAO_PortableServer
   PACKAGE TAO
   FOLDER tao/PortableServer
@@ -11,7 +11,7 @@ add_ace_lib(TAO_PortableServer
                              $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
   PUBLIC_LINK_LIBRARIES TAO_AnyTypeCode
 )
-target_cxx_sources(TAO_PortableServer
+ace_target_cxx_sources(TAO_PortableServer
   SOURCE_FILES Acceptor_Filter_Factory.cpp
                Active_Object_Map.cpp
                Active_Object_Map_Entry.cpp
@@ -341,7 +341,7 @@ tao_idl_sources(
   IDL_FILES PortableServer.pidl
 )
 
-install_package_files(TAO
+ace_install_package_files(TAO
   PS_Forward.pidl
 )
 

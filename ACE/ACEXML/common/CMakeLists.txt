@@ -1,6 +1,6 @@
 find_package(zziplib)
 
-add_ace_lib(ACEXML
+ace_add_lib(ACEXML
   OUTPUT_NAME ACEXML
   PACKAGE ACE
   FOLDER ACEXML/common
@@ -10,7 +10,7 @@ add_ace_lib(ACEXML
   PUBLIC_LINK_LIBRARIES ACE
                         ${ZZIPLIB_LIBRARIES}
 )
-target_cxx_sources(ACEXML
+ace_target_cxx_sources(ACEXML
   SOURCE_FILES XMLReader.cpp
                ContentHandler.cpp
                DTDHandler.cpp
@@ -83,7 +83,7 @@ target_cxx_sources(ACEXML
 )
 
 if(ACE_CODECS)
-  target_cxx_sources(ACEXML
+  ace_target_cxx_sources(ACEXML
     SOURCE_FILES XML_Codecs.cpp
     HEADER_FILES XML_Codecs.h
   )

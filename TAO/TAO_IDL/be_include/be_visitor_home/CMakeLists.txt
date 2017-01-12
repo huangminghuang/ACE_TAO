@@ -1,4 +1,4 @@
-target_cxx_sources(TAO_IDL_BE
+ace_target_cxx_sources(TAO_IDL_BE
   HEADER_FILES home_ex_idl.h
                home_exh.h
                home_exs.h

@@ -1,7 +1,7 @@
 
 
 
-add_ace_lib(TAO_DsLogAdmin
+ace_add_lib(TAO_DsLogAdmin
   DEFINE_SYMBOL TAO_LOG_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -11,11 +11,11 @@ add_ace_lib(TAO_DsLogAdmin
   PUBLIC_LINK_LIBRARIES TAO_AnyTypeCode
 )
 
-target_cxx_sources(TAO_DsLogAdmin
+ace_target_cxx_sources(TAO_DsLogAdmin
   HEADER_FILES log_export.h
 )
 
-add_ace_lib(TAO_DsLogAdmin_Skel
+ace_add_lib(TAO_DsLogAdmin_Skel
   DEFINE_SYMBOL TAO_LOG_SKEL_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -23,7 +23,7 @@ add_ace_lib(TAO_DsLogAdmin_Skel
                         TAO_PortableServer
 )
 
-target_cxx_sources(TAO_DsLogAdmin_Skel
+ace_target_cxx_sources(TAO_DsLogAdmin_Skel
   HEADER_FILES log_skel_export.h
 )
 
@@ -43,7 +43,7 @@ tao_idl_sources(
 )
 
 
-add_ace_lib(TAO_DsLogAdmin_Serv
+ace_add_lib(TAO_DsLogAdmin_Serv
   DEFINE_SYMBOL TAO_LOG_SERV_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -55,7 +55,7 @@ add_ace_lib(TAO_DsLogAdmin_Serv
                         ACE_ETCL_Parser
 )
 
-target_cxx_sources(TAO_DsLogAdmin_Serv
+ace_target_cxx_sources(TAO_DsLogAdmin_Serv
   SOURCE_FILES BasicLogFactory_i.cpp
                BasicLog_i.cpp
                Hash_Iterator_i.cpp
@@ -93,7 +93,7 @@ target_cxx_sources(TAO_DsLogAdmin_Serv
                log_serv_export.h
 )
 
-add_ace_lib(TAO_DsEventLogAdmin
+ace_add_lib(TAO_DsEventLogAdmin
   DEFINE_SYMBOL TAO_EVENTLOG_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -101,12 +101,12 @@ add_ace_lib(TAO_DsEventLogAdmin
                         TAO_CosEvent
 )
 
-target_cxx_sources(TAO_DsEventLogAdmin
+ace_target_cxx_sources(TAO_DsEventLogAdmin
   HEADER_FILES eventlog_export.h
 )
 
 
-add_ace_lib(TAO_DsEventLogAdmin_Skel
+ace_add_lib(TAO_DsEventLogAdmin_Skel
   DEFINE_SYMBOL TAO_EVENTLOG_SKEL_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -116,7 +116,7 @@ add_ace_lib(TAO_DsEventLogAdmin_Skel
 
 )
 
-target_cxx_sources(TAO_DsEventLogAdmin_Skel
+ace_target_cxx_sources(TAO_DsEventLogAdmin_Skel
   HEADER_FILES eventlog_skel_export.h
 )
 
@@ -134,7 +134,7 @@ tao_idl_sources(
   WORKING_DIRECTORY ..
 )
 
-add_ace_lib(TAO_DsEventLogAdmin_Serv
+ace_add_lib(TAO_DsEventLogAdmin_Serv
   DEFINE_SYMBOL TAO_EVENTLOG_SERV_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -144,7 +144,7 @@ add_ace_lib(TAO_DsEventLogAdmin_Serv
 
 )
 
-target_cxx_sources(TAO_DsEventLogAdmin_Serv
+ace_target_cxx_sources(TAO_DsEventLogAdmin_Serv
   SOURCE_FILES EventLogConsumer.cpp
                EventLogFactory_i.cpp
                EventLogNotification.cpp
@@ -153,7 +153,7 @@ target_cxx_sources(TAO_DsEventLogAdmin_Serv
 )
 
 
-add_ace_lib(TAO_RTEventLogAdmin
+ace_add_lib(TAO_RTEventLogAdmin
   DEFINE_SYMBOL TAO_RTEVENTLOG_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -161,12 +161,12 @@ add_ace_lib(TAO_RTEventLogAdmin
                         TAO_RTEvent
 )
 
-target_cxx_sources(TAO_RTEventLogAdmin
+ace_target_cxx_sources(TAO_RTEventLogAdmin
   HEADER_FILES rteventlog_export.h
 )
 
 
-add_ace_lib(TAO_RTEventLogAdmin_Skel
+ace_add_lib(TAO_RTEventLogAdmin_Skel
   DEFINE_SYMBOL TAO_RTEVENTLOG_SKEL_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -175,7 +175,7 @@ add_ace_lib(TAO_RTEventLogAdmin_Skel
                         TAO_RTEvent_Skel
 )
 
-target_cxx_sources(TAO_RTEventLogAdmin_Skel
+ace_target_cxx_sources(TAO_RTEventLogAdmin_Skel
   HEADER_FILES log_skel_export.h
 )
 
@@ -195,7 +195,7 @@ tao_idl_sources(
 )
 
 
-add_ace_lib(TAO_RTEventLogAdmin_Serv
+ace_add_lib(TAO_RTEventLogAdmin_Serv
   DEFINE_SYMBOL TAO_RTEVENTLOG_SERV_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -205,7 +205,7 @@ add_ace_lib(TAO_RTEventLogAdmin_Serv
                         TAO_RTSched
 )
 
-target_cxx_sources(TAO_RTEventLogAdmin_Serv
+ace_target_cxx_sources(TAO_RTEventLogAdmin_Serv
   SOURCE_FILES RTEventLogConsumer.cpp
                RTEventLogFactory_i.cpp
                RTEventLogNotification.cpp

@@ -1,8 +1,8 @@
 
 
-requires("NOT CORBA_E_COMPACT")
+ace_requires("NOT CORBA_E_COMPACT")
 
-add_ace_lib(TAO_ImR_Client
+ace_add_lib(TAO_ImR_Client
   OUTPUT_NAME TAO_ImR_Client
   PACKAGE TAO
   FOLDER tao/ImR_Client
@@ -15,7 +15,7 @@ add_ace_lib(TAO_ImR_Client
                         TAO_Valuetype
                         TAO_PortableServer
 )
-target_cxx_sources(TAO_ImR_Client
+ace_target_cxx_sources(TAO_ImR_Client
   SOURCE_FILES ImR_Client.cpp
                ServerObject_i.cpp
   HEADER_FILES ImR_Client.h

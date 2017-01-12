@@ -1,6 +1,6 @@
 
 
-add_ace_lib(TAO_ETCL
+ace_add_lib(TAO_ETCL
   OUTPUT_NAME TAO_ETCL
   PACKAGE TAO
   FOLDER tao/ETCL
@@ -9,7 +9,7 @@ add_ace_lib(TAO_ETCL
   PUBLIC_LINK_LIBRARIES TAO_AnyTypeCode
                         ACE_ETCL
 )
-target_cxx_sources(TAO_ETCL
+ace_target_cxx_sources(TAO_ETCL
   SOURCE_FILES TAO_ETCL_Constraint.cpp
   HEADER_FILES TAO_ETCL_Constraint.h
   INLINE_FILES TAO_ETCL_Constraint.inl

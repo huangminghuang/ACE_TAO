@@ -1,6 +1,6 @@
 
 
-add_ace_lib(ACE_Monitor_Control
+ace_add_lib(ACE_Monitor_Control
   OUTPUT_NAME ACE_Monitor_Control
   PACKAGE ACE
   FOLDER ace/Monitor_Control
@@ -9,7 +9,7 @@ add_ace_lib(ACE_Monitor_Control
                         $<$<PLATFORM_ID:Windows>:pdh>
                         ACE
 )
-target_cxx_sources(ACE_Monitor_Control
+ace_target_cxx_sources(ACE_Monitor_Control
   SOURCE_FILES Auto_Update_Starter.cpp
                BSD_Network_Interface_Monitor.cpp
                Bytes_Received_Monitor.cpp

@@ -1,6 +1,6 @@
 
 
-add_ace_lib(TAO_BiDirGIOP
+ace_add_lib(TAO_BiDirGIOP
   OUTPUT_NAME TAO_BiDirGIOP
   PACKAGE TAO
   FOLDER tao/BiDir_GIOP
@@ -10,7 +10,7 @@ add_ace_lib(TAO_BiDirGIOP
                              $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
   PUBLIC_LINK_LIBRARIES TAO_PI
 )
-target_cxx_sources(TAO_BiDirGIOP
+ace_target_cxx_sources(TAO_BiDirGIOP
   SOURCE_FILES BiDirGIOP.cpp
                BiDirPolicy_Validator.cpp
                BiDir_ORBInitializer.cpp

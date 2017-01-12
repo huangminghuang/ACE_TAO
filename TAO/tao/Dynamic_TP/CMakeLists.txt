@@ -1,8 +1,8 @@
 
 
-requires(ACE_HAS_THREADS "NOT CORBA_E_COMPACT")
+ace_requires(ACE_HAS_THREADS "NOT CORBA_E_COMPACT")
 
-add_ace_lib(TAO_Dynamic_TP
+ace_add_lib(TAO_Dynamic_TP
   OUTPUT_NAME TAO_Dynamic_TP
   PACKAGE TAO
   FOLDER tao/Dynamic_TP
@@ -13,7 +13,7 @@ add_ace_lib(TAO_Dynamic_TP
                         TAO_PortableServer
                         TAO_CSD_Framework
 )
-target_cxx_sources(TAO_Dynamic_TP
+ace_target_cxx_sources(TAO_Dynamic_TP
   SOURCE_FILES DTP_Config.cpp
                DTP_ORBInitializer.cpp
                DTP_ORB_Loader.cpp

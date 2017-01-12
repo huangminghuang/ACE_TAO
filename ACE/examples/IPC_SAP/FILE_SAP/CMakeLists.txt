@@ -7,12 +7,12 @@ if (NOT ACE_ROOT)
 endif()
 
 
-add_ace_exe(file_sap_client
+ace_add_exe(file_sap_client
   OUTPUT_NAME client
   FOLDER examples/IPC_SAP/FILE_SAP
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(file_sap_client
+ace_target_cxx_sources(file_sap_client
   SOURCE_FILES client.cpp
 )
 

@@ -1,4 +1,4 @@
-target_cxx_sources(TAO_IDL_BE
+ace_target_cxx_sources(TAO_IDL_BE
   SOURCE_FILES cdr_op_ch.cpp
                public_assign_cs.cpp
                public_cs.cpp

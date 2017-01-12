@@ -1,8 +1,8 @@
 find_package(OpenSSL)
 
-requires(OPENSSL_FOUND)
+ace_requires(OPENSSL_FOUND)
 
-add_ace_lib(ACE_SSL
+ace_add_lib(ACE_SSL
   OUTPUT_NAME ACE_SSL
   PACKAGE ACE
   FOLDER ace/SSL
@@ -11,7 +11,7 @@ add_ace_lib(ACE_SSL
   PUBLIC_LINK_LIBRARIES ${OPENSSL_LIBRARIES}
                         ACE
 )
-target_cxx_sources(ACE_SSL
+ace_target_cxx_sources(ACE_SSL
   SOURCE_FILES SSL_Asynch_BIO.cpp
                SSL_Asynch_Stream.cpp
                SSL_Context.cpp

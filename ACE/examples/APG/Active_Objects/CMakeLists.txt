@@ -7,22 +7,22 @@ if (NOT ACE_ROOT)
 endif()
 
 
-add_ace_exe(AO
+ace_add_exe(AO
   OUTPUT_NAME AO
   FOLDER examples/APG/Active_Objects
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(AO
+ace_target_cxx_sources(AO
   SOURCE_FILES AO.cpp
 )
 
 
-add_ace_exe(AO2
+ace_add_exe(AO2
   OUTPUT_NAME AO2
   FOLDER examples/APG/Active_Objects
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(AO2
+ace_target_cxx_sources(AO2
   SOURCE_FILES AO2.cpp
 )
 

@@ -1,5 +1,5 @@
 
-add_ace_lib(TAO_SSLIOP
+ace_add_lib(TAO_SSLIOP
   DEFINE_SYMBOL TAO_SSLIOP_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -40,7 +40,7 @@ else()
   set(params_dup params_dup.c)
 endif()
 
-target_cxx_sources(TAO_SSLIOP
+ace_target_cxx_sources(TAO_SSLIOP
   SOURCE_FILES IIOP_SSL_Acceptor.cpp
                IIOP_SSL_Connection_Handler.cpp
                IIOP_SSL_Connector.cpp

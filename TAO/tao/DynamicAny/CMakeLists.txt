@@ -1,8 +1,8 @@
 
 
-requires("NOT CORBA_E_COMPACT")
+ace_requires("NOT CORBA_E_COMPACT")
 
-add_ace_lib(TAO_DynamicAny
+ace_add_lib(TAO_DynamicAny
   OUTPUT_NAME TAO_DynamicAny
   PACKAGE TAO
   FOLDER tao/DynamicAny
@@ -12,7 +12,7 @@ add_ace_lib(TAO_DynamicAny
   PUBLIC_LINK_LIBRARIES TAO_AnyTypeCode
                         TAO_Valuetype
 )
-target_cxx_sources(TAO_DynamicAny
+ace_target_cxx_sources(TAO_DynamicAny
   SOURCE_FILES DynAnyFactory.cpp
                DynAny_i.cpp
                DynArray_i.cpp

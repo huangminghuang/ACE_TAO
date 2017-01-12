@@ -1,4 +1,4 @@
-target_cxx_sources(TAO_IDL_BE
+ace_target_cxx_sources(TAO_IDL_BE
   SOURCE_FILES set_from_extracted.cpp
                attribute.cpp
                ccm_init.cpp

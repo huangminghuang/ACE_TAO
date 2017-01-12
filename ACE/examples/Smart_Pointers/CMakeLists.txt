@@ -7,12 +7,12 @@ if (NOT ACE_ROOT)
 endif()
 
 
-add_ace_exe(Smart_Pointers_Gadget
+ace_add_exe(Smart_Pointers_Gadget
   OUTPUT_NAME gadget
   FOLDER examples/Smart_Pointers
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Smart_Pointers_Gadget
+ace_target_cxx_sources(Smart_Pointers_Gadget
   SOURCE_FILES Gadget_Part.cpp
                Gadget.cpp
                Gadget_Factory.cpp
@@ -29,12 +29,12 @@ target_cxx_sources(Smart_Pointers_Gadget
 )
 
 
-add_ace_exe(Smart_Pointers_Widget
+ace_add_exe(Smart_Pointers_Widget
   OUTPUT_NAME Widget
   FOLDER examples/Smart_Pointers
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Smart_Pointers_Widget
+ace_target_cxx_sources(Smart_Pointers_Widget
   SOURCE_FILES Widget_Impl.cpp
                Widget.cpp
                Widget_Factory.cpp

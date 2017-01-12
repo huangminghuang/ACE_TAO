@@ -7,13 +7,13 @@ if (NOT ACE_ROOT)
 endif()
 
 
-add_ace_lib(Svc_Cfg_IPC_Server_Lib
+ace_add_lib(Svc_Cfg_IPC_Server_Lib
   OUTPUT_NAME IPC_Tests_Server
   FOLDER examples/Service_Configurator/IPC-tests/server
   DEFINE_SYMBOL ACE_BUILD_SVC_DLL
   PUBLIC_LINK_LIBRARIES ACE
 )
-target_cxx_sources(Svc_Cfg_IPC_Server_Lib
+ace_target_cxx_sources(Svc_Cfg_IPC_Server_Lib
   SOURCE_FILES Handle_L_FIFO.cpp
                Handle_Timeout.cpp
                Handle_L_Pipe.cpp
@@ -46,13 +46,13 @@ target_cxx_sources(Svc_Cfg_IPC_Server_Lib
 )
 
 
-add_ace_exe(Svc_Cfg_IPC_Server_Test
+ace_add_exe(Svc_Cfg_IPC_Server_Test
   OUTPUT_NAME server_test
   FOLDER examples/Service_Configurator/IPC-tests/server
   LINK_LIBRARIES ACE
                  Svc_Cfg_IPC_Server_Lib
 )
-target_cxx_sources(Svc_Cfg_IPC_Server_Test
+ace_target_cxx_sources(Svc_Cfg_IPC_Server_Test
   SOURCE_FILES server_test.cpp
 )
 

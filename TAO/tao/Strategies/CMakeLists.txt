@@ -1,6 +1,6 @@
 
 
-add_ace_lib(TAO_Strategies
+ace_add_lib(TAO_Strategies
   OUTPUT_NAME TAO_Strategies
   PACKAGE TAO
   FOLDER tao/Strategies
@@ -11,7 +11,7 @@ add_ace_lib(TAO_Strategies
   PUBLIC_LINK_LIBRARIES TAO_PI
                         TAO_AnyTypeCode
 )
-target_cxx_sources(TAO_Strategies
+ace_target_cxx_sources(TAO_Strategies
   SOURCE_FILES COIOP_Acceptor.cpp
                COIOP_Connection_Handler.cpp
                COIOP_Connector.cpp

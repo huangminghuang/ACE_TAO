@@ -7,12 +7,12 @@ if (NOT ACE_ROOT)
 endif()
 
 
-add_ace_exe(Mem_Map_File_Reverse
+ace_add_exe(Mem_Map_File_Reverse
   OUTPUT_NAME file-reverse
   FOLDER examples/Mem_Map/file-reverse
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Mem_Map_File_Reverse
+ace_target_cxx_sources(Mem_Map_File_Reverse
   SOURCE_FILES file-reverse.cpp
 )
 

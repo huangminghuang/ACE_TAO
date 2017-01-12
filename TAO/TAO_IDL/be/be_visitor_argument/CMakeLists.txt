@@ -1,4 +1,4 @@
-target_cxx_sources(TAO_IDL_BE
+ace_target_cxx_sources(TAO_IDL_BE
   SOURCE_FILES upcall_ss.cpp
                vardecl_ss.cpp
                argument.cpp

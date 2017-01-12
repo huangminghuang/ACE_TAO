@@ -7,52 +7,52 @@ if (NOT ACE_ROOT)
 endif()
 
 
-add_ace_exe(Futures
+ace_add_exe(Futures
   OUTPUT_NAME Futures
   FOLDER examples/APG/ThreadPools
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Futures
+ace_target_cxx_sources(Futures
   SOURCE_FILES Futures.cpp
 )
 
 
-add_ace_exe(LF_ThreadPool
+ace_add_exe(LF_ThreadPool
   OUTPUT_NAME LF_ThreadPool
   FOLDER examples/APG/ThreadPools
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(LF_ThreadPool
+ace_target_cxx_sources(LF_ThreadPool
   SOURCE_FILES LF_ThreadPool.cpp
 )
 
 
-add_ace_exe(Task_ThreadPool
+ace_add_exe(Task_ThreadPool
   OUTPUT_NAME Task_ThreadPool
   FOLDER examples/APG/ThreadPools
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Task_ThreadPool
+ace_target_cxx_sources(Task_ThreadPool
   SOURCE_FILES Task_ThreadPool.cpp
 )
 
 
-add_ace_exe(ThreadPool
+ace_add_exe(ThreadPool
   OUTPUT_NAME ThreadPool
   FOLDER examples/APG/ThreadPools
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(ThreadPool
+ace_target_cxx_sources(ThreadPool
   SOURCE_FILES ThreadPool.cpp
 )
 
 
-add_ace_exe(TP_Reactor
+ace_add_exe(TP_Reactor
   OUTPUT_NAME TP_Reactor
   FOLDER examples/APG/ThreadPools
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(TP_Reactor
+ace_target_cxx_sources(TP_Reactor
   SOURCE_FILES TP_Reactor.cpp
 )
 

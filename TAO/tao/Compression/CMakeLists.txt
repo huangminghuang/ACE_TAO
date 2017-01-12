@@ -1,6 +1,6 @@
 
 
-add_ace_lib(TAO_Compression
+ace_add_lib(TAO_Compression
   OUTPUT_NAME TAO_Compression
   PACKAGE TAO
   FOLDER tao/Compression
@@ -10,7 +10,7 @@ add_ace_lib(TAO_Compression
                              $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
   PUBLIC_LINK_LIBRARIES TAO_AnyTypeCode
 )
-target_cxx_sources(TAO_Compression
+ace_target_cxx_sources(TAO_Compression
   SOURCE_FILES Base_Compressor.cpp
                Compression.cpp
                Compression_Manager.cpp

@@ -1,10 +1,10 @@
-requires("NOT MINIMUM_CORBA"
+ace_requires("NOT MINIMUM_CORBA"
          "NOT CORBA_E_MICRO"
          "NOT CORBA_E_COMPACT"
          CORBA_MESSAGING
 )
 
-add_ace_lib(TAO_PortableGroup
+ace_add_lib(TAO_PortableGroup
   DEFINE_SYMBOL TAO_PORTABLEGROUP_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -14,7 +14,7 @@ add_ace_lib(TAO_PortableGroup
                          TAO_Svc_Utils
 )
 
-target_cxx_sources(TAO_PortableGroup
+ace_target_cxx_sources(TAO_PortableGroup
   SOURCE_FILES Fragments_Cleanup_Strategy.cpp
                GOA.cpp
                MIOP.cpp

@@ -1,6 +1,6 @@
 
 
-add_ace_lib(ACEXML_Parser
+ace_add_lib(ACEXML_Parser
   OUTPUT_NAME ACEXML_Parser
   PACKAGE ACE
   FOLDER ACEXML/parser/parser
@@ -8,7 +8,7 @@ add_ace_lib(ACEXML_Parser
   PUBLIC_LINK_LIBRARIES ACEXML
                         ACE
 )
-target_cxx_sources(ACEXML_Parser
+ace_target_cxx_sources(ACEXML_Parser
   SOURCE_FILES Parser.cpp
                ParserInternals.cpp
                ParserContext.cpp

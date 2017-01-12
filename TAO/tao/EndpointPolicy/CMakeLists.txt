@@ -1,8 +1,8 @@
 
 
-requires("NOT MINIMUM_CORBA" "NOT CORBA_E_MICRO" "NOT CORBA_E_COMPACT")
+ace_requires("NOT MINIMUM_CORBA" "NOT CORBA_E_MICRO" "NOT CORBA_E_COMPACT")
 
-add_ace_lib(TAO_EndpointPolicy
+ace_add_lib(TAO_EndpointPolicy
   OUTPUT_NAME TAO_EndpointPolicy
   PACKAGE TAO
   FOLDER tao/EndpointPolicy
@@ -13,7 +13,7 @@ add_ace_lib(TAO_EndpointPolicy
   PUBLIC_LINK_LIBRARIES TAO_PI
                         TAO_PortableServer
 )
-target_cxx_sources(TAO_EndpointPolicy
+ace_target_cxx_sources(TAO_EndpointPolicy
   SOURCE_FILES EndpointPolicy.cpp
                EndpointPolicy_Factory.cpp
                EndpointPolicy_ORBInitializer.cpp

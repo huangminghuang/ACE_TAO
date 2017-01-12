@@ -104,7 +104,7 @@ class CXXSourceGroup:
     self.inline_files.sort()
     self.template_files.sort()
 
-    result = "target_cxx_sources(%s\n" % target_name + format_target_properties_in_list(self,["source_files", "header_files", "inline_files", "template_files", "subgroup"])+ ")\n";
+    result = "ace_target_cxx_sources(%s\n" % target_name + format_target_properties_in_list(self,["source_files", "header_files", "inline_files", "template_files", "subgroup"])+ ")\n";
     if condition:
       indent = '  '
       indented = indent + result.replace('\n', '\n' + indent)

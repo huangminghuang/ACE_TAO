@@ -10,7 +10,7 @@ if (ACE_HAS_THREADS)
 endif()
 
 
-add_ace_lib(ACE
+ace_add_lib(ACE
   OUTPUT_NAME ACE
   PACKAGE ACE
   FOLDER ace
@@ -21,7 +21,7 @@ add_ace_lib(ACE
                         ${AIO_LIBRARY}
                         ${CMAKE_DL_LIBS}
 )
-target_cxx_sources(ACE
+ace_target_cxx_sources(ACE
   SOURCE_FILES ACE.cpp
                ACE_crc32.cpp
                ACE_crc_ccitt.cpp
@@ -1091,7 +1091,7 @@ target_cxx_sources(ACE
 )
 
 if (ACE_HAS_ATM)
-  target_cxx_sources(ACE
+  ace_target_cxx_sources(ACE
     SOURCE_FILES ATM_Acceptor.cpp
                  ATM_Addr.cpp
                  ATM_Connector.cpp
@@ -1117,7 +1117,7 @@ if (ACE_HAS_ATM)
 endif()
 
 if(ACE_SVCCONF)
-  target_cxx_sources(ACE
+  ace_target_cxx_sources(ACE
     SOURCE_FILES DLL.cpp
                  Dynamic_Service_Base.cpp
                  Dynamic_Service_Dependency.cpp
@@ -1165,13 +1165,13 @@ if(ACE_SVCCONF)
   )
 endif()
 if(ACE_CODECS)
-  target_cxx_sources(ACE
+  ace_target_cxx_sources(ACE
     SOURCE_FILES Codecs.cpp
     HEADER_FILES Codecs.h
   )
 endif()
 if(ACE_TOKEN)
-  target_cxx_sources(ACE
+  ace_target_cxx_sources(ACE
     SOURCE_FILES Local_Tokens.cpp
                  Remote_Tokens.cpp
                  Token_Collection.cpp
@@ -1192,7 +1192,7 @@ if(ACE_TOKEN)
   )
 endif()
 if(ACE_OTHER)
-  target_cxx_sources(ACE
+  ace_target_cxx_sources(ACE
     SOURCE_FILES Local_Name_Space.cpp
                  NT_Service.cpp
                  Name_Proxy.cpp
@@ -1214,13 +1214,13 @@ if(ACE_OTHER)
   )
 endif()
 if(ACE_FILECACHE)
-  target_cxx_sources(ACE
+  ace_target_cxx_sources(ACE
     SOURCE_FILES Filecache.cpp
     HEADER_FILES Filecache.h
   )
 endif()
 if(ACE_UUID)
-  target_cxx_sources(ACE
+  ace_target_cxx_sources(ACE
     SOURCE_FILES UUID.cpp
     HEADER_FILES UUID.h
     INLINE_FILES UUID.inl

@@ -1,4 +1,4 @@
-target_cxx_sources(TAO_IDL_BE
+ace_target_cxx_sources(TAO_IDL_BE
   SOURCE_FILES connector_ami_exh.cpp
                executor_ami_exh.cpp
                facet_ami_exs.cpp

@@ -1,8 +1,8 @@
 
 
-requires("NOT CORBA_E_COMPACT")
+ace_requires("NOT CORBA_E_COMPACT")
 
-add_ace_lib(TAO_Messaging
+ace_add_lib(TAO_Messaging
   OUTPUT_NAME TAO_Messaging
   PACKAGE TAO
   FOLDER tao/Messaging
@@ -15,7 +15,7 @@ add_ace_lib(TAO_Messaging
                         TAO_Valuetype
                         TAO_AnyTypeCode
 )
-target_cxx_sources(TAO_Messaging
+ace_target_cxx_sources(TAO_Messaging
   SOURCE_FILES AMH_Response_Handler.cpp
                AMH_Skeletons.cpp
                AMI_Arguments_Converter_Impl.cpp

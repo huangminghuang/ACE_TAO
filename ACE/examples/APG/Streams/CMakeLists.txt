@@ -7,14 +7,14 @@ if (NOT ACE_ROOT)
 endif()
 
 
-requires(ACE_HAS_THREADS)
+ace_requires(ACE_HAS_THREADS)
 
-add_ace_exe(Answerer
+ace_add_exe(Answerer
   OUTPUT_NAME Answerer
   FOLDER examples/APG/Streams
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Answerer
+ace_target_cxx_sources(Answerer
   SOURCE_FILES Answerer.cpp
                CommandTask.cpp
                CommandTasks.cpp

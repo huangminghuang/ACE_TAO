@@ -1,15 +1,15 @@
 
-add_ace_lib(TAO_RTEvent
+ace_add_lib(TAO_RTEvent
   DEFINE_SYMBOL TAO_RTEVENT_BUILD_DLL
   PACKAGE TAO
   PUBLIC_LINK_LIBRARIES TAO_Svc_Utils
 )
 
-target_cxx_sources(TAO_RTEvent
+ace_target_cxx_sources(TAO_RTEvent
   HEADER_FILES event_export.h
 )
 
-add_ace_lib(TAO_RTEvent_Skel
+ace_add_lib(TAO_RTEvent_Skel
   DEFINE_SYMBOL TAO_RTEVENT_SKEL_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -17,13 +17,13 @@ add_ace_lib(TAO_RTEvent_Skel
                         TAO_PortableServer
 )
 
-target_cxx_sources(TAO_RTEvent_Skel
+ace_target_cxx_sources(TAO_RTEvent_Skel
   HEADER_FILES event_skel_export.h
 )
 
 include(../RTEvent.cmake)
 
-add_ace_lib(TAO_RTEvent_Serv
+ace_add_lib(TAO_RTEvent_Serv
   DEFINE_SYMBOL TAO_RTEVENT_SERV_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -33,7 +33,7 @@ add_ace_lib(TAO_RTEvent_Serv
   REQUIRES CORBA_MESSAGING
 )
 
-target_cxx_sources(TAO_RTEvent_Serv
+ace_target_cxx_sources(TAO_RTEvent_Serv
   SOURCE_FILES ECG_Adapters.cpp
                ECG_CDR_Message_Receiver.cpp
                ECG_CDR_Message_Sender.cpp
@@ -227,7 +227,7 @@ target_cxx_sources(TAO_RTEvent_Serv
                  EC_Lifetime_Utils_T.cpp
 )
 
-add_ace_lib(TAO_RTCORBAEvent
+ace_add_lib(TAO_RTCORBAEvent
   DEFINE_SYMBOL TAO_RTCORBAEVENT_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -235,14 +235,14 @@ add_ace_lib(TAO_RTCORBAEvent
                         TAO_RTPortableServer
 )
 
-target_cxx_sources(TAO_RTCORBAEvent
+ace_target_cxx_sources(TAO_RTCORBAEvent
   SOURCE_FILES EC_RTCORBA_Dispatching.cpp
                EC_RTCORBA_Factory.cpp
   HEADER_FILES EC_RTCORBA_Dispatching.h
                EC_RTCORBA_Factory.h
 )
 
-add_ace_lib(TAO_RTKokyuEvent
+ace_add_lib(TAO_RTKokyuEvent
   DEFINE_SYMBOL TAO_RTKOKYUEVENT_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -250,7 +250,7 @@ add_ace_lib(TAO_RTKokyuEvent
                         TAO_RTSched Kokyu
 )
 
-target_cxx_sources(TAO_RTKokyuEvent
+ace_target_cxx_sources(TAO_RTKokyuEvent
   SOURCE_FILES EC_Kokyu_Dispatching.cpp
                EC_Kokyu_Factory.cpp
                EC_Kokyu_Filter.cpp

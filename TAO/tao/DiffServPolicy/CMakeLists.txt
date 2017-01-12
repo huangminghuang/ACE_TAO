@@ -1,8 +1,8 @@
 
 
-requires("NOT MINIMUM_CORBA" "NOT CORBA_E_MICRO" "NOT CORBA_E_COMPACT")
+ace_requires("NOT MINIMUM_CORBA" "NOT CORBA_E_MICRO" "NOT CORBA_E_COMPACT")
 
-add_ace_lib(TAO_DiffServPolicy
+ace_add_lib(TAO_DiffServPolicy
   OUTPUT_NAME TAO_DiffServPolicy
   PACKAGE TAO
   FOLDER tao/DiffServPolicy
@@ -13,7 +13,7 @@ add_ace_lib(TAO_DiffServPolicy
   PUBLIC_LINK_LIBRARIES TAO_PI
                         TAO_PortableServer
 )
-target_cxx_sources(TAO_DiffServPolicy
+ace_target_cxx_sources(TAO_DiffServPolicy
   SOURCE_FILES Client_Network_Priority_Policy.cpp
                DiffServPolicy.cpp
                DiffServPolicy_Factory.cpp

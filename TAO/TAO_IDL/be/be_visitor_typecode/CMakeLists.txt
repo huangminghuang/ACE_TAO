@@ -1,4 +1,4 @@
-target_cxx_sources(TAO_IDL_BE
+ace_target_cxx_sources(TAO_IDL_BE
   SOURCE_FILES typecode_decl.cpp
                struct_typecode.cpp
                typecode_defn.cpp

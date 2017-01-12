@@ -7,124 +7,124 @@ if (NOT ACE_ROOT)
 endif()
 
 
-add_ace_exe(DLList
+ace_add_exe(DLList
   OUTPUT_NAME DLList
   FOLDER examples/APG/Containers
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(DLList
+ace_target_cxx_sources(DLList
   SOURCE_FILES DLList.cpp
 )
 
 
-add_ace_exe(Stacks
+ace_add_exe(Stacks
   OUTPUT_NAME Stacks
   FOLDER examples/APG/Containers
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Stacks
+ace_target_cxx_sources(Stacks
   SOURCE_FILES Stacks.cpp
 )
 
 
-add_ace_exe(Queues
+ace_add_exe(Queues
   OUTPUT_NAME Queues
   FOLDER examples/APG/Containers
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Queues
+ace_target_cxx_sources(Queues
   SOURCE_FILES Queues.cpp
 )
 
 
-add_ace_exe(Array
+ace_add_exe(Array
   OUTPUT_NAME Array
   FOLDER examples/APG/Containers
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Array
+ace_target_cxx_sources(Array
   SOURCE_FILES Array.cpp
 )
 
 
-add_ace_exe(Sets
+ace_add_exe(Sets
   OUTPUT_NAME Sets
   FOLDER examples/APG/Containers
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Sets
+ace_target_cxx_sources(Sets
   SOURCE_FILES Sets.cpp
 )
 
 
-add_ace_exe(containers_Map_manager
+ace_add_exe(containers_Map_manager
   OUTPUT_NAME Map_Manager
   FOLDER examples/APG/Containers
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(containers_Map_manager
+ace_target_cxx_sources(containers_Map_manager
   SOURCE_FILES Map_Manager.cpp
 )
 
 
-add_ace_exe(Map_Manager_Specialization
+ace_add_exe(Map_Manager_Specialization
   OUTPUT_NAME Map_Manager_Specialization
   FOLDER examples/APG/Containers
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Map_Manager_Specialization
+ace_target_cxx_sources(Map_Manager_Specialization
   SOURCE_FILES Map_Manager_Specialization.cpp
 )
 
 
-add_ace_exe(containers_Hash_map
+ace_add_exe(containers_Hash_map
   OUTPUT_NAME Hash_Map
   FOLDER examples/APG/Containers
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(containers_Hash_map
+ace_target_cxx_sources(containers_Hash_map
   SOURCE_FILES Hash_Map.cpp
 )
 
 
-add_ace_exe(Hash_Map_Hash
+ace_add_exe(Hash_Map_Hash
   OUTPUT_NAME Hash_Map_Hash
   FOLDER examples/APG/Containers
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Hash_Map_Hash
+ace_target_cxx_sources(Hash_Map_Hash
   SOURCE_FILES Hash_Map_Hash.cpp
   HEADER_FILES Hash_Map_Hash.h
 )
 
 
-add_ace_exe(RB_Tree
+ace_add_exe(RB_Tree
   OUTPUT_NAME RB_Tree
   FOLDER examples/APG/Containers
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(RB_Tree
+ace_target_cxx_sources(RB_Tree
   SOURCE_FILES RB_Tree.cpp
 )
 
 
-add_ace_exe(RB_Tree_Functors
+ace_add_exe(RB_Tree_Functors
   OUTPUT_NAME RB_Tree_Functors
   FOLDER examples/APG/Containers
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(RB_Tree_Functors
+ace_target_cxx_sources(RB_Tree_Functors
   SOURCE_FILES RB_Tree_Functors.cpp
   HEADER_FILES RB_Tree_Functors.h
 )
 
 
-add_ace_exe(Allocator
+ace_add_exe(Allocator
   OUTPUT_NAME Allocator
   FOLDER examples/APG/Containers
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Allocator
+ace_target_cxx_sources(Allocator
   SOURCE_FILES Allocator.cpp
 )
 

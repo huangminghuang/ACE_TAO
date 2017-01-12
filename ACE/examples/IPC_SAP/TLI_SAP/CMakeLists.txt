@@ -7,82 +7,82 @@ if (NOT ACE_ROOT)
 endif()
 
 
-add_ace_exe(TLI_SAP_Atm_client
+ace_add_exe(TLI_SAP_Atm_client
   OUTPUT_NAME ATM-client
   FOLDER examples/IPC_SAP/TLI_SAP
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(TLI_SAP_Atm_client
+ace_target_cxx_sources(TLI_SAP_Atm_client
   SOURCE_FILES CPP-ATM-client.cpp
 )
 
 
-add_ace_exe(TLI_SAP_Atm_server
+ace_add_exe(TLI_SAP_Atm_server
   OUTPUT_NAME ATM-server
   FOLDER examples/IPC_SAP/TLI_SAP
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(TLI_SAP_Atm_server
+ace_target_cxx_sources(TLI_SAP_Atm_server
   SOURCE_FILES CPP-ATM-server.cpp
 )
 
 
-add_ace_exe(TLI_SAP_Cpp_client
+ace_add_exe(TLI_SAP_Cpp_client
   OUTPUT_NAME CPP-client
   FOLDER examples/IPC_SAP/TLI_SAP
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(TLI_SAP_Cpp_client
+ace_target_cxx_sources(TLI_SAP_Cpp_client
   SOURCE_FILES CPP-client.cpp
 )
 
 
-add_ace_exe(TLI_SAP_Cpp_server
+ace_add_exe(TLI_SAP_Cpp_server
   OUTPUT_NAME CPP-server
   FOLDER examples/IPC_SAP/TLI_SAP
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(TLI_SAP_Cpp_server
+ace_target_cxx_sources(TLI_SAP_Cpp_server
   SOURCE_FILES CPP-server.cpp
 )
 
 
-add_ace_exe(TLI_SAP_Db_client
+ace_add_exe(TLI_SAP_Db_client
   OUTPUT_NAME db-client
   FOLDER examples/IPC_SAP/TLI_SAP
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(TLI_SAP_Db_client
+ace_target_cxx_sources(TLI_SAP_Db_client
   SOURCE_FILES db-client.cpp
 )
 
 
-add_ace_exe(TLI_SAP_Db_server
+ace_add_exe(TLI_SAP_Db_server
   OUTPUT_NAME db-server
   FOLDER examples/IPC_SAP/TLI_SAP
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(TLI_SAP_Db_server
+ace_target_cxx_sources(TLI_SAP_Db_server
   SOURCE_FILES db-server.cpp
 )
 
 
-add_ace_exe(TLI_SAP_Ftp_client
+ace_add_exe(TLI_SAP_Ftp_client
   OUTPUT_NAME ftp-client
   FOLDER examples/IPC_SAP/TLI_SAP
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(TLI_SAP_Ftp_client
+ace_target_cxx_sources(TLI_SAP_Ftp_client
   SOURCE_FILES ftp-client.cpp
 )
 
 
-add_ace_exe(TLI_SAP_Ftp_server
+ace_add_exe(TLI_SAP_Ftp_server
   OUTPUT_NAME ftp-server
   FOLDER examples/IPC_SAP/TLI_SAP
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(TLI_SAP_Ftp_server
+ace_target_cxx_sources(TLI_SAP_Ftp_server
   SOURCE_FILES ftp-server.cpp
 )
 

@@ -1,8 +1,8 @@
 find_package(XercesC)
 
-requires(XercesC_FOUND)
+ace_requires(XercesC_FOUND)
 
-add_ace_lib(ACE_XML_Utils
+ace_add_lib(ACE_XML_Utils
   OUTPUT_NAME ACE_XML_Utils
   PACKAGE ACE
   FOLDER ace/XML_Utils
@@ -11,7 +11,7 @@ add_ace_lib(ACE_XML_Utils
   PUBLIC_LINK_LIBRARIES ACE
                         ${XercesC_LIBRARIES}
 )
-target_cxx_sources(ACE_XML_Utils
+ace_target_cxx_sources(ACE_XML_Utils
   SOURCE_FILES XML_Error_Handler.cpp
                XML_Schema_Resolver.cpp
                XML_Typedefs.cpp

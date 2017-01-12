@@ -7,22 +7,22 @@ if (NOT ACE_ROOT)
 endif()
 
 
-add_ace_exe(atm_sap_Client
+ace_add_exe(atm_sap_Client
   OUTPUT_NAME client
   FOLDER examples/IPC_SAP/ATM_SAP
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(atm_sap_Client
+ace_target_cxx_sources(atm_sap_Client
   SOURCE_FILES CPP-client.cpp
 )
 
 
-add_ace_exe(atm_sap_Server
+ace_add_exe(atm_sap_Server
   OUTPUT_NAME server
   FOLDER examples/IPC_SAP/ATM_SAP
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(atm_sap_Server
+ace_target_cxx_sources(atm_sap_Server
   SOURCE_FILES CPP-server.cpp
 )
 

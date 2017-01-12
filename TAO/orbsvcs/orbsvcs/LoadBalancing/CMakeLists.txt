@@ -1,6 +1,6 @@
-requires(CORBA_MESSAGING)
+ace_requires(CORBA_MESSAGING)
 
-add_ace_lib(TAO_CosLoadBalancing
+ace_add_lib(TAO_CosLoadBalancing
   DEFINE_SYMBOL TAO_COSLOADBALANCING_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -25,7 +25,7 @@ tao_idl_sources(
   WORKING_DIRECTORY ..
 )
 
-target_cxx_sources(TAO_CosLoadBalancing
+ace_target_cxx_sources(TAO_CosLoadBalancing
   SOURCE_FILES LB_CPU_Load_Average_Monitor.cpp
                LB_CPU_Utilization_Monitor.cpp
                LB_ClientComponent.cpp

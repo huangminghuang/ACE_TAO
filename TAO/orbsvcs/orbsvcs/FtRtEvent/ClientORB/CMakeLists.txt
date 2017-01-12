@@ -1,4 +1,4 @@
-add_ace_lib(TAO_FTRT_ClientORB
+ace_add_lib(TAO_FTRT_ClientORB
   DEFINE_SYMBOL TAO_FTRT_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -6,7 +6,7 @@ add_ace_lib(TAO_FTRT_ClientORB
                         TAO_Svc_Utils
 )
 
-target_cxx_sources(TAO_FTRT_ClientORB
+ace_target_cxx_sources(TAO_FTRT_ClientORB
   SOURCE_FILES FTRT_ClientORB_Initializer.cpp
                FTRT_ClientORB_Interceptor.cpp
                FTRT_ClientORB_Loader.cpp

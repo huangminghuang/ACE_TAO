@@ -1,11 +1,11 @@
 
 
-add_ace_lib(Gateway
+ace_add_lib(Gateway
   OUTPUT_NAME Gateway
   FOLDER apps/Gateway/Gateway
   PUBLIC_LINK_LIBRARIES ACE
 )
-target_cxx_sources(Gateway
+ace_target_cxx_sources(Gateway
   SOURCE_FILES Event_Forwarding_Discriminator.cpp
                Gateway.cpp
                Event_Channel.cpp
@@ -29,13 +29,13 @@ target_cxx_sources(Gateway
 )
 
 
-add_ace_exe(gatewayd
+ace_add_exe(gatewayd
   OUTPUT_NAME gatewayd
   FOLDER apps/Gateway/Gateway
   LINK_LIBRARIES Gateway
                  ACE
 )
-target_cxx_sources(gatewayd
+ace_target_cxx_sources(gatewayd
   SOURCE_FILES gatewayd.cpp
 )
 

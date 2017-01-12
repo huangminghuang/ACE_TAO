@@ -7,12 +7,12 @@ if (NOT ACE_ROOT)
 endif()
 
 
-add_ace_exe(Reactor_Ntalker
+ace_add_exe(Reactor_Ntalker
   OUTPUT_NAME ntalker
   FOLDER examples/Reactor/Ntalker
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Reactor_Ntalker
+ace_target_cxx_sources(Reactor_Ntalker
   SOURCE_FILES ntalker.cpp
 )
 

@@ -1,5 +1,5 @@
 
-add_ace_lib(TAO_CosTrading
+ace_add_lib(TAO_CosTrading
   DEFINE_SYMBOL TAO_TRADING_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -9,18 +9,18 @@ add_ace_lib(TAO_CosTrading
   PUBLIC_LINK_LIBRARIES TAO_AnyTypeCode
 )
 
-target_cxx_sources(TAO_CosTrading
+ace_target_cxx_sources(TAO_CosTrading
   HEADER_FILES trading_export.h
 )
 
-add_ace_lib(TAO_CosTrading_Skel
+ace_add_lib(TAO_CosTrading_Skel
   DEFINE_SYMBOL TAO_TRADING_SKEL_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
   PUBLIC_LINK_LIBRARIES TAO_CosTrading TAO_PortableServer
 )
 
-target_cxx_sources(TAO_CosTrading_Skel
+ace_target_cxx_sources(TAO_CosTrading_Skel
   HEADER_FILES trading_skel_export.h
 )
 
@@ -41,7 +41,7 @@ tao_idl_sources(
   WORKING_DIRECTORY ..
 )
 
-add_ace_lib(TAO_CosTrading_Serv
+ace_add_lib(TAO_CosTrading_Serv
   DEFINE_SYMBOL TAO_TRADING_SERV_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -52,7 +52,7 @@ add_ace_lib(TAO_CosTrading_Serv
                         TAO_Utils
 )
 
-target_cxx_sources(TAO_CosTrading_Serv
+ace_target_cxx_sources(TAO_CosTrading_Serv
   SOURCE_FILES Constraint_Interpreter.cpp
                Constraint_Nodes.cpp
                Constraint_Visitors.cpp

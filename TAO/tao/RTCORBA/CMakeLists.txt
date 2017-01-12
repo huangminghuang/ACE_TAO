@@ -1,8 +1,8 @@
 
 
-requires(RT_CORBA)
+ace_requires(RT_CORBA)
 
-add_ace_lib(TAO_RTCORBA
+ace_add_lib(TAO_RTCORBA
   OUTPUT_NAME TAO_RTCORBA
   PACKAGE TAO
   FOLDER tao/RTCORBA
@@ -12,7 +12,7 @@ add_ace_lib(TAO_RTCORBA
                              $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
   PUBLIC_LINK_LIBRARIES TAO_PI
 )
-target_cxx_sources(TAO_RTCORBA
+ace_target_cxx_sources(TAO_RTCORBA
   SOURCE_FILES Continuous_Priority_Mapping.cpp
                Direct_Priority_Mapping.cpp
                Linear_Network_Priority_Mapping.cpp
@@ -106,7 +106,7 @@ tao_idl_sources(
   IDL_FILES RTCORBA.pidl
 )
 
-install_package_files(TAO
+ace_install_package_files(TAO
   RT_ProtocolProperties.pidl
 )
 

@@ -1,6 +1,6 @@
 
 
-add_ace_lib(TAO_CosNotification
+ace_add_lib(TAO_CosNotification
   DEFINE_SYMBOL TAO_NOTIFY_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -9,13 +9,13 @@ add_ace_lib(TAO_CosNotification
                         TAO_CosEvent
 )
 
-target_cxx_sources(TAO_CosNotification
+ace_target_cxx_sources(TAO_CosNotification
   SOURCE_FILES Notify_Extensions.cpp
   HEADER_FILES notify_export.h
                Notify_Extensions.h
 )
 
-add_ace_lib(TAO_CosNotification_Skel
+ace_add_lib(TAO_CosNotification_Skel
   DEFINE_SYMBOL TAO_NOTIFY_SKEL_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -25,7 +25,7 @@ add_ace_lib(TAO_CosNotification_Skel
                         TAO_PortableServer
 )
 
-target_cxx_sources(TAO_CosNotification_Skel
+ace_target_cxx_sources(TAO_CosNotification_Skel
   HEADER_FILES notify_skel_export.h
 )
 
@@ -122,7 +122,7 @@ set(CosNotification_Serv_SOURCES
 )
 
 
-add_ace_lib(TAO_CosNotification_Serv
+ace_add_lib(TAO_CosNotification_Serv
   DEFINE_SYMBOL TAO_NOTIFY_SERV_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -135,7 +135,7 @@ add_ace_lib(TAO_CosNotification_Serv
 
 )
 
-target_cxx_sources(TAO_CosNotification_Serv
+ace_target_cxx_sources(TAO_CosNotification_Serv
   SOURCE_FILES Admin.cpp
                AdminProperties.cpp
                Bit_Vector.cpp
@@ -344,7 +344,7 @@ target_cxx_sources(TAO_CosNotification_Serv
                  Validate_Worker_T.cpp
 )
 
-add_ace_lib(TAO_RT_Notification
+ace_add_lib(TAO_RT_Notification
   DEFINE_SYMBOL TAO_RT_NOTIFY_BUILD_DLL
   PACKAGE TAO
   PUBLIC_LINK_LIBRARIES TAO_CosNotification_Serv
@@ -352,7 +352,7 @@ add_ace_lib(TAO_RT_Notification
 
 )
 
-target_cxx_sources(TAO_RT_Notification
+ace_target_cxx_sources(TAO_RT_Notification
   SOURCE_FILES RT_Builder.cpp
                RT_Factory.cpp
                RT_Notify_Service.cpp
@@ -370,7 +370,7 @@ include(Any/CMakeLists.txt)
 include(Sequence/CMakeLists.txt)
 include(Structured/CMakeLists.txt)
 
-add_ace_lib(TAO_CosNotification_Persist
+ace_add_lib(TAO_CosNotification_Persist
   DEFINE_SYMBOL TAO_NOTIFY_PERSIST_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -378,7 +378,7 @@ add_ace_lib(TAO_CosNotification_Persist
                         ACEXML_Parser
 )
 
-target_cxx_sources(TAO_CosNotification_Persist
+ace_target_cxx_sources(TAO_CosNotification_Persist
   SOURCE_FILES XML_Loader.cpp
                XML_Saver.cpp
                XML_Topology_Factory.cpp

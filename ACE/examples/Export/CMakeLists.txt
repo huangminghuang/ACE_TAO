@@ -7,25 +7,25 @@ if (NOT ACE_ROOT)
 endif()
 
 
-add_ace_lib(Export_Lib
+ace_add_lib(Export_Lib
   OUTPUT_NAME Export_Lib
   FOLDER examples/Export
   DEFINE_SYMBOL TEST_BUILD_DLL
   PUBLIC_LINK_LIBRARIES ACE
 )
-target_cxx_sources(Export_Lib
+ace_target_cxx_sources(Export_Lib
   SOURCE_FILES dll.cpp
   HEADER_FILES dll.h
 )
 
 
-add_ace_exe(Export_Test
+ace_add_exe(Export_Test
   OUTPUT_NAME tester
   FOLDER examples/Export
   LINK_LIBRARIES Export_Lib
                  ACE
 )
-target_cxx_sources(Export_Test
+ace_target_cxx_sources(Export_Test
   SOURCE_FILES test.cpp
 )
 

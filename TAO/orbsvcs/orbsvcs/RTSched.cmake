@@ -1,4 +1,4 @@
-target_cxx_sources(TAO_RTSched
+ace_target_cxx_sources(TAO_RTSched
   SOURCE_FILES Scheduler_Factory.cpp
                Runtime_Scheduler.cpp
                Scheduler_Utilities.cpp

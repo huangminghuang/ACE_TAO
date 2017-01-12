@@ -7,22 +7,22 @@ if (NOT ACE_ROOT)
 endif()
 
 
-add_ace_exe(Semaphores_Starter
+ace_add_exe(Semaphores_Starter
   OUTPUT_NAME starter
   FOLDER examples/Semaphores
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Semaphores_Starter
+ace_target_cxx_sources(Semaphores_Starter
   SOURCE_FILES starter.cpp
 )
 
 
-add_ace_exe(Semaphores_Worker
+ace_add_exe(Semaphores_Worker
   OUTPUT_NAME worker
   FOLDER examples/Semaphores
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Semaphores_Worker
+ace_target_cxx_sources(Semaphores_Worker
   SOURCE_FILES worker.cpp
 )
 

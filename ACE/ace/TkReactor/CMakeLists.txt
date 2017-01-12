@@ -1,8 +1,8 @@
 find_package(TCL)
 
-requires(TCLTK_FOUND)
+ace_requires(TCLTK_FOUND)
 
-add_ace_lib(ACE_TkReactor
+ace_add_lib(ACE_TkReactor
   OUTPUT_NAME ACE_TkReactor
   PACKAGE ACE
   FOLDER ace/TkReactor
@@ -12,7 +12,7 @@ add_ace_lib(ACE_TkReactor
                         ACE
                         ${TCL_LIBRARY}
 )
-target_cxx_sources(ACE_TkReactor
+ace_target_cxx_sources(ACE_TkReactor
   SOURCE_FILES TkReactor.cpp
   HEADER_FILES TkReactor.h
 )

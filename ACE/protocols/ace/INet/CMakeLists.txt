@@ -1,8 +1,8 @@
 
 
-requires("NOT EXCLUDE_INET" "NOT OLD_STDSTREAM")
+ace_requires("NOT EXCLUDE_INET" "NOT OLD_STDSTREAM")
 
-add_ace_lib(ACE_INet
+ace_add_lib(ACE_INet
   OUTPUT_NAME ACE_INet
   PACKAGE ACE
   FOLDER protocols/ace/INet
@@ -11,7 +11,7 @@ add_ace_lib(ACE_INet
                              $<BUILD_INTERFACE:${ACE_ROOT}/protocols>
   PUBLIC_LINK_LIBRARIES ACE
 )
-target_cxx_sources(ACE_INet
+ace_target_cxx_sources(ACE_INet
   SOURCE_FILES AuthenticationBase.cpp
                FTP_Request.cpp
                ClientRequestHandler.cpp
@@ -104,7 +104,7 @@ target_cxx_sources(ACE_INet
 
 
 
-add_ace_lib(ACE_INet_SSL
+ace_add_lib(ACE_INet_SSL
   OUTPUT_NAME ACE_INet_SSL
   PACKAGE ACE
   FOLDER protocols/ace/INet
@@ -114,7 +114,7 @@ add_ace_lib(ACE_INet_SSL
                         ACE_SSL
                         ACE
 )
-target_cxx_sources(ACE_INet_SSL
+ace_target_cxx_sources(ACE_INet_SSL
   SOURCE_FILES HTTPS_URL.cpp
                SSL_X509Cert.cpp
                SSL_CallbackManager.cpp

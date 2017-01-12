@@ -1,6 +1,6 @@
 
 
-add_ace_lib(TAO_Monitor
+ace_add_lib(TAO_Monitor
   OUTPUT_NAME TAO_Monitor
   PACKAGE TAO
   FOLDER tao/Monitor
@@ -10,7 +10,7 @@ add_ace_lib(TAO_Monitor
   PUBLIC_LINK_LIBRARIES TAO_PortableServer
                         ACE_Monitor_Control
 )
-target_cxx_sources(TAO_Monitor
+ace_target_cxx_sources(TAO_Monitor
   SOURCE_FILES Monitor.cpp
                Monitor_Impl.cpp
   HEADER_FILES Monitor.h

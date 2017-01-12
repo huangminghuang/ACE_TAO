@@ -1,4 +1,4 @@
-add_ace_lib(TAO_FTRT_EventChannel
+ace_add_lib(TAO_FTRT_EventChannel
   DEFINE_SYMBOL TAO_FTRTEC_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -8,7 +8,7 @@ add_ace_lib(TAO_FTRT_EventChannel
                         TAO_Utils
 )
 
-target_cxx_sources(TAO_FTRT_EventChannel
+ace_target_cxx_sources(TAO_FTRT_EventChannel
   SOURCE_FILES AMI_Primary_Replication_Strategy.cpp
                AMI_Replication_Strategy.cpp
                Basic_Replication_Strategy.cpp

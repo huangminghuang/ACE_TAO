@@ -1,8 +1,8 @@
 
 
-requires("NOT CORBA_E_COMPACT")
+ace_requires("NOT CORBA_E_COMPACT")
 
-add_ace_lib(TAO_CSD_Framework
+ace_add_lib(TAO_CSD_Framework
   OUTPUT_NAME TAO_CSD_Framework
   PACKAGE TAO
   FOLDER tao/CSD_Framework
@@ -14,7 +14,7 @@ add_ace_lib(TAO_CSD_Framework
   PUBLIC_LINK_LIBRARIES TAO_PI
                         TAO_PortableServer
 )
-target_cxx_sources(TAO_CSD_Framework
+ace_target_cxx_sources(TAO_CSD_Framework
   SOURCE_FILES CSD_Default_Servant_Dispatcher.cpp
                CSD_FW_Server_Request_Wrapper.cpp
                CSD_Framework_Loader.cpp

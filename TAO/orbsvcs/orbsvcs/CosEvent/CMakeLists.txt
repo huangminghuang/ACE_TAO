@@ -1,11 +1,11 @@
 
 
-requires("NOT MINIMUM_CORBA"
+ace_requires("NOT MINIMUM_CORBA"
          "NOT CORBA_E_MICRO"
          "NOT CORBA_E_COMPACT"
 )
 
-add_ace_lib(TAO_CosEvent
+ace_add_lib(TAO_CosEvent
   DEFINE_SYMBOL TAO_COSEVENT_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -15,18 +15,18 @@ add_ace_lib(TAO_CosEvent
   PUBLIC_LINK_LIBRARIES TAO_AnyTypeCode
 )
 
-target_cxx_sources(TAO_CosEvent
+ace_target_cxx_sources(TAO_CosEvent
   HEADER_FILES event_export.h
 )
 
-add_ace_lib(TAO_CosEvent_Skel
+ace_add_lib(TAO_CosEvent_Skel
   DEFINE_SYMBOL TAO_COSEVENT_SKEL_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
   PUBLIC_LINK_LIBRARIES TAO_CosEvent TAO_PortableServer
 )
 
-target_cxx_sources(TAO_CosEvent_Skel
+ace_target_cxx_sources(TAO_CosEvent_Skel
   HEADER_FILES event_skel_export.h
 )
 
@@ -50,7 +50,7 @@ tao_idl_sources(
   WORKING_DIRECTORY ..
 )
 
-add_ace_lib(TAO_CosEvent_Serv
+ace_add_lib(TAO_CosEvent_Serv
   DEFINE_SYMBOL TAO_COSEVENT_SERV_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -60,7 +60,7 @@ add_ace_lib(TAO_CosEvent_Serv
   ASPECTS MESSAGING_OPTIONAL
 )
 
-target_cxx_sources(TAO_CosEvent_Serv
+ace_target_cxx_sources(TAO_CosEvent_Serv
   SOURCE_FILES CEC_ConsumerAdmin.cpp
                CEC_ConsumerControl.cpp
                CEC_Default_Factory.cpp
@@ -128,7 +128,7 @@ if (EC_TYPED_EVENT AND TARGET TAO_CosEvent)
   )
   target_compile_definitions(TAO_CosEvent PUBLIC TAO_HAS_TYPED_EVENT_CHANNEL)
 
-  target_cxx_sources(TAO_CosEvent_Serv
+  ace_target_cxx_sources(TAO_CosEvent_Serv
     SOURCE_FILES CEC_TypedEvent.cpp
                  CEC_TypedEventChannel.cpp
                  CEC_TypedProxyPushConsumer.cpp

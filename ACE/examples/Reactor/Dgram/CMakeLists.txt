@@ -7,22 +7,22 @@ if (NOT ACE_ROOT)
 endif()
 
 
-add_ace_exe(Reactor_Dgram_Co
+ace_add_exe(Reactor_Dgram_Co
   OUTPUT_NAME codgram
   FOLDER examples/Reactor/Dgram
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Reactor_Dgram_Co
+ace_target_cxx_sources(Reactor_Dgram_Co
   SOURCE_FILES CODgram.cpp
 )
 
 
-add_ace_exe(Reactor_Dgram
+ace_add_exe(Reactor_Dgram
   OUTPUT_NAME dgram
   FOLDER examples/Reactor/Dgram
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Reactor_Dgram
+ace_target_cxx_sources(Reactor_Dgram
   SOURCE_FILES Dgram.cpp
 )
 

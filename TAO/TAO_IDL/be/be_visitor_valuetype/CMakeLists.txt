@@ -1,4 +1,4 @@
-target_cxx_sources(TAO_IDL_BE
+ace_target_cxx_sources(TAO_IDL_BE
   SOURCE_FILES valuetype_ss.cpp
                valuetype_obv_ci.cpp
                valuetype.cpp

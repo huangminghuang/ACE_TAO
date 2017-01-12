@@ -1,6 +1,6 @@
 
 
-add_ace_lib(TAO_IORManip
+ace_add_lib(TAO_IORManip
   OUTPUT_NAME TAO_IORManip
   PACKAGE TAO
   FOLDER tao/IORManipulation
@@ -10,7 +10,7 @@ add_ace_lib(TAO_IORManip
                              $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
   PUBLIC_LINK_LIBRARIES TAO_AnyTypeCode
 )
-target_cxx_sources(TAO_IORManip
+ace_target_cxx_sources(TAO_IORManip
   SOURCE_FILES IORManip_Filter.cpp
                IORManip_IIOP_Filter.cpp
                IORManip_Loader.cpp

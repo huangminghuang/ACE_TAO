@@ -1,6 +1,6 @@
 
 
-requires(RAPI_FOUND)
+ace_requires(RAPI_FOUND)
 
 if (WIN32)
   set(RAPI_FOUND 1)
@@ -9,7 +9,7 @@ else()
 endif()
 
 
-add_ace_lib(ACE_QoS
+ace_add_lib(ACE_QoS
   OUTPUT_NAME ACE_QoS
   PACKAGE ACE
   COMPILE_DEFINITIONS ACE_HAS_QOS
@@ -19,7 +19,7 @@ add_ace_lib(ACE_QoS
   PUBLIC_LINK_LIBRARIES ACE
                         ${RAPI_LIBRARIES}
 )
-target_cxx_sources(ACE_QoS
+ace_target_cxx_sources(ACE_QoS
   SOURCE_FILES QoS_Decorator.cpp
                QoS_Manager.cpp
                QoS_Session_Factory.cpp

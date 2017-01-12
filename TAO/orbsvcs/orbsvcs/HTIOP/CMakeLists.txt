@@ -1,13 +1,13 @@
-requires("TARGET ACE_HTBP")
+ace_requires("TARGET ACE_HTBP")
 
-add_ace_lib(TAO_HTIOP
+ace_add_lib(TAO_HTIOP
   DEFINE_SYMBOL HTIOP_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
   PUBLIC_LINK_LIBRARIES ACE_HTBP TAO_Svc_Utils
 )
 
-target_cxx_sources(TAO_HTIOP
+ace_target_cxx_sources(TAO_HTIOP
   SOURCE_FILES HTIOP_Acceptor.cpp
                HTIOP_Acceptor_Impl.cpp
                HTIOP_Completion_Handler.cpp

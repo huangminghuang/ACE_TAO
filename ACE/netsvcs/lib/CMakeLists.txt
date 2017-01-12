@@ -1,12 +1,12 @@
 
 
-add_ace_lib(netsvcs
+ace_add_lib(netsvcs
   OUTPUT_NAME netsvcs
   FOLDER netsvcs/lib
   DEFINE_SYMBOL ACE_BUILD_SVC_DLL
   PUBLIC_LINK_LIBRARIES ACE
 )
-target_cxx_sources(netsvcs
+ace_target_cxx_sources(netsvcs
   SOURCE_FILES Time_Request_Reply.cpp
                TS_Clerk_Handler.cpp
                TS_Server_Handler.cpp

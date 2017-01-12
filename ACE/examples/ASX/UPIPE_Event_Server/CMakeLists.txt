@@ -7,12 +7,12 @@ if (NOT ACE_ROOT)
 endif()
 
 
-add_ace_exe(UPIPE_Event_Server
+ace_add_exe(UPIPE_Event_Server
   OUTPUT_NAME UPIPE_Event_Server
   FOLDER examples/ASX/UPIPE_Event_Server
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(UPIPE_Event_Server
+ace_target_cxx_sources(UPIPE_Event_Server
   SOURCE_FILES Event_Analyzer.cpp
                Consumer_Router.cpp
                Peer_Router.cpp

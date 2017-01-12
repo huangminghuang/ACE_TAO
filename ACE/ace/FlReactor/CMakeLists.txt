@@ -1,8 +1,8 @@
 find_package(FLTK)
 
-requires(FLTK_FOUND)
+ace_requires(FLTK_FOUND)
 
-add_ace_lib(ACE_FlReactor
+ace_add_lib(ACE_FlReactor
   OUTPUT_NAME ACE_FlReactor
   PACKAGE ACE
   FOLDER ace/FlReactor
@@ -11,7 +11,7 @@ add_ace_lib(ACE_FlReactor
   PUBLIC_LINK_LIBRARIES ${FLTK_LIBRARIES}
                         ACE
 )
-target_cxx_sources(ACE_FlReactor
+ace_target_cxx_sources(ACE_FlReactor
   SOURCE_FILES FlReactor.cpp
   HEADER_FILES FlReactor.h
 )

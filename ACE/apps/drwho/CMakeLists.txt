@@ -1,13 +1,13 @@
 
 
-requires("NOT USES_WCHAR")
+ace_requires("NOT USES_WCHAR")
 
-add_ace_exe(drwho_-client
+ace_add_exe(drwho_-client
   OUTPUT_NAME client
   FOLDER apps/drwho
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(drwho_-client
+ace_target_cxx_sources(drwho_-client
   SOURCE_FILES PMC_Ruser.cpp
                SM_Server.cpp
                HT_Client.cpp
@@ -86,12 +86,12 @@ target_cxx_sources(drwho_-client
 )
 
 
-add_ace_exe(drwho_-server
+ace_add_exe(drwho_-server
   OUTPUT_NAME server
   FOLDER apps/drwho
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(drwho_-server
+ace_target_cxx_sources(drwho_-server
   SOURCE_FILES CM_Server.cpp
                SM_Server.cpp
                HT_Client.cpp

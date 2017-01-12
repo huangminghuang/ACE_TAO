@@ -1,6 +1,6 @@
 
 
-add_ace_lib(TAO_FlResource
+ace_add_lib(TAO_FlResource
   OUTPUT_NAME TAO_FlResource
   PACKAGE TAO
   FOLDER tao/FlResource
@@ -9,7 +9,7 @@ add_ace_lib(TAO_FlResource
   PUBLIC_LINK_LIBRARIES ACE_FlReactor
                         TAO
 )
-target_cxx_sources(TAO_FlResource
+ace_target_cxx_sources(TAO_FlResource
   SOURCE_FILES FlResource_Factory.cpp
                FlResource_Loader.cpp
   HEADER_FILES FlResource_Factory.h

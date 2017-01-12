@@ -7,12 +7,12 @@ if (NOT ACE_ROOT)
 endif()
 
 
-add_ace_exe(Map_Manager
+ace_add_exe(Map_Manager
   OUTPUT_NAME Map_Manager
   FOLDER examples/Map_Manager
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Map_Manager
+ace_target_cxx_sources(Map_Manager
   SOURCE_FILES test_hash_map_manager.cpp
 )
 

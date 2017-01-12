@@ -1,4 +1,4 @@
-target_cxx_sources(TAO_IDL_FE
+ace_target_cxx_sources(TAO_IDL_FE
   SOURCE_FILES utl_scope_T.cpp
   HEADER_FILES ast.h
                ast_argument.h

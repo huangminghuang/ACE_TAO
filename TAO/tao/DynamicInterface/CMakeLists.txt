@@ -1,8 +1,8 @@
 
 
-requires(CORBA_MESSAGING)
+ace_requires(CORBA_MESSAGING)
 
-add_ace_lib(TAO_DynamicInterface
+ace_add_lib(TAO_DynamicInterface
   OUTPUT_NAME TAO_DynamicInterface
   PACKAGE TAO
   FOLDER tao/DynamicInterface
@@ -10,7 +10,7 @@ add_ace_lib(TAO_DynamicInterface
   DEFINE_SYMBOL TAO_DYNAMICINTERFACE_BUILD_DLL
   PUBLIC_LINK_LIBRARIES TAO_Messaging
 )
-target_cxx_sources(TAO_DynamicInterface
+ace_target_cxx_sources(TAO_DynamicInterface
   SOURCE_FILES AMH_DSI_Response_Handler.cpp
                Context.cpp
                DII_Arguments.cpp

@@ -1,8 +1,8 @@
 find_package(BZip2)
 
-requires(BZIP2_FOUND)
+ace_requires(BZIP2_FOUND)
 
-add_ace_lib(TAO_Bzip2Compressor
+ace_add_lib(TAO_Bzip2Compressor
   OUTPUT_NAME TAO_Bzip2Compressor
   PACKAGE TAO
   FOLDER tao/Compression/bzip2
@@ -11,7 +11,7 @@ add_ace_lib(TAO_Bzip2Compressor
   PUBLIC_LINK_LIBRARIES TAO_Compression
                         ${BZIP2_LIBRARIES}
 )
-target_cxx_sources(TAO_Bzip2Compressor
+ace_target_cxx_sources(TAO_Bzip2Compressor
   SOURCE_FILES Bzip2Compressor.cpp
                Bzip2Compressor_Factory.cpp
   HEADER_FILES Bzip2Compressor.h

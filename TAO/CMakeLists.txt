@@ -14,18 +14,21 @@ endif()
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/cmake)
 set(WHITELIST_TARGETS "" CACHE STRING "")
 
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+option(BUILD_SHARED_LIBS "" ON)
+
 include(cmake/tao_options.cmake)
 include(cmake/tao_aspects.cmake)
 include(cmake/tao_idl_sources.cmake)
 
-add_package(TAO VERSION ${TAO_VERSION})
+ace_add_package(TAO VERSION ${TAO_VERSION})
 
 
 add_subdirectory(TAO_IDL)
 add_subdirectory(tao)
 add_subdirectory(orbsvcs)
 
-install_package(TAO
+ace_install_package(TAO
   CONFIG_OPTIONS ${TAO_OPTIONS}
   PREREQUISITE ACE
   EXTRA_CMAKE_FILES cmake/tao_aspects.cmake

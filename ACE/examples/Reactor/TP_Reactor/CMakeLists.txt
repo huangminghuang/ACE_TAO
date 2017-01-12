@@ -7,22 +7,22 @@ if (NOT ACE_ROOT)
 endif()
 
 
-add_ace_exe(TP_Reactor_Client
+ace_add_exe(TP_Reactor_Client
   OUTPUT_NAME client
   FOLDER examples/Reactor/TP_Reactor
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(TP_Reactor_Client
+ace_target_cxx_sources(TP_Reactor_Client
   SOURCE_FILES client.cpp
 )
 
 
-add_ace_exe(TP_Reactor_Server
+ace_add_exe(TP_Reactor_Server
   OUTPUT_NAME server
   FOLDER examples/Reactor/TP_Reactor
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(TP_Reactor_Server
+ace_target_cxx_sources(TP_Reactor_Server
   SOURCE_FILES AcceptHandler.cpp
                server.cpp
                ReadHandler.cpp

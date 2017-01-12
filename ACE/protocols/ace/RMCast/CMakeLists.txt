@@ -1,8 +1,8 @@
 
 
-requires(ACE_HAS_THREADS)
+ace_requires(ACE_HAS_THREADS)
 
-add_ace_lib(ACE_RMCast
+ace_add_lib(ACE_RMCast
   OUTPUT_NAME ACE_RMCast
   PACKAGE ACE
   FOLDER protocols/ace/RMCast
@@ -10,7 +10,7 @@ add_ace_lib(ACE_RMCast
   PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../..>
   PUBLIC_LINK_LIBRARIES ACE
 )
-target_cxx_sources(ACE_RMCast
+ace_target_cxx_sources(ACE_RMCast
   SOURCE_FILES Flow.cpp
                Protocol.cpp
                Acknowledge.cpp

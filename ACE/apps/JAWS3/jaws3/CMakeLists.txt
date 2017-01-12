@@ -1,15 +1,15 @@
 
 
-requires("NOT USES_WCHAR")
+ace_requires("NOT USES_WCHAR")
 
-add_ace_lib(JAWS3
+ace_add_lib(JAWS3
   OUTPUT_NAME JAWS3
   FOLDER apps/JAWS3/jaws3
   DEFINE_SYMBOL JAWS_BUILD_DLL
   PUBLIC_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_SOURCE_DIR}/..
   PUBLIC_LINK_LIBRARIES ACE
 )
-target_cxx_sources(JAWS3
+ace_target_cxx_sources(JAWS3
   SOURCE_FILES Datagram.cpp
                Options.cpp
                Event_Completer.cpp
@@ -62,14 +62,14 @@ target_cxx_sources(JAWS3
 )
 
 
-add_ace_exe(JAWS3_server
+ace_add_exe(JAWS3_server
   OUTPUT_NAME main
   FOLDER apps/JAWS3/jaws3
   INCLUDE_DIRECTORIES ${CMAKE_CURRENT_SOURCE_DIR}/..
   LINK_LIBRARIES JAWS3
                  ACE
 )
-target_cxx_sources(JAWS3_server
+ace_target_cxx_sources(JAWS3_server
   SOURCE_FILES main.cpp
 )
 

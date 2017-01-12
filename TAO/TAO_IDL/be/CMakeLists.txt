@@ -1,4 +1,4 @@
-target_cxx_sources(TAO_IDL_BE
+ace_target_cxx_sources(TAO_IDL_BE
   SOURCE_FILES be_visitor_scope.cpp
                be_publishes.cpp
                be_interface_fwd.cpp

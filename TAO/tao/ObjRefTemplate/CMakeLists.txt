@@ -1,8 +1,8 @@
 
 
-requires("NOT CORBA_E_COMPACT")
+ace_requires("NOT CORBA_E_COMPACT")
 
-add_ace_lib(TAO_ObjRefTemplate
+ace_add_lib(TAO_ObjRefTemplate
   OUTPUT_NAME TAO_ObjRefTemplate
   PACKAGE TAO
   FOLDER tao/ObjRefTemplate
@@ -14,7 +14,7 @@ add_ace_lib(TAO_ObjRefTemplate
                         TAO_Valuetype
                         TAO_PortableServer
 )
-target_cxx_sources(TAO_ObjRefTemplate
+ace_target_cxx_sources(TAO_ObjRefTemplate
   SOURCE_FILES ORT_Adapter_Factory_Impl.cpp
                ORT_Adapter_Impl.cpp
                ObjectReferenceTemplate_i.cpp

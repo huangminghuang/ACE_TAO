@@ -7,12 +7,12 @@ if (NOT ACE_ROOT)
 endif()
 
 
-add_ace_exe(Mem_Map_IO_Tests
+ace_add_exe(Mem_Map_IO_Tests
   OUTPUT_NAME test_io
   FOLDER examples/Mem_Map/IO-tests
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Mem_Map_IO_Tests
+ace_target_cxx_sources(Mem_Map_IO_Tests
   SOURCE_FILES test_io.cpp
                IO_Test.cpp
   HEADER_FILES IO_Test.h

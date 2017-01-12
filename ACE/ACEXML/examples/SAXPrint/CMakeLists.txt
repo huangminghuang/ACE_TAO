@@ -1,12 +1,12 @@
 
 
-add_ace_exe(SAXPrint
+ace_add_exe(SAXPrint
   OUTPUT_NAME SAXPrint
   FOLDER ACEXML/examples/SAXPrint
   LINK_LIBRARIES ACE
                  ACEXML_Parser
 )
-target_cxx_sources(SAXPrint
+ace_target_cxx_sources(SAXPrint
   SOURCE_FILES SAXPrint_Handler.cpp
                main.cpp
                Print_Handler.cpp

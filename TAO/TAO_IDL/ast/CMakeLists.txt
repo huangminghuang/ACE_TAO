@@ -1,4 +1,4 @@
-target_cxx_sources(TAO_IDL_FE
+ace_target_cxx_sources(TAO_IDL_FE
   SOURCE_FILES ast_check.cpp
                ast_array.cpp
                ast_interface.cpp

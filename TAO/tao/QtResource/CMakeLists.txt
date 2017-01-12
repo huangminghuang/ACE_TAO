@@ -1,6 +1,6 @@
 
 
-add_ace_lib(TAO_QtResource
+ace_add_lib(TAO_QtResource
   OUTPUT_NAME TAO_QtResource
   PACKAGE TAO
   FOLDER tao/QtResource
@@ -10,7 +10,7 @@ add_ace_lib(TAO_QtResource
                         TAO
                         ACE_QtReactor
 )
-target_cxx_sources(TAO_QtResource
+ace_target_cxx_sources(TAO_QtResource
   SOURCE_FILES QtResource_Factory.cpp
                QtResource_Loader.cpp
   HEADER_FILES QtResource_Factory.h
