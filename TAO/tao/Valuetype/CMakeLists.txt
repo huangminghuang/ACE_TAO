@@ -1,8 +1,8 @@
 
 
-requires("NOT CORBA_E_COMPACT")
+ace_requires("NOT CORBA_E_COMPACT")
 
-add_ace_lib(TAO_Valuetype
+ace_add_lib(TAO_Valuetype
   OUTPUT_NAME TAO_Valuetype
   PACKAGE TAO
   FOLDER tao/Valuetype
@@ -12,7 +12,7 @@ add_ace_lib(TAO_Valuetype
                              $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
   PUBLIC_LINK_LIBRARIES TAO_AnyTypeCode
 )
-target_cxx_sources(TAO_Valuetype
+ace_target_cxx_sources(TAO_Valuetype
   SOURCE_FILES AbstractBase.cpp
                AbstractBase_Invocation_Adapter.cpp
                ValueBase.cpp

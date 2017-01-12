@@ -7,92 +7,92 @@ if (NOT ACE_ROOT)
 endif()
 
 
-add_ace_exe(Async_Cancel
+ace_add_exe(Async_Cancel
   OUTPUT_NAME Async_Cancel
   FOLDER examples/APG/ThreadManagement
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Async_Cancel
+ace_target_cxx_sources(Async_Cancel
   SOURCE_FILES Async_Cancel.cpp
 )
 
 
-add_ace_exe(Coop_Cancel
+ace_add_exe(Coop_Cancel
   OUTPUT_NAME Coop_Cancel
   FOLDER examples/APG/ThreadManagement
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Coop_Cancel
+ace_target_cxx_sources(Coop_Cancel
   SOURCE_FILES Coop_Cancel.cpp
 )
 
 
-add_ace_exe(ExitHandler
+ace_add_exe(ExitHandler
   OUTPUT_NAME ExitHandler
   FOLDER examples/APG/ThreadManagement
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(ExitHandler
+ace_target_cxx_sources(ExitHandler
   SOURCE_FILES ExitHandler.cpp
 )
 
 
-add_ace_exe(Pool
+ace_add_exe(Pool
   OUTPUT_NAME Pool
   FOLDER examples/APG/ThreadManagement
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Pool
+ace_target_cxx_sources(Pool
   SOURCE_FILES Pool.cpp
 )
 
 
-add_ace_exe(Priorities
+ace_add_exe(Priorities
   OUTPUT_NAME Priorities
   FOLDER examples/APG/ThreadManagement
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Priorities
+ace_target_cxx_sources(Priorities
   SOURCE_FILES Priorities.cpp
 )
 
 
-add_ace_exe(Signals
+ace_add_exe(Signals
   OUTPUT_NAME Signals
   FOLDER examples/APG/ThreadManagement
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Signals
+ace_target_cxx_sources(Signals
   SOURCE_FILES Signals.cpp
 )
 
 
-add_ace_exe(Signals2
+ace_add_exe(Signals2
   OUTPUT_NAME Signals2
   FOLDER examples/APG/ThreadManagement
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Signals2
+ace_target_cxx_sources(Signals2
   SOURCE_FILES Signals2.cpp
 )
 
 
-add_ace_exe(Start_Hook
+ace_add_exe(Start_Hook
   OUTPUT_NAME Start_Hook
   FOLDER examples/APG/ThreadManagement
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Start_Hook
+ace_target_cxx_sources(Start_Hook
   SOURCE_FILES Start_Hook.cpp
 )
 
 
-add_ace_exe(State
+ace_add_exe(State
   OUTPUT_NAME State
   FOLDER examples/APG/ThreadManagement
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(State
+ace_target_cxx_sources(State
   SOURCE_FILES State.cpp
 )
 

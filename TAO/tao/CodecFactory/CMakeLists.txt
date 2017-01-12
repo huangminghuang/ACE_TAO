@@ -1,6 +1,6 @@
 
 
-add_ace_lib(TAO_CodecFactory
+ace_add_lib(TAO_CodecFactory
   OUTPUT_NAME TAO_CodecFactory
   PACKAGE TAO
   FOLDER tao/CodecFactory
@@ -8,7 +8,7 @@ add_ace_lib(TAO_CodecFactory
                              $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
   PUBLIC_LINK_LIBRARIES TAO_AnyTypeCode
 )
-target_cxx_sources(TAO_CodecFactory
+ace_target_cxx_sources(TAO_CodecFactory
   SOURCE_FILES CDR_Encaps_Codec.cpp
                CodecFactory.cpp
                CodecFactory_impl.cpp

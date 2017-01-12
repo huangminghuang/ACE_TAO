@@ -1,6 +1,6 @@
 
 
-add_ace_lib(TAO_TkResource
+ace_add_lib(TAO_TkResource
   OUTPUT_NAME TAO_TkResource
   PACKAGE TAO
   FOLDER tao/TkResource
@@ -9,7 +9,7 @@ add_ace_lib(TAO_TkResource
   PUBLIC_LINK_LIBRARIES TAO
                         ACE_TkReactor
 )
-target_cxx_sources(TAO_TkResource
+ace_target_cxx_sources(TAO_TkResource
   SOURCE_FILES TkResource_Factory.cpp
                TkResource_Loader.cpp
   HEADER_FILES TkResource_Factory.h

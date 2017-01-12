@@ -1,4 +1,4 @@
-target_cxx_sources(TAO_IDL_BE
+ace_target_cxx_sources(TAO_IDL_BE
   HEADER_FILES amh_ch.h
                amh_rh_sh.h
                amh_rh_ss.h

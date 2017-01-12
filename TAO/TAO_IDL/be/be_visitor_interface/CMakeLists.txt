@@ -1,4 +1,4 @@
-target_cxx_sources(TAO_IDL_BE
+ace_target_cxx_sources(TAO_IDL_BE
   SOURCE_FILES amh_ss.cpp
                ami4ccm_sendc_ex_idl.cpp
                interface_svth.cpp

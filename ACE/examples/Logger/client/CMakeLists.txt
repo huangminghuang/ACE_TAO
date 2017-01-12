@@ -7,12 +7,12 @@ if (NOT ACE_ROOT)
 endif()
 
 
-add_ace_exe(Logger_client
+ace_add_exe(Logger_client
   OUTPUT_NAME logging_app
   FOLDER examples/Logger/client
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Logger_client
+ace_target_cxx_sources(Logger_client
   SOURCE_FILES logging_app.cpp
 )
 

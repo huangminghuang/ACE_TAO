@@ -1,13 +1,13 @@
 
 
-requires("NOT USES_WCHAR")
+ace_requires("NOT USES_WCHAR")
 
-add_ace_exe(soreduce
+ace_add_exe(soreduce
   OUTPUT_NAME soreduce
   FOLDER apps/soreduce
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(soreduce
+ace_target_cxx_sources(soreduce
   SOURCE_FILES soreduce.cpp
                Obj_Module.cpp
                Library.cpp

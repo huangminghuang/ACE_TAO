@@ -9,7 +9,7 @@ if (NOT ACE_VERSION)
   string(REGEX MATCH "([0-9]\\.)+[0-9]" ACE_VERSION ${VERSION_FILE_CONTENT})
 endif()
 
-#include(cmake/disable_warnings.cmake)
+include(cmake/disable_warnings.cmake)
 include(cmake/visibility_check.cmake)
 include(cmake/ace_utils.cmake)
 include(cmake/ace_options.cmake)
@@ -17,9 +17,11 @@ include(cmake/ace_options.cmake)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/cmake)
 set(WHITELIST_TARGETS "" CACHE STRING "")
 
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+option(BUILD_SHARED_LIBS "" ON)
 
 enable_testing()
-add_package(ACE VERSION ${ACE_VERSION})
+ace_add_package(ACE VERSION ${ACE_VERSION})
 
 add_subdirectory(ace)
 add_subdirectory(ACEXML)
@@ -32,7 +34,7 @@ add_subdirectory(websvcs)
 add_subdirectory(performance-tests)
 add_subdirectory(examples)
 
-install_package(ACE
+ace_install_package(ACE
   CONFIG_OPTIONS ${ACE_OPTIONS} CMAKE_CXX_STANDARD CMAKE_CXX_STANDARD_REQUIRED
   EXTRA_CMAKE_FILES cmake/ace_utils.cmake
   EXTRA_INSTALL_FILES cmake/PackageConfig.cmake.in

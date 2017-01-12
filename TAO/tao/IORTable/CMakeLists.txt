@@ -1,6 +1,6 @@
 
 
-add_ace_lib(TAO_IORTable
+ace_add_lib(TAO_IORTable
   OUTPUT_NAME TAO_IORTable
   PACKAGE TAO
   FOLDER tao/IORTable
@@ -10,7 +10,7 @@ add_ace_lib(TAO_IORTable
                              $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
   PUBLIC_LINK_LIBRARIES TAO_PortableServer
 )
-target_cxx_sources(TAO_IORTable
+ace_target_cxx_sources(TAO_IORTable
   SOURCE_FILES IORTable.cpp
                IOR_Table_Impl.cpp
                Table_Adapter.cpp
@@ -36,9 +36,9 @@ tao_idl_sources(
 
 
 
-requires("NOT MINIMUM_CORBA" "NOT CORBA_E_MICRO" CORBA_MESSAGING)
+ace_requires("NOT MINIMUM_CORBA" "NOT CORBA_E_MICRO" CORBA_MESSAGING)
 
-add_ace_lib(TAO_Async_IORTable
+ace_add_lib(TAO_Async_IORTable
   OUTPUT_NAME TAO_Async_IORTable
   PACKAGE TAO
   FOLDER tao/IORTable
@@ -50,7 +50,7 @@ add_ace_lib(TAO_Async_IORTable
                         TAO_PortableServer
                         TAO_IORTable
 )
-target_cxx_sources(TAO_Async_IORTable
+ace_target_cxx_sources(TAO_Async_IORTable
   SOURCE_FILES Async_IORTable.cpp
                Async_IOR_Table_Impl.cpp
                Async_Table_Adapter.cpp

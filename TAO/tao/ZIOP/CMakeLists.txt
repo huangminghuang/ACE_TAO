@@ -1,6 +1,6 @@
 
 
-add_ace_lib(TAO_ZIOP
+ace_add_lib(TAO_ZIOP
   OUTPUT_NAME TAO_ZIOP
   PACKAGE TAO
   FOLDER tao/ZIOP
@@ -11,7 +11,7 @@ add_ace_lib(TAO_ZIOP
   PUBLIC_LINK_LIBRARIES TAO_Compression
                         TAO_PI
 )
-target_cxx_sources(TAO_ZIOP
+ace_target_cxx_sources(TAO_ZIOP
   SOURCE_FILES ZIOP.cpp
                ZIOP_ORBInitializer.cpp
                ZIOP_PolicyFactory.cpp

@@ -1,8 +1,8 @@
 
 
-requires(TRANSPORT_CURRENT INTERCEPTORS)
+ace_requires(TRANSPORT_CURRENT INTERCEPTORS)
 
-add_ace_lib(TAO_TC
+ace_add_lib(TAO_TC
   OUTPUT_NAME TAO_TC
   PACKAGE TAO
   FOLDER tao/TransportCurrent
@@ -12,7 +12,7 @@ add_ace_lib(TAO_TC
                              $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
   PUBLIC_LINK_LIBRARIES TAO_PI
 )
-target_cxx_sources(TAO_TC
+ace_target_cxx_sources(TAO_TC
   SOURCE_FILES Current_Impl.cpp
                Current_Loader.cpp
                Current_ORBInitializer_Base.cpp
@@ -37,9 +37,9 @@ tao_idl_sources(
 
 
 
-requires(TRANSPORT_CURRENT INTERCEPTORS)
+ace_requires(TRANSPORT_CURRENT INTERCEPTORS)
 
-add_ace_lib(TAO_TC_IIOP
+ace_add_lib(TAO_TC_IIOP
   OUTPUT_NAME TAO_TC_IIOP
   PACKAGE TAO
   FOLDER tao/TransportCurrent
@@ -50,7 +50,7 @@ add_ace_lib(TAO_TC_IIOP
   PUBLIC_LINK_LIBRARIES TAO_PI
                         TAO_TC
 )
-target_cxx_sources(TAO_TC_IIOP
+ace_target_cxx_sources(TAO_TC_IIOP
   SOURCE_FILES IIOP_Current_Impl.cpp
                IIOP_Current_Loader.cpp
   HEADER_FILES IIOP_Current_Impl.h

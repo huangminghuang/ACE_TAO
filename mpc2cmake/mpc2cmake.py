@@ -649,13 +649,13 @@ class MPCNode(dds_mpb.Handler):
 
     if self.is_exe:
       self.link_libraries = self.external_libs
-      result +=  "add_ace_exe(%s\n" %  (self.name) + format_target_properties_in_list(self,common_exe_properties)+ ")\n"
+      result +=  "ace_add_exe(%s\n" %  (self.name) + format_target_properties_in_list(self,common_exe_properties)+ ")\n"
     elif not self.custom_only:
       self.public_link_libraries = self.external_libs
       self.public_include_directories = self.include_directories
       if self.install_this_target:
         self.public_include_directories = [ "$<BUILD_INTERFACE:%s>" % x if x.startswith('${CMAKE_CURRENT') else x for x in self.public_include_directories ]
-      result += "add_ace_lib(%s\n" %  (self.name) + format_target_properties_in_list(self,common_lib_properties)+ ")\n"
+      result += "ace_add_lib(%s\n" %  (self.name) + format_target_properties_in_list(self,common_lib_properties)+ ")\n"
 
     result += self.sources.cmake_text(self, None)
 
@@ -781,7 +781,7 @@ class CMakeProjectNode:
     condition_text=" ".join([ translate_require(cond) for cond in self.requires] )
 
     if len(condition_text):
-      return '\nrequires(%s)\n' % condition_text
+      return '\nace_requires(%s)\n' % condition_text
     return ""
 
   def cmake_text(self):

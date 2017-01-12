@@ -1,6 +1,6 @@
 
 
-add_ace_lib(TAO_FT_Naming
+ace_add_lib(TAO_FT_Naming
   DEFINE_SYMBOL TAO_FTNAMING_INTF_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -8,7 +8,7 @@ add_ace_lib(TAO_FT_Naming
                         TAO_CosNaming_Serv
 )
 
-target_cxx_sources(TAO_FT_Naming
+ace_target_cxx_sources(TAO_FT_Naming
   SOURCE_FILES nsgroup_svc.cpp
   HEADER_FILES nsgroup_svc.h
                ftnaming_intf_export.h
@@ -27,7 +27,7 @@ tao_idl_sources(
 )
 
 
-add_ace_lib(TAO_FT_Naming_Replication
+ace_add_lib(TAO_FT_Naming_Replication
   DEFINE_SYMBOL TAO_FTNAMING_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -35,7 +35,7 @@ add_ace_lib(TAO_FT_Naming_Replication
                         TAO_FTORB_Utils
 )
 
-target_cxx_sources(TAO_FT_Naming_Replication
+ace_target_cxx_sources(TAO_FT_Naming_Replication
   HEADER_FILES ftnaming_export
 )
 
@@ -51,14 +51,14 @@ tao_idl_sources(
   WORKING_DIRECTORY ../..
 )
 
-add_ace_lib(TAO_FT_Naming_Serv
+ace_add_lib(TAO_FT_Naming_Serv
   DEFINE_SYMBOL TAO_FTNAMING_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
   PUBLIC_LINK_LIBRARIES TAO_FT_Naming TAO_CosLoadBalancing TAO_CosNaming_Serv TAO_FT_Naming_Replication
 
 )
-target_cxx_sources(TAO_FT_Naming_Serv
+ace_target_cxx_sources(TAO_FT_Naming_Serv
   SOURCE_FILES FT_Naming_Manager.cpp
                FT_Naming_Replication_Manager.cpp
                FT_Naming_Server.cpp

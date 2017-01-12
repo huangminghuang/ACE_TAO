@@ -7,12 +7,12 @@ if (NOT ACE_ROOT)
 endif()
 
 
-add_ace_exe(IOStream_Server
+ace_add_exe(IOStream_Server
   OUTPUT_NAME iostream_server
   FOLDER examples/IOStream/server
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(IOStream_Server
+ace_target_cxx_sources(IOStream_Server
   SOURCE_FILES iostream_server.cpp
   HEADER_FILES iostream_server.h
 )

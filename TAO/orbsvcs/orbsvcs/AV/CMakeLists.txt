@@ -1,7 +1,7 @@
 
 
 
-add_ace_lib(TAO_AV
+ace_add_lib(TAO_AV
   DEFINE_SYMBOL TAO_AV_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -12,7 +12,7 @@ add_ace_lib(TAO_AV
 
 )
 
-target_cxx_sources(TAO_AV
+ace_target_cxx_sources(TAO_AV
   SOURCE_FILES AVStreams_i.cpp
                AV_Core.cpp
                Endpoint_Strategy.cpp

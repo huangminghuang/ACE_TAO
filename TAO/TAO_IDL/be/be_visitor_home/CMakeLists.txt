@@ -1,4 +1,4 @@
-target_cxx_sources(TAO_IDL_BE
+ace_target_cxx_sources(TAO_IDL_BE
   SOURCE_FILES home_exh.cpp
                home_exs.cpp
                home_svh.cpp

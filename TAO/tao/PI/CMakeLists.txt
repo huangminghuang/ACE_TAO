@@ -1,6 +1,6 @@
 
 
-add_ace_lib(TAO_PI
+ace_add_lib(TAO_PI
   OUTPUT_NAME TAO_PI
   PACKAGE TAO
   FOLDER tao/PI
@@ -11,7 +11,7 @@ add_ace_lib(TAO_PI
   PUBLIC_LINK_LIBRARIES TAO_AnyTypeCode
                         TAO_CodecFactory
 )
-target_cxx_sources(TAO_PI
+ace_target_cxx_sources(TAO_PI
   SOURCE_FILES ClientRequestDetails.cpp
                ClientRequestInfo.cpp
                ClientRequestInterceptor_Adapter_Impl.cpp
@@ -121,7 +121,7 @@ tao_idl_sources(
   IDL_FILES InvalidSlot.pidl
 )
 
-install_package_files(TAO
+ace_install_package_files(TAO
   PolicyFactory.pidl
 )
 

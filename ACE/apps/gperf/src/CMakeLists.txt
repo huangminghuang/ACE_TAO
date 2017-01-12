@@ -1,12 +1,12 @@
 
 
-add_ace_exe(ace_gperf
+ace_add_exe(ace_gperf
   OUTPUT_NAME ace_gperf
   PACKAGE ACE
   FOLDER apps/gperf/src
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(ace_gperf
+ace_target_cxx_sources(ace_gperf
   SOURCE_FILES Gen_Perf.cpp
                Hash_Table.cpp
                List_Node.cpp

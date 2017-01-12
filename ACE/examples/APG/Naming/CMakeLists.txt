@@ -7,26 +7,26 @@ if (NOT ACE_ROOT)
 endif()
 
 
-requires(ACE_OTHER)
+ace_requires(ACE_OTHER)
 
-add_ace_exe(Netlocal
+ace_add_exe(Netlocal
   OUTPUT_NAME Netlocal
   FOLDER examples/APG/Naming
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Netlocal
+ace_target_cxx_sources(Netlocal
   SOURCE_FILES Temperature_Monitor2.cpp
                Netlocal.cpp
   HEADER_FILES Temperature_Monitor2.h
 )
 
 
-add_ace_exe(Netlocal_Reader
+ace_add_exe(Netlocal_Reader
   OUTPUT_NAME Netlocal_reader
   FOLDER examples/APG/Naming
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Netlocal_Reader
+ace_target_cxx_sources(Netlocal_Reader
   SOURCE_FILES Graph.cpp
                Netlocal_reader.cpp
                Temperature_Grapher.cpp
@@ -35,36 +35,36 @@ target_cxx_sources(Netlocal_Reader
 )
 
 
-add_ace_exe(Nodelocal
+ace_add_exe(Nodelocal
   OUTPUT_NAME Nodelocal
   FOLDER examples/APG/Naming
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Nodelocal
+ace_target_cxx_sources(Nodelocal
   SOURCE_FILES Nodelocal.cpp
                Temperature_Monitor.cpp
   HEADER_FILES Temperature_Monitor.h
 )
 
 
-add_ace_exe(Nodelocal_Shared
+ace_add_exe(Nodelocal_Shared
   OUTPUT_NAME Nodelocal_shared
   FOLDER examples/APG/Naming
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Nodelocal_Shared
+ace_target_cxx_sources(Nodelocal_Shared
   SOURCE_FILES Temperature_Monitor2.cpp
                Nodelocal_shared.cpp
   HEADER_FILES Temperature_Monitor2.h
 )
 
 
-add_ace_exe(Nodelocal_Shared_Reader
+ace_add_exe(Nodelocal_Shared_Reader
   OUTPUT_NAME Nodelocal_shared_reader
   FOLDER examples/APG/Naming
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Nodelocal_Shared_Reader
+ace_target_cxx_sources(Nodelocal_Shared_Reader
   SOURCE_FILES Graph.cpp
                Temperature_Grapher.cpp
                Nodelocal_shared_reader.cpp

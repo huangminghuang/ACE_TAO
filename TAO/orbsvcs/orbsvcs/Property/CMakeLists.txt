@@ -1,5 +1,5 @@
 
-add_ace_lib(TAO_CosProperty
+ace_add_lib(TAO_CosProperty
   DEFINE_SYMBOL TAO_PROPERTY_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -9,18 +9,18 @@ add_ace_lib(TAO_CosProperty
   PUBLIC_LINK_LIBRARIES TAO_AnyTypeCode
 )
 
-target_cxx_sources(TAO_CosProperty
+ace_target_cxx_sources(TAO_CosProperty
   HEADER_FILES property_export.h
 )
 
-add_ace_lib(TAO_CosProperty_Skel
+ace_add_lib(TAO_CosProperty_Skel
   DEFINE_SYMBOL TAO_PROPERTY_SKEL_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
   PUBLIC_LINK_LIBRARIES TAO_CosProperty TAO_PortableServer
 )
 
-target_cxx_sources(TAO_CosProperty
+ace_target_cxx_sources(TAO_CosProperty
   HEADER_FILES property_skel_export.h
 )
 
@@ -39,14 +39,14 @@ tao_idl_sources(
   WORKING_DIRECTORY ..
 )
 
-add_ace_lib(TAO_CosProperty_Serv
+ace_add_lib(TAO_CosProperty_Serv
   DEFINE_SYMBOL TAO_PROPERTY_SERV_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
   PUBLIC_LINK_LIBRARIES TAO_CosProperty_Skel TAO_Svc_Utils
 )
 
-target_cxx_sources(TAO_CosProperty_Serv
+ace_target_cxx_sources(TAO_CosProperty_Serv
   SOURCE_FILES CosPropertyService_i.cpp
   HEADER_FILES CosPropertyService_i.h
 )

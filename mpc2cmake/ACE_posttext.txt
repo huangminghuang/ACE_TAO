@@ -1,6 +1,6 @@
 file(GLOB config_files config-*.h)
 
-target_cxx_sources(ACE
+ace_target_cxx_sources(ACE
   HEADER_FILES ${config_files}
   SUBGROUP \\config
 )

@@ -1,4 +1,4 @@
-target_cxx_sources(TAO_IDL_FE
+ace_target_cxx_sources(TAO_IDL_FE
   SOURCE_FILES fe_global.cpp
                fe_utils.cpp
                fe_obv_header.cpp

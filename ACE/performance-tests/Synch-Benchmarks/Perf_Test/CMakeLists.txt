@@ -1,13 +1,13 @@
 
 
-add_ace_lib(Synch_Benchmarks_Perf_Test
+ace_add_lib(Synch_Benchmarks_Perf_Test
   OUTPUT_NAME Perf_Test
   FOLDER performance-tests/Synch-Benchmarks/Perf_Test
   PUBLIC_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_SOURCE_DIR}/..
   PUBLIC_LINK_LIBRARIES Synch_Lib
                         ACE
 )
-target_cxx_sources(Synch_Benchmarks_Perf_Test
+ace_target_cxx_sources(Synch_Benchmarks_Perf_Test
   SOURCE_FILES Adaptive_Lock_Performance_Test_Base.cpp
                conds_test.cpp
                Performance_Test.cpp

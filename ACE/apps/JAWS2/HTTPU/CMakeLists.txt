@@ -1,8 +1,8 @@
 
 
-requires("NOT USES_WCHAR")
+ace_requires("NOT USES_WCHAR")
 
-add_ace_lib(HTTPU
+ace_add_lib(HTTPU
   OUTPUT_NAME HTTPU
   FOLDER apps/JAWS2/HTTPU
   DEFINE_SYMBOL HTTPU_BUILD_DLL
@@ -10,7 +10,7 @@ add_ace_lib(HTTPU
   PUBLIC_LINK_LIBRARIES JAWS2
                         ACE
 )
-target_cxx_sources(HTTPU
+ace_target_cxx_sources(HTTPU
   SOURCE_FILES http_status.cpp
                http_base.cpp
                http_headers.cpp

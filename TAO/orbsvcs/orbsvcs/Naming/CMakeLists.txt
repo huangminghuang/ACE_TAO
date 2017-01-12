@@ -1,25 +1,25 @@
 
-add_ace_lib(TAO_CosNaming
+ace_add_lib(TAO_CosNaming
   DEFINE_SYMBOL TAO_NAMING_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
   PUBLIC_LINK_LIBRARIES TAO_Svc_Utils
 )
 
-target_cxx_sources(TAO_CosNaming
+ace_target_cxx_sources(TAO_CosNaming
   SOURCE_FILES Naming_Client.cpp
   HEADER_FILES naming_export.h
                Naming_Client.h
 )
 
-add_ace_lib(TAO_CosNaming_Skel
+ace_add_lib(TAO_CosNaming_Skel
   DEFINE_SYMBOL TAO_NAMING_SKEL_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
   PUBLIC_LINK_LIBRARIES TAO_CosNaming
 )
 
-target_cxx_sources(TAO_CosNaming_Skel
+ace_target_cxx_sources(TAO_CosNaming_Skel
   HEADER_FILES naming_skel_export
 )
 
@@ -37,7 +37,7 @@ tao_idl_sources(
   WORKING_DIRECTORY ..
 )
 
-add_ace_lib(TAO_CosNaming_Serv
+ace_add_lib(TAO_CosNaming_Serv
   DEFINE_SYMBOL TAO_NAMING_SERV_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -46,7 +46,7 @@ add_ace_lib(TAO_CosNaming_Serv
   ASPECTS MESSAGING_OPTIONAL
 )
 
-target_cxx_sources(TAO_CosNaming_Serv
+ace_target_cxx_sources(TAO_CosNaming_Serv
   SOURCE_FILES Entries.cpp
                Hash_Naming_Context.cpp
                Naming_Context_Interface.cpp
@@ -64,7 +64,7 @@ target_cxx_sources(TAO_CosNaming_Serv
 )
 
 if (NOT CORBA_E_MICRO)
-  target_cxx_sources(TAO_CosNaming_Serv
+  ace_target_cxx_sources(TAO_CosNaming_Serv
     SOURCE_FILES Persistent_Context_Index.cpp
                  Persistent_Entries.cpp
                  Persistent_Naming_Context.cpp

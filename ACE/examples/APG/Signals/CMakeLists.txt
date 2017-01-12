@@ -7,52 +7,52 @@ if (NOT ACE_ROOT)
 endif()
 
 
-add_ace_exe(SigAction
+ace_add_exe(SigAction
   OUTPUT_NAME SigAction
   FOLDER examples/APG/Signals
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(SigAction
+ace_target_cxx_sources(SigAction
   SOURCE_FILES SigAction.cpp
 )
 
 
-add_ace_exe(SigGuard
+ace_add_exe(SigGuard
   OUTPUT_NAME SigGuard
   FOLDER examples/APG/Signals
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(SigGuard
+ace_target_cxx_sources(SigGuard
   SOURCE_FILES SigGuard.cpp
 )
 
 
-add_ace_exe(SigHandler
+ace_add_exe(SigHandler
   OUTPUT_NAME SigHandler
   FOLDER examples/APG/Signals
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(SigHandler
+ace_target_cxx_sources(SigHandler
   SOURCE_FILES SigHandler.cpp
 )
 
 
-add_ace_exe(SigHandlers
+ace_add_exe(SigHandlers
   OUTPUT_NAME SigHandlers
   FOLDER examples/APG/Signals
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(SigHandlers
+ace_target_cxx_sources(SigHandlers
   SOURCE_FILES SigHandlers.cpp
 )
 
 
-add_ace_exe(SigInfo
+ace_add_exe(SigInfo
   OUTPUT_NAME SigInfo
   FOLDER examples/APG/Signals
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(SigInfo
+ace_target_cxx_sources(SigInfo
   SOURCE_FILES SigInfo.cpp
 )
 

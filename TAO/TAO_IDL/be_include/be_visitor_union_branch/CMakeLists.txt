@@ -1,4 +1,4 @@
-target_cxx_sources(TAO_IDL_BE
+ace_target_cxx_sources(TAO_IDL_BE
   HEADER_FILES cdr_op_ch.h
                cdr_op_cs.h
                private_ch.h

@@ -1,4 +1,4 @@
-target_cxx_sources(TAO_IDL_BE
+ace_target_cxx_sources(TAO_IDL_BE
   SOURCE_FILES component_svth.cpp
                component_ami_rh_ex_base.cpp
                context_ex_idl.cpp

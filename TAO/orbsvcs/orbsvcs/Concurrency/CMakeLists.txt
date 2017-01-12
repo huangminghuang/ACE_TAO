@@ -1,6 +1,6 @@
-requires("NOT CORBA_E_MICRO")
+ace_requires("NOT CORBA_E_MICRO")
 
-add_ace_lib(TAO_CosConcurrency
+ace_add_lib(TAO_CosConcurrency
   DEFINE_SYMBOL TAO_CosConcurrency_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -10,18 +10,18 @@ add_ace_lib(TAO_CosConcurrency
   PUBLIC_LINK_LIBRARIES TAO_AnyTypeCode
 )
 
-target_cxx_sources(TAO_CosConcurrency
+ace_target_cxx_sources(TAO_CosConcurrency
   HEADER_FILES concurrency_export.h
 )
 
-add_ace_lib(TAO_CosConcurrency_Skel
+ace_add_lib(TAO_CosConcurrency_Skel
   DEFINE_SYMBOL TAO_CosConcurrency_Skel_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
   PUBLIC_LINK_LIBRARIES TAO_CosConcurrency TAO_PortableServer
 )
 
-target_cxx_sources(TAO_CosConcurrency_Skel
+ace_target_cxx_sources(TAO_CosConcurrency_Skel
   HEADER_FILES concurrency_skel_export.h
 )
 
@@ -39,14 +39,14 @@ tao_idl_sources(
   WORKING_DIRECTORY ..
 )
 
-add_ace_lib(TAO_CosConcurrency_Serv
+ace_add_lib(TAO_CosConcurrency_Serv
   DEFINE_SYMBOL TAO_COSCONCURRENCY_SERV_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
   PUBLIC_LINK_LIBRARIES TAO_CosConcurrency_Skel TAO_Svc_Utils
 )
 
-target_cxx_sources(TAO_CosConcurrency_Serv
+ace_target_cxx_sources(TAO_CosConcurrency_Serv
   SOURCE_FILES CC_Lock.cpp
                CC_LockSet.cpp
                CC_LockSetFactory.cpp

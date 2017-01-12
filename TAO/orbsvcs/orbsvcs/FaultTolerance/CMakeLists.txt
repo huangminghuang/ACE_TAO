@@ -1,5 +1,5 @@
 
-add_ace_lib(TAO_FTORB_Utils
+ace_add_lib(TAO_FTORB_Utils
   DEFINE_SYMBOL TAO_FT_ORB_UTILS_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -10,7 +10,7 @@ add_ace_lib(TAO_FTORB_Utils
                         TAO_Svc_Utils
 )
 
-target_cxx_sources(TAO_FTORB_Utils
+ace_target_cxx_sources(TAO_FTORB_Utils
   SOURCE_FILES FT_IOGR_Property.cpp
   HEADER_FILES FT_ORB_Utils_export.h
                FT_IOGR_Property.h
@@ -29,7 +29,7 @@ tao_idl_sources(
   WORKING_DIRECTORY ..
 )
 
-add_ace_lib(TAO_FT_ClientORB
+ace_add_lib(TAO_FT_ClientORB
   DEFINE_SYMBOL TAO_FT_CLIENTORB_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -39,7 +39,7 @@ add_ace_lib(TAO_FT_ClientORB
                         TAO_Svc_Utils
 )
 
-target_cxx_sources(TAO_FT_ClientORB
+ace_target_cxx_sources(TAO_FT_ClientORB
   SOURCE_FILES FT_ClientRequest_Interceptor.cpp
                FT_ClientORBInitializer.cpp
                FT_ClientPolicyFactory.cpp
@@ -61,7 +61,7 @@ target_cxx_sources(TAO_FT_ClientORB
 )
 
 
-add_ace_lib(TAO_FT_ServerORB
+ace_add_lib(TAO_FT_ServerORB
   DEFINE_SYMBOL TAO_FT_SERVERORB_BUILD_DL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -74,7 +74,7 @@ add_ace_lib(TAO_FT_ServerORB
 
 )
 
-target_cxx_sources(TAO_FT_ServerORB
+ace_target_cxx_sources(TAO_FT_ServerORB
   SOURCE_FILES FT_ServerORBInitializer.cpp
                FT_ServerPolicyFactory.cpp
                FT_ServerPolicy_i.cpp
@@ -90,7 +90,7 @@ target_cxx_sources(TAO_FT_ServerORB
   INLINE_FILES FT_ServerPolicy_i.inl
 )
 
-add_ace_lib(TAO_FaultTolerance
+ace_add_lib(TAO_FaultTolerance
   DEFINE_SYMBOL TAO_FT_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -102,7 +102,7 @@ add_ace_lib(TAO_FaultTolerance
                         TAO_PortableGroup
 )
 
-target_cxx_sources(TAO_FaultTolerance
+ace_target_cxx_sources(TAO_FaultTolerance
   HEADER_FILES fault_tol_export.h
 )
 

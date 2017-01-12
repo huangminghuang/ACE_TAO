@@ -1,6 +1,6 @@
 
 
-add_ace_lib(TAO_Codeset
+ace_add_lib(TAO_Codeset
   OUTPUT_NAME TAO_Codeset
   PACKAGE TAO
   FOLDER tao/Codeset
@@ -9,7 +9,7 @@ add_ace_lib(TAO_Codeset
                              $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
   PUBLIC_LINK_LIBRARIES TAO
 )
-target_cxx_sources(TAO_Codeset
+ace_target_cxx_sources(TAO_Codeset
   SOURCE_FILES Codeset.cpp
                Codeset_Descriptor.cpp
                Codeset_Manager_Factory.cpp

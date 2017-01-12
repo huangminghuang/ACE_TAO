@@ -1,6 +1,6 @@
 
 
-add_ace_lib(TAO_AnyTypeCode
+ace_add_lib(TAO_AnyTypeCode
   OUTPUT_NAME TAO_AnyTypeCode
   PACKAGE TAO
   FOLDER tao/AnyTypeCode
@@ -9,7 +9,7 @@ add_ace_lib(TAO_AnyTypeCode
                              $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
   PUBLIC_LINK_LIBRARIES TAO
 )
-target_cxx_sources(TAO_AnyTypeCode
+ace_target_cxx_sources(TAO_AnyTypeCode
   SOURCE_FILES Alias_TypeCode_Static.cpp
                Any.cpp
                AnyTypeCode_Adapter_Impl.cpp

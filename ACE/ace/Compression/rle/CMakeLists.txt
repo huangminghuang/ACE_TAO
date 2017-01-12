@@ -1,6 +1,6 @@
 
 
-add_ace_lib(ACE_RLECompression
+ace_add_lib(ACE_RLECompression
   OUTPUT_NAME ACE_RLECompression
   PACKAGE ACE
   FOLDER ace/Compression/rle
@@ -8,7 +8,7 @@ add_ace_lib(ACE_RLECompression
   PUBLIC_LINK_LIBRARIES ACE_Compression
                         ACE
 )
-target_cxx_sources(ACE_RLECompression
+ace_target_cxx_sources(ACE_RLECompression
   SOURCE_FILES RLECompressor.cpp
   HEADER_FILES ACE_RLECompression_export.h
                RLECompressor.h

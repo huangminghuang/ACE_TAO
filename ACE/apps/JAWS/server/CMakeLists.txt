@@ -1,15 +1,15 @@
 
 
-requires(ACE_FILECACHE "NOT USES_WCHAR")
+ace_requires(ACE_FILECACHE "NOT USES_WCHAR")
 
-add_ace_lib(JAWS
+ace_add_lib(JAWS
   OUTPUT_NAME JAWS
   PACKAGE ACE
   FOLDER apps/JAWS/server
   DEFINE_SYMBOL ACE_BUILD_SVC_DLL
   PUBLIC_LINK_LIBRARIES ACE
 )
-target_cxx_sources(JAWS
+ace_target_cxx_sources(JAWS
   SOURCE_FILES JAWS_Pipeline.cpp
                HTTP_Handler.cpp
                Parse_Headers.cpp
@@ -33,13 +33,13 @@ target_cxx_sources(JAWS
 )
 
 
-add_ace_exe(JAWS_server
+ace_add_exe(JAWS_server
   OUTPUT_NAME main
   FOLDER apps/JAWS/server
   LINK_LIBRARIES JAWS
                  ACE
 )
-target_cxx_sources(JAWS_server
+ace_target_cxx_sources(JAWS_server
   SOURCE_FILES main.cpp
 )
 

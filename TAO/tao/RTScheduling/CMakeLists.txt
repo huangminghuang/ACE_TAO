@@ -1,8 +1,8 @@
 
 
-requires(RT_CORBA CORBA_MESSAGING "NOT CORBA_E_COMPACT")
+ace_requires(RT_CORBA CORBA_MESSAGING "NOT CORBA_E_COMPACT")
 
-add_ace_lib(TAO_RTScheduler
+ace_add_lib(TAO_RTScheduler
   OUTPUT_NAME TAO_RTScheduler
   PACKAGE TAO
   FOLDER tao/RTScheduling
@@ -15,7 +15,7 @@ add_ace_lib(TAO_RTScheduler
                         TAO_PortableServer
                         TAO_RTCORBA
 )
-target_cxx_sources(TAO_RTScheduler
+ace_target_cxx_sources(TAO_RTScheduler
   SOURCE_FILES Current.cpp
                Distributable_Thread.cpp
                RTScheduler.cpp

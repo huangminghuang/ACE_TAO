@@ -1,11 +1,11 @@
 
 
-add_ace_exe(UDP
+ace_add_exe(UDP
   OUTPUT_NAME udp_test
   FOLDER performance-tests/UDP
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(UDP
+ace_target_cxx_sources(UDP
   SOURCE_FILES udp_test.cpp
 )
 

@@ -7,14 +7,14 @@ if (NOT ACE_ROOT)
 endif()
 find_package(MFC)
 
-requires(MFC_FOUND)
+ace_requires(MFC_FOUND)
 
-add_ace_exe(Log_Msg_MFC
+ace_add_exe(Log_Msg_MFC
   OUTPUT_NAME Log_Msg_MFC
   FOLDER examples/Log_Msg/Log_Msg_MFC
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Log_Msg_MFC
+ace_target_cxx_sources(Log_Msg_MFC
   SOURCE_FILES StdAfx.cpp
                Log_Msg_MFC.cpp
                MFC_Log.cpp

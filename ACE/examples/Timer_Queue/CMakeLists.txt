@@ -7,13 +7,13 @@ if (NOT ACE_ROOT)
 endif()
 
 
-add_ace_lib(Timer_Queue_Library
+ace_add_lib(Timer_Queue_Library
   OUTPUT_NAME tqtd
   FOLDER examples/Timer_Queue
   DEFINE_SYMBOL ACE_BUILD_SVC_DLL
   PUBLIC_LINK_LIBRARIES ACE
 )
-target_cxx_sources(Timer_Queue_Library
+ace_target_cxx_sources(Timer_Queue_Library
   SOURCE_FILES Driver.cpp
                Thread_Timer_Queue_Test.cpp
                Async_Timer_Queue_Test.cpp
@@ -29,46 +29,46 @@ target_cxx_sources(Timer_Queue_Library
 )
 
 
-add_ace_exe(Timer_Queue_Async
+ace_add_exe(Timer_Queue_Async
   OUTPUT_NAME Asynch_Timer_Queue_Test
   FOLDER examples/Timer_Queue
   LINK_LIBRARIES Timer_Queue_Library
                  ACE
 )
-target_cxx_sources(Timer_Queue_Async
+ace_target_cxx_sources(Timer_Queue_Async
   SOURCE_FILES main_async.cpp
 )
 
 
-add_ace_exe(Timer_Queue_Reactor
+ace_add_exe(Timer_Queue_Reactor
   OUTPUT_NAME Reactor_Timer_Queue_Test
   FOLDER examples/Timer_Queue
   LINK_LIBRARIES Timer_Queue_Library
                  ACE
 )
-target_cxx_sources(Timer_Queue_Reactor
+ace_target_cxx_sources(Timer_Queue_Reactor
   SOURCE_FILES main_reactor.cpp
 )
 
 
-add_ace_exe(Timer_Queue_Thread
+ace_add_exe(Timer_Queue_Thread
   OUTPUT_NAME Thread_Timer_Queue_Test
   FOLDER examples/Timer_Queue
   LINK_LIBRARIES Timer_Queue_Library
                  ACE
 )
-target_cxx_sources(Timer_Queue_Thread
+ace_target_cxx_sources(Timer_Queue_Thread
   SOURCE_FILES main_thread.cpp
 )
 
 
-add_ace_exe(Timer_Queue_Thread_custom_handlers
+ace_add_exe(Timer_Queue_Thread_custom_handlers
   OUTPUT_NAME Thread_Custom_Handlers_Timer_Queue_Test
   FOLDER examples/Timer_Queue
   LINK_LIBRARIES Timer_Queue_Library
                  ACE
 )
-target_cxx_sources(Timer_Queue_Thread_custom_handlers
+ace_target_cxx_sources(Timer_Queue_Thread_custom_handlers
   SOURCE_FILES main_thread_custom_handler.cpp
 )
 

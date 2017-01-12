@@ -7,7 +7,7 @@ endif()
 
 set(ACE_CMAKE_DIR ${CMAKE_CURRENT_LIST_DIR} CACHE INTERNAL "")
 
-function(add_package name)
+function(ace_add_package name)
   set(oneValueArgs VERSION INSTALL_DIRECTORY)
   cmake_parse_arguments(_arg "" "${oneValueArgs}" "" ${ARGN})
 
@@ -20,11 +20,11 @@ function(add_package name)
   set(${name}_ROOT ${CMAKE_CURRENT_LIST_DIR} CACHE INTERNAL "")
 endfunction()
 
-## prepend_if_relative(<outvar> <string> <path> ...)
+## ace_prepend_if_relative(<outvar> <string> <path> ...)
 ##
 ## Given a list of paths, prepend each path with the specified string if is a relative path.
 ## The result is saved as outvar.
-function(prepend_if_relative result prepend_string)
+function(ace_prepend_if_relative result prepend_string)
   foreach(path ${ARGN})
     if (IS_ABSOLUTE ${path})
       list(APPEND _result ${path})
@@ -35,7 +35,7 @@ function(prepend_if_relative result prepend_string)
   set(${result} ${_result} PARENT_SCOPE)
 endfunction()
 
-function(install_package_files package)
+function(ace_install_package_files package)
   set(package_root ${${package}_ROOT})
   set(package_install_dir ${${package}_INSTALL_DIR})
   file(RELATIVE_PATH rel_path ${package_root} ${CMAKE_CURRENT_LIST_DIR})
@@ -44,7 +44,7 @@ function(install_package_files package)
 endfunction()
 
 
-##  target_cxx_sources(<target> [SOURCE_FILE <cpp_file> ...]
+##  ace_target_cxx_sources(<target> [SOURCE_FILE <cpp_file> ...]
 ##                            [HEADER_FILES <h_file> ...]
 ##                            [INLINE_FILES <inl_file> ...]
 ##                            [TEMPLATE_FILES <template_file> ...]
@@ -62,7 +62,7 @@ endfunction()
 ##
 ##  All files specified should be absolute path or relative to CMAKE_CURRENT_LIST_DIR
 ##
-function(target_cxx_sources target)
+function(ace_target_cxx_sources target)
 
   if (NOT TARGET ${target})
     return()
@@ -78,10 +78,10 @@ function(target_cxx_sources target)
     endif()
   endif()
 
-  prepend_if_relative(sources ${CMAKE_CURRENT_LIST_DIR} ${_arg_SOURCE_FILES})
-  prepend_if_relative(headers ${CMAKE_CURRENT_LIST_DIR} ${_arg_HEADER_FILES})
-  prepend_if_relative(inlines ${CMAKE_CURRENT_LIST_DIR} ${_arg_INLINE_FILES})
-  prepend_if_relative(templates ${CMAKE_CURRENT_LIST_DIR} ${_arg_TEMPLATE_FILES})
+  ace_prepend_if_relative(sources ${CMAKE_CURRENT_LIST_DIR} ${_arg_SOURCE_FILES})
+  ace_prepend_if_relative(headers ${CMAKE_CURRENT_LIST_DIR} ${_arg_HEADER_FILES})
+  ace_prepend_if_relative(inlines ${CMAKE_CURRENT_LIST_DIR} ${_arg_INLINE_FILES})
+  ace_prepend_if_relative(templates ${CMAKE_CURRENT_LIST_DIR} ${_arg_TEMPLATE_FILES})
 
   target_sources(${target}
     PRIVATE ${sources} ${headers} ${inlines} ${templates}
@@ -95,17 +95,17 @@ function(target_cxx_sources target)
   set_source_files_properties(${templates} PROPERTIES HEADER_FILE_ONLY ON)
 
   if (PACKAGE_OF_${target})
-    install_package_files(${PACKAGE_OF_${target}} ${headers} ${inlines} ${templates})
+    ace_install_package_files(${PACKAGE_OF_${target}} ${headers} ${inlines} ${templates})
   endif()
 endfunction()
 
-##  glob_target_cxx_sources(<target> [SUBGROUP <subgroup>])
+##  ace_glob_target_cxx_sources(<target> [SUBGROUP <subgroup>])
 ##  -----------------
 ##  glob ${CMAKE_CURRENT_LIST_DIR} for the patterns *.cpp *.h *.inl *_T.cpp
 ##  and add them to the target with groups SOURCE_FILES, HEADER_FILES, INLINE_FILES
 ##  and TEMPLATE_FILES respectively.
 ##
-function(glob_target_cxx_sources target)
+function(ace_glob_target_cxx_sources target)
   if (NOT TARGET ${target})
     return()
   endif()
@@ -116,7 +116,7 @@ function(glob_target_cxx_sources target)
   file(GLOB templates ${CMAKE_CURRENT_LIST_DIR}/*_T.cpp)
   list(REMOVE_ITEM sources "${templates}")
 
-  target_cxx_sources(${target}
+  ace_target_cxx_sources(${target}
     SOURCE_FILES ${sources}
     HEADER_FILES ${headers}
     INLINE_FILES ${inlines}
@@ -126,7 +126,7 @@ function(glob_target_cxx_sources target)
 endfunction()
 
 
-macro(requires)
+macro(ace_requires)
   foreach(cond ${ARGN})
     string(REPLACE " " ";" cond ${cond})
     if (${cond})
@@ -177,11 +177,11 @@ macro(ace_parse_arguments options oneValueArgs multiValueArgs)
 
 endmacro()
 
-##  add_package_lib
+##  ace_add_lib
 ##  -----------------
 ##
 ##
-function(add_ace_lib target)
+function(ace_add_lib target)
   set(oneValueArgs OUTPUT_NAME DEFINE_SYMBOL PACKAGE FOLDER)
   set(multiValueArgs PUBLIC_LINK_LIBRARIES
                      INCLUDE_DIRECTORIES
@@ -223,7 +223,7 @@ function(add_ace_lib target)
   endif()
 endfunction()
 
-function(add_ace_exe target)
+function(ace_add_exe target)
 
   set(oneValueArgs OUTPUT_NAME PACKAGE FOLDER)
   set(multiValueArgs LINK_LIBRARIES
@@ -260,7 +260,7 @@ endfunction()
 
 
 
-function(install_package package_name)
+function(ace_install_package package_name)
   cmake_parse_arguments(_arg "" "" "CONFIG_OPTIONS;PREREQUISITE;EXTRA_CMAKE_FILES;EXTRA_INSTALL_FILES;OPTIONAL_PACKAGES" ${ARGN})
 
   set(version ${${package_name}_PACKAGE_VERSION})

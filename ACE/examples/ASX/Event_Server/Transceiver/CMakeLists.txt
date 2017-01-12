@@ -7,12 +7,12 @@ if (NOT ACE_ROOT)
 endif()
 
 
-add_ace_exe(Transceiver
+ace_add_exe(Transceiver
   OUTPUT_NAME Transceiver
   FOLDER examples/ASX/Event_Server/Transceiver
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Transceiver
+ace_target_cxx_sources(Transceiver
   SOURCE_FILES transceiver.cpp
   HEADER_FILES transceiver.h
 )

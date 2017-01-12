@@ -1,6 +1,6 @@
 
 
-add_ace_lib(TAO_FtRtEvent
+ace_add_lib(TAO_FtRtEvent
   DEFINE_SYMBOL TAO_FtRtEvent
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -10,7 +10,7 @@ add_ace_lib(TAO_FtRtEvent
                         TAO_PI_Server
 )
 
-target_cxx_sources(TAO_FtRtEvent
+ace_target_cxx_sources(TAO_FtRtEvent
   SOURCE_FILES FTEC_Gateway.cpp
                Log.cpp
                Safe_InputCDR.cpp

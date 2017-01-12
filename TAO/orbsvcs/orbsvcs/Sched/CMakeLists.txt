@@ -1,5 +1,5 @@
 
-add_ace_lib(TAO_RTSched
+ace_add_lib(TAO_RTSched
   DEFINE_SYMBOL TAO_RTSched
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -10,7 +10,7 @@ add_ace_lib(TAO_RTSched
 
 include(../RTSched.cmake)
 
-target_cxx_sources(TAO_RTSched
+ace_target_cxx_sources(TAO_RTSched
   SOURCE_FILES Config_Scheduler.cpp
                DynSched.cpp
                Reconfig_Sched_Utils.cpp

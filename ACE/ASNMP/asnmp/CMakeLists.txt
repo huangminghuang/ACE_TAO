@@ -1,13 +1,13 @@
 
 
-add_ace_lib(asnmp_lib
+ace_add_lib(asnmp_lib
   OUTPUT_NAME asnmp
   FOLDER ASNMP/asnmp
   DEFINE_SYMBOL ASNMP_BUILD_DLL
   PUBLIC_INCLUDE_DIRECTORIES ${ACE_ROOT}/ASNMP
   PUBLIC_LINK_LIBRARIES ACE
 )
-target_cxx_sources(asnmp_lib
+ace_target_cxx_sources(asnmp_lib
   SOURCE_FILES snmp.cpp
                ctr64.cpp
                wpdu.cpp

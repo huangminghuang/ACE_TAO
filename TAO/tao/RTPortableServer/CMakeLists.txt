@@ -1,8 +1,8 @@
 
 
-requires(RT_CORBA "NOT CORBA_E_COMPACT")
+ace_requires(RT_CORBA "NOT CORBA_E_COMPACT")
 
-add_ace_lib(TAO_RTPortableServer
+ace_add_lib(TAO_RTPortableServer
   OUTPUT_NAME TAO_RTPortableServer
   PACKAGE TAO
   FOLDER tao/RTPortableServer
@@ -14,7 +14,7 @@ add_ace_lib(TAO_RTPortableServer
                         TAO_PortableServer
                         TAO_RTCORBA
 )
-target_cxx_sources(TAO_RTPortableServer
+ace_target_cxx_sources(TAO_RTPortableServer
   SOURCE_FILES RTPortableServer.cpp
                RT_Acceptor_Filters.cpp
                RT_Collocation_Resolver.cpp

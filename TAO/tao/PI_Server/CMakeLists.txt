@@ -1,6 +1,6 @@
 
 
-add_ace_lib(TAO_PI_Server
+ace_add_lib(TAO_PI_Server
   OUTPUT_NAME TAO_PI_Server
   PACKAGE TAO
   FOLDER tao/PI_Server
@@ -11,7 +11,7 @@ add_ace_lib(TAO_PI_Server
   PUBLIC_LINK_LIBRARIES TAO_PI
                         TAO_PortableServer
 )
-target_cxx_sources(TAO_PI_Server
+ace_target_cxx_sources(TAO_PI_Server
   SOURCE_FILES PICurrent_Guard.cpp
                PI_Server.cpp
                PI_Server_Loader.cpp
@@ -61,7 +61,7 @@ tao_idl_sources(
   IDL_FILES PI_Server_include.pidl
 )
 
-install_package_files(TAO
+ace_install_package_files(TAO
   ServerRequestInterceptor.pidl
 )
 

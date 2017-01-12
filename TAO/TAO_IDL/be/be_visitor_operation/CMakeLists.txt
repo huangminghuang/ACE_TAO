@@ -1,4 +1,4 @@
-target_cxx_sources(TAO_IDL_BE
+ace_target_cxx_sources(TAO_IDL_BE
   SOURCE_FILES proxy_impl_xh.cpp
                operation_cs.cpp
                amh_ss.cpp

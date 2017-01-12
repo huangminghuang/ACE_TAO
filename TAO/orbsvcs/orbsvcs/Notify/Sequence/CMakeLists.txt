@@ -1,4 +1,4 @@
-target_cxx_sources(TAO_CosNotification_Serv
+ace_target_cxx_sources(TAO_CosNotification_Serv
   SOURCE_FILES SequenceProxyPushConsumer.cpp
                SequenceProxyPushSupplier.cpp
                SequencePushConsumer.cpp

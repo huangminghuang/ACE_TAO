@@ -7,12 +7,12 @@ if (NOT ACE_ROOT)
 endif()
 
 
-add_ace_exe(dev_sap_writer
+ace_add_exe(dev_sap_writer
   OUTPUT_NAME writer
   FOLDER examples/IPC_SAP/DEV_SAP/writer
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(dev_sap_writer
+ace_target_cxx_sources(dev_sap_writer
   SOURCE_FILES writer.cpp
 )
 

@@ -1,15 +1,15 @@
 
 
-requires("NOT USES_WCHAR")
+ace_requires("NOT USES_WCHAR")
 
-add_ace_lib(JAWS2
+ace_add_lib(JAWS2
   OUTPUT_NAME JAWS2
   FOLDER apps/JAWS2/JAWS
   DEFINE_SYMBOL JAWS_BUILD_DLL
   PUBLIC_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_SOURCE_DIR}/..
   PUBLIC_LINK_LIBRARIES ACE
 )
-target_cxx_sources(JAWS2
+ace_target_cxx_sources(JAWS2
   SOURCE_FILES Data_Block.cpp
                Cache_Manager.cpp
                Pipeline_Tasks.cpp

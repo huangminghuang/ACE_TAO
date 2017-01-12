@@ -1,4 +1,4 @@
-target_cxx_sources(TAO_IDL_BE
+ace_target_cxx_sources(TAO_IDL_BE
   HEADER_FILES arglist.h
                argument.h
                invoke_cs.h

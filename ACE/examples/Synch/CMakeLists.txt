@@ -7,12 +7,12 @@ if (NOT ACE_ROOT)
 endif()
 
 
-add_ace_exe(Synch
+ace_add_exe(Synch
   OUTPUT_NAME proc_sema
   FOLDER examples/Synch
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Synch
+ace_target_cxx_sources(Synch
   SOURCE_FILES proc_sema.cpp
 )
 

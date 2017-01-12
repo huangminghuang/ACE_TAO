@@ -7,9 +7,9 @@ if (NOT ACE_ROOT)
 endif()
 
 
-requires(RAPI_FOUND)
+ace_requires(RAPI_FOUND)
 
-add_ace_exe(QOS_Change_Sender_TSpec_Receiver
+ace_add_exe(QOS_Change_Sender_TSpec_Receiver
   OUTPUT_NAME receiver
   FOLDER examples/QOS/Change_Sender_TSpec
   INCLUDE_DIRECTORIES ${RAPI_INCLUDE_DIR}
@@ -17,7 +17,7 @@ add_ace_exe(QOS_Change_Sender_TSpec_Receiver
                  ACE
                  ${RAPI_LIBRARIES}
 )
-target_cxx_sources(QOS_Change_Sender_TSpec_Receiver
+ace_target_cxx_sources(QOS_Change_Sender_TSpec_Receiver
   SOURCE_FILES Fill_ACE_QoS.cpp
                Receiver_QoS_Event_Handler.cpp
                QoS_Util.cpp
@@ -30,7 +30,7 @@ target_cxx_sources(QOS_Change_Sender_TSpec_Receiver
 )
 
 
-add_ace_exe(QOS_Change_Sender_TSpec_Sender
+ace_add_exe(QOS_Change_Sender_TSpec_Sender
   OUTPUT_NAME sender
   FOLDER examples/QOS/Change_Sender_TSpec
   INCLUDE_DIRECTORIES ${RAPI_INCLUDE_DIR}
@@ -38,7 +38,7 @@ add_ace_exe(QOS_Change_Sender_TSpec_Sender
                  ACE
                  ${RAPI_LIBRARIES}
 )
-target_cxx_sources(QOS_Change_Sender_TSpec_Sender
+ace_target_cxx_sources(QOS_Change_Sender_TSpec_Sender
   SOURCE_FILES sender.cpp
                QoS_Util.cpp
                QoS_Signal_Handler.cpp

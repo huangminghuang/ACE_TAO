@@ -1,8 +1,8 @@
 
 
-requires(ACE_HAS_THREADS "NOT CORBA_E_COMPACT")
+ace_requires(ACE_HAS_THREADS "NOT CORBA_E_COMPACT")
 
-add_ace_lib(TAO_CSD_ThreadPool
+ace_add_lib(TAO_CSD_ThreadPool
   OUTPUT_NAME TAO_CSD_ThreadPool
   PACKAGE TAO
   FOLDER tao/CSD_ThreadPool
@@ -12,7 +12,7 @@ add_ace_lib(TAO_CSD_ThreadPool
                         TAO_PortableServer
                         TAO_CSD_Framework
 )
-target_cxx_sources(TAO_CSD_ThreadPool
+ace_target_cxx_sources(TAO_CSD_ThreadPool
   SOURCE_FILES CSD_TP_Cancel_Visitor.cpp
                CSD_TP_Collocated_Asynch_Request.cpp
                CSD_TP_Collocated_Synch_Request.cpp

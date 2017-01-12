@@ -1,6 +1,6 @@
 
 
-add_ace_exe(tao_cosnaming
+ace_add_exe(tao_cosnaming
   OUTPUT_NAME tao_cosnaming
   PACKAGE TAO
   FOLDER orbsvcs/Naming_Service
@@ -11,14 +11,14 @@ add_ace_exe(tao_cosnaming
                  TAO_Svc_Utils
                  TAO_ImR_Client
 )
-target_cxx_sources(tao_cosnaming
+ace_target_cxx_sources(tao_cosnaming
   SOURCE_FILES Naming_Server.cpp
                Naming_Service.cpp
   HEADER_FILES Naming_Service.h
 )
 
 
-add_ace_exe(tao_nt_cosnaming
+ace_add_exe(tao_nt_cosnaming
   OUTPUT_NAME tao_nt_cosnaming
   PACKAGE TAO
   REQUIRES WINNT
@@ -29,7 +29,7 @@ add_ace_exe(tao_nt_cosnaming
                  TAO_CosNaming_Serv
                  TAO_Svc_Utils
 )
-target_cxx_sources(tao_nt_cosnaming
+ace_target_cxx_sources(tao_nt_cosnaming
   SOURCE_FILES NT_Naming_Server.cpp
                NT_Naming_Service.cpp
                Naming_Service.cpp

@@ -7,12 +7,12 @@ if (NOT ACE_ROOT)
 endif()
 
 
-add_ace_exe(Logger_Simple_Server
+ace_add_exe(Logger_Simple_Server
   OUTPUT_NAME server_loggerd
   FOLDER examples/Logger/simple-server
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Logger_Simple_Server
+ace_target_cxx_sources(Logger_Simple_Server
   SOURCE_FILES Logging_Acceptor.cpp
                Logging_Handler.cpp
                server_loggerd.cpp

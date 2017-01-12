@@ -31,7 +31,7 @@ if (BISON_FOUND AND FLEX_FOUND AND SED_EXECUTABLE)
 
 endif()
 
-add_ace_lib(TAO_IDL_FE
+ace_add_lib(TAO_IDL_FE
   PACKAGE TAO
   FOLDER TAO_IDL
   DEFINE_SYMBOL TAO_IDL_FE_BUILD_DLL
@@ -45,7 +45,7 @@ include(include/CMakeLists.txt)
 include(narrow/CMakeLists.txt)
 include(util/CMakeLists.txt)
 
-add_ace_lib(TAO_IDL_BE
+ace_add_lib(TAO_IDL_BE
   PACKAGE TAO
   FOLDER TAO_IDL
   DEFINE_SYMBOL TAO_IDL_BE_BUILD_DLL
@@ -58,7 +58,7 @@ foreach(list ${sublists})
   include(${list})
 endforeach()
 
-add_ace_exe(TAO_IDL_EXE
+ace_add_exe(TAO_IDL_EXE
   PACKAGE TAO
   FOLDER TAO_IDL
   OUTPUT_NAME tao_idl
@@ -66,7 +66,7 @@ add_ace_exe(TAO_IDL_EXE
   COMPILE_DEFINITIONS TAO_IDL_PREPROCESSOR=\"${CMAKE_CXX_COMPILER}\"
 )
 
-target_cxx_sources(TAO_IDL_EXE
+ace_target_cxx_sources(TAO_IDL_EXE
   SOURCE_FILES driver/drv_args.cpp
                driver/drv_preproc.cpp
                tao_idl.cpp

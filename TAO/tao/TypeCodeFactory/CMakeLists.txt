@@ -1,6 +1,6 @@
 
 
-add_ace_lib(TAO_TypeCodeFactory
+ace_add_lib(TAO_TypeCodeFactory
   OUTPUT_NAME TAO_TypeCodeFactory
   PACKAGE TAO
   FOLDER tao/TypeCodeFactory
@@ -11,7 +11,7 @@ add_ace_lib(TAO_TypeCodeFactory
   PUBLIC_LINK_LIBRARIES TAO_IFR_Client
                         TAO_AnyTypeCode
 )
-target_cxx_sources(TAO_TypeCodeFactory
+ace_target_cxx_sources(TAO_TypeCodeFactory
   SOURCE_FILES TypeCodeFactory_Adapter_Impl.cpp
                TypeCodeFactory_Loader.cpp
                TypeCodeFactory_i.cpp

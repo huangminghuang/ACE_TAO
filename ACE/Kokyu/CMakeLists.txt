@@ -1,7 +1,7 @@
 add_subdirectory(tests)
 
 
-add_ace_lib(Kokyu
+ace_add_lib(Kokyu
   OUTPUT_NAME Kokyu
   PACKAGE ACE
   FOLDER Kokyu
@@ -9,7 +9,7 @@ add_ace_lib(Kokyu
   PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>>
   PUBLIC_LINK_LIBRARIES ACE
 )
-target_cxx_sources(Kokyu
+ace_target_cxx_sources(Kokyu
   SOURCE_FILES Default_Dispatcher_Impl.cpp
                Kokyu.cpp
                Kokyu_defs.cpp

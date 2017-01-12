@@ -1,6 +1,6 @@
 
 
-add_ace_lib(ACE_HTBP
+ace_add_lib(ACE_HTBP
   OUTPUT_NAME ACE_HTBP
   PACKAGE ACE
   FOLDER protocols/ace/HTBP
@@ -8,7 +8,7 @@ add_ace_lib(ACE_HTBP
   PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../..>
   PUBLIC_LINK_LIBRARIES ACE
 )
-target_cxx_sources(ACE_HTBP
+ace_target_cxx_sources(ACE_HTBP
   SOURCE_FILES HTBP_ID_Requestor.cpp
                HTBP_Filter_Factory.cpp
                HTBP_Addr.cpp

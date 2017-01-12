@@ -7,9 +7,9 @@ if (NOT ACE_ROOT)
 endif()
 
 
-requires(RAPI_FOUND)
+ace_requires(RAPI_FOUND)
 
-add_ace_exe(QOS_Diffserv_Client
+ace_add_exe(QOS_Diffserv_Client
   OUTPUT_NAME client
   FOLDER examples/QOS/Diffserv
   INCLUDE_DIRECTORIES ${RAPI_INCLUDE_DIR}
@@ -17,12 +17,12 @@ add_ace_exe(QOS_Diffserv_Client
                  ACE
                  ${RAPI_LIBRARIES}
 )
-target_cxx_sources(QOS_Diffserv_Client
+ace_target_cxx_sources(QOS_Diffserv_Client
   SOURCE_FILES diffserv_test.cpp
 )
 
 
-add_ace_exe(QOS_Diffserv_Server
+ace_add_exe(QOS_Diffserv_Server
   OUTPUT_NAME server
   FOLDER examples/QOS/Diffserv
   INCLUDE_DIRECTORIES ${RAPI_INCLUDE_DIR}
@@ -30,7 +30,7 @@ add_ace_exe(QOS_Diffserv_Server
                  ACE
                  ${RAPI_LIBRARIES}
 )
-target_cxx_sources(QOS_Diffserv_Server
+ace_target_cxx_sources(QOS_Diffserv_Server
   SOURCE_FILES server.cpp
 )
 

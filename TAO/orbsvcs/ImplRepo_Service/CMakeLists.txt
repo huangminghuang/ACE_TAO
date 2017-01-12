@@ -1,8 +1,8 @@
 
 
-requires("NOT CORBA_E_MICRO" CORBA_MESSAGING)
+ace_requires("NOT CORBA_E_MICRO" CORBA_MESSAGING)
 
-add_ace_lib(TAO_Async_ImR_Client_IDL
+ace_add_lib(TAO_Async_ImR_Client_IDL
   OUTPUT_NAME TAO_Async_ImR_Client_IDL
   PACKAGE TAO
   FOLDER orbsvcs/ImplRepo_Service
@@ -13,7 +13,7 @@ add_ace_lib(TAO_Async_ImR_Client_IDL
                         TAO_Valuetype
                         TAO_AnyTypeCode
 )
-target_cxx_sources(TAO_Async_ImR_Client_IDL
+ace_target_cxx_sources(TAO_Async_ImR_Client_IDL
   HEADER_FILES async_imr_client_export.h
 )
 
@@ -38,7 +38,7 @@ tao_idl_sources(
 )
 
 
-add_ace_lib(TAO_ImR_Activator_IDL
+ace_add_lib(TAO_ImR_Activator_IDL
   OUTPUT_NAME TAO_ImR_Activator_IDL
   PACKAGE TAO
   REQUIRES "NOT MINIMUM_CORBA"
@@ -53,7 +53,7 @@ add_ace_lib(TAO_ImR_Activator_IDL
                         TAO_PortableServer
                         TAO_DynamicInterface
 )
-target_cxx_sources(TAO_ImR_Activator_IDL
+ace_target_cxx_sources(TAO_ImR_Activator_IDL
   HEADER_FILES activator_idl_export.h
 )
 
@@ -68,7 +68,7 @@ tao_idl_sources(
 )
 
 
-add_ace_lib(TAO_ImR_Locator_IDL
+ace_add_lib(TAO_ImR_Locator_IDL
   OUTPUT_NAME TAO_ImR_Locator_IDL
   PACKAGE TAO
   REQUIRES "NOT MINIMUM_CORBA"
@@ -84,7 +84,7 @@ add_ace_lib(TAO_ImR_Locator_IDL
                         TAO_PortableServer
                         TAO_DynamicInterface
 )
-target_cxx_sources(TAO_ImR_Locator_IDL
+ace_target_cxx_sources(TAO_ImR_Locator_IDL
   HEADER_FILES locator_idl_export.h
 )
 
@@ -99,7 +99,7 @@ tao_idl_sources(
 )
 
 
-add_ace_lib(TAO_ImR_Activator
+ace_add_lib(TAO_ImR_Activator
   OUTPUT_NAME TAO_ImR_Activator
   PACKAGE TAO
   REQUIRES "NOT MINIMUM_CORBA"
@@ -120,7 +120,7 @@ add_ace_lib(TAO_ImR_Activator
                         TAO_PortableServer
                         ACEXML_Parser
 )
-target_cxx_sources(TAO_ImR_Activator
+ace_target_cxx_sources(TAO_ImR_Activator
   SOURCE_FILES Activator_Loader.cpp
                Activator_Options.cpp
                ImR_Activator_i.cpp
@@ -131,7 +131,7 @@ target_cxx_sources(TAO_ImR_Activator
 )
 
 
-add_ace_lib(TAO_ImR_Locator
+ace_add_lib(TAO_ImR_Locator
   OUTPUT_NAME TAO_ImR_Locator
   PACKAGE TAO
   REQUIRES "NOT MINIMUM_CORBA"
@@ -152,7 +152,7 @@ add_ace_lib(TAO_ImR_Locator
                         TAO_DynamicInterface
                         ACEXML_Parser
 )
-target_cxx_sources(TAO_ImR_Locator
+ace_target_cxx_sources(TAO_ImR_Locator
   SOURCE_FILES Activator_Info.cpp
                Adapter_Activator.cpp
                AsyncAccessManager.cpp
@@ -199,7 +199,7 @@ target_cxx_sources(TAO_ImR_Locator
 )
 
 
-add_ace_exe(tao_imr_locator
+ace_add_exe(tao_imr_locator
   OUTPUT_NAME tao_imr_locator
   PACKAGE TAO
   REQUIRES "NOT MINIMUM_CORBA"
@@ -222,14 +222,14 @@ add_ace_exe(tao_imr_locator
                  TAO_PortableServer
                  ACEXML_Parser
 )
-target_cxx_sources(tao_imr_locator
+ace_target_cxx_sources(tao_imr_locator
   SOURCE_FILES ImR_Locator.cpp
                Locator_NT_Service.cpp
   HEADER_FILES Locator_NT_Service.h
 )
 
 
-add_ace_exe(tao_imr_activator
+ace_add_exe(tao_imr_activator
   OUTPUT_NAME tao_imr_activator
   PACKAGE TAO
   REQUIRES "NOT MINIMUM_CORBA"
@@ -247,14 +247,14 @@ add_ace_exe(tao_imr_activator
                  TAO_ImR_Activator_IDL
                  ACEXML_Parser
 )
-target_cxx_sources(tao_imr_activator
+ace_target_cxx_sources(tao_imr_activator
   SOURCE_FILES Activator_NT_Service.cpp
                ImR_Activator.cpp
   HEADER_FILES Activator_NT_Service.h
 )
 
 
-add_ace_exe(tao_imr
+ace_add_exe(tao_imr
   OUTPUT_NAME tao_imr
   PACKAGE TAO
   REQUIRES "NOT MINIMUM_CORBA"
@@ -268,7 +268,7 @@ add_ace_exe(tao_imr
                  TAO_Messaging
                  TAO_PortableServer
 )
-target_cxx_sources(tao_imr
+ace_target_cxx_sources(tao_imr
   SOURCE_FILES tao_imr.cpp
                tao_imr_i.cpp
   HEADER_FILES tao_imr_i.h

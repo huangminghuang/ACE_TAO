@@ -7,13 +7,13 @@ if (NOT ACE_ROOT)
 endif()
 
 
-add_ace_lib(MC_Test_Utilities
+ace_add_lib(MC_Test_Utilities
   OUTPUT_NAME MC_Test_Utilities
   FOLDER examples/Monitor
   DEFINE_SYMBOL MC_TEST_UTILITIES_BUILD_DLL
   PUBLIC_LINK_LIBRARIES ACE
 )
-target_cxx_sources(MC_Test_Utilities
+ace_target_cxx_sources(MC_Test_Utilities
   SOURCE_FILES MC_Test_Utilities.cpp
   HEADER_FILES MC_Test_Utilities.h
 )

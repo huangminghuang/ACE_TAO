@@ -1,6 +1,6 @@
 
 
-add_ace_lib(TAO_FoxResource
+ace_add_lib(TAO_FoxResource
   OUTPUT_NAME TAO_FoxResource
   PACKAGE TAO
   FOLDER tao/FoxResource
@@ -9,7 +9,7 @@ add_ace_lib(TAO_FoxResource
   PUBLIC_LINK_LIBRARIES TAO
                         ACE_FoxReactor
 )
-target_cxx_sources(TAO_FoxResource
+ace_target_cxx_sources(TAO_FoxResource
   SOURCE_FILES FoxResource_Factory.cpp
                FoxResource_Loader.cpp
   HEADER_FILES FoxResource_Factory.h

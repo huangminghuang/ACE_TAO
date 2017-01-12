@@ -1,6 +1,6 @@
 
 
-add_ace_lib(TAO_IFR_Client
+ace_add_lib(TAO_IFR_Client
   OUTPUT_NAME TAO_IFR_Client
   PACKAGE TAO
   FOLDER tao/IFR_Client
@@ -10,13 +10,13 @@ add_ace_lib(TAO_IFR_Client
                              $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
   PUBLIC_LINK_LIBRARIES TAO_AnyTypeCode
 )
-target_cxx_sources(TAO_IFR_Client
+ace_target_cxx_sources(TAO_IFR_Client
   SOURCE_FILES IFR_Client_Adapter_Impl.cpp
   HEADER_FILES IFR_Client_Adapter_Impl.h
 )
 
 
-add_ace_lib(TAO_IFR_Client_skel
+ace_add_lib(TAO_IFR_Client_skel
   OUTPUT_NAME TAO_IFR_Client_skel
   PACKAGE TAO
   FOLDER tao/IFR_Client

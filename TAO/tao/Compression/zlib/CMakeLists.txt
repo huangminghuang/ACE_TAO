@@ -1,8 +1,8 @@
 find_package(ZLib)
 
-requires(ZLIB_FOUND)
+ace_requires(ZLIB_FOUND)
 
-add_ace_lib(TAO_ZlibCompressor
+ace_add_lib(TAO_ZlibCompressor
   OUTPUT_NAME TAO_ZlibCompressor
   PACKAGE TAO
   FOLDER tao/Compression/zlib
@@ -11,7 +11,7 @@ add_ace_lib(TAO_ZlibCompressor
   PUBLIC_LINK_LIBRARIES TAO_Compression
                         ${ZLIB_LIBRARIES}
 )
-target_cxx_sources(TAO_ZlibCompressor
+ace_target_cxx_sources(TAO_ZlibCompressor
   SOURCE_FILES ZlibCompressor.cpp
                ZlibCompressor_Factory.cpp
   HEADER_FILES ZlibCompressor.h

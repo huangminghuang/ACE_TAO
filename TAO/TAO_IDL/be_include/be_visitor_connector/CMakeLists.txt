@@ -1,4 +1,4 @@
-target_cxx_sources(TAO_IDL_BE
+ace_target_cxx_sources(TAO_IDL_BE
   HEADER_FILES connector_ami_exh.h
                connector_ami_exs.h
                connector_dds_ex_base.h

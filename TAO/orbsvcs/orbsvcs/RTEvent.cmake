@@ -1,5 +1,5 @@
 
-target_cxx_sources(TAO_RTEvent
+ace_target_cxx_sources(TAO_RTEvent
   SOURCE_FILES Event_Utilities.cpp
   HEADER_FILES Event_Utilities.h
                Event_Utilities.inl

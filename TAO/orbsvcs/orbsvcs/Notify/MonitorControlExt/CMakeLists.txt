@@ -1,5 +1,5 @@
 
-add_ace_lib(TAO_CosNotification_MC_Ext
+ace_add_lib(TAO_CosNotification_MC_Ext
   DEFINE_SYMBOL TAO_NOTIFY_MC_EXT_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -8,7 +8,7 @@ add_ace_lib(TAO_CosNotification_MC_Ext
                         TAO_Monitor
 )
 
-target_cxx_sources(TAO_CosNotification_MC_Ext
+ace_target_cxx_sources(TAO_CosNotification_MC_Ext
   SOURCE_FILES MC_Default_Factory.cpp
                 MC_Notify_Service.cpp
                 MonitorConsumerAdmin.cpp

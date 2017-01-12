@@ -7,12 +7,12 @@ if (NOT ACE_ROOT)
 endif()
 
 
-add_ace_exe(Event_Server
+ace_add_exe(Event_Server
   OUTPUT_NAME Event_Server
   FOLDER examples/ASX/Event_Server/Event_Server
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Event_Server
+ace_target_cxx_sources(Event_Server
   SOURCE_FILES Event_Analyzer.cpp
                Consumer_Router.cpp
                Peer_Router.cpp

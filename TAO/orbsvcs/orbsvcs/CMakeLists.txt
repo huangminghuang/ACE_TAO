@@ -1,6 +1,6 @@
 
 
-add_ace_lib(TAO_Svc_Utils
+ace_add_lib(TAO_Svc_Utils
   DEFINE_SYMBOL TAO_SVC_UTILS_BUILD_DLL
   PACKAGE TAO
   FOLDER orbsvcs/orbsvcs
@@ -10,7 +10,7 @@ add_ace_lib(TAO_Svc_Utils
   PUBLIC_LINK_LIBRARIES TAO_PortableServer TAO_AnyTypeCode
 )
 
-target_cxx_sources(TAO_Svc_Utils
+ace_target_cxx_sources(TAO_Svc_Utils
   SOURCE_FILES Shutdown_Utilities.cpp
                Time_Utilities.cpp
                IOR_Multicast.cpp

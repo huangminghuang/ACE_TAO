@@ -7,22 +7,22 @@ if (NOT ACE_ROOT)
 endif()
 
 
-add_ace_exe(OS_Process_Imore
+ace_add_exe(OS_Process_Imore
   OUTPUT_NAME imore
   FOLDER examples/OS/Process
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(OS_Process_Imore
+ace_target_cxx_sources(OS_Process_Imore
   SOURCE_FILES imore.cpp
 )
 
 
-add_ace_exe(OS_Process_Process
+ace_add_exe(OS_Process_Process
   OUTPUT_NAME process
   FOLDER examples/OS/Process
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(OS_Process_Process
+ace_target_cxx_sources(OS_Process_Process
   SOURCE_FILES process.cpp
 )
 

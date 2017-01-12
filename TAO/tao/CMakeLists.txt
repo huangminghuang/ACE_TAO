@@ -36,7 +36,7 @@ if (VALUETYPE_OUT_INDIRECTION)
   set(VALUETYPE_OUT_INDIRECTION_COMPILE_DEFINITIONS TAO_HAS_VALUETYPE_OUT_INDIRECTION)
 endif()
 
-add_ace_lib(TAO
+ace_add_lib(TAO
   OUTPUT_NAME TAO
   PACKAGE TAO
   FOLDER tao
@@ -47,7 +47,7 @@ add_ace_lib(TAO
                              $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/..>
   PUBLIC_LINK_LIBRARIES ACE
 )
-target_cxx_sources(TAO
+ace_target_cxx_sources(TAO
   SOURCE_FILES Abstract_Servant_Base.cpp
                Acceptor_Filter.cpp
                Acceptor_Registry.cpp
@@ -675,13 +675,13 @@ target_cxx_sources(TAO
 )
 
 if(NOT MINIMUM_CORBA)
-  target_cxx_sources(TAO
+  ace_target_cxx_sources(TAO
     SOURCE_FILES Dynamic_Adapter.cpp
     HEADER_FILES Dynamic_Adapter.h
   )
 endif()
 if(CORBA_MESSAGING)
-  target_cxx_sources(TAO
+  ace_target_cxx_sources(TAO
     SOURCE_FILES Policy_Manager.cpp
     HEADER_FILES Policy_Manager.h
     INLINE_FILES Policy_Manager.inl
@@ -786,7 +786,7 @@ tao_idl_sources(
   IDL_FILES Policy.pidl
 )
 
-install_package_files(TAO
+ace_install_package_files(TAO
   InterfaceDef.pidl
   InvalidName.pidl
   Object_Key.pidl

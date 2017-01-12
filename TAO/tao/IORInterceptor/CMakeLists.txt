@@ -1,6 +1,6 @@
 
 
-add_ace_lib(TAO_IORInterceptor
+ace_add_lib(TAO_IORInterceptor
   OUTPUT_NAME TAO_IORInterceptor
   PACKAGE TAO
   FOLDER tao/IORInterceptor
@@ -12,7 +12,7 @@ add_ace_lib(TAO_IORInterceptor
                         TAO_ObjRefTemplate
                         TAO_PortableServer
 )
-target_cxx_sources(TAO_IORInterceptor
+ace_target_cxx_sources(TAO_IORInterceptor
   SOURCE_FILES IORInfo.cpp
                IORInterceptor_Adapter_Factory_Impl.cpp
                IORInterceptor_Adapter_Impl.cpp

@@ -1,6 +1,6 @@
 
 
-add_ace_lib(TAO_Utils
+ace_add_lib(TAO_Utils
   OUTPUT_NAME TAO_Utils
   PACKAGE TAO
   FOLDER tao/Utils
@@ -8,7 +8,7 @@ add_ace_lib(TAO_Utils
   PUBLIC_LINK_LIBRARIES TAO_PI
                         TAO_PortableServer
 )
-target_cxx_sources(TAO_Utils
+ace_target_cxx_sources(TAO_Utils
   SOURCE_FILES Encodable.cpp
                Implicit_Deactivator.cpp
                ORB_Destroyer.cpp

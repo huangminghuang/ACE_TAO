@@ -7,12 +7,12 @@ if (NOT ACE_ROOT)
 endif()
 
 
-add_ace_exe(Web_Crawler
+ace_add_exe(Web_Crawler
   OUTPUT_NAME main
   FOLDER examples/Web_Crawler
   LINK_LIBRARIES ACE
 )
-target_cxx_sources(Web_Crawler
+ace_target_cxx_sources(Web_Crawler
   SOURCE_FILES Iterators.cpp
                main.cpp
                Mem_Map_Stream.cpp
