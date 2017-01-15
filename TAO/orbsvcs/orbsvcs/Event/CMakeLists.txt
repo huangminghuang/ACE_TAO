@@ -30,7 +30,7 @@ ace_add_lib(TAO_RTEvent_Serv
   PUBLIC_LINK_LIBRARIES TAO_RTEvent_Skel
                         TAO_RTSched
                         TAO_Messaging
-  REQUIRES CORBA_MESSAGING
+  REQUIRES TAO_HAS_CORBA_MESSAGING
 )
 
 ace_target_cxx_sources(TAO_RTEvent_Serv

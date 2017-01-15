@@ -1,7 +1,7 @@
 ace_requires("NOT TAO_HAS_MINIMUM_CORBA"
          "NOT TAO_HAS_CORBA_E_MICRO"
          "NOT TAO_HAS_CORBA_E_COMPACT"
-         CORBA_MESSAGING
+         TAO_HAS_CORBA_MESSAGING
 )
 
 ace_add_lib(TAO_PortableGroup
