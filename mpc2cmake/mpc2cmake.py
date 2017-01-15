@@ -17,8 +17,20 @@ package = ""
 requires_dict = {
   'BZIP2' : 'BZIP2_FOUND',
   'ZLIB' : 'ZLIB_FOUND',
-  'LZO1' : 'LZO_FOUND'
+  'LZO1' : 'LZO_FOUND',
+  'INTERCEPTORS' : 'TAO_HAS_INTERCEPTORS',
+  'RT_CORBA' : 'TAO_HAS_RT_CORBA',
+  'TRANSPORT_CURRENT' : 'TAO_HAS_TRANSPORT_CURRENT',
+  'VALUETYPE_OUT_INDIRECTION': 'TAO_HAS_VALUETYPE_OUT_INDIRECTION',
+  'MINIMUM_CORBA':'TAO_HAS_MINIMUM_CORBA',
+  'CORBA_E_COMPACT' : 'TAO_HAS_CORBA_E_COMPACT',
+  'CORBA_E_MICRO' : 'TAO_HAS_CORBA_E_MICRO',
+  'AMI': 'TAO_HAS_AMI',
+  'WINNT': 'WIN32'
 }
+
+def translate_require(cond):
+  return requires_dict[cond] if cond in requires_dict else cond
 
 file_dir = os.path.dirname(os.path.realpath(__file__))
 
@@ -30,7 +42,7 @@ if (NOT {1})
   find_package({2} REQUIRED CONFIG)
 endif()
 '''
-common_target_properties = ["output_name", "package", "compile_definitions", "requires", "folder", "aspects"]
+common_target_properties = ["output_name", "package", "compile_definitions", "requires", "folder"]
 common_exe_properties = common_target_properties + ["include_directories", "link_libraries"]
 common_lib_properties = common_target_properties + ["define_symbol", "public_compile_definitions" ,"public_include_directories", "public_link_libraries"]
 
@@ -47,9 +59,6 @@ def string_in_files(str, files):
     if str in open(f).read():
       return True
   return False
-
-
-
 
 def flatten_list(lists):
   return [item for sublist in lists for item in sublist]
@@ -106,7 +115,7 @@ class MPCNode(dds_mpb.Handler):
     return result
 
   def add_lib(self, libname):
-    if libname.startswith(package+"_"):
+    if libname.startswith(package):
       self.internal_libs.add(libname)
     else:
       self.external_libs.add(libname)
@@ -278,7 +287,7 @@ class MPCNode(dds_mpb.Handler):
         self.sources.header_files += self.expand_file_list([ f.content for f in child.children ])
       elif child.content.lower() == "inline_files":
         self.sources.inline_files += self.expand_file_list([ f.content for f in child.children ])
-      elif child.content.lower() == "template_Files":
+      elif child.content.lower() == "template_files":
         self.sources.template_files += self.expand_file_list([ f.content for f in child.children ])
       elif child.content.lower() == 'typesupport_files':
         self.handle_typesupports_files(child)
@@ -367,8 +376,6 @@ class MPCNode(dds_mpb.Handler):
     ])
 
     if len(idls):
-      if self.name == "TAO_DynamicAny":
-        print("sources = %s", self.sources.source_files)
       sources = set(self.sources.source_files)
       for idl_file_base, cpp_files in idls.iteritems():
         dep_target =  self.parent().custom_only_target_contains_idl(idl_file_base)
@@ -391,7 +398,8 @@ class MPCNode(dds_mpb.Handler):
             elif f.endswith("A.cpp"):
               dep_target.set_idl_target('anyop_targets', self)
         elif not (idl_file_base in ignore_files_in_tao):
-            print("'{}.idl".format(idl_file_base))
+            # print("'{}.idl".format(idl_file_base))
+            pass
 
   def all_idl_files(self):
     return flatten_list([ x.files for x in self.idl_file_groups]) + flatten_list([ x.files for x in self.typesupport_groups])
@@ -443,8 +451,8 @@ class MPCNode(dds_mpb.Handler):
     #     self.dds_idl_flags.append(flag)
 
   def handle_requires_pattern(self, match):
-    ignores = set(['ssl','qos', 'tao_orbsvcs'])
-    self.requires = self.requires.union(set([ x.upper() for x in match.group(1).split() if x not in ignores]))
+    ignores = set(['ssl','qos', 'tao_orbsvcs', 'ami'])
+    self.requires = self.requires.union(set([ translate_require(x.upper()) for x in match.group(1).split() if x not in ignores]))
     if match.group(1) == 'qos':
       self.external_libs.add('${RAPI_LIBRARIES}')
       self.requires.add('RAPI_FOUND')
@@ -452,7 +460,7 @@ class MPCNode(dds_mpb.Handler):
 
   def handle_avoids_pattern(self, match):
     ignores = set(['wince','ace_for_tao'])
-    self.requires = self.requires.union([ '"NOT %s"' % x.upper() for x in match.group(1).split() if x not in ignores ])
+    self.requires = self.requires.union([ '"NOT %s"' % translate_require(x.upper()) for x in match.group(1).split() if x not in ignores ])
 
   def handle_includes_pattern(self, match):
     self.includes.extend( [re.sub(r'\$\((\w+)\)', r'${\1}', path) for path in match.group(1).split() ])
@@ -576,8 +584,6 @@ class MPCNode(dds_mpb.Handler):
 
     return result
 
-
-
   def remove_generated_files_from_sources(self):
     if self.project_base >= ProjectBase.TAO:
       for idl_file in self.all_idl_files():
@@ -612,8 +618,7 @@ class MPCNode(dds_mpb.Handler):
     result = ""
 
     self.include_directories = []
-    if self.name == 'TAO':
-      print("TAO.includes = {}".format( self.includes ))
+
     for dir in list(OrderedDict.fromkeys(self.includes)):
       if dir.startswith('..'):
         self.include_directories.append("${CMAKE_CURRENT_SOURCE_DIR}/"+dir)
@@ -671,7 +676,7 @@ class MPCNode(dds_mpb.Handler):
     result += self.format_idl_files_text()
 
     if len(self.install_only_files):
-      result += "install_package_files({}\n  {}\n)\n\n".format(self.package, "\n  ".join(self.install_only_files))
+      result += "ace_install_package_files({}\n  {}\n)\n\n".format(self.package, "\n  ".join(self.install_only_files))
 
     if hasattr(self, 'msvc'):
       for line in  self.msvc:
@@ -772,12 +777,7 @@ class CMakeProjectNode:
       reordered_children.extend(custom_only_targets)
       self.children = reordered_children
 
-
-
   def requires_text(self):
-    def translate_require(cond):
-      return requires_dict[cond] if cond in requires_dict else cond
-
     condition_text=" ".join([ translate_require(cond) for cond in self.requires] )
 
     if len(condition_text):
@@ -889,11 +889,12 @@ class cmake_project:
     ignore_set = set(['ace_for_tao.mpc','svcconfgen.mpc','ace_foxreactor.mpc', 'ssl_for_tao.mpc', 'ConfigViewer.mpc'])
     leaves = [ self.parse_mpc_file(mpc_file) for mpc_file in glob2.glob("**/*.mpc") if not os.path.basename(mpc_file) in ignore_set]
     leaves = [x for x in leaves if x is not None]
-    for leaf in leaves:
-      leaf.resolve_dependencies(self)
 
     for leaf in leaves:
       leaf.handle_target_specific()
+
+    for leaf in leaves:
+      leaf.resolve_dependencies(self)
 
   def add_lib_target(self, lib):
     self.internal_libs_index_by_name[lib.name] = lib

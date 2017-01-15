@@ -1,9 +1,9 @@
 find_package(Qt4)
-requires(QT4_FOUND)
+ace_requires(QT4_FOUND)
 
 if (("${MSVC_VERSION}" GREATER 1599) OR (NOT "${CMAKE_CXX_STANDARD}" EQUAL 98))
   ## MSVC_VERSION==1600  is the earliest version of MSVC to support std::shared_ptr
-  ## for other compiler, To enable C++11 requires CMAKE_CXX_STANDARD set to 11 or greater.
+  ## for other compiler, Enabling C++11 requires CMAKE_CXX_STANDARD set to 11 or greater.
 else()
   find_package(Boost)
   if (NOT Boost_FOUND)

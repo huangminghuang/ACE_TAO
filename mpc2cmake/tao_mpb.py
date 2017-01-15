@@ -4,11 +4,12 @@ from ace_mpb import CXXSourceGroup
 class Handler(ace_mpb.Handler):
 
   def handle_mpb_negotiate_codesets(self):
-    self.aspects.add('NEGOTIATE_CODESETS')
+    self.add_lib('$<TAO_NEGOTIATE_CODESETS:TAO_Codeset>')
+    self.compile_definitions.add ('$<TAO_NEGOTIATE_CODESETS:TAO_EXPLICIT_NEGOTIATE_CODESETS>')
 
   def handle_mpb_orbsvcsexe(self):
-    self.handle_mpb_taoexe()
-    self.handle_mpb_negotiate_codesets()
+    # self.handle_mpb_taoexe()
+    # self.handle_mpb_negotiate_codesets()
     self.handle_mpb_anytypecode()
 
   def handle_mpb_codeset(self):
@@ -44,13 +45,13 @@ class Handler(ace_mpb.Handler):
     self.add_lib('TAO_RTCORBA')
 
   def handle_mpb_avoids_corba_e_micro(self):
-    self.requires.add('"NOT CORBA_E_MICRO"')
+    self.requires.add('"NOT TAO_HAS_CORBA_E_MICRO"')
 
   def handle_mpb_avoids_minimum_corba(self):
-    self.requires.add('"NOT MINIMUM_CORBA"')
+    self.requires.add('"NOT TAO_HAS_MINIMUM_CORBA"')
 
   def handle_mpb_avoids_corba_e_compact(self):
-    self.requires.add('"NOT CORBA_E_COMPACT"')
+    self.requires.add('"NOT TAO_HAS_CORBA_E_COMPACT"')
 
   def handle_mpb_iormanip(self):
     self.handle_mpb_portableserver()
@@ -111,50 +112,49 @@ class Handler(ace_mpb.Handler):
     pass
 
   def handle_mpb_valuetype_out_indirection(self):
-    self.aspects.add('VALUETYPE_OUT_INDIRECTION')
+    pass
 
   def handle_mpb_pi_server(self):
     self.add_lib('TAO_PI_Server')
 
   def handle_mpb_interceptors(self):
-    self.requires.add('INTERCEPTORS')
+    self.requires.add('TAO_HAS_INTERCEPTORS')
 
   def handle_mpb_tc(self):
     self.handle_mpb_interceptors()
     self.handle_mpb_pi()
-    self.requires.add('TRANSPORT_CURRENT')
+    self.requires.add('TAO_HAS_TRANSPORT_CURRENT')
     self.add_lib('TAO_TC')
 
   def handle_mpb_taoexe(self):
-    self.aspects.add("TAO")
     self.add_lib('TAO')
     self.is_exe = True
 
   def handle_mpb_taolib(self):
-    self.aspects.add("TAO")
     self.add_lib('TAO')
 
   def handle_mpb_taoclient(self):
     self.is_exe = True
     self.output_name = 'client'
-    self.aspects.add('TAOCLIENT')
+    self.add_lib('TAO')
 
   def handle_mpb_taoserver(self):
     self.is_exe = True
-    self.aspects.add('TAOSERVER')
+    self.output_name = 'server'
+    self.add_lib('TAO_PortableServer')
 
   def handle_mpb_rt_cleint(self):
     self.is_exe = True
-    self.aspects.add('RT_CLIENT')
+    self.add_lib('TAO_RTCORBA')
     self.output_name = 'client'
 
   def handle_mpb_rt_server(self):
     self.is_exe = True
-    self.aspects.add('RT_SERVER')
+    self.add_lib('TAO_RTPortableServer')
     self.output_name = 'server'
 
   def handle_mpb_nolink_codecfactory(self):
-    self.aspects.discard("TAO")
+    pass
 
   def handle_mpb_codecfactory(self):
     self.handle_mpb_anytypecode()
@@ -164,14 +164,14 @@ class Handler(ace_mpb.Handler):
     self.add_lib("TAO_Compression")
 
   def handle_mpb_extra_core(self):
-    self.conditional_sources['NOT MINIMUM_CORBA'] = CXXSourceGroup(source_files = ['Dynamic_Adapter.cpp'])
-    self.conditional_sources['CORBA_MESSAGING'] = CXXSourceGroup(source_files = ['Policy_Manager.cpp'])
+    self.conditional_sources['NOT TAO_HAS_MINIMUM_CORBA'] = CXXSourceGroup(source_files = ['Dynamic_Adapter.cpp'])
+    self.conditional_sources['TAO_HAS_CORBA_MESSAGING'] = CXXSourceGroup(source_files = ['Policy_Manager.cpp'])
 
   def handle_mpb_extra_anytypecode(self):
-    self.conditional_sources['NOT MINIMUM_CORBA'] = CXXSourceGroup(source_files = ['ServicesA.cpp'])
+    self.conditional_sources['NOT TAO_HAS_MINIMUM_CORBA'] = CXXSourceGroup(source_files = ['ServicesA.cpp'])
 
   def handle_mpb_corba_messaging(self):
-    self.requires.add('CORBA_MESSAGING')
+    self.requires.add('TAO_HAS_CORBA_MESSAGING')
 
   def handle_mpb_messaging(self):
     self.handle_mpb_corba_messaging()
@@ -188,7 +188,7 @@ class Handler(ace_mpb.Handler):
     pass
 
   def handle_mpb_messaging_optional(self):
-    self.aspects.add('MESSAGING_OPTIONAL')
+    self.handle_mpb_messaging()
 
   def handle_target_TAO(self):
     self.includes = ["${CMAKE_CURRENT_SOURCE_DIR}/..","${CMAKE_CURRENT_BINARY_DIR}/.."]
@@ -199,3 +199,15 @@ class Handler(ace_mpb.Handler):
     self.skel_targets = ['TAO_PortableServer']
     self.anyop_targets = ['TAO_AnyTypeCode']
 
+  def handle_target_TAO_PI(self):
+    self.requires.add('TAO_HAS_INTERCEPTORS')
+
+  def handle_target_TAO_Messaging(self):
+    ## inherit the requires from TAO_PI
+    self.requires = set()
+
+  def handle_target_TAO_CSD_Framework(self):
+    self.includes = []
+
+  def handle_target_TAO_CSD_ThreadPool(self):
+    self.includes = []

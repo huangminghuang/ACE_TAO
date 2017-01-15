@@ -1,13 +1,12 @@
 
 
-ace_requires(ACE_HAS_THREADS "NOT CORBA_E_COMPACT")
+ace_requires("NOT TAO_HAS_CORBA_E_MICRO" ACE_HAS_THREADS)
 
 ace_add_lib(TAO_CSD_ThreadPool
   OUTPUT_NAME TAO_CSD_ThreadPool
   PACKAGE TAO
   FOLDER tao/CSD_ThreadPool
   DEFINE_SYMBOL TAO_CSD_TP_BUILD_DLL
-  PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${TAO_ROOT}/tao>
   PUBLIC_LINK_LIBRARIES TAO_PI
                         TAO_PortableServer
                         TAO_CSD_Framework

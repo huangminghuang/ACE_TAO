@@ -43,7 +43,7 @@ ace_add_lib(TAO_CosNaming_Serv
   FOLDER orbsvcs/orbsvcs
   PUBLIC_LINK_LIBRARIES TAO_CosNaming_Skel
                         TAO_IORTable
-  ASPECTS MESSAGING_OPTIONAL
+                        TAO_Messaging
 )
 
 ace_target_cxx_sources(TAO_CosNaming_Serv
@@ -63,7 +63,7 @@ ace_target_cxx_sources(TAO_CosNaming_Serv
               Transient_Naming_Context.h
 )
 
-if (NOT CORBA_E_MICRO)
+if (NOT TAO_HAS_CORBA_E_MICRO)
   ace_target_cxx_sources(TAO_CosNaming_Serv
     SOURCE_FILES Persistent_Context_Index.cpp
                  Persistent_Entries.cpp

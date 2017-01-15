@@ -4,7 +4,6 @@ ace_add_lib(TAO_TkResource
   OUTPUT_NAME TAO_TkResource
   PACKAGE TAO
   FOLDER tao/TkResource
-  ASPECTS TAO
   DEFINE_SYMBOL TAO_TKRESOURCE_BUILD_DLL
   PUBLIC_LINK_LIBRARIES TAO
                         ACE_TkReactor

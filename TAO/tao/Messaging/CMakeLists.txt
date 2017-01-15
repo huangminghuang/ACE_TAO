@@ -1,18 +1,17 @@
 
 
-ace_requires("NOT CORBA_E_COMPACT")
+ace_requires("NOT TAO_HAS_CORBA_E_MICRO")
 
 ace_add_lib(TAO_Messaging
   OUTPUT_NAME TAO_Messaging
   PACKAGE TAO
   FOLDER tao/Messaging
-  ASPECTS TAO
   DEFINE_SYMBOL TAO_MESSAGING_BUILD_DLL
   PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
                              $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
   PUBLIC_LINK_LIBRARIES TAO_PI
-                        TAO_PortableServer
                         TAO_Valuetype
+                        TAO_PortableServer
                         TAO_AnyTypeCode
 )
 ace_target_cxx_sources(TAO_Messaging

@@ -163,10 +163,6 @@ macro(ace_parse_arguments options oneValueArgs multiValueArgs)
   endforeach()
 
   foreach(aspect ${_arg_ASPECTS})
-    list(APPEND _arg_COMPILE_DEFINTTIONS ${${aspect}_COMPILE_DEFINITIONS})
-    list(APPEND _arg_PUBLIC_COMPILE_DEFINTTIONS ${${aspect}_PUBLIC_COMPILE_DEFINITIONS})
-    list(APPEND _arg_PUBLIC_LINK_LIBRARIES ${${aspect}_LINK_LIBRARIES})
-    list(APPEND _arg_LINK_LIBRARIES ${${aspect}_LINK_LIBRARIES})
     list(APPEND _arg_TAO_IDL_FLAGS ${${aspect}_TAO_IDL_FLAGS})
     list(APPEND _arg_DDS_IDL_FLAGS ${${aspect}_DDS_IDL_FLAGS})
   endforeach()
@@ -189,7 +185,6 @@ function(ace_add_lib target)
                      COMPILE_DEFINITIONS
                      PUBLIC_COMPILE_DEFINITIONS
                      REQUIRES
-                     ASPECTS
   )
   ace_parse_arguments("" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
@@ -230,7 +225,6 @@ function(ace_add_exe target)
                      INCLUDE_DIRECTORIES
                      COMPILE_DEFINITIONS
                      REQUIRES
-                     ASPECTS
   )
   ace_parse_arguments("" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
@@ -328,4 +322,38 @@ function(ace_install_package package_name)
   # This makes the project importable from the build directory
   export(PACKAGE "${package_name}")
 
+endfunction()
+
+function(ace_target_qt_sources target)
+
+  if (TARGET ${target})
+    set(multiValueArgs UI_FILES RESOURCE_FILES)
+    cmake_parse_arguments(_arg "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+
+    target_sources(${target} PRIVATE ${_arg_UI_FILES} ${_arg_RESOURCE_FILES})
+    source_group("UI Files" FILES ${_arg_UI_FILES})
+    source_group("Resource Files" FILES ${_arg_RESOURCE_FILES})
+
+    # generate proper GUI program on specified platform
+    if(WIN32) # Check if we are on Windows
+    	if(MSVC) # Check if we are using the Visual Studio compiler
+    		set_target_properties(${target} PROPERTIES
+    			WIN32_EXECUTABLE YES
+    			LINK_FLAGS "/ENTRY:mainCRTStartup"
+    		)
+    	elseif(CMAKE_COMPILER_IS_GNUCXX)
+    			# SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mwindows") # Not tested
+    	else()
+    		message(SEND_ERROR "You are using an unsupported Windows compiler! (Not MSVC or GCC)")
+    	endif(MSVC)
+    elseif(APPLE)
+    	set_target_properties(${target} PROPERTIES
+    			MACOSX_BUNDLE YES
+    	)
+    elseif(UNIX)
+    	# Nothing special required
+    else()
+    	message(SEND_ERROR "You are on an unsupported platform! (Not Win32, Mac OS X or Unix)")
+    endif(WIN32)
+  endif(TARGET ${target})
 endfunction()

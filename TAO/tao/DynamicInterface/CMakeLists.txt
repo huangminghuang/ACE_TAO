@@ -1,12 +1,11 @@
 
 
-ace_requires(CORBA_MESSAGING)
+ace_requires(TAO_HAS_CORBA_MESSAGING)
 
 ace_add_lib(TAO_DynamicInterface
   OUTPUT_NAME TAO_DynamicInterface
   PACKAGE TAO
   FOLDER tao/DynamicInterface
-  ASPECTS TAO
   DEFINE_SYMBOL TAO_DYNAMICINTERFACE_BUILD_DLL
   PUBLIC_LINK_LIBRARIES TAO_Messaging
 )
