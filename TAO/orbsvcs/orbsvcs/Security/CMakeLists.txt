@@ -1,4 +1,4 @@
-ace_requires(CORBA_MESSAGING)
+ace_requires(TAO_HAS_CORBA_MESSAGING)
 
 ace_add_lib(TAO_Security
   DEFINE_SYMBOL TAO_SECURITY_BUILD_DLL

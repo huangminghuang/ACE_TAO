@@ -1,4 +1,4 @@
-ace_requires(CORBA_MESSAGING)
+ace_requires(TAO_HAS_CORBA_MESSAGING)
 
 ace_add_lib(TAO_CosLoadBalancing
   DEFINE_SYMBOL TAO_COSLOADBALANCING_BUILD_DLL

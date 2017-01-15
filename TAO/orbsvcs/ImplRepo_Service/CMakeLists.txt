@@ -1,6 +1,6 @@
 
 
-ace_requires("NOT TAO_HAS_CORBA_E_MICRO" CORBA_MESSAGING)
+ace_requires("NOT TAO_HAS_CORBA_E_MICRO" TAO_HAS_CORBA_MESSAGING)
 
 ace_add_lib(TAO_Async_ImR_Client_IDL
   OUTPUT_NAME TAO_Async_ImR_Client_IDL
