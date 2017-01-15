@@ -9,11 +9,11 @@ class Handler(tao_mpb.Handler):
     self.sources.inline_files = []
 
   def handle_mpb_dcpsexe(self):
-    self.aspects.add("DCPS_DEFAULT_DISCOVERY")
+    self.external_libs.add("OpenDDS_Default_Discovery")
     self.is_exe = True
 
   def handle_mpb_dcps_transports_for_test(self):
-    self.aspects.add("DCPS_TRANSPORTS_FOR_TEST")
+    self.external_libs.add("OpenDDS_Transports_For_Test")
 
   def handle_mpb_mc_test_utils(self):
     self.internal_libs.add('MC_Test_Utilities')
@@ -32,7 +32,7 @@ class Handler(tao_mpb.Handler):
     self.is_exe = True
 
   def handle_mpb_dcps_default_discovery(self):
-    self.aspects.add("DCPS_DEFAULT_DISCOVERY")
+    self.external_libs.add("OpenDDS_Default_Discovery")
 
   def handle_mpb_content_subscription(self):
     self.requires.add('CONTENT_SUBSCRIPTION')
@@ -41,6 +41,7 @@ class Handler(tao_mpb.Handler):
     self.requires.add('CONTENT_SUBSCRIPTION_CORE')
 
   def handle_mpb_opendds_face(self):
+    self.add_lib('OpenDDS_FACE')
     self.aspects.add('FACE')
 
   def handle_mpb_dds_model(self):

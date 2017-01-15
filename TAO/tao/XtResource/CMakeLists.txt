@@ -4,7 +4,6 @@ ace_add_lib(TAO_XtResource
   OUTPUT_NAME TAO_XtResource
   PACKAGE TAO
   FOLDER tao/XtResource
-  ASPECTS TAO
   DEFINE_SYMBOL TAO_XTRESOURCE_BUILD_DLL
   PUBLIC_LINK_LIBRARIES TAO
                         ACE_XtReactor

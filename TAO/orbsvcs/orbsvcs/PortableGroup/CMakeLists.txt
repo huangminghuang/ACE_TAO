@@ -1,6 +1,6 @@
-ace_requires("NOT MINIMUM_CORBA"
-         "NOT CORBA_E_MICRO"
-         "NOT CORBA_E_COMPACT"
+ace_requires("NOT TAO_HAS_MINIMUM_CORBA"
+         "NOT TAO_HAS_CORBA_E_MICRO"
+         "NOT TAO_HAS_CORBA_E_COMPACT"
          CORBA_MESSAGING
 )
 

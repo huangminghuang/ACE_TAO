@@ -1,16 +1,14 @@
 
 
-ace_requires("NOT CORBA_E_COMPACT")
+ace_requires("NOT TAO_HAS_CORBA_E_MICRO")
 
 ace_add_lib(TAO_CSD_Framework
   OUTPUT_NAME TAO_CSD_Framework
   PACKAGE TAO
   FOLDER tao/CSD_Framework
-  ASPECTS TAO
   DEFINE_SYMBOL TAO_CSD_FW_BUILD_DLL
   PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
                              $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
-                             $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
   PUBLIC_LINK_LIBRARIES TAO_PI
                         TAO_PortableServer
 )

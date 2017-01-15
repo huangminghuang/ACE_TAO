@@ -1,8 +1,8 @@
 
 
-ace_requires("NOT MINIMUM_CORBA"
-         "NOT CORBA_E_MICRO"
-         "NOT CORBA_E_COMPACT"
+ace_requires("NOT TAO_HAS_MINIMUM_CORBA"
+         "NOT TAO_HAS_CORBA_E_MICRO"
+         "NOT TAO_HAS_CORBA_E_COMPACT"
 )
 
 ace_add_lib(TAO_CosEvent
@@ -57,7 +57,7 @@ ace_add_lib(TAO_CosEvent_Serv
   PUBLIC_LINK_LIBRARIES TAO_Svc_Utils
                         TAO_CosNaming
                         TAO_CosEvent_Skel
-  ASPECTS MESSAGING_OPTIONAL
+                        TAO_Messaging
 )
 
 ace_target_cxx_sources(TAO_CosEvent_Serv
@@ -116,7 +116,7 @@ ace_target_cxx_sources(TAO_CosEvent_Serv
 
 option(EC_TYPED_EVENT "" ON)
 
-if (EC_TYPED_EVENT AND TARGET TAO_CosEvent)
+if (EC_TYPED_EVENT)
 
   tao_idl_sources(
     STUB_TARGETS TAO_CosEvent
@@ -126,7 +126,10 @@ if (EC_TYPED_EVENT AND TARGET TAO_CosEvent)
               ../CosTypedEventChannelAdmin.idl
     WORKING_DIRECTORY ..
   )
-  target_compile_definitions(TAO_CosEvent PUBLIC TAO_HAS_TYPED_EVENT_CHANNEL)
+
+  if (TARGET TAO_CosEvent)
+    target_compile_definitions(TAO_CosEvent PUBLIC TAO_HAS_TYPED_EVENT_CHANNEL)
+  endif(TARGET TAO_CosEvent)
 
   ace_target_cxx_sources(TAO_CosEvent_Serv
     SOURCE_FILES CEC_TypedEvent.cpp
@@ -150,10 +153,12 @@ if (EC_TYPED_EVENT AND TARGET TAO_CosEvent)
                  CEC_DynamicImplementation.inl
   )
 
-  target_link_libraries(TAO_CosEvent_Serv PUBLIC
-    TAO_IFR_Client
-    TAO_DynamicInterface
-  )
+  if (TARGET TAO_CosEvent_Serv)
+    target_link_libraries(TAO_CosEvent_Serv PUBLIC
+      TAO_IFR_Client
+      TAO_DynamicInterface
+    )
+  endif(TARGET TAO_CosEvent_Serv)
 
-endif(EC_TYPED_EVENT AND TARGET TAO_CosEvent)
+endif(EC_TYPED_EVENT)
 

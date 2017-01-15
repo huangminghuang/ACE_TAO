@@ -4,7 +4,6 @@ ace_add_lib(TAO_Compression
   OUTPUT_NAME TAO_Compression
   PACKAGE TAO
   FOLDER tao/Compression
-  ASPECTS TAO
   DEFINE_SYMBOL TAO_COMPRESSION_BUILD_DLL
   PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
                              $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
@@ -49,5 +48,5 @@ tao_idl_sources(
 
 add_subdirectory(lzo)
 add_subdirectory(rle)
-add_subdirectory(bzip2)
 add_subdirectory(zlib)
+add_subdirectory(bzip2)

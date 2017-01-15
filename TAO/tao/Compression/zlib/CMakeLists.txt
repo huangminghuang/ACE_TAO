@@ -6,7 +6,6 @@ ace_add_lib(TAO_ZlibCompressor
   OUTPUT_NAME TAO_ZlibCompressor
   PACKAGE TAO
   FOLDER tao/Compression/zlib
-  ASPECTS TAO
   DEFINE_SYMBOL TAO_ZLIBCOMPRESSOR_BUILD_DLL
   PUBLIC_LINK_LIBRARIES TAO_Compression
                         ${ZLIB_LIBRARIES}

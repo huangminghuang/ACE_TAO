@@ -4,8 +4,6 @@ ace_add_exe(tao_cosnaming
   OUTPUT_NAME tao_cosnaming
   PACKAGE TAO
   FOLDER orbsvcs/Naming_Service
-  ASPECTS NEGOTIATE_CODESETS
-          TAO
   LINK_LIBRARIES TAO_AnyTypeCode
                  TAO_CosNaming_Serv
                  TAO_Svc_Utils
@@ -21,10 +19,8 @@ ace_target_cxx_sources(tao_cosnaming
 ace_add_exe(tao_nt_cosnaming
   OUTPUT_NAME tao_nt_cosnaming
   PACKAGE TAO
-  REQUIRES WINNT
+  REQUIRES WIN32
   FOLDER orbsvcs/Naming_Service
-  ASPECTS NEGOTIATE_CODESETS
-          TAO
   LINK_LIBRARIES TAO_AnyTypeCode
                  TAO_CosNaming_Serv
                  TAO_Svc_Utils

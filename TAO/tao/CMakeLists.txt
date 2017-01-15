@@ -1,50 +1,48 @@
-add_subdirectory(QtResource)
-add_subdirectory(FoxResource)
-add_subdirectory(XtResource)
 
 
-if (CORBA_E_MICRO)
+if (TAO_HAS_CORBA_E_MICRO)
   list(APPEND TAO_COMPILE_DEFINITIONS CORBA_E_MICRO)
 endif()
 
-if (CORBA_E_COMPACT)
+if (TAO_HAS_CORBA_E_COMPACT)
   list(APPEND TAO_COMPILE_DEFINITIONS CORBA_E_COMPACT)
 endif()
 
-if (MINIMUM_CORBA)
+if (TAO_HAS_MINIMUM_CORBA)
   list(APPEND TAO_COMPILE_DEFINITIONS TAO_HAS_MINIMUM_CORBA=1)
 endif()
 
-if (TAO_NO_IIOP)
+if (NOT TAO_HAS_IIOP)
   list(APPEND TAO_COMPILE_DEFINITIONS TAO_HAS_IIOP=0)
 endif()
 
-if (NOT INTERCEPTORS)
+if (NOT TAO_HAS_INTERCEPTORS)
   list(APPEND TAO_COMPILE_DEFINITIONS TAO_HAS_INTERCEPTORS=0)
 endif()
 
-if (NOT RT_CORBA)
+if (NOT TAO_HAS_RT_CORBA)
   list(APPEND TAO_COMPILE_DEFINITIONS TAO_HAS_RT_CORBA=0)
 endif()
 
-if (NOT TRANSPORT_CURRENT)
+if (NOT TAO_HAS_TRANSPORT_CURRENT)
   list(APPEND TAO_COMPILE_DEFINITIONS TAO_HAS_TRANSPORT_CURRENT=0)
 endif()
 
-if (VALUETYPE_OUT_INDIRECTION)
+if (TAO_HAS_VALUETYPE_OUT_INDIRECTION)
   ## this flag does not affect the TAO public headers
-  set(VALUETYPE_OUT_INDIRECTION_COMPILE_DEFINITIONS TAO_HAS_VALUETYPE_OUT_INDIRECTION)
+  set(TAO_COMPILE_DEFINITIONS TAO_HAS_VALUETYPE_OUT_INDIRECTION)
 endif()
 
 ace_add_lib(TAO
   OUTPUT_NAME TAO
   PACKAGE TAO
   FOLDER tao
-  ASPECTS VALUETYPE_OUT_INDIRECTION
   DEFINE_SYMBOL TAO_BUILD_DLL
   PUBLIC_COMPILE_DEFINITIONS ${TAO_COMPILE_DEFINITIONS}
   PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
                              $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/..>
+                             $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+                             $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
   PUBLIC_LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(TAO
@@ -674,13 +672,13 @@ ace_target_cxx_sources(TAO
                  Vector_Argument_T.cpp
 )
 
-if(NOT MINIMUM_CORBA)
+if(NOT TAO_HAS_MINIMUM_CORBA)
   ace_target_cxx_sources(TAO
     SOURCE_FILES Dynamic_Adapter.cpp
     HEADER_FILES Dynamic_Adapter.h
   )
 endif()
-if(CORBA_MESSAGING)
+if(TAO_HAS_CORBA_MESSAGING)
   ace_target_cxx_sources(TAO
     SOURCE_FILES Policy_Manager.cpp
     HEADER_FILES Policy_Manager.h
@@ -693,6 +691,7 @@ endif()
 ## the generated files in the current directory
 include(AnyTypeCode/CMakeLists.txt)
 include(PortableServer/CMakeLists.txt)
+
 
 set(TAO_Core_idl_FLAGS ${TAO_VERSIONING_IDL_FLAGS}
                        -GA -Gp -Gd -oA AnyTypeCode
@@ -796,38 +795,41 @@ ace_install_package_files(TAO
 )
 
 add_subdirectory(TkResource)
-add_subdirectory(FlResource)
+add_subdirectory(QtResource)
 
+add_subdirectory(IORManipulation)
+add_subdirectory(CodecFactory)
+add_subdirectory(FoxResource)
 add_subdirectory(Valuetype)
 add_subdirectory(SmartProxies)
 add_subdirectory(Codeset)
-
+add_subdirectory(PI)
+add_subdirectory(FlResource)
+add_subdirectory(TransportCurrent)
+add_subdirectory(Strategies)
+add_subdirectory(XtResource)
 add_subdirectory(ETCL)
-add_subdirectory(ObjRefTemplate)
+
+add_subdirectory(CSD_Framework)
 add_subdirectory(IFR_Client)
 add_subdirectory(Compression)
-add_subdirectory(TypeCodeFactory)
-add_subdirectory(IORManipulation)
-add_subdirectory(CodecFactory)
-add_subdirectory(DynamicAny)
 add_subdirectory(Monitor)
-add_subdirectory(PI)
+add_subdirectory(EndpointPolicy)
 add_subdirectory(RTCORBA)
+add_subdirectory(TypeCodeFactory)
+add_subdirectory(DynamicAny)
+add_subdirectory(BiDir_GIOP)
+add_subdirectory(CSD_ThreadPool)
+add_subdirectory(RTPortableServer)
+add_subdirectory(Messaging)
+add_subdirectory(Dynamic_TP)
 add_subdirectory(Utils)
+add_subdirectory(ObjRefTemplate)
 add_subdirectory(ImR_Client)
 add_subdirectory(IORInterceptor)
-add_subdirectory(RTPortableServer)
 add_subdirectory(DiffServPolicy)
 add_subdirectory(PI_Server)
-add_subdirectory(EndpointPolicy)
-add_subdirectory(Messaging)
 add_subdirectory(ZIOP)
-add_subdirectory(IORTable)
 add_subdirectory(RTScheduling)
 add_subdirectory(DynamicInterface)
-add_subdirectory(BiDir_GIOP)
-add_subdirectory(TransportCurrent)
-add_subdirectory(CSD_Framework)
-add_subdirectory(Strategies)
-add_subdirectory(CSD_ThreadPool)
-add_subdirectory(Dynamic_TP)
+add_subdirectory(IORTable)

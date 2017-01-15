@@ -1,17 +1,16 @@
 
 
-ace_requires("NOT CORBA_E_COMPACT")
+ace_requires("NOT TAO_HAS_CORBA_E_MICRO")
 
 ace_add_lib(TAO_ImR_Client
   OUTPUT_NAME TAO_ImR_Client
   PACKAGE TAO
   FOLDER tao/ImR_Client
-  ASPECTS TAO
   DEFINE_SYMBOL TAO_IMR_CLIENT_BUILD_DLL
   PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
                              $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
-  PUBLIC_LINK_LIBRARIES TAO_AnyTypeCode
-                        TAO_IORManip
+  PUBLIC_LINK_LIBRARIES TAO_IORManip
+                        TAO_AnyTypeCode
                         TAO_Valuetype
                         TAO_PortableServer
 )

@@ -1,4 +1,4 @@
-ace_requires("NOT CORBA_E_MICRO")
+ace_requires("NOT TAO_HAS_CORBA_E_MICRO")
 
 ace_add_lib(TAO_CosConcurrency
   DEFINE_SYMBOL TAO_CosConcurrency_BUILD_DLL
