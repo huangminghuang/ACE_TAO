@@ -1,9 +1,9 @@
 ace_requires("NOT TAO_HAS_CORBA_E_MICRO")
 
 ace_add_lib(TAO_CosConcurrency
-  DEFINE_SYMBOL TAO_CosConcurrency_BUILD_DLL
+  DEFINE_SYMBOL TAO_CONCURRENCY_BUILD_DLL
   PACKAGE TAO
-  FOLDER orbsvcs/orbsvcs
+  FOLDER orbsvcs/orbsvcs/Concurrency
   PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../..>
                              $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/../..>
                              $<INSTALL_INTERFACE:${TAO_INSTALL_DIR}/orbsvcs>
@@ -15,9 +15,9 @@ ace_target_cxx_sources(TAO_CosConcurrency
 )
 
 ace_add_lib(TAO_CosConcurrency_Skel
-  DEFINE_SYMBOL TAO_CosConcurrency_Skel_BUILD_DLL
+  DEFINE_SYMBOL TAO_CONCURRENCY_SKEL_BUILD_DLL
   PACKAGE TAO
-  FOLDER orbsvcs/orbsvcs
+  FOLDER orbsvcs/orbsvcs/Concurrency
   PUBLIC_LINK_LIBRARIES TAO_CosConcurrency TAO_PortableServer
 )
 
@@ -40,9 +40,9 @@ tao_idl_sources(
 )
 
 ace_add_lib(TAO_CosConcurrency_Serv
-  DEFINE_SYMBOL TAO_COSCONCURRENCY_SERV_BUILD_DLL
+  DEFINE_SYMBOL TAO_CONCURRENCY_SERV_BUILD_DLL
   PACKAGE TAO
-  FOLDER orbsvcs/orbsvcs
+  FOLDER orbsvcs/orbsvcs/Concurrency
   PUBLIC_LINK_LIBRARIES TAO_CosConcurrency_Skel TAO_Svc_Utils
 )
 

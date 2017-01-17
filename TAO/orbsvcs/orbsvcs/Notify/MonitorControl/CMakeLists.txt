@@ -5,7 +5,7 @@
 ace_add_lib(TAO_CosNotification_MC
   DEFINE_SYMBOL TAO_NOTIFY_MC_BUILD_DLL
   PACKAGE TAO
-  FOLDER orbsvcs/orbsvcs
+  FOLDER orbsvcs/orbsvcs/Notify/MonitorControl
   PUBLIC_LINK_LIBRARIES TAO_CosNaming
                         TAO_IORTable
                         TAO_Svc_Utils

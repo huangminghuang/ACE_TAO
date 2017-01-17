@@ -3,7 +3,7 @@
 ace_add_lib(TAO_CosNotification
   DEFINE_SYMBOL TAO_NOTIFY_BUILD_DLL
   PACKAGE TAO
-  FOLDER orbsvcs/orbsvcs
+  FOLDER orbsvcs/orbsvcs/Notify
   PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/../../../tao>
   PUBLIC_LINK_LIBRARIES TAO_AnyTypeCode
                         TAO_CosEvent
@@ -18,7 +18,7 @@ ace_target_cxx_sources(TAO_CosNotification
 ace_add_lib(TAO_CosNotification_Skel
   DEFINE_SYMBOL TAO_NOTIFY_SKEL_BUILD_DLL
   PACKAGE TAO
-  FOLDER orbsvcs/orbsvcs
+  FOLDER orbsvcs/orbsvcs/Notify
   PUBLIC_HEADER notify_skel_export.h
   PUBLIC_LINK_LIBRARIES TAO_CosNotification
                         TAO_CosEvent_Skel
@@ -125,7 +125,7 @@ set(CosNotification_Serv_SOURCES
 ace_add_lib(TAO_CosNotification_Serv
   DEFINE_SYMBOL TAO_NOTIFY_SERV_BUILD_DLL
   PACKAGE TAO
-  FOLDER orbsvcs/orbsvcs
+  FOLDER orbsvcs/orbsvcs/Notify
   PUBLIC_LINK_LIBRARIES TAO_CosNotification_Skel
                         TAO_DynamicAny
                         TAO_Messaging
@@ -347,6 +347,7 @@ ace_target_cxx_sources(TAO_CosNotification_Serv
 ace_add_lib(TAO_RT_Notification
   DEFINE_SYMBOL TAO_RT_NOTIFY_BUILD_DLL
   PACKAGE TAO
+  FOLDER orbsvcs/orbsvcs/Notify
   PUBLIC_LINK_LIBRARIES TAO_CosNotification_Serv
                         TAO_RTCORBA
 
@@ -373,7 +374,7 @@ include(Structured/CMakeLists.txt)
 ace_add_lib(TAO_CosNotification_Persist
   DEFINE_SYMBOL TAO_NOTIFY_PERSIST_BUILD_DLL
   PACKAGE TAO
-  FOLDER orbsvcs/orbsvcs
+  FOLDER orbsvcs/orbsvcs/Notify
   PUBLIC_LINK_LIBRARIES TAO_CosNotification_Serv
                         ACEXML_Parser
 )

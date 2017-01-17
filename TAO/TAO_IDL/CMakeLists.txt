@@ -66,6 +66,10 @@ ace_add_exe(TAO_IDL_EXE
   COMPILE_DEFINITIONS TAO_IDL_PREPROCESSOR=\"${CMAKE_CXX_COMPILER}\"
 )
 
+if(MSVC)
+  target_compile_definitions(TAO_IDL_EXE PRIVATE _CRT_SECURE_NO_WARNINGS)
+endif()
+
 ace_target_cxx_sources(TAO_IDL_EXE
   SOURCE_FILES driver/drv_args.cpp
                driver/drv_preproc.cpp

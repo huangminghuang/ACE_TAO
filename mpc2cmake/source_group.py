@@ -42,9 +42,6 @@ class CXXSourceGroup:
     self.subgroup = None
 
   def complete_group(self, dir):
-    if dir == '/Users/huangming/DOC/ACE_TAO/TAO/tao/PortableServer':
-      print("complete_group")
-
     cpp_files = glob_dir_with_pattern(dir, '*.cpp')
     if self.source_files == None:
       self.source_files = []

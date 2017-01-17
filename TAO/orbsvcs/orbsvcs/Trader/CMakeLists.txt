@@ -2,7 +2,7 @@
 ace_add_lib(TAO_CosTrading
   DEFINE_SYMBOL TAO_TRADING_BUILD_DLL
   PACKAGE TAO
-  FOLDER orbsvcs/orbsvcs
+  FOLDER orbsvcs/orbsvcs/Trader
   PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../..>
                              $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/../..>
                              $<INSTALL_INTERFACE:${TAO_INSTALL_DIR}/orbsvcs>
@@ -16,7 +16,7 @@ ace_target_cxx_sources(TAO_CosTrading
 ace_add_lib(TAO_CosTrading_Skel
   DEFINE_SYMBOL TAO_TRADING_SKEL_BUILD_DLL
   PACKAGE TAO
-  FOLDER orbsvcs/orbsvcs
+  FOLDER orbsvcs/orbsvcs/Trader
   PUBLIC_LINK_LIBRARIES TAO_CosTrading TAO_PortableServer
 )
 
@@ -44,7 +44,7 @@ tao_idl_sources(
 ace_add_lib(TAO_CosTrading_Serv
   DEFINE_SYMBOL TAO_TRADING_SERV_BUILD_DLL
   PACKAGE TAO
-  FOLDER orbsvcs/orbsvcs
+  FOLDER orbsvcs/orbsvcs/Trader
   PUBLIC_LINK_LIBRARIES TAO_CosTrading_Skel
                         TAO_DynamicAny
                         TAO_Svc_Utils

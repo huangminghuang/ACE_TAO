@@ -5,11 +5,16 @@
 #cmakedefine ACE_HAS_ATM
 #cmakedefine ACE_HAS_THREADS
 #cmakedefine ACE_USES_WCHAR
-#cmakedefine __ACE_INLINE__
+#cmakedefine __ACE_INLINE__ @__ACE_INLINE__@
 #cmakedefine ACE_LACKS_ACE_SVCCONF
 #cmakedefine ACE_LACKS_ACE_TOKEN
 #cmakedefine GEN_OSTREAM_OPS
 #cmakedefine ACE_HAS_VERSIONED_NAMESPACE @ACE_HAS_VERSIONED_NAMESPACE@
+
+#if _MSC_VER
+#define _CRT_SECURE_NO_WARNINGS
+#define _WINSOCK_DEPRECATED_NO_WARNINGS
+#endif
 
 #ifdef NDEBUG
 #define ACE_NDEBUG

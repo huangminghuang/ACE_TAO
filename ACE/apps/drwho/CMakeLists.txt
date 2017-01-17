@@ -1,6 +1,6 @@
 
 
-ace_requires("NOT USES_WCHAR")
+ace_requires("NOT USES_WCHAR" ACE_HAS_PWD_H)
 
 ace_add_exe(drwho_-client
   OUTPUT_NAME client

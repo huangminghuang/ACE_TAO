@@ -1,6 +1,2 @@
-if (WIN32)
-  set(RAPI_FOUND 1)
-else()
-  find_package(RAPI)
-endif()
 
+find_package(RAPI)

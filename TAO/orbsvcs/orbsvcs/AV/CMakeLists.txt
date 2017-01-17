@@ -4,7 +4,7 @@
 ace_add_lib(TAO_AV
   DEFINE_SYMBOL TAO_AV_BUILD_DLL
   PACKAGE TAO
-  FOLDER orbsvcs/orbsvcs
+  FOLDER orbsvcs/orbsvcs/AV
   PUBLIC_LINK_LIBRARIES TAO_CosProperty_Serv
                         TAO_CosNaming
                         TAO_Svc_Utils
@@ -74,8 +74,9 @@ ace_target_cxx_sources(TAO_AV
 
 
 tao_idl_sources(
-  TARGETS AV_IDLS
+  TARGETS TAO_AV
   IDL_FLAGS ${TAO_VERSIONING_IDL_FLAGS}
+            -I${TAO_ROOT}/tao
             -I${TAO_ROOT}/orbsvcs
             -I${TAO_ROOT}/orbsvcs/orbsvcs
             -Wb,export_macro=TAO_AV_Export

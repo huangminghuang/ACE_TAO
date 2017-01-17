@@ -15,7 +15,9 @@ option(GEN_OSTREAM "" OFF)
 option(ACE_HAS_VERSIONED_NAMESPACE "" 0)
 
 if (ACE_INLINE)
-  set(__ACE_INLINE__ ON)
+  set(__ACE_INLINE__ 1)
+else()
+  set(__ACE_INLINE__ 0)
 endif()
 
 if (NOT ACE_SVCCONF)
