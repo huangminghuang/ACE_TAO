@@ -1,8 +1,11 @@
 
+find_program(RPCGEN NAMES rpcgen)
+
+ace_requires(RPCGEN)
 
 add_custom_command(
     OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/ping_clnt.c ${CMAKE_CURRENT_BINARY_DIR}/ping_svc.c ${CMAKE_CURRENT_BINARY_DIR}/ping.h
-    COMMAND rpcgen -C ${CMAKE_CURRENT_SOURCE_DIR}/ping.x
+    COMMAND ${RPCGEN} -C ${CMAKE_CURRENT_SOURCE_DIR}/ping.x
     DEPENDS ping.x
 )
 

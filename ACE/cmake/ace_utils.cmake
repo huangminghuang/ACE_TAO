@@ -188,10 +188,6 @@ function(ace_add_lib target)
   )
   ace_parse_arguments("" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
-  if (_arg_PACKAGE)
-    set(output_dir "${CMAKE_BINARY_DIR}/lib")
-  endif()
-
   add_library(${target} "")
 
   set_target_properties(${target} PROPERTIES
@@ -199,23 +195,46 @@ function(ace_add_lib target)
     DEFINE_SYMBOL "${_arg_DEFINE_SYMBOL}"
     VERSION "${${_arg_PACKAGE}_PACKAGE_VERSION}"
     SOVERSION "${${_arg_PACKAGE}_PACKAGE_VERSION}"
-    LIBRARY_OUTPUT_DIRECTORY "${output_dir}"
     FOLDER "${_arg_FOLDER}"
   )
+
   target_include_directories(${target} PRIVATE ${_arg_INCLUDE_DIRECTORIES} PUBLIC ${_arg_PUBLIC_INCLUDE_DIRECTORIES})
   target_compile_definitions(${target} PRIVATE ${_arg_COMPILE_DEFINITIONS} PUBLIC ${_arg_PUBLIC_COMPILE_DEFINITIONS})
   target_link_libraries(${target} PUBLIC ${_arg_PUBLIC_LINK_LIBRARIES})
 
   if (_arg_PACKAGE)
+    set_target_properties(${target} PROPERTIES
+      ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+      LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+      RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
+    )
+
     install(TARGETS ${target}
             EXPORT  "${_arg_PACKAGE}Targets"
             LIBRARY DESTINATION ${${_arg_PACKAGE}_INSTALL_DIR}/lib
             ARCHIVE DESTINATION ${${_arg_PACKAGE}_INSTALL_DIR}/lib
             INCLUDES DESTINATION ${${_arg_PACKAGE}_INSTALL_DIR}
-          )
+    )
 
     set(PACKAGE_OF_${target} ${_arg_PACKAGE} CACHE INTERNAL "")
+  else()
+    # First for the generic no-config case (e.g. with mingw)
+    set_target_properties(${target} PROPERTIES
+      ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
+      LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
+      RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
+    )
+    # Second, for multi-config builds (e.g. msvc)
+    foreach( OUTPUTCONFIG ${CMAKE_CONFIGURATION_TYPES} )
+        string( TOUPPER ${OUTPUTCONFIG} OUTPUTCONFIG )
+        set_target_properties(${target} PROPERTIES
+          ARCHIVE_OUTPUT_DIRECTORY_${OUTPUTCONFIG} "${CMAKE_CURRENT_BINARY_DIR}"
+          LIBRARY_OUTPUT_DIRECTORY_${OUTPUTCONFIG} "${CMAKE_CURRENT_BINARY_DIR}"
+          RUNTIME_OUTPUT_DIRECTORY_${OUTPUTCONFIG} "${CMAKE_CURRENT_BINARY_DIR}"
+        )
+    endforeach( OUTPUTCONFIG CMAKE_CONFIGURATION_TYPES )
   endif()
+
 endfunction()
 
 function(ace_add_exe target)
@@ -228,10 +247,6 @@ function(ace_add_exe target)
   )
   ace_parse_arguments("" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
-  if (_arg_PACKAGE)
-    set(output_dir "${CMAKE_BINARY_DIR}/bin")
-  endif()
-
   add_executable(${target} "")
 
   set_target_properties(${target} PROPERTIES
@@ -240,18 +255,33 @@ function(ace_add_exe target)
                         COMPILE_DEFINITIONS "${_arg_COMPILE_DEFINITIONS}"
                         INCLUDE_DIRECTORIES "${_arg_INCLUDE_DIRECTORIES}"
                         LINK_LIBRARIES "${_arg_LINK_LIBRARIES}"
-                        RUNTIME_OUTPUT_DIRECTORY "${output_dir}"
                         FOLDER "${_arg_FOLDER}"
-                      )
+  )
+
   if (_arg_PACKAGE)
+    set_target_properties(${target} PROPERTIES
+      RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
+    )
     install(TARGETS ${target}
             EXPORT "${_arg_PACKAGE}Targets"
-            RUNTIME DESTINATION ${${_arg_PACKAGE}_INSTALL_DIR}/bin)
+            RUNTIME DESTINATION ${${_arg_PACKAGE}_INSTALL_DIR}/bin
+    )
 
     set(PACKAGE_OF_${target} ${_arg_PACKAGE} CACHE INTERNAL "")
+  else()
+    # First for the generic no-config case (e.g. with mingw)
+    set_target_properties(${target} PROPERTIES
+      RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
+    )
+    # Second, for multi-config builds (e.g. msvc)
+    foreach( OUTPUTCONFIG ${CMAKE_CONFIGURATION_TYPES} )
+        string( TOUPPER ${OUTPUTCONFIG} OUTPUTCONFIG )
+        set_target_properties(${target} PROPERTIES
+          RUNTIME_OUTPUT_DIRECTORY_${OUTPUTCONFIG} "${CMAKE_CURRENT_BINARY_DIR}"
+        )
+    endforeach( OUTPUTCONFIG CMAKE_CONFIGURATION_TYPES )
   endif()
 endfunction()
-
 
 
 function(ace_install_package package_name)
@@ -336,24 +366,24 @@ function(ace_target_qt_sources target)
 
     # generate proper GUI program on specified platform
     if(WIN32) # Check if we are on Windows
-    	if(MSVC) # Check if we are using the Visual Studio compiler
-    		set_target_properties(${target} PROPERTIES
-    			WIN32_EXECUTABLE YES
-    			LINK_FLAGS "/ENTRY:mainCRTStartup"
-    		)
-    	elseif(CMAKE_COMPILER_IS_GNUCXX)
-    			# SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mwindows") # Not tested
-    	else()
-    		message(SEND_ERROR "You are using an unsupported Windows compiler! (Not MSVC or GCC)")
-    	endif(MSVC)
+      if(MSVC) # Check if we are using the Visual Studio compiler
+        set_target_properties(${target} PROPERTIES
+          WIN32_EXECUTABLE YES
+          LINK_FLAGS "/ENTRY:mainCRTStartup"
+        )
+      elseif(CMAKE_COMPILER_IS_GNUCXX)
+          # SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mwindows") # Not tested
+      else()
+        message(SEND_ERROR "You are using an unsupported Windows compiler! (Not MSVC or GCC)")
+      endif(MSVC)
     elseif(APPLE)
-    	set_target_properties(${target} PROPERTIES
-    			MACOSX_BUNDLE YES
-    	)
+      set_target_properties(${target} PROPERTIES
+          MACOSX_BUNDLE YES
+      )
     elseif(UNIX)
-    	# Nothing special required
+      # Nothing special required
     else()
-    	message(SEND_ERROR "You are on an unsupported platform! (Not Win32, Mac OS X or Unix)")
+      message(SEND_ERROR "You are on an unsupported platform! (Not Win32, Mac OS X or Unix)")
     endif(WIN32)
   endif(TARGET ${target})
 endfunction()

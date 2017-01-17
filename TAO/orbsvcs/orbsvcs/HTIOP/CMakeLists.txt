@@ -3,7 +3,7 @@ ace_requires("TARGET ACE_HTBP")
 ace_add_lib(TAO_HTIOP
   DEFINE_SYMBOL HTIOP_BUILD_DLL
   PACKAGE TAO
-  FOLDER orbsvcs/orbsvcs
+  FOLDER orbsvcs/orbsvcs/HTIOP
   PUBLIC_LINK_LIBRARIES ACE_HTBP TAO_Svc_Utils
 )
 

@@ -4,6 +4,7 @@ ace_add_lib(TAO_Utils
   OUTPUT_NAME TAO_Utils
   PACKAGE TAO
   FOLDER tao/Utils
+  DEFINE_SYMBOL TAO_UTILS_BUILD_DLL
   PUBLIC_LINK_LIBRARIES TAO_PI
                         TAO_PortableServer
 )

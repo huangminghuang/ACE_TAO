@@ -1,12 +1,10 @@
 ace_target_cxx_sources(TAO_CosNotification_Serv
-  SOURCE_FILES RT_StructuredProxyPushSupplier.cpp
-               StructuredEvent.cpp
+  SOURCE_FILES StructuredEvent.cpp
                StructuredProxyPushConsumer.cpp
                StructuredProxyPushSupplier.cpp
                StructuredPushConsumer.cpp
                StructuredPushSupplier.cpp
-  HEADER_FILES RT_StructuredProxyPushSupplier.h
-               StructuredEvent.h
+  HEADER_FILES StructuredEvent.h
                StructuredProxyPushConsumer.h
                StructuredProxyPushSupplier.h
                StructuredPushConsumer.h
@@ -19,4 +17,6 @@ ace_target_cxx_sources(TAO_RT_Notification
   HEADER_FILES RT_StructuredProxyPushSupplier.h
   SUBGROUP \\Structured
 )
+
+
 

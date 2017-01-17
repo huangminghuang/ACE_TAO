@@ -26,7 +26,8 @@ requires_dict = {
   'CORBA_E_COMPACT' : 'TAO_HAS_CORBA_E_COMPACT',
   'CORBA_E_MICRO' : 'TAO_HAS_CORBA_E_MICRO',
   'AMI': 'TAO_HAS_AMI',
-  'WINNT': 'WIN32'
+  'WINNT': 'WIN32',
+  'RHWO' : 'ACE_HAS_PWD_H'
 }
 
 def translate_require(cond):
@@ -78,7 +79,7 @@ class MPCNode(dds_mpb.Handler):
   patterns = {
     'exename': re.compile("exename\s*=\s*([^\s]+)"),
     'libname': re.compile("(shared|static)name\s*=\s*([^\s]+)"),
-    'dynamicflags': re.compile("dynamicflags\s*\+=\s*(\w+)"),
+    'dynamicflags': re.compile("dynamicflags\s*\+?=\s*(\w+)"),
     'after' : re.compile("after\s*\+=\s*(.+)$"),
     'libs' : re.compile("libs\s*\+=\s*(.+)$"),
     'idlflags' : re.compile("idlflags\s*\+=\s*(.+)$"),
@@ -611,9 +612,6 @@ class MPCNode(dds_mpb.Handler):
     return result
 
   def cmake_text(self):
-
-    if 'TAO' in self.aspects:
-      self.internal_libs.discard('TAO')
 
     result = ""
 

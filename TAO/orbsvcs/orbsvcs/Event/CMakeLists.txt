@@ -2,6 +2,7 @@
 ace_add_lib(TAO_RTEvent
   DEFINE_SYMBOL TAO_RTEVENT_BUILD_DLL
   PACKAGE TAO
+  FOLDER orbsvcs/orbsvcs/Event
   PUBLIC_LINK_LIBRARIES TAO_Svc_Utils
 )
 
@@ -12,7 +13,7 @@ ace_target_cxx_sources(TAO_RTEvent
 ace_add_lib(TAO_RTEvent_Skel
   DEFINE_SYMBOL TAO_RTEVENT_SKEL_BUILD_DLL
   PACKAGE TAO
-  FOLDER orbsvcs/orbsvcs
+  FOLDER orbsvcs/orbsvcs/Event
   PUBLIC_LINK_LIBRARIES TAO_RTEvent
                         TAO_PortableServer
 )
@@ -26,7 +27,7 @@ include(../RTEvent.cmake)
 ace_add_lib(TAO_RTEvent_Serv
   DEFINE_SYMBOL TAO_RTEVENT_SERV_BUILD_DLL
   PACKAGE TAO
-  FOLDER orbsvcs/orbsvcs
+  FOLDER orbsvcs/orbsvcs/Event
   PUBLIC_LINK_LIBRARIES TAO_RTEvent_Skel
                         TAO_RTSched
                         TAO_Messaging
@@ -71,7 +72,6 @@ ace_target_cxx_sources(TAO_RTEvent_Serv
                EC_Gateway.cpp
                EC_Gateway_IIOP.cpp
                EC_Gateway_IIOP_Factory.cpp
-               EC_Gateway_Sched.cpp
                EC_Group_Scheduling.cpp
                EC_Lifetime_Utils.cpp
                EC_MT_Dispatching.cpp
@@ -147,7 +147,6 @@ ace_target_cxx_sources(TAO_RTEvent_Serv
                EC_Gateway.h
                EC_Gateway_IIOP.h
                EC_Gateway_IIOP_Factory.h
-               EC_Gateway_Sched.h
                EC_Group_Scheduling.h
                EC_Lifetime_Utils.h
                EC_Lifetime_Utils_T.h
@@ -230,7 +229,7 @@ ace_target_cxx_sources(TAO_RTEvent_Serv
 ace_add_lib(TAO_RTCORBAEvent
   DEFINE_SYMBOL TAO_RTCORBAEVENT_BUILD_DLL
   PACKAGE TAO
-  FOLDER orbsvcs/orbsvcs
+  FOLDER orbsvcs/orbsvcs/Event
   PUBLIC_LINK_LIBRARIES TAO_RTEvent_Serv
                         TAO_RTPortableServer
 )
@@ -245,9 +244,10 @@ ace_target_cxx_sources(TAO_RTCORBAEvent
 ace_add_lib(TAO_RTKokyuEvent
   DEFINE_SYMBOL TAO_RTKOKYUEVENT_BUILD_DLL
   PACKAGE TAO
-  FOLDER orbsvcs/orbsvcs
+  FOLDER orbsvcs/orbsvcs/Event
   PUBLIC_LINK_LIBRARIES TAO_RTEvent_Serv
-                        TAO_RTSched Kokyu
+                        TAO_RTSched
+                        Kokyu
 )
 
 ace_target_cxx_sources(TAO_RTKokyuEvent
@@ -265,4 +265,27 @@ ace_target_cxx_sources(TAO_RTKokyuEvent
                EC_Kokyu_Factory.inl
                EC_Kokyu_Filter_Builder.inl
                EC_Kokyu_Scheduling.inl
+)
+
+ace_add_lib(TAO_RTSchedEvent
+  DEFINE_SYMBOL TAO_RTSCHEDEVENT_BUILD_DLL
+  PACKAGE TAO
+  FOLDER orbsvcs/orbsvcs/Event
+  PUBLIC_LINK_LIBRARIES TAO_RTEvent_Serv
+                        TAO_RTSched
+)
+
+ace_target_cxx_sources(TAO_RTSchedEvent
+  SOURCE_FILES EC_Gateway_Sched.cpp
+               EC_Priority_Dispatching.cpp
+               EC_Priority_Scheduling.cpp
+               EC_Sched_Factory.cpp
+               EC_Sched_Filter.cpp
+               EC_Sched_Filter_Builder.cpp
+  HEADER_FILES EC_Gateway_Sched.h
+               EC_Priority_Dispatching.h
+               EC_Priority_Scheduling.h
+               EC_Sched_Factory.h
+               EC_Sched_Filter.h
+               EC_Sched_Filter_Builder.h
 )

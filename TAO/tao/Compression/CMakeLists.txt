@@ -46,7 +46,7 @@ tao_idl_sources(
   IDL_FILES Compression_include.pidl
 )
 
+add_subdirectory(bzip2)
+add_subdirectory(zlib)
 add_subdirectory(lzo)
 add_subdirectory(rle)
-add_subdirectory(zlib)
-add_subdirectory(bzip2)

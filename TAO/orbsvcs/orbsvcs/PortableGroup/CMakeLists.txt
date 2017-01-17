@@ -7,7 +7,7 @@ ace_requires("NOT TAO_HAS_MINIMUM_CORBA"
 ace_add_lib(TAO_PortableGroup
   DEFINE_SYMBOL TAO_PORTABLEGROUP_BUILD_DLL
   PACKAGE TAO
-  FOLDER orbsvcs/orbsvcs
+  FOLDER orbsvcs/orbsvcs/PortableGroup
   PUBLIC_LINK_LIBRARIES  TAO_CosNaming
                          TAO_IORManip
                          TAO_Messaging

@@ -1,13 +1,7 @@
 
+find_package(RAPI)
 
 ace_requires(RAPI_FOUND)
-
-if (WIN32)
-  set(RAPI_FOUND 1)
-else()
-  find_package(RAPI)
-endif()
-
 
 ace_add_lib(ACE_QoS
   OUTPUT_NAME ACE_QoS
