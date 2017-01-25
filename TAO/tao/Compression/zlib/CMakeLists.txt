@@ -1,4 +1,4 @@
-find_package(ZLib)
+find_package(ZLIB)
 
 ace_requires(ZLIB_FOUND)
 
