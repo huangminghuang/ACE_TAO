@@ -1,8 +1,10 @@
 cmake_minimum_required(VERSION 3.3)
 project (ACE)
 
-set(CMAKE_CXX_STANDARD 98 CACHE STRING "specifies the C++ standard requested to build this project")
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_STANDARD "" CACHE STRING "specifies the C++ standard requested to build this project")
+if (CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD_REQUIRED ON)
+endif()
 
 if (NOT ACE_VERSION)
   file(READ "${CMAKE_CURRENT_LIST_DIR}/VERSION" VERSION_FILE_CONTENT)
