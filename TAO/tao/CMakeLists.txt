@@ -689,7 +689,11 @@ endif()
 ## we need to use include() instead of add_subdirectory() here,
 ## otherwise, cmake have trouble to deduce the dependencies of
 ## the generated files in the current directory
+
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/AnyTypeCode)
 include(AnyTypeCode/CMakeLists.txt)
+
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/PortableServer)
 include(PortableServer/CMakeLists.txt)
 
 
