@@ -18,10 +18,18 @@ ace_add_lib(ACE
   DEFINE_SYMBOL ACE_BUILD_DLL
   PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
                              $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/..>
-  PUBLIC_LINK_LIBRARIES ${CMAKE_THREAD_LIBS_INIT}
-                        ${AIO_LIBRARY}
-                        ${CMAKE_DL_LIBS}
 )
+
+## use target_link_libraries() for the following
+## libraries instead of specified inside ace_add_lib()
+## to avoid unnecessary checking for
+## the exisitence of the libraries.
+target_link_libraries(ACE PUBLIC
+  ${CMAKE_THREAD_LIBS_INIT}
+  ${AIO_LIBRARY}
+  ${CMAKE_DL_LIBS}
+)
+
 ace_target_cxx_sources(ACE
   SOURCE_FILES ACE.cpp
                ACE_crc32.cpp
