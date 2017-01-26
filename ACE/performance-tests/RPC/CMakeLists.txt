@@ -3,6 +3,9 @@ find_program(RPCGEN NAMES rpcgen)
 
 ace_requires(RPCGEN)
 
+
+## linux rpcgen has difference command options
+
 add_custom_command(
     OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/ping_clnt.c ${CMAKE_CURRENT_BINARY_DIR}/ping_svc.c ${CMAKE_CURRENT_BINARY_DIR}/ping.h
     COMMAND ${RPCGEN} -C ${CMAKE_CURRENT_SOURCE_DIR}/ping.x
