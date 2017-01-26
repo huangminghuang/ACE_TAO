@@ -1,15 +1,10 @@
 #ifndef __ACE_CONFIG_H__
 #define __ACE_CONFIG_H__
 
-#cmakedefine ACE_HAS_IPV6
+
 #cmakedefine ACE_HAS_ATM
-#cmakedefine ACE_HAS_THREADS
-#cmakedefine ACE_USES_WCHAR
-#cmakedefine __ACE_INLINE__ @__ACE_INLINE__@
 #cmakedefine ACE_LACKS_ACE_SVCCONF
 #cmakedefine ACE_LACKS_ACE_TOKEN
-#cmakedefine GEN_OSTREAM_OPS
-#cmakedefine ACE_HAS_VERSIONED_NAMESPACE @ACE_HAS_VERSIONED_NAMESPACE@
 
 #if _MSC_VER
 #define _CRT_SECURE_NO_WARNINGS
