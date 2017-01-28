@@ -209,23 +209,22 @@ function(tao_idl_sources)
   )
   foreach(anyop_target ${_arg_ANYOP_TARGETS})
     target_sources(${anyop_target} PRIVATE ${_idls_ANYOP_FILES} ${_arg_IDL_FILES})
-    target_include_directories(${anyop_target} PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/${rel_path}> $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/${rel_path}>)
   endforeach()
 
   foreach(skel_target ${_arg_SKEL_TARGETS})
     target_sources(${skel_target} PRIVATE ${_idls_SKEL_FILES} ${_arg_IDL_FILES})
-    target_include_directories(${skel_target} PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/${rel_path}> $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/${rel_path}>)
   endforeach()
 
   foreach(stub_target ${_arg_STUB_TARGETS})
     target_sources(${stub_target} PRIVATE ${_idls_STUB_FILES} ${_arg_IDL_FILES})
-    target_include_directories(${stub_target} PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/${rel_path}> $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/${rel_path}>)
   endforeach()
 
   foreach(target ${_arg_TARGETS})
     target_sources(${target} PRIVATE ${_idls_ANYOP_FILES} ${_idls_SKEL_FILES} ${_idls_STUB_FILES} ${_arg_IDL_FILES})
-    target_include_directories(${target} PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/${rel_path}> $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/${rel_path}>)
   endforeach()
+
+  set(CMAKE_INCLUDE_CURRENT_DIR_IN_INTERFACE ON PARENT_SCOPE)
+  set(CMAKE_INCLUDE_CURRENT_DIR ON PARENT_SCOPE)
 
   set_source_files_properties(${_arg_IDL_FILES} ${_idls_SKEL_HEADER_FILES} PROPERTIES HEADER_FILE_ONLY ON)
   source_group("Generated Files" FILES ${_idls_OUTPUT_FILES})

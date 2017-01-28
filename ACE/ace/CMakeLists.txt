@@ -8,14 +8,22 @@ configure_file(config.h.in config.h)
 if (ACE_HAS_THREADS)
   find_package(Threads)
   find_package(AIO)
+else()
+  list(APPEND ACE_COMPILE_DEFINITIONS ACE_MT_SAFE=0)
 endif()
 
+# Check if _GNU_SOURCE is available.
+check_symbol_exists(__GNU_LIBRARY__ "features.h" _GNU_SOURCE)
 
-foreach(opt ACE_HAS_IPV6 ACE_HAS_THREADS ACE_USES_WCHAR ACE_HAS_VERSIONED_NAMESPACE GEN_OSTREAM)
+foreach(opt ACE_HAS_IPV6 ACE_USES_WCHAR GEN_OSTREAM _GNU_SOURCE)
   if (${opt})
     list(APPEND ACE_COMPILE_DEFINITIONS ${opt})
   endif()
 endforeach()
+
+if (ACE_HAS_VERSIONED_NAMESPACE)
+  list(APPEND ACE_COMPILE_DEFINITIONS ACE_HAS_VERSIONED_NAMESPACE=1)
+endif()
 
 if (ACE_INLINE)
   list(APPEND ACE_COMPILE_DEFINITIONS __ACE_INLINE__)
@@ -40,6 +48,12 @@ target_link_libraries(ACE PUBLIC
   ${AIO_LIBRARY}
   ${CMAKE_DL_LIBS}
 )
+
+if (BUILD_SHARED_LIBS)
+  target_link_libraries(ACE PUBLIC
+    ${CMAKE_DL_LIBS}
+  )
+endif()
 
 ace_target_cxx_sources(ACE
   SOURCE_FILES ACE.cpp

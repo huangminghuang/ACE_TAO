@@ -1,4 +1,3 @@
-add_subdirectory(tests)
 
 
 ace_add_lib(Kokyu
@@ -44,3 +43,4 @@ ace_target_cxx_sources(Kokyu
                  DSRT_CV_Dispatcher_Impl_T.cpp
 )
 
+add_subdirectory(tests)
