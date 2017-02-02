@@ -190,11 +190,17 @@ function(ace_add_lib target)
 
   add_library(${target} "")
 
+  if (DEFINED ${_arg_PACKAGE})
+    set(version
+      VERSION "${${_arg_PACKAGE}_PACKAGE_VERSION}"
+      SOVERSION "${${_arg_PACKAGE}_PACKAGE_VERSION}"
+    )
+  endif()
+
   set_target_properties(${target} PROPERTIES
     OUTPUT_NAME "${_arg_OUTPUT_NAME}"
     DEFINE_SYMBOL "${_arg_DEFINE_SYMBOL}"
-    VERSION "${${_arg_PACKAGE}_PACKAGE_VERSION}"
-    SOVERSION "${${_arg_PACKAGE}_PACKAGE_VERSION}"
+    ${version}
     FOLDER "${_arg_FOLDER}"
   )
 
@@ -249,9 +255,15 @@ function(ace_add_exe target)
 
   add_executable(${target} "")
 
+  if (DEFINED ${_arg_PACKAGE})
+    set(version
+      VERSION "${${_arg_PACKAGE}_PACKAGE_VERSION}"
+    )
+  endif()
+
   set_target_properties(${target} PROPERTIES
                         OUTPUT_NAME "${_arg_OUTPUT_NAME}"
-                        VERSION "${${_arg_PACKAGE}_PACKAGE_VERSION}"
+                        ${version}
                         COMPILE_DEFINITIONS "${_arg_COMPILE_DEFINITIONS}"
                         INCLUDE_DIRECTORIES "${_arg_INCLUDE_DIRECTORIES}"
                         LINK_LIBRARIES "${_arg_LINK_LIBRARIES}"
