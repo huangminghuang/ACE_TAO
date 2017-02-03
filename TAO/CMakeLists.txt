@@ -27,6 +27,8 @@ ace_add_package(TAO VERSION ${TAO_VERSION})
 add_subdirectory(TAO_IDL)
 add_subdirectory(tao)
 ace_add_optional_subdirectory(orbsvcs)
+ace_add_optional_subdirectory(tests)
+ace_add_optional_subdirectory(utils)
 
 ace_install_package(TAO
   CONFIG_OPTIONS ${TAO_OPTIONS}
