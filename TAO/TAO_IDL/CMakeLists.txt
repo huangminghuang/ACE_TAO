@@ -3,33 +3,6 @@ find_package(BISON)
 find_package(FLEX)
 find_program(SED_EXECUTABLE sed)
 
-if (BISON_FOUND AND FLEX_FOUND AND SED_EXECUTABLE)
-
-  add_custom_command(
-    OUTPUT  ${CMAKE_CURRENT_SOURCE_DIR}/fe/idl.tab.cpp
-    DEPENDS fe/idl.ypp
-    COMMAND ${BISON_EXECUTABLE} -d -p tao_yy -b fe/idl fe/idl.ypp
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-    VERBATIM
-  )
-
-  add_custom_command(
-    OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/fe/idl.yy.cpp
-    DEPENDS fe/idl.ll
-    COMMAND ${FLEX_EXECUTABLE} -t -P tao_yy fe/idl.ll | ${SED_EXECUTABLE} -f idl.yy.sed > fe/idl.yy.cpp
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-    VERBATIM
-  )
-
-  add_custom_command(
-    OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/fe/fe_lookup.cpp
-    DEPENDS fe/keywords.dat
-    COMMAND $<TARGET_FILE:ace_gperf>  -M -J -c -C -D -E -T -f 0 -a -o -t -p -K keyword_ -L C++ -Z TAO_IDL_CPP_Keyword_Table -N lookup -k1,2,$  fe/keywords.dat | ${SED_EXECUTABLE} -f fe_lookup.sed > fe/fe_lookup.cpp
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-    VERBATIM
-  )
-
-endif()
 
 ace_add_lib(TAO_IDL_FE
   PACKAGE TAO
