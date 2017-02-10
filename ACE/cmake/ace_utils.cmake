@@ -190,7 +190,7 @@ function(ace_add_lib target)
 
   add_library(${target} "")
 
-  if (DEFINED ${_arg_PACKAGE})
+  if (_arg_PACKAGE)
     set(version
       VERSION "${${_arg_PACKAGE}_PACKAGE_VERSION}"
       SOVERSION "${${_arg_PACKAGE}_PACKAGE_VERSION}"
@@ -214,6 +214,11 @@ function(ace_add_lib target)
       LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
       RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
     )
+
+    if (APPLE)
+      set_target_properties(${target} PROPERTIES
+        INSTALL_RPATH “@loader_path”)
+    endif()
 
     install(TARGETS ${target}
             EXPORT  "${_arg_PACKAGE}Targets"
@@ -255,7 +260,7 @@ function(ace_add_exe target)
 
   add_executable(${target} "")
 
-  if (DEFINED ${_arg_PACKAGE})
+  if (_arg_PACKAGE)
     set(version
       VERSION "${${_arg_PACKAGE}_PACKAGE_VERSION}"
     )
@@ -274,6 +279,12 @@ function(ace_add_exe target)
     set_target_properties(${target} PROPERTIES
       RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
     )
+
+    if (APPLE)
+      set_target_properties(${target} PROPERTIES
+        INSTALL_RPATH “@loader_path/../lib”)
+    endif()
+
     install(TARGETS ${target}
             EXPORT "${_arg_PACKAGE}Targets"
             RUNTIME DESTINATION ${${_arg_PACKAGE}_INSTALL_DIR}/bin
