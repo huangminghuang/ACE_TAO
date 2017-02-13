@@ -4,12 +4,13 @@ find_program(RPCGEN NAMES rpcgen)
 ace_requires(RPCGEN)
 
 
-## linux rpcgen has difference command options
+## linux rpcgen requires ping.x to be in the build tree
+configure_file(ping.x ping.x)
 
 add_custom_command(
     OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/ping_clnt.c ${CMAKE_CURRENT_BINARY_DIR}/ping_svc.c ${CMAKE_CURRENT_BINARY_DIR}/ping.h
-    COMMAND ${RPCGEN} -C ${CMAKE_CURRENT_SOURCE_DIR}/ping.x
-    DEPENDS ping.x
+    COMMAND ${RPCGEN} -C ping.x
+    DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/ping.x
 )
 
 ace_add_exe(RPC_Client

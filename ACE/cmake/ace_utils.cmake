@@ -146,13 +146,6 @@ macro(ace_parse_arguments options oneValueArgs multiValueArgs)
 
   cmake_parse_arguments(_arg "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
-  foreach(DEP ${_arg_LINK_LIBRARIES} ${_arg_PUBLIC_LINK_LIBRARIES})
-    if ((NOT TARGET ${DEP}) AND (NOT EXISTS ${DEP}) AND (NOT "${DEP}" MATCHES "^[\\$\\-].+"))
-      message("Skipping ${target} because it requires ${DEP}")
-      return()
-    endif()
-  endforeach()
-
   foreach(cond ${_arg_REQUIRES})
     string(REPLACE " " ";" cond ${cond})
     if (${cond})
@@ -162,9 +155,11 @@ macro(ace_parse_arguments options oneValueArgs multiValueArgs)
     endif()
   endforeach()
 
-  foreach(aspect ${_arg_ASPECTS})
-    list(APPEND _arg_TAO_IDL_FLAGS ${${aspect}_TAO_IDL_FLAGS})
-    list(APPEND _arg_DDS_IDL_FLAGS ${${aspect}_DDS_IDL_FLAGS})
+  foreach(DEP ${_arg_LINK_LIBRARIES} ${_arg_PUBLIC_LINK_LIBRARIES})
+    if ((NOT TARGET ${DEP}) AND (NOT EXISTS ${DEP}) AND (NOT "${DEP}" MATCHES "^[\\$\\-].+"))
+      message("Skipping ${target} because it requires ${DEP}")
+      return()
+    endif()
   endforeach()
 
   if (NOT _arg_OUTPUT_NAME)
