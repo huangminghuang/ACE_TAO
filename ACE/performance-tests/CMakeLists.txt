@@ -1,5 +1,5 @@
 add_subdirectory(Misc)
-#add_subdirectory(RPC)
+add_subdirectory(RPC)
 add_subdirectory(Server_Concurrency)
 add_subdirectory(UDP)
 add_subdirectory(Synch-Benchmarks)

@@ -1,2 +1,2 @@
-add_subdirectory(collocation)
+add_subdirectory(Collocation)
 add_subdirectory(Hello)
