@@ -1,10 +1,10 @@
 
 
-ace_requires("NOT USES_WCHAR")
+ace_requires("NOT ACE_USES_WCHAR")
 
 ace_add_exe(asnmp_example_trap
   OUTPUT_NAME trap
-  FOLDER ASNMP/examples/trap
+  FOLDER ACE/ASNMP/examples/trap
   INCLUDE_DIRECTORIES ${ACE_ROOT}/ASNMP
   LINK_LIBRARIES asnmp_lib
                  ACE

@@ -9,7 +9,7 @@ endif()
 
 ace_add_exe(shared_memory_Hash_map
   OUTPUT_NAME Hash_Map
-  FOLDER examples/APG/Shared_Memory
+  FOLDER ACE/examples/APG/Shared_Memory
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(shared_memory_Hash_map
@@ -19,7 +19,7 @@ ace_target_cxx_sources(shared_memory_Hash_map
 
 ace_add_exe(Malloc
   OUTPUT_NAME Malloc
-  FOLDER examples/APG/Shared_Memory
+  FOLDER ACE/examples/APG/Shared_Memory
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Malloc
@@ -29,7 +29,7 @@ ace_target_cxx_sources(Malloc
 
 ace_add_exe(Mem_Map
   OUTPUT_NAME Mem_Map
-  FOLDER examples/APG/Shared_Memory
+  FOLDER ACE/examples/APG/Shared_Memory
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Mem_Map
@@ -39,7 +39,7 @@ ace_target_cxx_sources(Mem_Map
 
 ace_add_exe(PI_Malloc
   OUTPUT_NAME PI_Malloc
-  FOLDER examples/APG/Shared_Memory
+  FOLDER ACE/examples/APG/Shared_Memory
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(PI_Malloc
@@ -49,7 +49,7 @@ ace_target_cxx_sources(PI_Malloc
 
 ace_add_exe(Pool_Growth
   OUTPUT_NAME Pool_Growth
-  FOLDER examples/APG/Shared_Memory
+  FOLDER ACE/examples/APG/Shared_Memory
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Pool_Growth

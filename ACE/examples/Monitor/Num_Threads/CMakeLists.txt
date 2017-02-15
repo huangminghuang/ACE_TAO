@@ -2,7 +2,7 @@
 
 ace_add_exe(Num_Threads
   OUTPUT_NAME num_threads
-  FOLDER examples/Monitor/Num_Threads
+  FOLDER ACE/examples/Monitor/Num_Threads
   LINK_LIBRARIES MC_Test_Utilities
                  ACE
                  ACE_Monitor_Control

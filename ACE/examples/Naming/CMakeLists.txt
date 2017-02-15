@@ -11,7 +11,7 @@ ace_requires(ACE_OTHER)
 
 ace_add_exe(Naming_Multiple_contexts
   OUTPUT_NAME multiple_contexts
-  FOLDER examples/Naming
+  FOLDER ACE/examples/Naming
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Naming_Multiple_contexts
@@ -21,7 +21,7 @@ ace_target_cxx_sources(Naming_Multiple_contexts
 
 ace_add_exe(Naming_Non_existent
   OUTPUT_NAME non_existent
-  FOLDER examples/Naming
+  FOLDER ACE/examples/Naming
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Naming_Non_existent
@@ -31,7 +31,7 @@ ace_target_cxx_sources(Naming_Non_existent
 
 ace_add_exe(Naming_Writers
   OUTPUT_NAME writers
-  FOLDER examples/Naming
+  FOLDER ACE/examples/Naming
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Naming_Writers
@@ -41,7 +41,7 @@ ace_target_cxx_sources(Naming_Writers
 
 ace_add_exe(Naming_Open
   OUTPUT_NAME open
-  FOLDER examples/Naming
+  FOLDER ACE/examples/Naming
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Naming_Open

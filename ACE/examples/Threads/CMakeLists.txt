@@ -9,7 +9,7 @@ endif()
 
 ace_add_exe(Threads_Auto_event
   OUTPUT_NAME auto_event
-  FOLDER examples/Threads
+  FOLDER ACE/examples/Threads
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Threads_Auto_event
@@ -19,7 +19,7 @@ ace_target_cxx_sources(Threads_Auto_event
 
 ace_add_exe(Threads_Barrier1
   OUTPUT_NAME barrier1
-  FOLDER examples/Threads
+  FOLDER ACE/examples/Threads
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Threads_Barrier1
@@ -29,7 +29,7 @@ ace_target_cxx_sources(Threads_Barrier1
 
 ace_add_exe(Threads_Barrier2
   OUTPUT_NAME barrier2
-  FOLDER examples/Threads
+  FOLDER ACE/examples/Threads
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Threads_Barrier2
@@ -39,7 +39,7 @@ ace_target_cxx_sources(Threads_Barrier2
 
 ace_add_exe(Threads_Cancel
   OUTPUT_NAME cancel
-  FOLDER examples/Threads
+  FOLDER ACE/examples/Threads
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Threads_Cancel
@@ -49,7 +49,7 @@ ace_target_cxx_sources(Threads_Cancel
 
 ace_add_exe(Threads_Future1
   OUTPUT_NAME future1
-  FOLDER examples/Threads
+  FOLDER ACE/examples/Threads
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Threads_Future1
@@ -59,7 +59,7 @@ ace_target_cxx_sources(Threads_Future1
 
 ace_add_exe(Threads_Future2
   OUTPUT_NAME future2
-  FOLDER examples/Threads
+  FOLDER ACE/examples/Threads
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Threads_Future2
@@ -69,7 +69,7 @@ ace_target_cxx_sources(Threads_Future2
 
 ace_add_exe(Threads_Manual_event
   OUTPUT_NAME manual_event
-  FOLDER examples/Threads
+  FOLDER ACE/examples/Threads
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Threads_Manual_event
@@ -79,7 +79,7 @@ ace_target_cxx_sources(Threads_Manual_event
 
 ace_add_exe(Threads_Process_mutex
   OUTPUT_NAME process_mutex
-  FOLDER examples/Threads
+  FOLDER ACE/examples/Threads
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Threads_Process_mutex
@@ -89,7 +89,7 @@ ace_target_cxx_sources(Threads_Process_mutex
 
 ace_add_exe(Threads_Process_semaphore
   OUTPUT_NAME process_semaphore
-  FOLDER examples/Threads
+  FOLDER ACE/examples/Threads
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Threads_Process_semaphore
@@ -99,7 +99,7 @@ ace_target_cxx_sources(Threads_Process_semaphore
 
 ace_add_exe(Threads_Reader_writer
   OUTPUT_NAME reader_writer
-  FOLDER examples/Threads
+  FOLDER ACE/examples/Threads
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Threads_Reader_writer
@@ -109,7 +109,7 @@ ace_target_cxx_sources(Threads_Reader_writer
 
 ace_add_exe(Threads_Recursive_mutex
   OUTPUT_NAME recursive_mutex
-  FOLDER examples/Threads
+  FOLDER ACE/examples/Threads
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Threads_Recursive_mutex
@@ -119,7 +119,7 @@ ace_target_cxx_sources(Threads_Recursive_mutex
 
 ace_add_exe(Threads_Task_five
   OUTPUT_NAME task_five
-  FOLDER examples/Threads
+  FOLDER ACE/examples/Threads
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Threads_Task_five
@@ -129,7 +129,7 @@ ace_target_cxx_sources(Threads_Task_five
 
 ace_add_exe(Threads_Task_four
   OUTPUT_NAME task_four
-  FOLDER examples/Threads
+  FOLDER ACE/examples/Threads
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Threads_Task_four
@@ -139,7 +139,7 @@ ace_target_cxx_sources(Threads_Task_four
 
 ace_add_exe(Threads_Task_three
   OUTPUT_NAME task_three
-  FOLDER examples/Threads
+  FOLDER ACE/examples/Threads
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Threads_Task_three
@@ -149,7 +149,7 @@ ace_target_cxx_sources(Threads_Task_three
 
 ace_add_exe(Threads_Task_two
   OUTPUT_NAME task_two
-  FOLDER examples/Threads
+  FOLDER ACE/examples/Threads
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Threads_Task_two
@@ -159,7 +159,7 @@ ace_target_cxx_sources(Threads_Task_two
 
 ace_add_exe(Threads_Task_one
   OUTPUT_NAME task_one
-  FOLDER examples/Threads
+  FOLDER ACE/examples/Threads
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Threads_Task_one
@@ -169,7 +169,7 @@ ace_target_cxx_sources(Threads_Task_one
 
 ace_add_exe(Threads_Thread_manager
   OUTPUT_NAME thread_manager
-  FOLDER examples/Threads
+  FOLDER ACE/examples/Threads
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Threads_Thread_manager
@@ -179,7 +179,7 @@ ace_target_cxx_sources(Threads_Thread_manager
 
 ace_add_exe(Threads_Thread_pool
   OUTPUT_NAME thread_pool
-  FOLDER examples/Threads
+  FOLDER ACE/examples/Threads
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Threads_Thread_pool
@@ -189,7 +189,7 @@ ace_target_cxx_sources(Threads_Thread_pool
 
 ace_add_exe(Threads_Thread_specific
   OUTPUT_NAME thread_specific
-  FOLDER examples/Threads
+  FOLDER ACE/examples/Threads
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Threads_Thread_specific
@@ -200,7 +200,7 @@ ace_target_cxx_sources(Threads_Thread_specific
 
 ace_add_exe(Threads_Token
   OUTPUT_NAME token
-  FOLDER examples/Threads
+  FOLDER ACE/examples/Threads
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Threads_Token
@@ -210,7 +210,7 @@ ace_target_cxx_sources(Threads_Token
 
 ace_add_exe(Threads_Tss1
   OUTPUT_NAME tss1
-  FOLDER examples/Threads
+  FOLDER ACE/examples/Threads
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Threads_Tss1
@@ -220,7 +220,7 @@ ace_target_cxx_sources(Threads_Tss1
 
 ace_add_exe(Threads_Tss2
   OUTPUT_NAME tss2
-  FOLDER examples/Threads
+  FOLDER ACE/examples/Threads
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Threads_Tss2

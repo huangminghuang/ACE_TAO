@@ -9,7 +9,7 @@ endif()
 
 ace_add_exe(Proactor_Cancel
   OUTPUT_NAME test_cancel
-  FOLDER examples/Reactor/Proactor
+  FOLDER ACE/examples/Reactor/Proactor
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Proactor_Cancel
@@ -20,7 +20,7 @@ ace_target_cxx_sources(Proactor_Cancel
 
 ace_add_exe(Proactor_End_event_loops
   OUTPUT_NAME test_end_event_loop
-  FOLDER examples/Reactor/Proactor
+  FOLDER ACE/examples/Reactor/Proactor
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Proactor_End_event_loops
@@ -30,7 +30,7 @@ ace_target_cxx_sources(Proactor_End_event_loops
 
 ace_add_exe(Proactor_Multiple_loops
   OUTPUT_NAME test_multiple_loops
-  FOLDER examples/Reactor/Proactor
+  FOLDER ACE/examples/Reactor/Proactor
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Proactor_Multiple_loops
@@ -40,7 +40,7 @@ ace_target_cxx_sources(Proactor_Multiple_loops
 
 ace_add_exe(Proactor_Post_completions
   OUTPUT_NAME test_post_completions
-  FOLDER examples/Reactor/Proactor
+  FOLDER ACE/examples/Reactor/Proactor
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Proactor_Post_completions
@@ -50,7 +50,7 @@ ace_target_cxx_sources(Proactor_Post_completions
 
 ace_add_exe(Proactor_Proactor
   OUTPUT_NAME test_proactor
-  FOLDER examples/Reactor/Proactor
+  FOLDER ACE/examples/Reactor/Proactor
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Proactor_Proactor
@@ -61,7 +61,7 @@ ace_target_cxx_sources(Proactor_Proactor
 
 ace_add_exe(Proactor_Timeout
   OUTPUT_NAME test_timeout
-  FOLDER examples/Reactor/Proactor
+  FOLDER ACE/examples/Reactor/Proactor
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Proactor_Timeout
@@ -71,7 +71,7 @@ ace_target_cxx_sources(Proactor_Timeout
 
 ace_add_exe(Proactor_Udp_proactor
   OUTPUT_NAME test_udp_proactor
-  FOLDER examples/Reactor/Proactor
+  FOLDER ACE/examples/Reactor/Proactor
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Proactor_Udp_proactor

@@ -1,7 +1,7 @@
 ace_add_lib(TAO_CosLifeCycle
   DEFINE_SYMBOL TAO_LIFECYCLE_BUILD_DLL
   PACKAGE TAO
-  FOLDER orbsvcs/orbsvcs/LifeCycle
+  FOLDER TAO/orbsvcs/orbsvcs/LifeCycle
   PUBLIC_LINK_LIBRARIES TAO TAO_AnyTypeCode TAO_CosNaming
 )
 
@@ -12,7 +12,7 @@ ace_target_cxx_sources(TAO_CosLifeCycle
 ace_add_lib(TAO_CosLifeCycle_Skel
   DEFINE_SYMBOL TAO_LIFECYCLE_SKEL_BUILD_DLL
   PACKAGE TAO
-  FOLDER orbsvcs/orbsvcs/LifeCycle
+  FOLDER TAO/orbsvcs/orbsvcs/LifeCycle
   PUBLIC_LINK_LIBRARIES TAO_CosLifeCycle TAO_PortableServer
 )
 

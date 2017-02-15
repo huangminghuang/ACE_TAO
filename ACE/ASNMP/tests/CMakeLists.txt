@@ -2,7 +2,7 @@
 
 ace_add_exe(asnmp_tests_Oid_Test
   OUTPUT_NAME Oid_Test
-  FOLDER ASNMP/tests
+  FOLDER ACE/ASNMP/tests
   INCLUDE_DIRECTORIES ${ACE_ROOT}/ASNMP
   LINK_LIBRARIES asnmp_lib
                  ACE
@@ -14,7 +14,7 @@ ace_target_cxx_sources(asnmp_tests_Oid_Test
 
 ace_add_exe(asnmp_tests_Counter_Test
   OUTPUT_NAME Counter_Test
-  FOLDER ASNMP/tests
+  FOLDER ACE/ASNMP/tests
   INCLUDE_DIRECTORIES ${ACE_ROOT}/ASNMP
   LINK_LIBRARIES asnmp_lib
                  ACE
@@ -26,7 +26,7 @@ ace_target_cxx_sources(asnmp_tests_Counter_Test
 
 ace_add_exe(asnmp_tests_Counter64_Test
   OUTPUT_NAME Counter64_Test
-  FOLDER ASNMP/tests
+  FOLDER ACE/ASNMP/tests
   INCLUDE_DIRECTORIES ${ACE_ROOT}/ASNMP
   LINK_LIBRARIES asnmp_lib
                  ACE
@@ -38,7 +38,7 @@ ace_target_cxx_sources(asnmp_tests_Counter64_Test
 
 ace_add_exe(asnmp_tests_Integer_Test
   OUTPUT_NAME Integer_Test
-  FOLDER ASNMP/tests
+  FOLDER ACE/ASNMP/tests
   INCLUDE_DIRECTORIES ${ACE_ROOT}/ASNMP
   LINK_LIBRARIES asnmp_lib
                  ACE
@@ -50,7 +50,7 @@ ace_target_cxx_sources(asnmp_tests_Integer_Test
 
 ace_add_exe(asnmp_tests_Octet_Test
   OUTPUT_NAME Octet_Test
-  FOLDER ASNMP/tests
+  FOLDER ACE/ASNMP/tests
   INCLUDE_DIRECTORIES ${ACE_ROOT}/ASNMP
   LINK_LIBRARIES asnmp_lib
                  ACE
@@ -62,7 +62,7 @@ ace_target_cxx_sources(asnmp_tests_Octet_Test
 
 ace_add_exe(asnmp_tests_Gauge_Test
   OUTPUT_NAME Gauge_Test
-  FOLDER ASNMP/tests
+  FOLDER ACE/ASNMP/tests
   INCLUDE_DIRECTORIES ${ACE_ROOT}/ASNMP
   LINK_LIBRARIES asnmp_lib
                  ACE
@@ -74,7 +74,7 @@ ace_target_cxx_sources(asnmp_tests_Gauge_Test
 
 ace_add_exe(asnmp_tests_Address_Test
   OUTPUT_NAME Address_Test
-  FOLDER ASNMP/tests
+  FOLDER ACE/ASNMP/tests
   INCLUDE_DIRECTORIES ${ACE_ROOT}/ASNMP
   LINK_LIBRARIES asnmp_lib
                  ACE
@@ -86,7 +86,7 @@ ace_target_cxx_sources(asnmp_tests_Address_Test
 
 ace_add_exe(asnmp_tests_Target_Test
   OUTPUT_NAME Target_Test
-  FOLDER ASNMP/tests
+  FOLDER ACE/ASNMP/tests
   INCLUDE_DIRECTORIES ${ACE_ROOT}/ASNMP
   LINK_LIBRARIES asnmp_lib
                  ACE
@@ -98,7 +98,7 @@ ace_target_cxx_sources(asnmp_tests_Target_Test
 
 ace_add_exe(asnmp_tests_Varbind_Test
   OUTPUT_NAME Varbind_Test
-  FOLDER ASNMP/tests
+  FOLDER ACE/ASNMP/tests
   INCLUDE_DIRECTORIES ${ACE_ROOT}/ASNMP
   LINK_LIBRARIES asnmp_lib
                  ACE

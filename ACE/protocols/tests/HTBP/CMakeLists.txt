@@ -1,4 +1,4 @@
 add_subdirectory(Send_Large_Msg)
-add_subdirectory(Send_Recv_Tests)
 add_subdirectory(Reactor_Tests)
+add_subdirectory(Send_Recv_Tests)
 add_subdirectory(ping)

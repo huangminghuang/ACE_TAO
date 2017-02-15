@@ -3,7 +3,7 @@ find_package(zziplib)
 ace_add_lib(ACEXML
   OUTPUT_NAME ACEXML
   PACKAGE ACE
-  FOLDER ACEXML/common
+  FOLDER ACE/ACEXML/common
   DEFINE_SYMBOL ACEXML_BUILD_DLL
   PUBLIC_COMPILE_DEFINITIONS $<$<BOOL:${ZZIPLIB_FOUND}>:USE_ZZIP>
   PUBLIC_INCLUDE_DIRECTORIES ${ZZIPLIB_INCLUDE_DIRS}
@@ -11,74 +11,74 @@ ace_add_lib(ACEXML
                         ${ZZIPLIB_LIBRARIES}
 )
 ace_target_cxx_sources(ACEXML
-  SOURCE_FILES XMLReader.cpp
+  SOURCE_FILES Attributes.cpp
+               AttributesImpl.cpp
+               Attributes_Def_Builder.cpp
+               CharStream.cpp
                ContentHandler.cpp
                DTDHandler.cpp
-               LocatorImpl.cpp
-               Validator.cpp
-               HttpCharStream.cpp
-               Attributes_Def_Builder.cpp
-               InputSource.cpp
-               Element_Def_Builder.cpp
-               Attributes.cpp
-               StreamFactory.cpp
-               SAXExceptions.cpp
-               ErrorHandler.cpp
-               Transcode.cpp
-               ZipCharStream.cpp
-               URL_Addr.cpp
                DTD_Manager.cpp
-               Locator.cpp
-               XML_Util.cpp
-               EntityResolver.cpp
-               NamespaceSupport.cpp
-               Mem_Map_Stream.cpp
-               CharStream.cpp
-               FileCharStream.cpp
-               Exception.cpp
-               AttributesImpl.cpp
-               Encoding.cpp
-               StrCharStream.cpp
-               XMLFilterImpl.cpp
                DefaultHandler.cpp
+               Element_Def_Builder.cpp
+               Encoding.cpp
+               EntityResolver.cpp
+               ErrorHandler.cpp
+               Exception.cpp
+               FileCharStream.cpp
+               HttpCharStream.cpp
+               InputSource.cpp
+               Locator.cpp
+               LocatorImpl.cpp
+               Mem_Map_Stream.cpp
+               NamespaceSupport.cpp
+               SAXExceptions.cpp
+               StrCharStream.cpp
+               StreamFactory.cpp
+               Transcode.cpp
+               URL_Addr.cpp
+               Validator.cpp
+               XMLFilterImpl.cpp
+               XMLReader.cpp
+               XML_Util.cpp
+               ZipCharStream.cpp
   HEADER_FILES ACEXML_Export.h
                Attributes.h
+               AttributesImpl.h
+               Attributes_Def_Builder.h
+               CharStream.h
                ContentHandler.h
                DTDHandler.h
+               DTD_Manager.h
+               DefaultHandler.h
+               Element_Def_Builder.h
+               Encoding.h
                EntityResolver.h
                ErrorHandler.h
+               Exception.h
+               FileCharStream.h
+               HttpCharStream.h
+               InputSource.h
                Locator.h
+               LocatorImpl.h
+               Mem_Map_Stream.h
+               NamespaceSupport.h
+               SAXExceptions.h
+               StrCharStream.h
+               StreamFactory.h
+               Transcode.h
+               URL_Addr.h
+               Validator.h
                XMLFilter.h
+               XMLFilterImpl.h
                XMLReader.h
                XML_Types.h
                XML_Util.h
-               LocatorImpl.h
-               Validator.h
-               HttpCharStream.h
-               Attributes_Def_Builder.h
-               InputSource.h
-               Element_Def_Builder.h
-               StreamFactory.h
-               SAXExceptions.h
-               Transcode.h
                ZipCharStream.h
-               URL_Addr.h
-               DTD_Manager.h
-               NamespaceSupport.h
-               Mem_Map_Stream.h
-               CharStream.h
-               FileCharStream.h
-               Exception.h
-               AttributesImpl.h
-               Encoding.h
-               StrCharStream.h
-               XMLFilterImpl.h
-               DefaultHandler.h
-  INLINE_FILES LocatorImpl.inl
+  INLINE_FILES AttributesImpl.inl
+               Exception.inl
+               LocatorImpl.inl
                SAXExceptions.inl
                URL_Addr.inl
-               Exception.inl
-               AttributesImpl.inl
                XMLFilterImpl.inl
 )
 

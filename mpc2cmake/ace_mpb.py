@@ -53,13 +53,13 @@ class Handler:
     self.parent().find_packages.add('Qt4')
     self.external_libs.add('Qt4::QtCore')
     ## remove moc genereated files
-    self.sources.source_files = [f for f in self.sources.source_files if f.endswith('_moc.cpp')]
+    self.sources.source_files = [f for f in self.sources.source_files if not f.endswith('_moc.cpp')]
 
   def handle_mpb_zzip(self):
     self.parent().find_packages.add('zziplib')
     self.external_libs.add('${ZZIPLIB_LIBRARIES}')
     self.includes.append('${ZZIPLIB_INCLUDE_DIRS}')
-    self.compile_definitions.add('$<$<BOOL:${ZZIPLIB_FOUND}>:USE_ZZIP>')
+    self.public_compile_definitions.add('$<$<BOOL:${ZZIPLIB_FOUND}>:USE_ZZIP>')
 
   def handle_mpb_acexml(self):
     self.add_lib('ACEXML_Parser')
@@ -241,31 +241,30 @@ class Handler:
                                       'XML_Svc_Conf.cpp'])
 
   def handle_target_ACE(self):
-    self.external_libs |= set(['${CMAKE_THREAD_LIBS_INIT}','${CMAKE_DL_LIBS}','${AIO_LIBRARY}'])
+    self.public_compile_definitions.add('${ACE_COMPILE_DEFINITIONS}')
     self.includes += ['${CMAKE_CURRENT_SOURCE_DIR}/..', '${CMAKE_CURRENT_BINARY_DIR}/..']
+    self.conditional_sources['ACE_HAS_ATM'] = \
+      CXXSourceGroup(source_files = [ 'ATM_Acceptor.cpp',
+                       'ATM_Addr.cpp',
+                       'ATM_Connector.cpp',
+                       'ATM_Params.cpp',
+                       'ATM_QoS.cpp',
+                       'ATM_Stream.cpp',
+                       'XTI_ATM_Mcast.cpp'])
+    self.sources.source_files = list_difference(self.sources.source_files, self.conditional_sources['ACE_HAS_ATM'].source_files)
+
 
   def handle_target_ACE_INet(self):
-    self.includes.append('${CMAKE_CURRENT_SOURCE_DIR}/../..')
+    self.includes= ['${CMAKE_CURRENT_SOURCE_DIR}/../..', '$<INSTALL_INTERFACE:${ACE_INSTALL_DIR}/protocols>']
 
   def handle_target_ACE_TMCast(self):
-    print("handle_target_ACE_TMCast")
-    self.includes.append('${CMAKE_CURRENT_SOURCE_DIR}/../..')
+    self.includes= ['${CMAKE_CURRENT_SOURCE_DIR}/../..', '$<INSTALL_INTERFACE:${ACE_INSTALL_DIR}/protocols>']
 
   def handle_target_ACE_RMCast(self):
-    self.includes.append('${CMAKE_CURRENT_SOURCE_DIR}/../..')
+    self.includes= ['${CMAKE_CURRENT_SOURCE_DIR}/../..', '$<INSTALL_INTERFACE:${ACE_INSTALL_DIR}/protocols>']
 
   def handle_target_ACE_HTBP(self):
-    self.includes.append('${CMAKE_CURRENT_SOURCE_DIR}/../..')
+    self.includes= ['${CMAKE_CURRENT_SOURCE_DIR}/../..', '$<INSTALL_INTERFACE:${ACE_INSTALL_DIR}/protocols>']
 
   def handle_target_Kokyu(self):
     self.includes.append('${CMAKE_CURRENT_SOURCE_DIR}')
-
-  def handle_target_RPC_Client(self):
-    self.includes.append('${CMAKE_CURRENT_SOURCE_DIR}')
-    self.sources.header_files = ['${CMAKE_CURRENT_BINARY_DIR}/ping.h']
-    self.sources.source_files = ['client.cpp',  '${CMAKE_CURRENT_BINARY_DIR}/ping_clnt.c']
-
-  def handle_target_RPC_Server(self):
-    self.includes.append('${CMAKE_CURRENT_SOURCE_DIR}')
-    self.sources.header_files = ['${CMAKE_CURRENT_BINARY_DIR}/ping.h']
-    self.sources.source_files = ['server.c',  '${CMAKE_CURRENT_BINARY_DIR}/ping_svc.c']

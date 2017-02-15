@@ -3,7 +3,7 @@
 ace_add_lib(TAO_SmartProxies
   OUTPUT_NAME TAO_SmartProxies
   PACKAGE TAO
-  FOLDER tao/SmartProxies
+  FOLDER TAO/tao/SmartProxies
   DEFINE_SYMBOL TAO_SMARTPROXIES_BUILD_DLL
   PUBLIC_LINK_LIBRARIES TAO
 )

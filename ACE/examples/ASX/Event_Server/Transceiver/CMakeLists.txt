@@ -9,7 +9,7 @@ endif()
 
 ace_add_exe(Transceiver
   OUTPUT_NAME Transceiver
-  FOLDER examples/ASX/Event_Server/Transceiver
+  FOLDER ACE/examples/ASX/Event_Server/Transceiver
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Transceiver

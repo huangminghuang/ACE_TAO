@@ -5,14 +5,15 @@ ace_requires(ACE_HAS_THREADS)
 ace_add_lib(ACE_TMCast
   OUTPUT_NAME ACE_TMCast
   PACKAGE ACE
-  FOLDER protocols/ace/TMCast
+  FOLDER ACE/protocols/ace/TMCast
   DEFINE_SYMBOL TMCAST_BUILD_DLL
   PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../..>
+                             $<INSTALL_INTERFACE:${ACE_INSTALL_DIR}/protocols>
   PUBLIC_LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(ACE_TMCast
-  SOURCE_FILES Protocol.cpp
-               Group.cpp
+  SOURCE_FILES Group.cpp
                MTQueue.cpp
+               Protocol.cpp
 )
 

@@ -1,7 +1,7 @@
 ace_add_lib(TAO_FTRT_ClientORB
   DEFINE_SYMBOL TAO_FTRT_BUILD_DLL
   PACKAGE TAO
-  FOLDER orbsvcs/orbsvcs/FtRtEvent
+  FOLDER TAO/orbsvcs/orbsvcs/FtRtEvent
   PUBLIC_LINK_LIBRARIES TAO_Messaging
                         TAO_Svc_Utils
 )

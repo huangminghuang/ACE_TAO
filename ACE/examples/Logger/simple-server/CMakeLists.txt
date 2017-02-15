@@ -9,7 +9,7 @@ endif()
 
 ace_add_exe(Logger_Simple_Server
   OUTPUT_NAME server_loggerd
-  FOLDER examples/Logger/simple-server
+  FOLDER ACE/examples/Logger/simple-server
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Logger_Simple_Server

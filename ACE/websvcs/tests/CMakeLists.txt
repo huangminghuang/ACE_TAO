@@ -2,7 +2,7 @@
 
 ace_add_exe(Websvcs_Test
   OUTPUT_NAME Test_Url_Addr
-  FOLDER websvcs/tests
+  FOLDER ACE/websvcs/tests
   LINK_LIBRARIES websvcs
                  ACE
 )

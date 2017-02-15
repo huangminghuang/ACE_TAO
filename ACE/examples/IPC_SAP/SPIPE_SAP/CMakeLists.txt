@@ -9,7 +9,7 @@ endif()
 
 ace_add_exe(SPIPE_SAP_Client
   OUTPUT_NAME client
-  FOLDER examples/IPC_SAP/SPIPE_SAP
+  FOLDER ACE/examples/IPC_SAP/SPIPE_SAP
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(SPIPE_SAP_Client
@@ -19,7 +19,7 @@ ace_target_cxx_sources(SPIPE_SAP_Client
 
 ace_add_exe(SPIPE_SAP_Consumer_msg
   OUTPUT_NAME consumer_msg
-  FOLDER examples/IPC_SAP/SPIPE_SAP
+  FOLDER ACE/examples/IPC_SAP/SPIPE_SAP
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(SPIPE_SAP_Consumer_msg
@@ -29,7 +29,7 @@ ace_target_cxx_sources(SPIPE_SAP_Consumer_msg
 
 ace_add_exe(SPIPE_SAP_Consumer_read
   OUTPUT_NAME consumer_read
-  FOLDER examples/IPC_SAP/SPIPE_SAP
+  FOLDER ACE/examples/IPC_SAP/SPIPE_SAP
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(SPIPE_SAP_Consumer_read
@@ -39,7 +39,7 @@ ace_target_cxx_sources(SPIPE_SAP_Consumer_read
 
 ace_add_exe(SPIPE_SAP_Npclient
   OUTPUT_NAME NPClient
-  FOLDER examples/IPC_SAP/SPIPE_SAP
+  FOLDER ACE/examples/IPC_SAP/SPIPE_SAP
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(SPIPE_SAP_Npclient
@@ -49,7 +49,7 @@ ace_target_cxx_sources(SPIPE_SAP_Npclient
 
 ace_add_exe(SPIPE_SAP_Npserver
   OUTPUT_NAME NPServer
-  FOLDER examples/IPC_SAP/SPIPE_SAP
+  FOLDER ACE/examples/IPC_SAP/SPIPE_SAP
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(SPIPE_SAP_Npserver
@@ -59,7 +59,7 @@ ace_target_cxx_sources(SPIPE_SAP_Npserver
 
 ace_add_exe(SPIPE_SAP_Producer_msg
   OUTPUT_NAME producer_msg
-  FOLDER examples/IPC_SAP/SPIPE_SAP
+  FOLDER ACE/examples/IPC_SAP/SPIPE_SAP
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(SPIPE_SAP_Producer_msg
@@ -69,7 +69,7 @@ ace_target_cxx_sources(SPIPE_SAP_Producer_msg
 
 ace_add_exe(SPIPE_SAP_Producer_read
   OUTPUT_NAME producer_read
-  FOLDER examples/IPC_SAP/SPIPE_SAP
+  FOLDER ACE/examples/IPC_SAP/SPIPE_SAP
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(SPIPE_SAP_Producer_read
@@ -79,7 +79,7 @@ ace_target_cxx_sources(SPIPE_SAP_Producer_read
 
 ace_add_exe(SPIPE_SAP_Server
   OUTPUT_NAME server
-  FOLDER examples/IPC_SAP/SPIPE_SAP
+  FOLDER ACE/examples/IPC_SAP/SPIPE_SAP
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(SPIPE_SAP_Server

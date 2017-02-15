@@ -9,7 +9,7 @@ find_package(Motif)
 
 ace_add_exe(Misc_Test_dump
   OUTPUT_NAME test_dump
-  FOLDER examples/Misc
+  FOLDER ACE/examples/Misc
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Misc_Test_dump
@@ -20,7 +20,7 @@ ace_target_cxx_sources(Misc_Test_dump
 
 ace_add_exe(Misc_Test_get_opt
   OUTPUT_NAME test_get_opt
-  FOLDER examples/Misc
+  FOLDER ACE/examples/Misc
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Misc_Test_get_opt
@@ -30,7 +30,7 @@ ace_target_cxx_sources(Misc_Test_get_opt
 
 ace_add_exe(Misc_Test_profile_timer
   OUTPUT_NAME test_profile_timer
-  FOLDER examples/Misc
+  FOLDER ACE/examples/Misc
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Misc_Test_profile_timer
@@ -40,7 +40,7 @@ ace_target_cxx_sources(Misc_Test_profile_timer
 
 ace_add_exe(Misc_Test_read_buffer
   OUTPUT_NAME test_read_buffer
-  FOLDER examples/Misc
+  FOLDER ACE/examples/Misc
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Misc_Test_read_buffer
@@ -50,7 +50,7 @@ ace_target_cxx_sources(Misc_Test_read_buffer
 
 ace_add_exe(Misc_Test_set
   OUTPUT_NAME test_set
-  FOLDER examples/Misc
+  FOLDER ACE/examples/Misc
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Misc_Test_set
@@ -60,7 +60,7 @@ ace_target_cxx_sources(Misc_Test_set
 
 ace_add_exe(Misc_Test_sstring
   OUTPUT_NAME test_sstring
-  FOLDER examples/Misc
+  FOLDER ACE/examples/Misc
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Misc_Test_sstring
@@ -70,7 +70,7 @@ ace_target_cxx_sources(Misc_Test_sstring
 
 ace_add_exe(Misc_Test_timestamp
   OUTPUT_NAME test_timestamp
-  FOLDER examples/Misc
+  FOLDER ACE/examples/Misc
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Misc_Test_timestamp
@@ -80,7 +80,7 @@ ace_target_cxx_sources(Misc_Test_timestamp
 
 ace_add_exe(Misc_Test_trace
   OUTPUT_NAME test_trace
-  FOLDER examples/Misc
+  FOLDER ACE/examples/Misc
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Misc_Test_trace
@@ -91,7 +91,7 @@ ace_target_cxx_sources(Misc_Test_trace
 ace_add_exe(Misc_Test_xtreactor1
   OUTPUT_NAME test_XtReactor1
   REQUIRES MOTIF_FOUND
-  FOLDER examples/Misc
+  FOLDER ACE/examples/Misc
   INCLUDE_DIRECTORIES ${MOTIF_INCLUDE_DIR}
   LINK_LIBRARIES ${MOTIF_LIBRARIES}
                  ACE
@@ -105,7 +105,7 @@ ace_target_cxx_sources(Misc_Test_xtreactor1
 ace_add_exe(Misc_Test_xtreactor2
   OUTPUT_NAME test_XtReactor2
   REQUIRES MOTIF_FOUND
-  FOLDER examples/Misc
+  FOLDER ACE/examples/Misc
   INCLUDE_DIRECTORIES ${MOTIF_INCLUDE_DIR}
   LINK_LIBRARIES ${MOTIF_LIBRARIES}
                  ACE

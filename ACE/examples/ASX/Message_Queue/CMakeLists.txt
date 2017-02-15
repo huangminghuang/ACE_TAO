@@ -9,7 +9,7 @@ endif()
 
 ace_add_exe(ASX_Message_Queue_Bounded_buffer
   OUTPUT_NAME bounded_buffer
-  FOLDER examples/ASX/Message_Queue
+  FOLDER ACE/examples/ASX/Message_Queue
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(ASX_Message_Queue_Bounded_buffer
@@ -19,8 +19,8 @@ ace_target_cxx_sources(ASX_Message_Queue_Bounded_buffer
 
 ace_add_exe(ASX_Message_Queue_Buffer_stream
   OUTPUT_NAME buffer_stream
-  REQUIRES "NOT USES_WCHAR"
-  FOLDER examples/ASX/Message_Queue
+  REQUIRES "NOT ACE_USES_WCHAR"
+  FOLDER ACE/examples/ASX/Message_Queue
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(ASX_Message_Queue_Buffer_stream
@@ -30,7 +30,7 @@ ace_target_cxx_sources(ASX_Message_Queue_Buffer_stream
 
 ace_add_exe(ASX_Message_Queue_Priority_buffer
   OUTPUT_NAME priority_buffer
-  FOLDER examples/ASX/Message_Queue
+  FOLDER ACE/examples/ASX/Message_Queue
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(ASX_Message_Queue_Priority_buffer

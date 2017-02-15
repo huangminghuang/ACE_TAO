@@ -2,7 +2,7 @@
 
 ace_add_exe(Hello_Server
   OUTPUT_NAME server
-  FOLDER tests/Hello
+  FOLDER TAO/tests/Hello
   INCLUDE_DIRECTORIES ${CMAKE_CURRENT_SOURCE_DIR}
                       ${CMAKE_CURRENT_BINARY_DIR}
   LINK_LIBRARIES TAO_PortableServer
@@ -16,7 +16,7 @@ ace_target_cxx_sources(Hello_Server
 
 ace_add_exe(Hello_Client
   OUTPUT_NAME client
-  FOLDER tests/Hello
+  FOLDER TAO/tests/Hello
   INCLUDE_DIRECTORIES ${CMAKE_CURRENT_SOURCE_DIR}
                       ${CMAKE_CURRENT_BINARY_DIR}
   LINK_LIBRARIES TAO

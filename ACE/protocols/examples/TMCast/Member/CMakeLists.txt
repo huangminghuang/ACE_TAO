@@ -4,7 +4,7 @@ ace_requires(ACE_HAS_THREADS)
 
 ace_add_exe(Member
   OUTPUT_NAME member
-  FOLDER protocols/examples/TMCast/Member
+  FOLDER ACE/protocols/examples/TMCast/Member
   LINK_LIBRARIES ACE_TMCast
                  ACE
 )

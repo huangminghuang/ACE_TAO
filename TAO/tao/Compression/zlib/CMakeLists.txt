@@ -5,7 +5,7 @@ ace_requires(ZLIB_FOUND)
 ace_add_lib(TAO_ZlibCompressor
   OUTPUT_NAME TAO_ZlibCompressor
   PACKAGE TAO
-  FOLDER tao/Compression/zlib
+  FOLDER TAO/tao/Compression/zlib
   DEFINE_SYMBOL TAO_ZLIBCOMPRESSOR_BUILD_DLL
   PUBLIC_LINK_LIBRARIES TAO_Compression
                         ${ZLIB_LIBRARIES}

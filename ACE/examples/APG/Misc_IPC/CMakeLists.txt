@@ -9,7 +9,7 @@ endif()
 
 ace_add_exe(UDP_Broadcast
   OUTPUT_NAME UDP_Broadcast
-  FOLDER examples/APG/Misc_IPC
+  FOLDER ACE/examples/APG/Misc_IPC
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(UDP_Broadcast
@@ -19,7 +19,7 @@ ace_target_cxx_sources(UDP_Broadcast
 
 ace_add_exe(UDP_Multicast
   OUTPUT_NAME UDP_Multicast
-  FOLDER examples/APG/Misc_IPC
+  FOLDER ACE/examples/APG/Misc_IPC
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(UDP_Multicast
@@ -29,7 +29,7 @@ ace_target_cxx_sources(UDP_Multicast
 
 ace_add_exe(UDP_Unicast
   OUTPUT_NAME UDP_Unicast
-  FOLDER examples/APG/Misc_IPC
+  FOLDER ACE/examples/APG/Misc_IPC
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(UDP_Unicast

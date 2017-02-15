@@ -1,0 +1,4 @@
+target_sources(RPC_Client PRIVATE
+  ${CMAKE_CURRENT_BINARY_DIR}/ping_clnt.c
+  ${CMAKE_CURRENT_BINARY_DIR}/ping.h
+)

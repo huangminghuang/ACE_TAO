@@ -9,7 +9,7 @@ endif()
 
 ace_add_exe(UPIPE_SAP_Ex1
   OUTPUT_NAME ex1
-  FOLDER examples/IPC_SAP/UPIPE_SAP
+  FOLDER ACE/examples/IPC_SAP/UPIPE_SAP
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(UPIPE_SAP_Ex1
@@ -19,7 +19,7 @@ ace_target_cxx_sources(UPIPE_SAP_Ex1
 
 ace_add_exe(UPIPE_SAP_Ex2
   OUTPUT_NAME ex2
-  FOLDER examples/IPC_SAP/UPIPE_SAP
+  FOLDER ACE/examples/IPC_SAP/UPIPE_SAP
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(UPIPE_SAP_Ex2
@@ -29,7 +29,7 @@ ace_target_cxx_sources(UPIPE_SAP_Ex2
 
 ace_add_exe(UPIPE_SAP_Ex3
   OUTPUT_NAME ex3
-  FOLDER examples/IPC_SAP/UPIPE_SAP
+  FOLDER ACE/examples/IPC_SAP/UPIPE_SAP
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(UPIPE_SAP_Ex3

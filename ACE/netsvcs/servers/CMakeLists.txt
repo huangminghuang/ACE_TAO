@@ -2,7 +2,7 @@
 
 ace_add_exe(Netsvcs_server
   OUTPUT_NAME ace_netsvcs
-  FOLDER netsvcs/servers
+  FOLDER ACE/netsvcs/servers
   INCLUDE_DIRECTORIES ${ACE_ROOT}/netsvcs/lib
   LINK_LIBRARIES ACE
                  netsvcs

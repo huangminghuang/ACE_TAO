@@ -5,7 +5,7 @@ ace_requires("NOT TAO_HAS_CORBA_E_MICRO" ACE_HAS_THREADS)
 ace_add_lib(TAO_Dynamic_TP
   OUTPUT_NAME TAO_Dynamic_TP
   PACKAGE TAO
-  FOLDER tao/Dynamic_TP
+  FOLDER TAO/tao/Dynamic_TP
   DEFINE_SYMBOL TAO_DYNAMIC_TP_BUILD_DLL
   PUBLIC_LINK_LIBRARIES TAO_PI
                         TAO_CSD_ThreadPool

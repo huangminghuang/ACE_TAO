@@ -1,5 +1,5 @@
-add_subdirectory(trap)
-add_subdirectory(get)
 add_subdirectory(walk)
-add_subdirectory(set)
 add_subdirectory(next)
+add_subdirectory(get)
+add_subdirectory(trap)
+add_subdirectory(set)

@@ -2,7 +2,7 @@
 
 ace_add_exe(Transcoder_Test
   OUTPUT_NAME Transcoder_Test
-  FOLDER ACEXML/tests
+  FOLDER ACE/ACEXML/tests
   LINK_LIBRARIES ACE
                  ACEXML_Parser
 )
@@ -13,7 +13,7 @@ ace_target_cxx_sources(Transcoder_Test
 
 ace_add_exe(NamespaceSupport_Test
   OUTPUT_NAME NamespaceSupport_Test
-  FOLDER ACEXML/tests
+  FOLDER ACE/ACEXML/tests
   LINK_LIBRARIES ACE
                  ACEXML_Parser
 )
@@ -24,7 +24,7 @@ ace_target_cxx_sources(NamespaceSupport_Test
 
 ace_add_exe(HttpCharStream_Test
   OUTPUT_NAME HttpCharStream_Test
-  FOLDER ACEXML/tests
+  FOLDER ACE/ACEXML/tests
   LINK_LIBRARIES ACE
                  ACEXML_Parser
 )
@@ -35,7 +35,7 @@ ace_target_cxx_sources(HttpCharStream_Test
 
 ace_add_exe(ContentHandler_Test
   OUTPUT_NAME ContentHandler_Test
-  FOLDER ACEXML/tests
+  FOLDER ACE/ACEXML/tests
   LINK_LIBRARIES ACE
                  ACEXML_Parser
 )

@@ -4,7 +4,7 @@ ace_requires(ACE_UUID)
 
 ace_add_exe(ping_Server
   OUTPUT_NAME server
-  FOLDER protocols/tests/HTBP/ping
+  FOLDER ACE/protocols/tests/HTBP/ping
   LINK_LIBRARIES ACE_HTBP
                  ACE
 )
@@ -15,7 +15,7 @@ ace_target_cxx_sources(ping_Server
 
 ace_add_exe(ping_Client
   OUTPUT_NAME client
-  FOLDER protocols/tests/HTBP/ping
+  FOLDER ACE/protocols/tests/HTBP/ping
   LINK_LIBRARIES ACE_HTBP
                  ACE
 )

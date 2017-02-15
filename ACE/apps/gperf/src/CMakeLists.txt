@@ -3,27 +3,27 @@
 ace_add_exe(ace_gperf
   OUTPUT_NAME ace_gperf
   PACKAGE ACE
-  FOLDER apps/gperf/src
+  FOLDER ACE/apps/gperf/src
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(ace_gperf
-  SOURCE_FILES Gen_Perf.cpp
+  SOURCE_FILES Bool_Array.cpp
+               Gen_Perf.cpp
                Hash_Table.cpp
-               List_Node.cpp
-               Key_List.cpp
                Iterator.cpp
-               Vectors.cpp
+               Key_List.cpp
+               List_Node.cpp
                Options.cpp
+               Vectors.cpp
                Version.cpp
                gperf.cpp
-               Bool_Array.cpp
-  HEADER_FILES Options.h
-               Iterator.h
+  HEADER_FILES Bool_Array.h
                Gen_Perf.h
+               Hash_Table.h
+               Iterator.h
                Key_List.h
                List_Node.h
-               Hash_Table.h
-               Bool_Array.h
+               Options.h
                Vectors.h
 )
 

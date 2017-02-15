@@ -9,7 +9,7 @@ endif()
 
 ace_add_exe(SSL_SAP_Client
   OUTPUT_NAME client
-  FOLDER examples/IPC_SAP/SSL_SAP
+  FOLDER ACE/examples/IPC_SAP/SSL_SAP
   LINK_LIBRARIES ACE_SSL
                  ACE
 )
@@ -21,7 +21,7 @@ ace_target_cxx_sources(SSL_SAP_Client
 
 ace_add_exe(SSL_SAP_Client_simple
   OUTPUT_NAME client-simple
-  FOLDER examples/IPC_SAP/SSL_SAP
+  FOLDER ACE/examples/IPC_SAP/SSL_SAP
   LINK_LIBRARIES ACE_SSL
                  ACE
 )
@@ -33,7 +33,7 @@ ace_target_cxx_sources(SSL_SAP_Client_simple
 
 ace_add_exe(SSL_SAP_Server
   OUTPUT_NAME server
-  FOLDER examples/IPC_SAP/SSL_SAP
+  FOLDER ACE/examples/IPC_SAP/SSL_SAP
   LINK_LIBRARIES ACE_SSL
                  ACE
 )
@@ -44,7 +44,7 @@ ace_target_cxx_sources(SSL_SAP_Server
 
 ace_add_exe(SSL_SAP_Server_fancy
   OUTPUT_NAME server-fancy
-  FOLDER examples/IPC_SAP/SSL_SAP
+  FOLDER ACE/examples/IPC_SAP/SSL_SAP
   LINK_LIBRARIES ACE_SSL
                  ACE
 )
@@ -56,7 +56,7 @@ ace_target_cxx_sources(SSL_SAP_Server_fancy
 
 ace_add_exe(SSL_SAP_Server_poll
   OUTPUT_NAME server-poll
-  FOLDER examples/IPC_SAP/SSL_SAP
+  FOLDER ACE/examples/IPC_SAP/SSL_SAP
   LINK_LIBRARIES ACE_SSL
                  ACE
 )
@@ -67,7 +67,7 @@ ace_target_cxx_sources(SSL_SAP_Server_poll
 
 ace_add_exe(SSL_SAP_Server_simple
   OUTPUT_NAME server-simple
-  FOLDER examples/IPC_SAP/SSL_SAP
+  FOLDER ACE/examples/IPC_SAP/SSL_SAP
   LINK_LIBRARIES ACE_SSL
                  ACE
 )

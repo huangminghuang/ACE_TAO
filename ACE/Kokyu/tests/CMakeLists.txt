@@ -1,3 +1,3 @@
 add_subdirectory(DSRT_MIF)
-add_subdirectory(FIFO)
 add_subdirectory(EDF)
+add_subdirectory(FIFO)

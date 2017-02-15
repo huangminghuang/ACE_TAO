@@ -9,7 +9,7 @@ endif()
 
 ace_add_exe(sockets_Basic
   OUTPUT_NAME Basic
-  FOLDER examples/APG/Sockets
+  FOLDER ACE/examples/APG/Sockets
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(sockets_Basic
@@ -19,7 +19,7 @@ ace_target_cxx_sources(sockets_Basic
 
 ace_add_exe(sockets_Basic_robust
   OUTPUT_NAME Basic_Robust
-  FOLDER examples/APG/Sockets
+  FOLDER ACE/examples/APG/Sockets
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(sockets_Basic_robust
@@ -29,7 +29,7 @@ ace_target_cxx_sources(sockets_Basic_robust
 
 ace_add_exe(sockets_Iovec
   OUTPUT_NAME Iovec
-  FOLDER examples/APG/Sockets
+  FOLDER ACE/examples/APG/Sockets
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(sockets_Iovec
@@ -39,7 +39,7 @@ ace_target_cxx_sources(sockets_Iovec
 
 ace_add_exe(sockets_Server
   OUTPUT_NAME Server
-  FOLDER examples/APG/Sockets
+  FOLDER ACE/examples/APG/Sockets
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(sockets_Server

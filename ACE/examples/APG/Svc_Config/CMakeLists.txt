@@ -9,7 +9,7 @@ endif()
 
 ace_add_lib(svc_config_Ha_status
   OUTPUT_NAME HA_Status
-  FOLDER examples/APG/Svc_Config
+  FOLDER ACE/examples/APG/Svc_Config
   DEFINE_SYMBOL HASTATUS_BUILD_DLL
   PUBLIC_LINK_LIBRARIES ACE
 )
@@ -21,7 +21,7 @@ ace_target_cxx_sources(svc_config_Ha_status
 
 ace_add_exe(HA_Configurable_Server_Dynamic
   OUTPUT_NAME HA_Configurable_Server_Dynamic
-  FOLDER examples/APG/Svc_Config
+  FOLDER ACE/examples/APG/Svc_Config
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(HA_Configurable_Server_Dynamic
@@ -31,7 +31,7 @@ ace_target_cxx_sources(HA_Configurable_Server_Dynamic
 
 ace_add_exe(HA_Configurable_Server_Static
   OUTPUT_NAME HA_Configurable_Server_Static
-  FOLDER examples/APG/Svc_Config
+  FOLDER ACE/examples/APG/Svc_Config
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(HA_Configurable_Server_Static

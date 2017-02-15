@@ -2,7 +2,7 @@
 ace_add_lib(TAO_RTEvent
   DEFINE_SYMBOL TAO_RTEVENT_BUILD_DLL
   PACKAGE TAO
-  FOLDER orbsvcs/orbsvcs/Event
+  FOLDER TAO/orbsvcs/orbsvcs/Event
   PUBLIC_LINK_LIBRARIES TAO_Svc_Utils
 )
 
@@ -13,7 +13,7 @@ ace_target_cxx_sources(TAO_RTEvent
 ace_add_lib(TAO_RTEvent_Skel
   DEFINE_SYMBOL TAO_RTEVENT_SKEL_BUILD_DLL
   PACKAGE TAO
-  FOLDER orbsvcs/orbsvcs/Event
+  FOLDER TAO/orbsvcs/orbsvcs/Event
   PUBLIC_LINK_LIBRARIES TAO_RTEvent
                         TAO_PortableServer
 )
@@ -27,7 +27,7 @@ include(../RTEvent.cmake)
 ace_add_lib(TAO_RTEvent_Serv
   DEFINE_SYMBOL TAO_RTEVENT_SERV_BUILD_DLL
   PACKAGE TAO
-  FOLDER orbsvcs/orbsvcs/Event
+  FOLDER TAO/orbsvcs/orbsvcs/Event
   PUBLIC_LINK_LIBRARIES TAO_RTEvent_Skel
                         TAO_RTSched
                         TAO_Messaging
@@ -229,7 +229,7 @@ ace_target_cxx_sources(TAO_RTEvent_Serv
 ace_add_lib(TAO_RTCORBAEvent
   DEFINE_SYMBOL TAO_RTCORBAEVENT_BUILD_DLL
   PACKAGE TAO
-  FOLDER orbsvcs/orbsvcs/Event
+  FOLDER TAO/orbsvcs/orbsvcs/Event
   PUBLIC_LINK_LIBRARIES TAO_RTEvent_Serv
                         TAO_RTPortableServer
 )
@@ -244,7 +244,7 @@ ace_target_cxx_sources(TAO_RTCORBAEvent
 ace_add_lib(TAO_RTKokyuEvent
   DEFINE_SYMBOL TAO_RTKOKYUEVENT_BUILD_DLL
   PACKAGE TAO
-  FOLDER orbsvcs/orbsvcs/Event
+  FOLDER TAO/orbsvcs/orbsvcs/Event
   PUBLIC_LINK_LIBRARIES TAO_RTEvent_Serv
                         TAO_RTSched
                         Kokyu
@@ -270,7 +270,7 @@ ace_target_cxx_sources(TAO_RTKokyuEvent
 ace_add_lib(TAO_RTSchedEvent
   DEFINE_SYMBOL TAO_RTSCHEDEVENT_BUILD_DLL
   PACKAGE TAO
-  FOLDER orbsvcs/orbsvcs/Event
+  FOLDER TAO/orbsvcs/orbsvcs/Event
   PUBLIC_LINK_LIBRARIES TAO_RTEvent_Serv
                         TAO_RTSched
 )

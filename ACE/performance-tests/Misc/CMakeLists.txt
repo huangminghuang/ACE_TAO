@@ -2,7 +2,7 @@
 
 ace_add_exe(Misc_Basic_perf
   OUTPUT_NAME basic_perf
-  FOLDER performance-tests/Misc
+  FOLDER ACE/performance-tests/Misc
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Misc_Basic_perf
@@ -14,7 +14,7 @@ ace_target_cxx_sources(Misc_Basic_perf
 
 ace_add_exe(Misc_Childbirth_time
   OUTPUT_NAME childbirth_time
-  FOLDER performance-tests/Misc
+  FOLDER ACE/performance-tests/Misc
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Misc_Childbirth_time
@@ -24,7 +24,7 @@ ace_target_cxx_sources(Misc_Childbirth_time
 
 ace_add_exe(Misc_Context_switch_time
   OUTPUT_NAME context_switch_time
-  FOLDER performance-tests/Misc
+  FOLDER ACE/performance-tests/Misc
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Misc_Context_switch_time
@@ -34,7 +34,7 @@ ace_target_cxx_sources(Misc_Context_switch_time
 
 ace_add_exe(Misc_Test_mutex
   OUTPUT_NAME test_mutex
-  FOLDER performance-tests/Misc
+  FOLDER ACE/performance-tests/Misc
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Misc_Test_mutex
@@ -45,7 +45,7 @@ ace_target_cxx_sources(Misc_Test_mutex
 ace_add_exe(Misc_Test_naming
   OUTPUT_NAME test_naming
   REQUIRES ACE_OTHER
-  FOLDER performance-tests/Misc
+  FOLDER ACE/performance-tests/Misc
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Misc_Test_naming
@@ -55,7 +55,7 @@ ace_target_cxx_sources(Misc_Test_naming
 
 ace_add_exe(Misc_Test_singleton
   OUTPUT_NAME test_singleton
-  FOLDER performance-tests/Misc
+  FOLDER ACE/performance-tests/Misc
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Misc_Test_singleton
@@ -66,7 +66,7 @@ ace_target_cxx_sources(Misc_Test_singleton
 
 ace_add_exe(Misc_Preempt
   OUTPUT_NAME preempt
-  FOLDER performance-tests/Misc
+  FOLDER ACE/performance-tests/Misc
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Misc_Preempt
@@ -76,7 +76,7 @@ ace_target_cxx_sources(Misc_Preempt
 
 ace_add_exe(Misc_Test_guard
   OUTPUT_NAME test_guard
-  FOLDER performance-tests/Misc
+  FOLDER ACE/performance-tests/Misc
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Misc_Test_guard

@@ -2,7 +2,7 @@
 
 ace_add_lib(websvcs
   OUTPUT_NAME websvcs
-  FOLDER websvcs/lib
+  FOLDER ACE/websvcs/lib
   DEFINE_SYMBOL ACE_WEBSVCS_BUILD_DLL
   PUBLIC_LINK_LIBRARIES ACE
 )

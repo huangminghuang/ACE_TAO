@@ -2,7 +2,7 @@
 
 ace_add_exe(DSRT_MIF
   OUTPUT_NAME MIF
-  FOLDER Kokyu/tests/DSRT_MIF
+  FOLDER ACE/Kokyu/tests/DSRT_MIF
   LINK_LIBRARIES ACE
                  Kokyu
 )

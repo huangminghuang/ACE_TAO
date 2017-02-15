@@ -9,7 +9,7 @@ endif()
 
 ace_add_exe(IOStream_Client
   OUTPUT_NAME iostream_client
-  FOLDER examples/IOStream/client
+  FOLDER ACE/examples/IOStream/client
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(IOStream_Client

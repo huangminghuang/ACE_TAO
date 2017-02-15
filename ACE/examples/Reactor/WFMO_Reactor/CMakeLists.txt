@@ -11,7 +11,7 @@ ace_requires(WIN32)
 
 ace_add_exe(WFMO_Reactor_Abandoned
   OUTPUT_NAME abandoned
-  FOLDER examples/Reactor/WFMO_Reactor
+  FOLDER ACE/examples/Reactor/WFMO_Reactor
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(WFMO_Reactor_Abandoned
@@ -21,7 +21,7 @@ ace_target_cxx_sources(WFMO_Reactor_Abandoned
 
 ace_add_exe(WFMO_Reactor_Apc
   OUTPUT_NAME apc
-  FOLDER examples/Reactor/WFMO_Reactor
+  FOLDER ACE/examples/Reactor/WFMO_Reactor
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(WFMO_Reactor_Apc
@@ -31,7 +31,7 @@ ace_target_cxx_sources(WFMO_Reactor_Apc
 
 ace_add_exe(WFMO_Reactor_Console_input
   OUTPUT_NAME console_input
-  FOLDER examples/Reactor/WFMO_Reactor
+  FOLDER ACE/examples/Reactor/WFMO_Reactor
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(WFMO_Reactor_Console_input
@@ -41,7 +41,7 @@ ace_target_cxx_sources(WFMO_Reactor_Console_input
 
 ace_add_exe(WFMO_Reactor_Directory_changes
   OUTPUT_NAME directory_changes
-  FOLDER examples/Reactor/WFMO_Reactor
+  FOLDER ACE/examples/Reactor/WFMO_Reactor
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(WFMO_Reactor_Directory_changes
@@ -51,7 +51,7 @@ ace_target_cxx_sources(WFMO_Reactor_Directory_changes
 
 ace_add_exe(WFMO_Reactor_Exceptions
   OUTPUT_NAME exceptions
-  FOLDER examples/Reactor/WFMO_Reactor
+  FOLDER ACE/examples/Reactor/WFMO_Reactor
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(WFMO_Reactor_Exceptions
@@ -61,7 +61,7 @@ ace_target_cxx_sources(WFMO_Reactor_Exceptions
 
 ace_add_exe(WFMO_Reactor_Handle_close
   OUTPUT_NAME handle_close
-  FOLDER examples/Reactor/WFMO_Reactor
+  FOLDER ACE/examples/Reactor/WFMO_Reactor
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(WFMO_Reactor_Handle_close
@@ -71,7 +71,7 @@ ace_target_cxx_sources(WFMO_Reactor_Handle_close
 
 ace_add_exe(WFMO_Reactor_Multithreading
   OUTPUT_NAME multithreading
-  FOLDER examples/Reactor/WFMO_Reactor
+  FOLDER ACE/examples/Reactor/WFMO_Reactor
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(WFMO_Reactor_Multithreading
@@ -81,7 +81,7 @@ ace_target_cxx_sources(WFMO_Reactor_Multithreading
 
 ace_add_exe(WFMO_Reactor_Network_events
   OUTPUT_NAME network_events
-  FOLDER examples/Reactor/WFMO_Reactor
+  FOLDER ACE/examples/Reactor/WFMO_Reactor
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(WFMO_Reactor_Network_events
@@ -91,7 +91,7 @@ ace_target_cxx_sources(WFMO_Reactor_Network_events
 
 ace_add_exe(WFMO_Reactor_Prerun_state_changes
   OUTPUT_NAME prerun_state_changes
-  FOLDER examples/Reactor/WFMO_Reactor
+  FOLDER ACE/examples/Reactor/WFMO_Reactor
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(WFMO_Reactor_Prerun_state_changes
@@ -101,7 +101,7 @@ ace_target_cxx_sources(WFMO_Reactor_Prerun_state_changes
 
 ace_add_exe(WFMO_Reactor_Registration
   OUTPUT_NAME registration
-  FOLDER examples/Reactor/WFMO_Reactor
+  FOLDER ACE/examples/Reactor/WFMO_Reactor
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(WFMO_Reactor_Registration
@@ -111,7 +111,7 @@ ace_target_cxx_sources(WFMO_Reactor_Registration
 
 ace_add_exe(WFMO_Reactor_Registry_changes
   OUTPUT_NAME registry_changes
-  FOLDER examples/Reactor/WFMO_Reactor
+  FOLDER ACE/examples/Reactor/WFMO_Reactor
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(WFMO_Reactor_Registry_changes
@@ -121,7 +121,7 @@ ace_target_cxx_sources(WFMO_Reactor_Registry_changes
 
 ace_add_exe(WFMO_Reactor_Removals
   OUTPUT_NAME removals
-  FOLDER examples/Reactor/WFMO_Reactor
+  FOLDER ACE/examples/Reactor/WFMO_Reactor
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(WFMO_Reactor_Removals
@@ -131,7 +131,7 @@ ace_target_cxx_sources(WFMO_Reactor_Removals
 
 ace_add_exe(WFMO_Reactor_Suspended_removals
   OUTPUT_NAME suspended_removals
-  FOLDER examples/Reactor/WFMO_Reactor
+  FOLDER ACE/examples/Reactor/WFMO_Reactor
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(WFMO_Reactor_Suspended_removals
@@ -141,7 +141,7 @@ ace_target_cxx_sources(WFMO_Reactor_Suspended_removals
 
 ace_add_exe(WFMO_Reactor_Talker
   OUTPUT_NAME talker
-  FOLDER examples/Reactor/WFMO_Reactor
+  FOLDER ACE/examples/Reactor/WFMO_Reactor
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(WFMO_Reactor_Talker
@@ -151,7 +151,7 @@ ace_target_cxx_sources(WFMO_Reactor_Talker
 
 ace_add_exe(WFMO_Reactor_Timeouts
   OUTPUT_NAME timeouts
-  FOLDER examples/Reactor/WFMO_Reactor
+  FOLDER ACE/examples/Reactor/WFMO_Reactor
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(WFMO_Reactor_Timeouts
@@ -161,7 +161,7 @@ ace_target_cxx_sources(WFMO_Reactor_Timeouts
 
 ace_add_exe(WFMO_Reactor_Window_messages
   OUTPUT_NAME window_messages
-  FOLDER examples/Reactor/WFMO_Reactor
+  FOLDER ACE/examples/Reactor/WFMO_Reactor
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(WFMO_Reactor_Window_messages

@@ -9,7 +9,7 @@ endif()
 
 ace_add_exe(Atomic_Op
   OUTPUT_NAME Atomic_Op
-  FOLDER examples/APG/ThreadSafety
+  FOLDER ACE/examples/APG/ThreadSafety
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Atomic_Op
@@ -19,7 +19,7 @@ ace_target_cxx_sources(Atomic_Op
 
 ace_add_exe(Barrier
   OUTPUT_NAME Barrier
-  FOLDER examples/APG/ThreadSafety
+  FOLDER ACE/examples/APG/ThreadSafety
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Barrier
@@ -29,7 +29,7 @@ ace_target_cxx_sources(Barrier
 
 ace_add_exe(Mutex
   OUTPUT_NAME Mutex
-  FOLDER examples/APG/ThreadSafety
+  FOLDER ACE/examples/APG/ThreadSafety
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Mutex
@@ -39,7 +39,7 @@ ace_target_cxx_sources(Mutex
 
 ace_add_exe(RW_Lock
   OUTPUT_NAME RW_Lock
-  FOLDER examples/APG/ThreadSafety
+  FOLDER ACE/examples/APG/ThreadSafety
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(RW_Lock
@@ -49,7 +49,7 @@ ace_target_cxx_sources(RW_Lock
 
 ace_add_exe(Semaphore
   OUTPUT_NAME Semaphore
-  FOLDER examples/APG/ThreadSafety
+  FOLDER ACE/examples/APG/ThreadSafety
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Semaphore
@@ -59,7 +59,7 @@ ace_target_cxx_sources(Semaphore
 
 ace_add_exe(Tokens
   OUTPUT_NAME Tokens
-  FOLDER examples/APG/ThreadSafety
+  FOLDER ACE/examples/APG/ThreadSafety
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Tokens
@@ -69,7 +69,7 @@ ace_target_cxx_sources(Tokens
 
 ace_add_exe(Tokens_Deadlock
   OUTPUT_NAME Tokens_Deadlock
-  FOLDER examples/APG/ThreadSafety
+  FOLDER ACE/examples/APG/ThreadSafety
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Tokens_Deadlock
@@ -79,7 +79,7 @@ ace_target_cxx_sources(Tokens_Deadlock
 
 ace_add_exe(TSS
   OUTPUT_NAME TSS
-  FOLDER examples/APG/ThreadSafety
+  FOLDER ACE/examples/APG/ThreadSafety
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(TSS

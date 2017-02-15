@@ -15,7 +15,9 @@ function(add_gperf_test test_name)
 
     target_link_libraries(${test_name}_bin ACE)
 
-    set_target_properties(${test_name} PROPERTIES FOLDER apps/gperf/tests)
+    set_target_properties(${test_name} PROPERTIES
+      FOLDER ACE/apps/gperf/tests
+    )
 
     add_test(NAME ${test_name}
       COMMAND ${CMAKE_COMMAND} -Dtest_name=${test_name}

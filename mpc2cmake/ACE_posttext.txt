@@ -5,7 +5,22 @@ ace_target_cxx_sources(ACE
   SUBGROUP \\config
 )
 
-if (NOT BUILD_SHARED_LIBS)
+
+## use target_link_libraries() for the following
+## libraries instead of specified inside ace_add_lib()
+## to avoid unnecessary checking for
+## the exisitence of the libraries.
+target_link_libraries(ACE PUBLIC
+  ${CMAKE_THREAD_LIBS_INIT}
+  ${AIO_LIBRARY}
+  ${CMAKE_DL_LIBS}
+)
+
+if (BUILD_SHARED_LIBS)
+  target_link_libraries(ACE PUBLIC
+    ${CMAKE_DL_LIBS}
+  )
+else(BUILD_SHARED_LIBS)
   target_compile_definitions(ACE INTERFACE ACE_AS_STATIC_LIBS)
-endif(NOT BUILD_SHARED_LIBS)
+endif(BUILD_SHARED_LIBS)
 

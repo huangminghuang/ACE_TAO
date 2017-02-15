@@ -2,7 +2,7 @@
 
 ace_add_exe(Svr_Conc_Queue_Based_Workers
   OUTPUT_NAME workers
-  FOLDER performance-tests/Server_Concurrency/Queue_Based_Workers
+  FOLDER ACE/performance-tests/Server_Concurrency/Queue_Based_Workers
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Svr_Conc_Queue_Based_Workers
@@ -12,7 +12,7 @@ ace_target_cxx_sources(Svr_Conc_Queue_Based_Workers
 
 ace_add_exe(Svr_Conc_Queue_Based_Workers_Rtcorba
   OUTPUT_NAME RT_CORBA_Workers
-  FOLDER performance-tests/Server_Concurrency/Queue_Based_Workers
+  FOLDER ACE/performance-tests/Server_Concurrency/Queue_Based_Workers
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Svr_Conc_Queue_Based_Workers_Rtcorba

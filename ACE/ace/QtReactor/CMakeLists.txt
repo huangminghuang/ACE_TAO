@@ -10,7 +10,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 ace_add_lib(ACE_QtReactor
   OUTPUT_NAME ACE_QtReactor
   PACKAGE ACE
-  FOLDER ace/QtReactor
+  FOLDER ACE/ace/QtReactor
   DEFINE_SYMBOL ACE_QTREACTOR_BUILD_DLL
   PUBLIC_LINK_LIBRARIES Qt4::QtCore
                         ACE

@@ -1,9 +1,9 @@
-
+find_package(Qt4)
 
 ace_add_lib(TAO_QtResource
   OUTPUT_NAME TAO_QtResource
   PACKAGE TAO
-  FOLDER tao/QtResource
+  FOLDER TAO/tao/QtResource
   DEFINE_SYMBOL TAO_QTRESOURCE_BUILD_DLL
   PUBLIC_LINK_LIBRARIES Qt4::QtGui
                         TAO

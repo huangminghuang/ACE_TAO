@@ -9,7 +9,7 @@ endif()
 
 ace_add_exe(Client
   OUTPUT_NAME Client
-  FOLDER examples/APG/Reactor
+  FOLDER ACE/examples/APG/Reactor
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Client
@@ -20,7 +20,7 @@ ace_target_cxx_sources(Client
 
 ace_add_exe(HAStatus
   OUTPUT_NAME HAStatus
-  FOLDER examples/APG/Reactor
+  FOLDER ACE/examples/APG/Reactor
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(HAStatus
@@ -30,7 +30,7 @@ ace_target_cxx_sources(HAStatus
 
 ace_add_exe(HAStatus_AC
   OUTPUT_NAME HAStatus-AC
-  FOLDER examples/APG/Reactor
+  FOLDER ACE/examples/APG/Reactor
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(HAStatus_AC
@@ -40,7 +40,7 @@ ace_target_cxx_sources(HAStatus_AC
 
 ace_add_exe(Reschedule
   OUTPUT_NAME Reschedule
-  FOLDER examples/APG/Reactor
+  FOLDER ACE/examples/APG/Reactor
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Reschedule
@@ -50,7 +50,7 @@ ace_target_cxx_sources(Reschedule
 
 ace_add_exe(Schedule_Timers
   OUTPUT_NAME Schedule_Timers
-  FOLDER examples/APG/Reactor
+  FOLDER ACE/examples/APG/Reactor
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Schedule_Timers
@@ -60,7 +60,7 @@ ace_target_cxx_sources(Schedule_Timers
 
 ace_add_exe(Timer_Cancel
   OUTPUT_NAME Timer_Cancel
-  FOLDER examples/APG/Reactor
+  FOLDER ACE/examples/APG/Reactor
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Timer_Cancel
@@ -70,7 +70,7 @@ ace_target_cxx_sources(Timer_Cancel
 
 ace_add_exe(reactor_Timers
   OUTPUT_NAME Timers
-  FOLDER examples/APG/Reactor
+  FOLDER ACE/examples/APG/Reactor
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(reactor_Timers
@@ -80,7 +80,7 @@ ace_target_cxx_sources(reactor_Timers
 
 ace_add_exe(Timer_State_Data
   OUTPUT_NAME Timer_State_Data
-  FOLDER examples/APG/Reactor
+  FOLDER ACE/examples/APG/Reactor
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Timer_State_Data

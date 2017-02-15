@@ -7,11 +7,9 @@ if (NOT ACE_ROOT)
 endif()
 
 
-ace_requires(RAPI_FOUND)
-
 ace_add_exe(QOS_Change_Receiver_FlowSpec_Receiver
   OUTPUT_NAME receiver
-  FOLDER examples/QOS/Change_Receiver_FlowSpec
+  FOLDER ACE/examples/QOS/Change_Receiver_FlowSpec
   INCLUDE_DIRECTORIES ${RAPI_INCLUDE_DIR}
   LINK_LIBRARIES ACE_QoS
                  ACE
@@ -19,31 +17,31 @@ ace_add_exe(QOS_Change_Receiver_FlowSpec_Receiver
 )
 ace_target_cxx_sources(QOS_Change_Receiver_FlowSpec_Receiver
   SOURCE_FILES Fill_ACE_QoS.cpp
-               Receiver_QoS_Event_Handler.cpp
-               QoS_Util.cpp
                QoS_Signal_Handler.cpp
+               QoS_Util.cpp
+               Receiver_QoS_Event_Handler.cpp
                receiver.cpp
   HEADER_FILES Fill_ACE_QoS.h
-               Receiver_QoS_Event_Handler.h
                QoS_Signal_Handler.h
                QoS_Util.h
+               Receiver_QoS_Event_Handler.h
 )
 
 
 ace_add_exe(QOS_Change_Receiver_FlowSpec_Sender
   OUTPUT_NAME sender
-  FOLDER examples/QOS/Change_Receiver_FlowSpec
+  FOLDER ACE/examples/QOS/Change_Receiver_FlowSpec
   INCLUDE_DIRECTORIES ${RAPI_INCLUDE_DIR}
   LINK_LIBRARIES ACE_QoS
                  ACE
                  ${RAPI_LIBRARIES}
 )
 ace_target_cxx_sources(QOS_Change_Receiver_FlowSpec_Sender
-  SOURCE_FILES sender.cpp
-               QoS_Util.cpp
+  SOURCE_FILES Fill_ACE_QoS.cpp
                QoS_Signal_Handler.cpp
-               Fill_ACE_QoS.cpp
+               QoS_Util.cpp
                Sender_QoS_Event_Handler.cpp
+               sender.cpp
   HEADER_FILES Fill_ACE_QoS.h
                QoS_Signal_Handler.h
                QoS_Util.h

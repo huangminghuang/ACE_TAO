@@ -11,7 +11,7 @@ ace_requires(WIN32)
 
 ace_add_exe(NT_Service
   OUTPUT_NAME main
-  FOLDER examples/NT_Service
+  FOLDER ACE/examples/NT_Service
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(NT_Service
