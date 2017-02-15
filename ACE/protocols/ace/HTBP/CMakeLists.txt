@@ -3,23 +3,24 @@
 ace_add_lib(ACE_HTBP
   OUTPUT_NAME ACE_HTBP
   PACKAGE ACE
-  FOLDER protocols/ace/HTBP
+  FOLDER ACE/protocols/ace/HTBP
   DEFINE_SYMBOL HTBP_BUILD_DLL
   PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../..>
+                             $<INSTALL_INTERFACE:${ACE_INSTALL_DIR}/protocols>
   PUBLIC_LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(ACE_HTBP
-  SOURCE_FILES HTBP_ID_Requestor.cpp
-               HTBP_Filter_Factory.cpp
-               HTBP_Addr.cpp
-               HTBP_Outside_Squid_Filter.cpp
-               HTBP_Stream.cpp
-               HTBP_Environment.cpp
-               HTBP_Session.cpp
+  SOURCE_FILES HTBP_Addr.cpp
                HTBP_Channel.cpp
+               HTBP_Environment.cpp
                HTBP_Filter.cpp
+               HTBP_Filter_Factory.cpp
+               HTBP_ID_Requestor.cpp
                HTBP_Inside_Squid_Filter.cpp
                HTBP_Notifier.cpp
+               HTBP_Outside_Squid_Filter.cpp
+               HTBP_Session.cpp
+               HTBP_Stream.cpp
   HEADER_FILES HTBP_Addr.h
                HTBP_Channel.h
                HTBP_Environment.h

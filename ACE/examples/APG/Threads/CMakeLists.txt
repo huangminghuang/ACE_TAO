@@ -9,7 +9,7 @@ endif()
 
 ace_add_exe(Activate
   OUTPUT_NAME Activate
-  FOLDER examples/APG/Threads
+  FOLDER ACE/examples/APG/Threads
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Activate
@@ -19,7 +19,7 @@ ace_target_cxx_sources(Activate
 
 ace_add_exe(Condition_Variables
   OUTPUT_NAME Condition_Variables
-  FOLDER examples/APG/Threads
+  FOLDER ACE/examples/APG/Threads
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Condition_Variables
@@ -29,7 +29,7 @@ ace_target_cxx_sources(Condition_Variables
 
 ace_add_exe(Guards
   OUTPUT_NAME Guards
-  FOLDER examples/APG/Threads
+  FOLDER ACE/examples/APG/Threads
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Guards
@@ -39,7 +39,7 @@ ace_target_cxx_sources(Guards
 
 ace_add_exe(Message_Blocks
   OUTPUT_NAME Message_Blocks
-  FOLDER examples/APG/Threads
+  FOLDER ACE/examples/APG/Threads
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Message_Blocks
@@ -49,7 +49,7 @@ ace_target_cxx_sources(Message_Blocks
 
 ace_add_exe(Message_Queue
   OUTPUT_NAME Message_Queue
-  FOLDER examples/APG/Threads
+  FOLDER ACE/examples/APG/Threads
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Message_Queue
@@ -59,7 +59,7 @@ ace_target_cxx_sources(Message_Queue
 
 ace_add_exe(Mutexes
   OUTPUT_NAME Mutexes
-  FOLDER examples/APG/Threads
+  FOLDER ACE/examples/APG/Threads
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Mutexes

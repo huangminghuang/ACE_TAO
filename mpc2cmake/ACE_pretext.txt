@@ -1,3 +1,5 @@
+include(ace_system_checks.cmake)
+
 ## system_name is used for configure the config.h file
 string(TOLOWER ${CMAKE_SYSTEM_NAME} system_name )
 configure_file(config.h.in config.h)
@@ -5,5 +7,23 @@ configure_file(config.h.in config.h)
 if (ACE_HAS_THREADS)
   find_package(Threads)
   find_package(AIO)
+else()
+  list(APPEND ACE_COMPILE_DEFINITIONS ACE_MT_SAFE=0)
 endif()
 
+# Check if _GNU_SOURCE is available.
+check_symbol_exists(__GNU_LIBRARY__ "features.h" _GNU_SOURCE)
+
+foreach(opt ACE_HAS_IPV6 ACE_USES_WCHAR GEN_OSTREAM _GNU_SOURCE)
+  if (${opt})
+    list(APPEND ACE_COMPILE_DEFINITIONS ${opt})
+  endif()
+endforeach()
+
+if (ACE_HAS_VERSIONED_NAMESPACE)
+  list(APPEND ACE_COMPILE_DEFINITIONS ACE_HAS_VERSIONED_NAMESPACE=1)
+endif()
+
+if (ACE_INLINE)
+  list(APPEND ACE_COMPILE_DEFINITIONS __ACE_INLINE__)
+endif()

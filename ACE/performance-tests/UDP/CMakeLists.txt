@@ -2,7 +2,7 @@
 
 ace_add_exe(UDP
   OUTPUT_NAME udp_test
-  FOLDER performance-tests/UDP
+  FOLDER ACE/performance-tests/UDP
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(UDP

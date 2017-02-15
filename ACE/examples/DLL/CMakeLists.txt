@@ -9,7 +9,7 @@ endif()
 
 ace_add_lib(DLL_Newsweek
   OUTPUT_NAME DLL_Newsweek
-  FOLDER examples/DLL
+  FOLDER ACE/examples/DLL
   PUBLIC_LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(DLL_Newsweek
@@ -20,7 +20,7 @@ ace_target_cxx_sources(DLL_Newsweek
 
 ace_add_lib(DLL_Today
   OUTPUT_NAME DLL_Today
-  FOLDER examples/DLL
+  FOLDER ACE/examples/DLL
   PUBLIC_LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(DLL_Today
@@ -31,7 +31,7 @@ ace_target_cxx_sources(DLL_Today
 
 ace_add_exe(DLL_Main
   OUTPUT_NAME test_dll
-  FOLDER examples/DLL
+  FOLDER ACE/examples/DLL
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(DLL_Main

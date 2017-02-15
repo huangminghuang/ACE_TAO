@@ -11,7 +11,7 @@ ace_requires(WIN32)
 
 ace_add_exe(Registry_Iterator
   OUTPUT_NAME iterator
-  FOLDER examples/Registry
+  FOLDER ACE/examples/Registry
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Registry_Iterator
@@ -21,7 +21,7 @@ ace_target_cxx_sources(Registry_Iterator
 
 ace_add_exe(Registry_Update
   OUTPUT_NAME update
-  FOLDER examples/Registry
+  FOLDER ACE/examples/Registry
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Registry_Update

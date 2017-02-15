@@ -3,7 +3,7 @@
 ace_add_lib(TAO_FtRtEvent
   DEFINE_SYMBOL TAO_FTRTEVENT_BUILD_DLL
   PACKAGE TAO
-  FOLDER orbsvcs/orbsvcs/FtRtEvent
+  FOLDER TAO/orbsvcs/orbsvcs/FtRtEvent
   PUBLIC_LINK_LIBRARIES TAO_FTORB_Utils
                         TAO_RTEvent_Serv
                         TAO_CosNaming

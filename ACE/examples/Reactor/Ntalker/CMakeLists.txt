@@ -9,7 +9,7 @@ endif()
 
 ace_add_exe(Reactor_Ntalker
   OUTPUT_NAME ntalker
-  FOLDER examples/Reactor/Ntalker
+  FOLDER ACE/examples/Reactor/Ntalker
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Reactor_Ntalker

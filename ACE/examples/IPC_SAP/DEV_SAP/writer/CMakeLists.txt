@@ -9,7 +9,7 @@ endif()
 
 ace_add_exe(dev_sap_writer
   OUTPUT_NAME writer
-  FOLDER examples/IPC_SAP/DEV_SAP/writer
+  FOLDER ACE/examples/IPC_SAP/DEV_SAP/writer
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(dev_sap_writer

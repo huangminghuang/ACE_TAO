@@ -9,7 +9,7 @@ endif()
 
 ace_add_lib(ASX_CCM_App_Lib
   OUTPUT_NAME CCM_App
-  FOLDER examples/ASX/CCM_App
+  FOLDER ACE/examples/ASX/CCM_App
   PUBLIC_LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(ASX_CCM_App_Lib
@@ -19,7 +19,7 @@ ace_target_cxx_sources(ASX_CCM_App_Lib
 
 ace_add_exe(ASX_CCM_App_Server
   OUTPUT_NAME server
-  FOLDER examples/ASX/CCM_App
+  FOLDER ACE/examples/ASX/CCM_App
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(ASX_CCM_App_Server
@@ -29,7 +29,7 @@ ace_target_cxx_sources(ASX_CCM_App_Server
 
 ace_add_exe(ASX_CCM_App_Client
   OUTPUT_NAME client
-  FOLDER examples/ASX/CCM_App
+  FOLDER ACE/examples/ASX/CCM_App
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(ASX_CCM_App_Client

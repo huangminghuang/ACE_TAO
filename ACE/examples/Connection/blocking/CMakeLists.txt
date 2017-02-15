@@ -9,7 +9,7 @@ endif()
 
 ace_add_exe(Connection_Blocking_Acceptor
   OUTPUT_NAME acceptor
-  FOLDER examples/Connection/blocking
+  FOLDER ACE/examples/Connection/blocking
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Connection_Blocking_Acceptor
@@ -21,7 +21,7 @@ ace_target_cxx_sources(Connection_Blocking_Acceptor
 
 ace_add_exe(Connection_Blocking_Connector
   OUTPUT_NAME connector
-  FOLDER examples/Connection/blocking
+  FOLDER ACE/examples/Connection/blocking
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Connection_Blocking_Connector

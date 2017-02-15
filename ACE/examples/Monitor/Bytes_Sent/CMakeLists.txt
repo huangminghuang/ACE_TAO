@@ -2,7 +2,7 @@
 
 ace_add_exe(Bytes_Sent
   OUTPUT_NAME bytes_sent
-  FOLDER examples/Monitor/Bytes_Sent
+  FOLDER ACE/examples/Monitor/Bytes_Sent
   LINK_LIBRARIES MC_Test_Utilities
                  ACE
                  ACE_Monitor_Control

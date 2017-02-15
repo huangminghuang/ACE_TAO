@@ -2,7 +2,7 @@
 
 ace_add_exe(FIFO
   OUTPUT_NAME FIFO
-  FOLDER Kokyu/tests/FIFO
+  FOLDER ACE/Kokyu/tests/FIFO
   LINK_LIBRARIES ACE
                  Kokyu
 )

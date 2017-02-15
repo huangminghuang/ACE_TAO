@@ -3,7 +3,7 @@ ace_requires(TAO_HAS_CORBA_MESSAGING)
 ace_add_lib(TAO_CosLoadBalancing
   DEFINE_SYMBOL TAO_LOADBALANCING_BUILD_DLL
   PACKAGE TAO
-  FOLDER orbsvcs/orbsvcs/LoadBalancing
+  FOLDER TAO/orbsvcs/orbsvcs/LoadBalancing
   PUBLIC_LINK_LIBRARIES TAO_PortableGroup
                         TAO_CosNaming
                         TAO_IORManip

@@ -9,7 +9,7 @@ endif()
 
 ace_add_exe(Alarm
   OUTPUT_NAME Alarm
-  FOLDER examples/APG/Timers
+  FOLDER ACE/examples/APG/Timers
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Alarm
@@ -19,7 +19,7 @@ ace_target_cxx_sources(Alarm
 
 ace_add_exe(Task
   OUTPUT_NAME Task
-  FOLDER examples/APG/Timers
+  FOLDER ACE/examples/APG/Timers
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Task
@@ -29,13 +29,13 @@ ace_target_cxx_sources(Task
 
 ace_add_exe(Timers
   OUTPUT_NAME Timers
-  FOLDER examples/APG/Timers
+  FOLDER ACE/examples/APG/Timers
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Timers
   SOURCE_FILES CB.cpp
-               Timers.cpp
                TimerDispatcher.cpp
+               Timers.cpp
   HEADER_FILES CB.h
                TimerDispatcher.h
 )
@@ -43,13 +43,13 @@ ace_target_cxx_sources(Timers
 
 ace_add_exe(Upcall
   OUTPUT_NAME Upcall
-  FOLDER examples/APG/Timers
+  FOLDER ACE/examples/APG/Timers
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Upcall
   SOURCE_FILES PCB.cpp
-               Upcall.cpp
                PTimerDispatcher.cpp
+               Upcall.cpp
   HEADER_FILES PCB.h
                PTimerDispatcher.h
                Upcall.h

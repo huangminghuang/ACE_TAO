@@ -11,17 +11,17 @@ ace_requires(MFC_FOUND)
 
 ace_add_exe(Log_Msg_MFC
   OUTPUT_NAME Log_Msg_MFC
-  FOLDER examples/Log_Msg/Log_Msg_MFC
+  FOLDER ACE/examples/Log_Msg/Log_Msg_MFC
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Log_Msg_MFC
-  SOURCE_FILES StdAfx.cpp
-               Log_Msg_MFC.cpp
-               MFC_Log.cpp
+  SOURCE_FILES Log_Msg_MFC.cpp
                Log_Msg_MFCDlg.cpp
-  HEADER_FILES StdAfx.h
-               Log_Msg_MFC.h
-               MFC_Log.h
+               MFC_Log.cpp
+               StdAfx.cpp
+  HEADER_FILES Log_Msg_MFC.h
                Log_Msg_MFCDlg.h
+               MFC_Log.h
+               StdAfx.h
 )
 

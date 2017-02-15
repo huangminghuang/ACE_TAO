@@ -9,7 +9,7 @@ endif()
 
 ace_add_exe(file_sap_client
   OUTPUT_NAME client
-  FOLDER examples/IPC_SAP/FILE_SAP
+  FOLDER ACE/examples/IPC_SAP/FILE_SAP
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(file_sap_client

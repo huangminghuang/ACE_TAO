@@ -9,35 +9,35 @@ endif()
 
 ace_add_exe(Shared_Malloc
   OUTPUT_NAME malloc
-  FOLDER examples/Shared_Malloc
+  FOLDER ACE/examples/Shared_Malloc
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Shared_Malloc
-  SOURCE_FILES Options.cpp
+  SOURCE_FILES Malloc.cpp
+               Options.cpp
                test_malloc.cpp
-               Malloc.cpp
-  HEADER_FILES Options.h
-               Malloc.h
+  HEADER_FILES Malloc.h
+               Options.h
 )
 
 
 ace_add_exe(Shared_Malloc_Multiple
   OUTPUT_NAME multiple
-  FOLDER examples/Shared_Malloc
+  FOLDER ACE/examples/Shared_Malloc
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Shared_Malloc_Multiple
-  SOURCE_FILES Options.cpp
+  SOURCE_FILES Malloc.cpp
+               Options.cpp
                test_multiple_mallocs.cpp
-               Malloc.cpp
-  HEADER_FILES Options.h
-               Malloc.h
+  HEADER_FILES Malloc.h
+               Options.h
 )
 
 
 ace_add_exe(Shared_Malloc_Persistence
   OUTPUT_NAME persistence
-  FOLDER examples/Shared_Malloc
+  FOLDER ACE/examples/Shared_Malloc
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Shared_Malloc_Persistence
@@ -47,15 +47,15 @@ ace_target_cxx_sources(Shared_Malloc_Persistence
 
 ace_add_exe(Shared_Malloc_Posind
   OUTPUT_NAME posind
-  FOLDER examples/Shared_Malloc
+  FOLDER ACE/examples/Shared_Malloc
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Shared_Malloc_Posind
-  SOURCE_FILES Options.cpp
+  SOURCE_FILES Malloc.cpp
+               Options.cpp
                test_position_independent_malloc.cpp
-               Malloc.cpp
-  HEADER_FILES test_position_independent_malloc.h
+  HEADER_FILES Malloc.h
                Options.h
-               Malloc.h
+               test_position_independent_malloc.h
 )
 

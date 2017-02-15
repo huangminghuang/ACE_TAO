@@ -9,7 +9,7 @@ endif()
 
 ace_add_exe(Reactor_Misc_Event_handler_t
   OUTPUT_NAME event_handler_t
-  FOLDER examples/Reactor/Misc
+  FOLDER ACE/examples/Reactor/Misc
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Reactor_Misc_Event_handler_t
@@ -19,7 +19,7 @@ ace_target_cxx_sources(Reactor_Misc_Event_handler_t
 
 ace_add_exe(Reactor_Misc_Demuxing
   OUTPUT_NAME demuxing
-  FOLDER examples/Reactor/Misc
+  FOLDER ACE/examples/Reactor/Misc
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Reactor_Misc_Demuxing
@@ -29,7 +29,7 @@ ace_target_cxx_sources(Reactor_Misc_Demuxing
 
 ace_add_exe(Reactor_Misc_Early_timeouts
   OUTPUT_NAME early_timeouts
-  FOLDER examples/Reactor/Misc
+  FOLDER ACE/examples/Reactor/Misc
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Reactor_Misc_Early_timeouts
@@ -39,7 +39,7 @@ ace_target_cxx_sources(Reactor_Misc_Early_timeouts
 
 ace_add_exe(Reactor_Misc_Notification
   OUTPUT_NAME notification
-  FOLDER examples/Reactor/Misc
+  FOLDER ACE/examples/Reactor/Misc
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Reactor_Misc_Notification
@@ -49,7 +49,7 @@ ace_target_cxx_sources(Reactor_Misc_Notification
 
 ace_add_exe(Reactor_Misc_Pingpong
   OUTPUT_NAME pingpong
-  FOLDER examples/Reactor/Misc
+  FOLDER ACE/examples/Reactor/Misc
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Reactor_Misc_Pingpong
@@ -59,7 +59,7 @@ ace_target_cxx_sources(Reactor_Misc_Pingpong
 
 ace_add_exe(Reactor_Misc_Reactors
   OUTPUT_NAME reactors
-  FOLDER examples/Reactor/Misc
+  FOLDER ACE/examples/Reactor/Misc
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Reactor_Misc_Reactors
@@ -69,7 +69,7 @@ ace_target_cxx_sources(Reactor_Misc_Reactors
 
 ace_add_exe(Reactor_Misc_Signals_1
   OUTPUT_NAME signals_1
-  FOLDER examples/Reactor/Misc
+  FOLDER ACE/examples/Reactor/Misc
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Reactor_Misc_Signals_1
@@ -79,7 +79,7 @@ ace_target_cxx_sources(Reactor_Misc_Signals_1
 
 ace_add_exe(Reactor_Misc_Signals_2
   OUTPUT_NAME signals_2
-  FOLDER examples/Reactor/Misc
+  FOLDER ACE/examples/Reactor/Misc
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Reactor_Misc_Signals_2
@@ -89,7 +89,7 @@ ace_target_cxx_sources(Reactor_Misc_Signals_2
 
 ace_add_exe(Reactor_Misc_Timer_queue
   OUTPUT_NAME timer_queue
-  FOLDER examples/Reactor/Misc
+  FOLDER ACE/examples/Reactor/Misc
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Reactor_Misc_Timer_queue

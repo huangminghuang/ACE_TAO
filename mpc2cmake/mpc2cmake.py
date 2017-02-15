@@ -6,6 +6,7 @@ import argparse
 import operator
 import textwrap
 from collections import OrderedDict
+from sortedcontainers import SortedList, SortedSet
 import dds_mpb
 from ace_mpb import *
 from source_group import *
@@ -27,7 +28,8 @@ requires_dict = {
   'CORBA_E_MICRO' : 'TAO_HAS_CORBA_E_MICRO',
   'AMI': 'TAO_HAS_AMI',
   'WINNT': 'WIN32',
-  'RHWO' : 'ACE_HAS_PWD_H'
+  'RWHO' : 'ACE_HAS_PWD_H',
+  'USES_WCHAR' : 'ACE_USES_WCHAR'
 }
 
 def translate_require(cond):
@@ -150,6 +152,7 @@ class MPCNode(dds_mpb.Handler):
       self.custom_only = False
       self.generated_files = set()
       self.compile_definitions = set()
+      self.public_compile_definitions = set()
       self.is_face = False
       self.install_this_target =False
       self.idl_file_groups = []
@@ -210,7 +213,7 @@ class MPCNode(dds_mpb.Handler):
       elif base in ['dcps_tcp', 'dcps_udp', 'dcps_multicast', 'dcps_shmem', 'dcps_rtps_udp', 'dcps_rtps']:
         self.handle_mpb_dcps_transports(base)
       elif base not in ignore_set:
-        sys.stderr.write("Warining: %s : the base project %s is not translated\n" % (self.name, base))
+        sys.stderr.write("Warning: %s : the base project %s is not translated\n" % (self.name, base))
 
       if base.startswith('dcps') or base.startswith('opendds'):
         self.parent().project_base = max([ProjectBase.OpenDDS,self.parent().project_base])
@@ -447,16 +450,13 @@ class MPCNode(dds_mpb.Handler):
 
   def handle_dcps_ts_flags_pattern(self, match):
     self.dds_idl_flags += match.group(1).split()
-    # for flag in  match.group(1).split():
-    #   if not (flag.startswith("-Wb,stub_export_include=") or flag.startswith("-Wb,export_include=") or  flag.startswith("-Wb,stub_export_macro=") or  flag.startswith("-Wb,export_macro=")):
-    #     self.dds_idl_flags.append(flag)
 
   def handle_requires_pattern(self, match):
     ignores = set(['ssl','qos', 'tao_orbsvcs', 'ami'])
     self.requires = self.requires.union(set([ translate_require(x.upper()) for x in match.group(1).split() if x not in ignores]))
     if match.group(1) == 'qos':
       self.external_libs.add('${RAPI_LIBRARIES}')
-      self.requires.add('RAPI_FOUND')
+      # self.requires.add('RAPI_FOUND')
       self.includes.append('${RAPI_INCLUDE_DIR}')
 
   def handle_avoids_pattern(self, match):
@@ -493,7 +493,7 @@ class MPCNode(dds_mpb.Handler):
         self.depends_on(lib)
       else:
         if lib != package:
-          sys.stderr.write("Warining: %s has an unresolved dependency on lib %s, treated as imported target\n" % (self.name, lib))
+          sys.stderr.write("Warning: %s has an unresolved dependency on lib %s, treated as imported target\n" % (self.name, lib))
         self.external_libs.add(lib)
 
   def depends_on(self, lib):
@@ -651,6 +651,9 @@ class MPCNode(dds_mpb.Handler):
       pass
 
     if self.is_exe:
+      if self.output_name == 'test':
+      ## when using cmake ninja generator, the target output name 'test' would causes problem
+        self.output_name = 'tester'
       self.link_libraries = self.external_libs
       result +=  "ace_add_exe(%s\n" %  (self.name) + format_target_properties_in_list(self,common_exe_properties)+ ")\n"
     elif not self.custom_only:
@@ -845,8 +848,8 @@ class CMakeDirNode:
     return ProjectBase.reverse_mapping[self.project_base]
 
   def generate_cmake(self):
-    processed_children = set()
-    remaining_children = set(self.children.values())
+    processed_children = SortedSet()
+    remaining_children = SortedSet(self.children.values())
 
     if len(self.mpc_children)==1:
       proj_name = os.path.splitext(self.mpc_children[0].name)[0]
@@ -868,7 +871,7 @@ class CMakeDirNode:
         f.write(cmake_file_preemble.format(proj_name, project_root, project_base))
 
       while len(remaining_children) != 0:
-        for child in remaining_children:
+        for child in sorted(remaining_children):
           text = child.gen_node_text()
           if text:
             f.write(text)
@@ -885,7 +888,9 @@ class cmake_project:
     self.hierarchy = CMakeDirNode("", self)
 
     ignore_set = set(['ace_for_tao.mpc','svcconfgen.mpc','ace_foxreactor.mpc', 'ssl_for_tao.mpc', 'ConfigViewer.mpc'])
-    leaves = [ self.parse_mpc_file(mpc_file) for mpc_file in glob2.glob("**/*.mpc") if not os.path.basename(mpc_file) in ignore_set]
+
+    leaves = [ self.parse_mpc_file(mpc_file) for mpc_file in glob2.glob("**/*.mpc") \
+      if not (os.path.basename(mpc_file) in ignore_set or os.path.abspath(mpc_file).endswith('apps/gperf/tests/tests.mpc'))]
     leaves = [x for x in leaves if x is not None]
 
     for leaf in leaves:

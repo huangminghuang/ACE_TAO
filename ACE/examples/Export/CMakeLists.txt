@@ -9,7 +9,7 @@ endif()
 
 ace_add_lib(Export_Lib
   OUTPUT_NAME Export_Lib
-  FOLDER examples/Export
+  FOLDER ACE/examples/Export
   DEFINE_SYMBOL TEST_BUILD_DLL
   PUBLIC_LINK_LIBRARIES ACE
 )
@@ -21,7 +21,7 @@ ace_target_cxx_sources(Export_Lib
 
 ace_add_exe(Export_Test
   OUTPUT_NAME tester
-  FOLDER examples/Export
+  FOLDER ACE/examples/Export
   LINK_LIBRARIES Export_Lib
                  ACE
 )

@@ -9,7 +9,7 @@ endif()
 
 ace_add_exe(Reactor_FIFO_Client
   OUTPUT_NAME client
-  FOLDER examples/Reactor/FIFO
+  FOLDER ACE/examples/Reactor/FIFO
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Reactor_FIFO_Client
@@ -19,7 +19,7 @@ ace_target_cxx_sources(Reactor_FIFO_Client
 
 ace_add_exe(Reactor_FIFO_Server
   OUTPUT_NAME server
-  FOLDER examples/Reactor/FIFO
+  FOLDER ACE/examples/Reactor/FIFO
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Reactor_FIFO_Server

@@ -3,7 +3,7 @@
 ace_add_lib(TAO_FT_Naming
   DEFINE_SYMBOL TAO_FTNAMING_INTF_BUILD_DLL
   PACKAGE TAO
-  FOLDER orbsvcs/orbsvcs/Naming/FaultTolerant
+  FOLDER TAO/orbsvcs/orbsvcs/Naming/FaultTolerant
   PUBLIC_LINK_LIBRARIES TAO_PortableGroup
                         TAO_CosNaming_Serv
 )
@@ -30,7 +30,7 @@ tao_idl_sources(
 ace_add_lib(TAO_FT_Naming_Replication
   DEFINE_SYMBOL TAO_FTNAMING_BUILD_DLL
   PACKAGE TAO
-  FOLDER orbsvcs/orbsvcs/Naming/FaultTolerant
+  FOLDER TAO/orbsvcs/orbsvcs/Naming/FaultTolerant
   PUBLIC_LINK_LIBRARIES TAO_FT_Naming
                         TAO_FTORB_Utils
 )
@@ -54,7 +54,7 @@ tao_idl_sources(
 ace_add_lib(TAO_FT_Naming_Serv
   DEFINE_SYMBOL TAO_FTNAMING_BUILD_DLL
   PACKAGE TAO
-  FOLDER orbsvcs/orbsvcs/Naming/FaultTolerant
+  FOLDER TAO/orbsvcs/orbsvcs/Naming/FaultTolerant
   PUBLIC_LINK_LIBRARIES TAO_FT_Naming TAO_CosLoadBalancing TAO_CosNaming_Serv TAO_FT_Naming_Replication
 
 )

@@ -9,7 +9,7 @@ endif()
 
 ace_add_exe(Shared_Memory_Mm
   OUTPUT_NAME testmm
-  FOLDER examples/Shared_Memory
+  FOLDER ACE/examples/Shared_Memory
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Shared_Memory_Mm
@@ -19,7 +19,7 @@ ace_target_cxx_sources(Shared_Memory_Mm
 
 ace_add_exe(Shared_Memory_Sv
   OUTPUT_NAME testsv
-  FOLDER examples/Shared_Memory
+  FOLDER ACE/examples/Shared_Memory
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Shared_Memory_Sv

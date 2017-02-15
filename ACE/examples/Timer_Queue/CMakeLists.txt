@@ -9,29 +9,29 @@ endif()
 
 ace_add_lib(Timer_Queue_Library
   OUTPUT_NAME tqtd
-  FOLDER examples/Timer_Queue
+  FOLDER ACE/examples/Timer_Queue
   DEFINE_SYMBOL ACE_BUILD_SVC_DLL
   PUBLIC_LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Timer_Queue_Library
-  SOURCE_FILES Driver.cpp
-               Thread_Timer_Queue_Test.cpp
-               Async_Timer_Queue_Test.cpp
+  SOURCE_FILES Async_Timer_Queue_Test.cpp
                Custom_Handler.cpp
+               Driver.cpp
                Reactor_Timer_Queue_Test.cpp
                Thread_Timer_Queue_Custom_Handler_Test.cpp
-  HEADER_FILES Custom_Handler.h
-               Async_Timer_Queue_Test.h
-               Thread_Timer_Queue_Custom_Handler_Test.h
-               Reactor_Timer_Queue_Test.h
-               Thread_Timer_Queue_Test.h
+               Thread_Timer_Queue_Test.cpp
+  HEADER_FILES Async_Timer_Queue_Test.h
+               Custom_Handler.h
                Driver.h
+               Reactor_Timer_Queue_Test.h
+               Thread_Timer_Queue_Custom_Handler_Test.h
+               Thread_Timer_Queue_Test.h
 )
 
 
 ace_add_exe(Timer_Queue_Async
   OUTPUT_NAME Asynch_Timer_Queue_Test
-  FOLDER examples/Timer_Queue
+  FOLDER ACE/examples/Timer_Queue
   LINK_LIBRARIES Timer_Queue_Library
                  ACE
 )
@@ -42,7 +42,7 @@ ace_target_cxx_sources(Timer_Queue_Async
 
 ace_add_exe(Timer_Queue_Reactor
   OUTPUT_NAME Reactor_Timer_Queue_Test
-  FOLDER examples/Timer_Queue
+  FOLDER ACE/examples/Timer_Queue
   LINK_LIBRARIES Timer_Queue_Library
                  ACE
 )
@@ -53,7 +53,7 @@ ace_target_cxx_sources(Timer_Queue_Reactor
 
 ace_add_exe(Timer_Queue_Thread
   OUTPUT_NAME Thread_Timer_Queue_Test
-  FOLDER examples/Timer_Queue
+  FOLDER ACE/examples/Timer_Queue
   LINK_LIBRARIES Timer_Queue_Library
                  ACE
 )
@@ -64,7 +64,7 @@ ace_target_cxx_sources(Timer_Queue_Thread
 
 ace_add_exe(Timer_Queue_Thread_custom_handlers
   OUTPUT_NAME Thread_Custom_Handlers_Timer_Queue_Test
-  FOLDER examples/Timer_Queue
+  FOLDER ACE/examples/Timer_Queue
   LINK_LIBRARIES Timer_Queue_Library
                  ACE
 )

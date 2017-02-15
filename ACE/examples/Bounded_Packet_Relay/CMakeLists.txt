@@ -10,15 +10,15 @@ endif()
 ace_add_exe(Bounded_Packet_Relay
   OUTPUT_NAME bpr_thread
   COMPILE_DEFINITIONS ACE_HAS_DEFERRED_TIMER_COMMANDS
-  FOLDER examples/Bounded_Packet_Relay
+  FOLDER ACE/examples/Bounded_Packet_Relay
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Bounded_Packet_Relay
-  SOURCE_FILES bpr_thread.cpp
-               BPR_Drivers.cpp
+  SOURCE_FILES BPR_Drivers.cpp
                Thread_Bounded_Packet_Relay.cpp
-  HEADER_FILES BPR_Drivers_T.h
-               BPR_Drivers.h
+               bpr_thread.cpp
+  HEADER_FILES BPR_Drivers.h
+               BPR_Drivers_T.h
                Thread_Bounded_Packet_Relay.h
   TEMPLATE_FILES BPR_Drivers_T.cpp
 )

@@ -1,4 +1,5 @@
 
+
 include(ace_system_checks.cmake)
 
 ## system_name is used for configure the config.h file
@@ -28,33 +29,15 @@ endif()
 if (ACE_INLINE)
   list(APPEND ACE_COMPILE_DEFINITIONS __ACE_INLINE__)
 endif()
-
 ace_add_lib(ACE
   OUTPUT_NAME ACE
   PACKAGE ACE
-  FOLDER ace
+  FOLDER ACE/ace
   DEFINE_SYMBOL ACE_BUILD_DLL
   PUBLIC_COMPILE_DEFINITIONS ${ACE_COMPILE_DEFINITIONS}
   PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
                              $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/..>
 )
-
-## use target_link_libraries() for the following
-## libraries instead of specified inside ace_add_lib()
-## to avoid unnecessary checking for
-## the exisitence of the libraries.
-target_link_libraries(ACE PUBLIC
-  ${CMAKE_THREAD_LIBS_INIT}
-  ${AIO_LIBRARY}
-  ${CMAKE_DL_LIBS}
-)
-
-if (BUILD_SHARED_LIBS)
-  target_link_libraries(ACE PUBLIC
-    ${CMAKE_DL_LIBS}
-  )
-endif()
-
 ace_target_cxx_sources(ACE
   SOURCE_FILES ACE.cpp
                ACE_crc32.cpp
@@ -1124,32 +1107,6 @@ ace_target_cxx_sources(ACE
                  Vector_T.cpp
 )
 
-if (ACE_HAS_ATM)
-  ace_target_cxx_sources(ACE
-    SOURCE_FILES ATM_Acceptor.cpp
-                 ATM_Addr.cpp
-                 ATM_Connector.cpp
-                 ATM_Params.cpp
-                 ATM_QoS.cpp
-                 ATM_Stream.cpp
-                 XTI_ATM_Mcast.cpp
-    HEADER_FILES ATM_Acceptor.h
-                 ATM_Addr.h
-                 ATM_Connector.h
-                 ATM_Params.h
-                 ATM_QoS.h
-                 ATM_Stream.h
-                 XTI_ATM_Mcast.h
-    INLINE_FILES ATM_Acceptor.inl
-                 ATM_Addr.inl
-                 ATM_Connector.inl
-                 ATM_Params.inl
-                 ATM_QoS.inl
-                 ATM_Stream.inl
-                 XTI_ATM_Mcast.inl
-  )
-endif()
-
 if(ACE_SVCCONF)
   ace_target_cxx_sources(ACE
     SOURCE_FILES DLL.cpp
@@ -1260,23 +1217,69 @@ if(ACE_UUID)
     INLINE_FILES UUID.inl
   )
 endif()
+if(ACE_HAS_ATM)
+  ace_target_cxx_sources(ACE
+    SOURCE_FILES ATM_Acceptor.cpp
+                 ATM_Addr.cpp
+                 ATM_Connector.cpp
+                 ATM_Params.cpp
+                 ATM_QoS.cpp
+                 ATM_Stream.cpp
+                 XTI_ATM_Mcast.cpp
+    HEADER_FILES ATM_Acceptor.h
+                 ATM_Addr.h
+                 ATM_Connector.h
+                 ATM_Params.h
+                 ATM_QoS.h
+                 ATM_Stream.h
+                 XTI_ATM_Mcast.h
+    INLINE_FILES ATM_Acceptor.inl
+                 ATM_Addr.inl
+                 ATM_Connector.inl
+                 ATM_Params.inl
+                 ATM_QoS.inl
+                 ATM_Stream.inl
+                 XTI_ATM_Mcast.inl
+  )
+endif()
 include("os_include/CMakeLists.txt")
 include("os_include/arpa/CMakeLists.txt")
 include("os_include/net/CMakeLists.txt")
 include("os_include/netinet/CMakeLists.txt")
 include("os_include/sys/CMakeLists.txt")
+file(GLOB config_files config-*.h)
 
-if (NOT BUILD_SHARED_LIBS)
+ace_target_cxx_sources(ACE
+  HEADER_FILES ${config_files}
+  SUBGROUP \\config
+)
+
+
+## use target_link_libraries() for the following
+## libraries instead of specified inside ace_add_lib()
+## to avoid unnecessary checking for
+## the exisitence of the libraries.
+target_link_libraries(ACE PUBLIC
+  ${CMAKE_THREAD_LIBS_INIT}
+  ${AIO_LIBRARY}
+  ${CMAKE_DL_LIBS}
+)
+
+if (BUILD_SHARED_LIBS)
+  target_link_libraries(ACE PUBLIC
+    ${CMAKE_DL_LIBS}
+  )
+else(BUILD_SHARED_LIBS)
   target_compile_definitions(ACE INTERFACE ACE_AS_STATIC_LIBS)
-endif(NOT BUILD_SHARED_LIBS)
+endif(BUILD_SHARED_LIBS)
 
-add_subdirectory(QoS)
-add_subdirectory(SSL)
-add_subdirectory(FlReactor)
-add_subdirectory(TkReactor)
-add_subdirectory(QtReactor)
-add_subdirectory(XtReactor)
-add_subdirectory(ETCL)
 add_subdirectory(Compression)
-add_subdirectory(XML_Utils)
+add_subdirectory(ETCL)
+add_subdirectory(FlReactor)
 add_subdirectory(Monitor_Control)
+add_subdirectory(QoS)
+add_subdirectory(QtReactor)
+add_subdirectory(SSL)
+add_subdirectory(TkReactor)
+add_subdirectory(XML_Utils)
+add_subdirectory(XtReactor)

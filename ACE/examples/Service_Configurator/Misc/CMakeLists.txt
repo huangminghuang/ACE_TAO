@@ -9,7 +9,7 @@ endif()
 
 ace_add_lib(Service_Configurator_Misc_Timer
   OUTPUT_NAME Timer
-  FOLDER examples/Service_Configurator/Misc
+  FOLDER ACE/examples/Service_Configurator/Misc
   DEFINE_SYMBOL ACE_BUILD_SVC_DLL
   PUBLIC_LINK_LIBRARIES ACE
 )
@@ -21,7 +21,7 @@ ace_target_cxx_sources(Service_Configurator_Misc_Timer
 
 ace_add_exe(Service_Configurator_Misc_Main
   OUTPUT_NAME main
-  FOLDER examples/Service_Configurator/Misc
+  FOLDER ACE/examples/Service_Configurator/Misc
   LINK_LIBRARIES ACE
                  Service_Configurator_Misc_Timer
 )

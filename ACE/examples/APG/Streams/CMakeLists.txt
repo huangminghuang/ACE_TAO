@@ -11,22 +11,22 @@ ace_requires(ACE_HAS_THREADS)
 
 ace_add_exe(Answerer
   OUTPUT_NAME Answerer
-  FOLDER examples/APG/Streams
+  FOLDER ACE/examples/APG/Streams
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Answerer
   SOURCE_FILES Answerer.cpp
+               CommandModule.cpp
+               CommandStream.cpp
                CommandTask.cpp
                CommandTasks.cpp
-               CommandStream.cpp
-               RecordingDevice_Text.cpp
                RecordingDeviceFactory.cpp
-               CommandModule.cpp
-  HEADER_FILES RecordingDevice_Text.h
-               RecordingDeviceFactory.h
-               CommandTask.h
+               RecordingDevice_Text.cpp
+  HEADER_FILES CommandModule.h
                CommandStream.h
+               CommandTask.h
                CommandTasks.h
-               CommandModule.h
+               RecordingDeviceFactory.h
+               RecordingDevice_Text.h
 )
 

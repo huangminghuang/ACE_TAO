@@ -4,7 +4,7 @@
 ace_add_lib(TAO_AV
   DEFINE_SYMBOL TAO_AV_BUILD_DLL
   PACKAGE TAO
-  FOLDER orbsvcs/orbsvcs/AV
+  FOLDER TAO/orbsvcs/orbsvcs/AV
   PUBLIC_LINK_LIBRARIES TAO_CosProperty_Serv
                         TAO_CosNaming
                         TAO_Svc_Utils

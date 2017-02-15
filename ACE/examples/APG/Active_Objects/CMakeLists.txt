@@ -9,7 +9,7 @@ endif()
 
 ace_add_exe(AO
   OUTPUT_NAME AO
-  FOLDER examples/APG/Active_Objects
+  FOLDER ACE/examples/APG/Active_Objects
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(AO
@@ -19,7 +19,7 @@ ace_target_cxx_sources(AO
 
 ace_add_exe(AO2
   OUTPUT_NAME AO2
-  FOLDER examples/APG/Active_Objects
+  FOLDER ACE/examples/APG/Active_Objects
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(AO2

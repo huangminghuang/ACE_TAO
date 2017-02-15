@@ -2,7 +2,7 @@
 
 ace_add_exe(EDF
   OUTPUT_NAME EDF
-  FOLDER Kokyu/tests/EDF
+  FOLDER ACE/Kokyu/tests/EDF
   LINK_LIBRARIES ACE
                  Kokyu
 )

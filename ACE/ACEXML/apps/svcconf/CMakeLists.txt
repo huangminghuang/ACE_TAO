@@ -3,7 +3,7 @@
 ace_add_lib(ACEXML_XML_Svc_Conf_Parser
   OUTPUT_NAME ACEXML_XML_Svc_Conf_Parser
   PACKAGE ACE
-  FOLDER ACEXML/apps/svcconf
+  FOLDER ACE/ACEXML/apps/svcconf
   PUBLIC_LINK_LIBRARIES ACE
                         ACEXML_Parser
 )

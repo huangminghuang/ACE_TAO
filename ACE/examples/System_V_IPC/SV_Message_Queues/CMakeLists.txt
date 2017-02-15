@@ -9,7 +9,7 @@ endif()
 
 ace_add_exe(SV_Message_Queues_Mq_client
   OUTPUT_NAME mqclient
-  FOLDER examples/System_V_IPC/SV_Message_Queues
+  FOLDER ACE/examples/System_V_IPC/SV_Message_Queues
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(SV_Message_Queues_Mq_client
@@ -19,7 +19,7 @@ ace_target_cxx_sources(SV_Message_Queues_Mq_client
 
 ace_add_exe(SV_Message_Queues_Mq_server
   OUTPUT_NAME mqserver
-  FOLDER examples/System_V_IPC/SV_Message_Queues
+  FOLDER ACE/examples/System_V_IPC/SV_Message_Queues
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(SV_Message_Queues_Mq_server
@@ -29,7 +29,7 @@ ace_target_cxx_sources(SV_Message_Queues_Mq_server
 
 ace_add_exe(SV_Message_Queues_Tmq_client
   OUTPUT_NAME tmqclient
-  FOLDER examples/System_V_IPC/SV_Message_Queues
+  FOLDER ACE/examples/System_V_IPC/SV_Message_Queues
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(SV_Message_Queues_Tmq_client
@@ -39,7 +39,7 @@ ace_target_cxx_sources(SV_Message_Queues_Tmq_client
 
 ace_add_exe(SV_Message_Queues_Tmq_server
   OUTPUT_NAME tmqserver
-  FOLDER examples/System_V_IPC/SV_Message_Queues
+  FOLDER ACE/examples/System_V_IPC/SV_Message_Queues
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(SV_Message_Queues_Tmq_server

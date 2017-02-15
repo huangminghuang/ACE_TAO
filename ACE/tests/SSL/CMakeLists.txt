@@ -1,10 +1,35 @@
-if (TARGET ACE_SSL)
-  
-  add_ace_tests(LINK_LIBRARIES ACE_SSL Test_Output
-                TARGETS Bug_2912_Regression_Test Thread_Pool_Reactor_SSL_Test)
-                
-  add_ace_tests(TEST_NAME_PREFIX YET_TO_FIX_
-                LINK_LIBRARIES ACE_SSL Test_Output
-                TARGETS SSL_Asynch_Stream_Test)
-                
-endif(TARGET ACE_SSL)
+
+
+ace_add_exe(Bug_2912_Regression_Test
+  OUTPUT_NAME Bug_2912_Regression_Test
+  FOLDER ACE/tests/SSL
+  LINK_LIBRARIES ACE_SSL
+                 ACE
+)
+ace_target_cxx_sources(Bug_2912_Regression_Test
+  SOURCE_FILES Bug_2912_Regression_Test.cpp
+)
+
+
+ace_add_exe(SSL_Asynch_Stream_Test
+  OUTPUT_NAME SSL_Asynch_Stream_Test
+  FOLDER ACE/tests/SSL
+  LINK_LIBRARIES ACE_SSL
+                 ACE
+)
+ace_target_cxx_sources(SSL_Asynch_Stream_Test
+  SOURCE_FILES SSL_Asynch_Stream_Test.cpp
+)
+
+
+ace_add_exe(Thread_Pool_Reactor_SSL_Test
+  OUTPUT_NAME Thread_Pool_Reactor_SSL_Test
+  FOLDER ACE/tests/SSL
+  LINK_LIBRARIES ACE_SSL
+                 ACE
+)
+ace_target_cxx_sources(Thread_Pool_Reactor_SSL_Test
+  SOURCE_FILES Thread_Pool_Reactor_SSL_Test.cpp
+  HEADER_FILES Thread_Pool_Reactor_SSL_Test.h
+)
+

@@ -5,7 +5,7 @@ ace_requires("NOT TAO_HAS_CORBA_E_MICRO" TAO_HAS_CORBA_MESSAGING)
 ace_add_lib(TAO_Async_ImR_Client_IDL
   OUTPUT_NAME TAO_Async_ImR_Client_IDL
   PACKAGE TAO
-  FOLDER orbsvcs/ImplRepo_Service
+  FOLDER TAO/orbsvcs/ImplRepo_Service
   DEFINE_SYMBOL ASYNC_IMR_CLIENT_BUILD_DLL
   PUBLIC_LINK_LIBRARIES TAO_Messaging
                         TAO_PortableServer
@@ -42,7 +42,7 @@ ace_add_lib(TAO_ImR_Activator_IDL
   PACKAGE TAO
   REQUIRES "NOT TAO_HAS_MINIMUM_CORBA"
            "NOT TAO_HAS_CORBA_E_COMPACT"
-  FOLDER orbsvcs/ImplRepo_Service
+  FOLDER TAO/orbsvcs/ImplRepo_Service
   DEFINE_SYMBOL ACTIVATOR_IDL_BUILD_DLL
   PUBLIC_LINK_LIBRARIES TAO_Async_ImR_Client_IDL
                         TAO_AnyTypeCode
@@ -71,7 +71,7 @@ ace_add_lib(TAO_ImR_Locator_IDL
   PACKAGE TAO
   REQUIRES "NOT TAO_HAS_MINIMUM_CORBA"
            "NOT TAO_HAS_CORBA_E_COMPACT"
-  FOLDER orbsvcs/ImplRepo_Service
+  FOLDER TAO/orbsvcs/ImplRepo_Service
   DEFINE_SYMBOL LOCATOR_IDL_BUILD_DLL
   PUBLIC_LINK_LIBRARIES TAO_Async_ImR_Client_IDL
                         TAO_AnyTypeCode
@@ -101,7 +101,7 @@ ace_add_lib(TAO_ImR_Activator
   PACKAGE TAO
   REQUIRES "NOT TAO_HAS_MINIMUM_CORBA"
            "NOT TAO_HAS_CORBA_E_COMPACT"
-  FOLDER orbsvcs/ImplRepo_Service
+  FOLDER TAO/orbsvcs/ImplRepo_Service
   DEFINE_SYMBOL ACTIVATOR_BUILD_DLL
   PUBLIC_LINK_LIBRARIES TAO_Messaging
                         TAO_Async_ImR_Client_IDL
@@ -132,7 +132,7 @@ ace_add_lib(TAO_ImR_Locator
   PACKAGE TAO
   REQUIRES "NOT TAO_HAS_MINIMUM_CORBA"
            "NOT TAO_HAS_CORBA_E_COMPACT"
-  FOLDER orbsvcs/ImplRepo_Service
+  FOLDER TAO/orbsvcs/ImplRepo_Service
   DEFINE_SYMBOL LOCATOR_BUILD_DLL
   PUBLIC_LINK_LIBRARIES TAO_Async_ImR_Client_IDL
                         TAO_AnyTypeCode
@@ -199,7 +199,7 @@ ace_add_exe(ImR_Locator_Service
   PACKAGE TAO
   REQUIRES "NOT TAO_HAS_MINIMUM_CORBA"
            "NOT TAO_HAS_CORBA_E_COMPACT"
-  FOLDER orbsvcs/ImplRepo_Service
+  FOLDER TAO/orbsvcs/ImplRepo_Service
   LINK_LIBRARIES TAO_Async_ImR_Client_IDL
                  TAO_AnyTypeCode
                  TAO_Valuetype
@@ -227,7 +227,7 @@ ace_add_exe(ImR_Activator_Service
   PACKAGE TAO
   REQUIRES "NOT TAO_HAS_MINIMUM_CORBA"
            "NOT TAO_HAS_CORBA_E_COMPACT"
-  FOLDER orbsvcs/ImplRepo_Service
+  FOLDER TAO/orbsvcs/ImplRepo_Service
   LINK_LIBRARIES TAO_Async_ImR_Client_IDL
                  TAO_AnyTypeCode
                  TAO_Svc_Utils
@@ -250,7 +250,7 @@ ace_add_exe(tao_imr
   PACKAGE TAO
   REQUIRES "NOT TAO_HAS_MINIMUM_CORBA"
            "NOT TAO_HAS_CORBA_E_COMPACT"
-  FOLDER orbsvcs/ImplRepo_Service
+  FOLDER TAO/orbsvcs/ImplRepo_Service
   LINK_LIBRARIES TAO_AnyTypeCode
                  TAO_ImR_Client
                  TAO_Svc_Utils

@@ -9,7 +9,7 @@ endif()
 
 ace_add_exe(Async_Cancel
   OUTPUT_NAME Async_Cancel
-  FOLDER examples/APG/ThreadManagement
+  FOLDER ACE/examples/APG/ThreadManagement
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Async_Cancel
@@ -19,7 +19,7 @@ ace_target_cxx_sources(Async_Cancel
 
 ace_add_exe(Coop_Cancel
   OUTPUT_NAME Coop_Cancel
-  FOLDER examples/APG/ThreadManagement
+  FOLDER ACE/examples/APG/ThreadManagement
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Coop_Cancel
@@ -29,7 +29,7 @@ ace_target_cxx_sources(Coop_Cancel
 
 ace_add_exe(ExitHandler
   OUTPUT_NAME ExitHandler
-  FOLDER examples/APG/ThreadManagement
+  FOLDER ACE/examples/APG/ThreadManagement
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(ExitHandler
@@ -39,7 +39,7 @@ ace_target_cxx_sources(ExitHandler
 
 ace_add_exe(Pool
   OUTPUT_NAME Pool
-  FOLDER examples/APG/ThreadManagement
+  FOLDER ACE/examples/APG/ThreadManagement
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Pool
@@ -49,7 +49,7 @@ ace_target_cxx_sources(Pool
 
 ace_add_exe(Priorities
   OUTPUT_NAME Priorities
-  FOLDER examples/APG/ThreadManagement
+  FOLDER ACE/examples/APG/ThreadManagement
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Priorities
@@ -59,7 +59,7 @@ ace_target_cxx_sources(Priorities
 
 ace_add_exe(Signals
   OUTPUT_NAME Signals
-  FOLDER examples/APG/ThreadManagement
+  FOLDER ACE/examples/APG/ThreadManagement
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Signals
@@ -69,7 +69,7 @@ ace_target_cxx_sources(Signals
 
 ace_add_exe(Signals2
   OUTPUT_NAME Signals2
-  FOLDER examples/APG/ThreadManagement
+  FOLDER ACE/examples/APG/ThreadManagement
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Signals2
@@ -79,7 +79,7 @@ ace_target_cxx_sources(Signals2
 
 ace_add_exe(Start_Hook
   OUTPUT_NAME Start_Hook
-  FOLDER examples/APG/ThreadManagement
+  FOLDER ACE/examples/APG/ThreadManagement
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Start_Hook
@@ -89,7 +89,7 @@ ace_target_cxx_sources(Start_Hook
 
 ace_add_exe(State
   OUTPUT_NAME State
-  FOLDER examples/APG/ThreadManagement
+  FOLDER ACE/examples/APG/ThreadManagement
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(State

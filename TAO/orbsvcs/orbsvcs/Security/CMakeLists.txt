@@ -3,7 +3,7 @@ ace_requires(TAO_HAS_CORBA_MESSAGING)
 ace_add_lib(TAO_Security
   DEFINE_SYMBOL TAO_SECURITY_BUILD_DLL
   PACKAGE TAO
-  FOLDER orbsvcs/orbsvcs/Security
+  FOLDER TAO/orbsvcs/orbsvcs/Security
   PUBLIC_LINK_LIBRARIES TAO_Messaging TAO_Svc_Utils
 )
 

@@ -3,7 +3,7 @@
 ace_add_lib(TAO_RLECompressor
   OUTPUT_NAME TAO_RLECompressor
   PACKAGE TAO
-  FOLDER tao/Compression/rle
+  FOLDER TAO/tao/Compression/rle
   DEFINE_SYMBOL TAO_RLECOMPRESSOR_BUILD_DLL
   PUBLIC_LINK_LIBRARIES TAO_Compression
                         ACE_RLECompression

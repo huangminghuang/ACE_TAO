@@ -9,7 +9,7 @@ endif()
 
 ace_add_exe(Synch
   OUTPUT_NAME proc_sema
-  FOLDER examples/Synch
+  FOLDER ACE/examples/Synch
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Synch

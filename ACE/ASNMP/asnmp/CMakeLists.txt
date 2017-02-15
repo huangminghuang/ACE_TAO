@@ -2,28 +2,28 @@
 
 ace_add_lib(asnmp_lib
   OUTPUT_NAME asnmp
-  FOLDER ASNMP/asnmp
+  FOLDER ACE/ASNMP/asnmp
   DEFINE_SYMBOL ASNMP_BUILD_DLL
   PUBLIC_INCLUDE_DIRECTORIES ${ACE_ROOT}/ASNMP
   PUBLIC_LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(asnmp_lib
-  SOURCE_FILES snmp.cpp
+  SOURCE_FILES address.cpp
+               asn1.cpp
+               counter.cpp
                ctr64.cpp
-               wpdu.cpp
-               transaction.cpp
+               gauge.cpp
+               integer.cpp
+               octet.cpp
+               oid.cpp
+               pdu.cpp
                sagent.cpp
-               address.cpp
+               snmp.cpp
                target.cpp
                timetick.cpp
-               counter.cpp
-               oid.cpp
-               asn1.cpp
+               transaction.cpp
                vb.cpp
-               pdu.cpp
-               integer.cpp
-               gauge.cpp
-               octet.cpp
+               wpdu.cpp
   HEADER_FILES address.h
                asn1.h
                counter.h
@@ -33,12 +33,12 @@ ace_target_cxx_sources(asnmp_lib
                octet.h
                oid.h
                pdu.h
+               sagent.h
                snmp.h
                target.h
                timetick.h
                transaction.h
                vb.h
                wpdu.h
-               sagent.h
 )
 

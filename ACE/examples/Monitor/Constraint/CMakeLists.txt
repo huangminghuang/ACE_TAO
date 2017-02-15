@@ -2,7 +2,7 @@
 
 ace_add_exe(Constraint
   OUTPUT_NAME constraint
-  FOLDER examples/Monitor/Constraint
+  FOLDER ACE/examples/Monitor/Constraint
   LINK_LIBRARIES MC_Test_Utilities
                  ACE
                  ACE_Monitor_Control

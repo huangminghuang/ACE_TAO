@@ -9,7 +9,7 @@ endif()
 
 ace_add_exe(config_Ha_status
   OUTPUT_NAME HA_Status
-  FOLDER examples/APG/Config
+  FOLDER ACE/examples/APG/Config
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(config_Ha_status
@@ -19,7 +19,7 @@ ace_target_cxx_sources(config_Ha_status
 
 ace_add_exe(Get_Opt
   OUTPUT_NAME Get_Opt
-  FOLDER examples/APG/Config
+  FOLDER ACE/examples/APG/Config
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Get_Opt
@@ -29,7 +29,7 @@ ace_target_cxx_sources(Get_Opt
 
 ace_add_exe(Get_Opt_Long
   OUTPUT_NAME Get_Opt_Long
-  FOLDER examples/APG/Config
+  FOLDER ACE/examples/APG/Config
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Get_Opt_Long
@@ -39,7 +39,7 @@ ace_target_cxx_sources(Get_Opt_Long
 
 ace_add_exe(ARGV_Example
   OUTPUT_NAME ARGV_Example
-  FOLDER examples/APG/Config
+  FOLDER ACE/examples/APG/Config
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(ARGV_Example

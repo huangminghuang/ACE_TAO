@@ -1,8 +1,17 @@
+find_program(RPCGEN NAMES rpcgen)
+
+ace_requires(RPCGEN)
+
 ## linux rpcgen requires ping.x to be in the build tree
 configure_file(ping.x ping.x)
 add_custom_command(
     OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/ping_clnt.c ${CMAKE_CURRENT_BINARY_DIR}/ping_svc.c ${CMAKE_CURRENT_BINARY_DIR}/ping.h
-    COMMAND rpcgen -C ping.x
+    COMMAND ${RPCGEN} -C ping.x
     DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/ping.x
 )
 
+source_group(Generated_Files FILES
+  ${CMAKE_CURRENT_BINARY_DIR}/ping_clnt.c ${CMAKE_CURRENT_BINARY_DIR}/ping_svc.c ${CMAKE_CURRENT_BINARY_DIR}/ping.h
+)
+
+set(CMAKE_INCLUDE_CURRENT_DIR ON)

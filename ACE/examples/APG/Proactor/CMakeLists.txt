@@ -9,7 +9,7 @@ endif()
 
 ace_add_exe(HA_Proactive_Status
   OUTPUT_NAME HA_Proactive_Status
-  FOLDER examples/APG/Proactor
+  FOLDER ACE/examples/APG/Proactor
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(HA_Proactive_Status

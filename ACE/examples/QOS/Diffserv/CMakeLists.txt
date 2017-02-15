@@ -7,11 +7,9 @@ if (NOT ACE_ROOT)
 endif()
 
 
-ace_requires(RAPI_FOUND)
-
 ace_add_exe(QOS_Diffserv_Client
   OUTPUT_NAME client
-  FOLDER examples/QOS/Diffserv
+  FOLDER ACE/examples/QOS/Diffserv
   INCLUDE_DIRECTORIES ${RAPI_INCLUDE_DIR}
   LINK_LIBRARIES ACE_QoS
                  ACE
@@ -24,7 +22,7 @@ ace_target_cxx_sources(QOS_Diffserv_Client
 
 ace_add_exe(QOS_Diffserv_Server
   OUTPUT_NAME server
-  FOLDER examples/QOS/Diffserv
+  FOLDER ACE/examples/QOS/Diffserv
   INCLUDE_DIRECTORIES ${RAPI_INCLUDE_DIR}
   LINK_LIBRARIES ACE_QoS
                  ACE

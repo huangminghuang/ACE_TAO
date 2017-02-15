@@ -2,7 +2,7 @@
 
 ace_add_exe(Memory_Usage
   OUTPUT_NAME memory_usage
-  FOLDER examples/Monitor/Memory_Usage
+  FOLDER ACE/examples/Monitor/Memory_Usage
   LINK_LIBRARIES MC_Test_Utilities
                  ACE
                  ACE_Monitor_Control

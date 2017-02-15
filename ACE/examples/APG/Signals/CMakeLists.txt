@@ -9,7 +9,7 @@ endif()
 
 ace_add_exe(SigAction
   OUTPUT_NAME SigAction
-  FOLDER examples/APG/Signals
+  FOLDER ACE/examples/APG/Signals
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(SigAction
@@ -19,7 +19,7 @@ ace_target_cxx_sources(SigAction
 
 ace_add_exe(SigGuard
   OUTPUT_NAME SigGuard
-  FOLDER examples/APG/Signals
+  FOLDER ACE/examples/APG/Signals
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(SigGuard
@@ -29,7 +29,7 @@ ace_target_cxx_sources(SigGuard
 
 ace_add_exe(SigHandler
   OUTPUT_NAME SigHandler
-  FOLDER examples/APG/Signals
+  FOLDER ACE/examples/APG/Signals
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(SigHandler
@@ -39,7 +39,7 @@ ace_target_cxx_sources(SigHandler
 
 ace_add_exe(SigHandlers
   OUTPUT_NAME SigHandlers
-  FOLDER examples/APG/Signals
+  FOLDER ACE/examples/APG/Signals
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(SigHandlers
@@ -49,7 +49,7 @@ ace_target_cxx_sources(SigHandlers
 
 ace_add_exe(SigInfo
   OUTPUT_NAME SigInfo
-  FOLDER examples/APG/Signals
+  FOLDER ACE/examples/APG/Signals
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(SigInfo

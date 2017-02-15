@@ -3,7 +3,7 @@
 ace_add_lib(ACE_RLECompression
   OUTPUT_NAME ACE_RLECompression
   PACKAGE ACE
-  FOLDER ace/Compression/rle
+  FOLDER ACE/ace/Compression/rle
   DEFINE_SYMBOL ACE_RLECOMPRESSION_BUILD_DLL
   PUBLIC_LINK_LIBRARIES ACE_Compression
                         ACE

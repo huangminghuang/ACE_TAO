@@ -2,7 +2,7 @@
 
 ace_add_exe(Group
   OUTPUT_NAME group
-  FOLDER examples/Monitor/Group
+  FOLDER ACE/examples/Monitor/Group
   LINK_LIBRARIES MC_Test_Utilities
                  ACE
                  ACE_Monitor_Control

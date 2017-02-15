@@ -9,7 +9,7 @@ endif()
 
 ace_add_exe(Reactor_Dgram_Co
   OUTPUT_NAME codgram
-  FOLDER examples/Reactor/Dgram
+  FOLDER ACE/examples/Reactor/Dgram
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Reactor_Dgram_Co
@@ -19,7 +19,7 @@ ace_target_cxx_sources(Reactor_Dgram_Co
 
 ace_add_exe(Reactor_Dgram
   OUTPUT_NAME dgram
-  FOLDER examples/Reactor/Dgram
+  FOLDER ACE/examples/Reactor/Dgram
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Reactor_Dgram

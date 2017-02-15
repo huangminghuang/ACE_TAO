@@ -9,7 +9,7 @@ endif()
 
 ace_add_exe(Simple1
   OUTPUT_NAME Simple1
-  FOLDER examples/APG/Logging
+  FOLDER ACE/examples/APG/Logging
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Simple1
@@ -19,7 +19,7 @@ ace_target_cxx_sources(Simple1
 
 ace_add_exe(Simple2
   OUTPUT_NAME Simple2
-  FOLDER examples/APG/Logging
+  FOLDER ACE/examples/APG/Logging
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Simple2
@@ -29,7 +29,7 @@ ace_target_cxx_sources(Simple2
 
 ace_add_exe(Change_Mask
   OUTPUT_NAME Change_Mask
-  FOLDER examples/APG/Logging
+  FOLDER ACE/examples/APG/Logging
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Change_Mask
@@ -39,7 +39,7 @@ ace_target_cxx_sources(Change_Mask
 
 ace_add_exe(Change_Instance_Default
   OUTPUT_NAME Change_Instance_Default
-  FOLDER examples/APG/Logging
+  FOLDER ACE/examples/APG/Logging
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Change_Instance_Default
@@ -49,7 +49,7 @@ ace_target_cxx_sources(Change_Instance_Default
 
 ace_add_exe(Wrap_Macros
   OUTPUT_NAME Wrap_Macros
-  FOLDER examples/APG/Logging
+  FOLDER ACE/examples/APG/Logging
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Wrap_Macros
@@ -59,7 +59,7 @@ ace_target_cxx_sources(Wrap_Macros
 
 ace_add_exe(Wrap_Macros_Alt
   OUTPUT_NAME Wrap_Macros_Alt
-  FOLDER examples/APG/Logging
+  FOLDER ACE/examples/APG/Logging
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Wrap_Macros_Alt
@@ -69,7 +69,7 @@ ace_target_cxx_sources(Wrap_Macros_Alt
 
 ace_add_exe(Trace_Return
   OUTPUT_NAME Trace_Return
-  FOLDER examples/APG/Logging
+  FOLDER ACE/examples/APG/Logging
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Trace_Return
@@ -79,7 +79,7 @@ ace_target_cxx_sources(Trace_Return
 
 ace_add_exe(Use_Stderr
   OUTPUT_NAME Use_Stderr
-  FOLDER examples/APG/Logging
+  FOLDER ACE/examples/APG/Logging
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Use_Stderr
@@ -89,7 +89,7 @@ ace_target_cxx_sources(Use_Stderr
 
 ace_add_exe(Howto_Syslog
   OUTPUT_NAME Howto_Syslog
-  FOLDER examples/APG/Logging
+  FOLDER ACE/examples/APG/Logging
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Howto_Syslog
@@ -99,7 +99,7 @@ ace_target_cxx_sources(Howto_Syslog
 
 ace_add_exe(Use_Syslog
   OUTPUT_NAME Use_Syslog
-  FOLDER examples/APG/Logging
+  FOLDER ACE/examples/APG/Logging
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Use_Syslog
@@ -109,7 +109,7 @@ ace_target_cxx_sources(Use_Syslog
 
 ace_add_exe(Use_Ostream
   OUTPUT_NAME Use_Ostream
-  FOLDER examples/APG/Logging
+  FOLDER ACE/examples/APG/Logging
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Use_Ostream
@@ -119,7 +119,7 @@ ace_target_cxx_sources(Use_Ostream
 
 ace_add_exe(Use_Multiple_Sinks
   OUTPUT_NAME Use_Multiple_Sinks
-  FOLDER examples/APG/Logging
+  FOLDER ACE/examples/APG/Logging
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Use_Multiple_Sinks
@@ -129,7 +129,7 @@ ace_target_cxx_sources(Use_Multiple_Sinks
 
 ace_add_exe(Use_Callback
   OUTPUT_NAME Use_Callback
-  FOLDER examples/APG/Logging
+  FOLDER ACE/examples/APG/Logging
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Use_Callback
@@ -139,7 +139,7 @@ ace_target_cxx_sources(Use_Callback
 
 ace_add_exe(Use_Callback2
   OUTPUT_NAME Use_Callback2
-  FOLDER examples/APG/Logging
+  FOLDER ACE/examples/APG/Logging
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Use_Callback2
@@ -149,7 +149,7 @@ ace_target_cxx_sources(Use_Callback2
 
 ace_add_exe(Use_Logger
   OUTPUT_NAME Use_Logger
-  FOLDER examples/APG/Logging
+  FOLDER ACE/examples/APG/Logging
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Use_Logger
@@ -159,7 +159,7 @@ ace_target_cxx_sources(Use_Logger
 
 ace_add_exe(Use_Logging_Server
   OUTPUT_NAME Use_Logging_Server
-  FOLDER examples/APG/Logging
+  FOLDER ACE/examples/APG/Logging
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Use_Logging_Server
@@ -169,7 +169,7 @@ ace_target_cxx_sources(Use_Logging_Server
 
 ace_add_exe(Use_LogManager
   OUTPUT_NAME Use_LogManager
-  FOLDER examples/APG/Logging
+  FOLDER ACE/examples/APG/Logging
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Use_LogManager
@@ -179,7 +179,7 @@ ace_target_cxx_sources(Use_LogManager
 
 ace_add_exe(Use_Logging_Strategy
   OUTPUT_NAME Use_Logging_Strategy
-  FOLDER examples/APG/Logging
+  FOLDER ACE/examples/APG/Logging
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Use_Logging_Strategy

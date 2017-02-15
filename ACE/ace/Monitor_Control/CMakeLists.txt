@@ -3,7 +3,7 @@
 ace_add_lib(ACE_Monitor_Control
   OUTPUT_NAME ACE_Monitor_Control
   PACKAGE ACE
-  FOLDER ace/Monitor_Control
+  FOLDER ACE/ace/Monitor_Control
   DEFINE_SYMBOL MONITOR_CONTROL_BUILD_DLL
   PUBLIC_LINK_LIBRARIES ACE_ETCL_Parser
                         $<$<PLATFORM_ID:Windows>:pdh>

@@ -1,2 +1,3 @@
 
 find_package(RAPI)
+ace_requires(RAPI_FOUND)

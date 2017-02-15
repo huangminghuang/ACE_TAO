@@ -9,7 +9,7 @@ endif()
 
 ace_add_exe(Process_Manager_Death
   OUTPUT_NAME Process_Manager_Death
-  FOLDER examples/APG/Processes
+  FOLDER ACE/examples/APG/Processes
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Process_Manager_Death
@@ -19,7 +19,7 @@ ace_target_cxx_sources(Process_Manager_Death
 
 ace_add_exe(Process_Manager_Spawn
   OUTPUT_NAME Process_Manager_Spawn
-  FOLDER examples/APG/Processes
+  FOLDER ACE/examples/APG/Processes
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Process_Manager_Spawn
@@ -29,7 +29,7 @@ ace_target_cxx_sources(Process_Manager_Spawn
 
 ace_add_exe(Process_Mutex
   OUTPUT_NAME Process_Mutex
-  FOLDER examples/APG/Processes
+  FOLDER ACE/examples/APG/Processes
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Process_Mutex
@@ -39,7 +39,7 @@ ace_target_cxx_sources(Process_Mutex
 
 ace_add_exe(Spawn
   OUTPUT_NAME Spawn
-  FOLDER examples/APG/Processes
+  FOLDER ACE/examples/APG/Processes
   LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(Spawn
