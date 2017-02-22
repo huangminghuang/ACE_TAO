@@ -26,10 +26,12 @@ ace_add_exe(RPC_Client
 ace_target_cxx_sources(RPC_Client
   SOURCE_FILES client.cpp
 )
-target_sources(RPC_Client PRIVATE
-  ${CMAKE_CURRENT_BINARY_DIR}/ping_clnt.c
-  ${CMAKE_CURRENT_BINARY_DIR}/ping.h
-)
+if (TARGET RPC_Client)
+  target_sources(RPC_Client PRIVATE
+    ${CMAKE_CURRENT_BINARY_DIR}/ping_clnt.c
+    ${CMAKE_CURRENT_BINARY_DIR}/ping.h
+  )
+endif()
 
 
 ace_add_exe(RPC_Server
@@ -40,7 +42,9 @@ ace_add_exe(RPC_Server
 ace_target_cxx_sources(RPC_Server
   SOURCE_FILES server.c
 )
-target_sources(RPC_Server PRIVATE
-  ${CMAKE_CURRENT_BINARY_DIR}/ping_svc.c
-  ${CMAKE_CURRENT_BINARY_DIR}/ping.h
-)
+if (TARGET RPC_Server)
+  target_sources(RPC_Server PRIVATE
+    ${CMAKE_CURRENT_BINARY_DIR}/ping_svc.c
+    ${CMAKE_CURRENT_BINARY_DIR}/ping.h
+  )
+endif()
