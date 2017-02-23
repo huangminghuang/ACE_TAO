@@ -7,7 +7,7 @@ function(add_tao_component)
   cmake_parse_arguments(_arg "" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
   if (_arg_IDL_FILES AND  (NOT ${_arg_NAME}_IDLS_OUTPUT_FILES))
-    add_tao_idl_command(${_arg_NAME}_IDLS
+    tao_idl_command(${_arg_NAME}_IDLS
       IDL_FLAGS ${_arg_ADD_IDL_FLAGS}
       IDL_FILES ${_arg_IDL_FILES}
     )
