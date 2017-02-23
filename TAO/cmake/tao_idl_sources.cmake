@@ -36,14 +36,14 @@ if (NOT OPTIMIZE_COLLOCATED_INVOCATIONS)
   list(APPEND TAO_CORBA_IDL_FLAGS -Sp -Sd)
 endif()
 
-function(add_tao_idl_command name)
+function(tao_idl_command name)
   set(multiValueArgs IDL_FLAGS IDL_FILES WORKING_DIRECTORY)
   cmake_parse_arguments(_arg "" "" "${multiValueArgs}" ${ARGN})
 
   set(_arg_IDL_FLAGS ${TAO_BASE_IDL_FLAGS} ${_arg_IDL_FLAGS})
 
   if (NOT _arg_IDL_FILES)
-    message(FATAL_ERROR "using add_tao_idl_command(${name}) without specifying IDL_FILES")
+    message(FATAL_ERROR "using tao_idl_command(${name}) without specifying IDL_FILES")
   endif()
 
   if (NOT IS_ABSOLUTE "${_arg_WORKING_DIRECTORY}")
@@ -166,7 +166,16 @@ function(add_tao_idl_command name)
   set(${name}_CPP_FILES ${${name}_CPP_FILES} PARENT_SCOPE)
   set(${name}_OUTPUT_FILES ${${name}_HEADER_FILES} ${${name}_CPP_FILES})
   set(${name}_OUTPUT_FILES ${${name}_OUTPUT_FILES} PARENT_SCOPE)
-endfunction(add_tao_idl_command name)
+endfunction(tao_idl_command name)
+
+
+macro(tao_target_sources_on_target_exists target)
+  if (TARGET ${target})
+    target_sources(${target} PRIVATE ${ARGN})
+  else()
+    message(AUTHOR_WARNING "In ${CMAKE_CURRENT_LIST_FILE}: Unknown target \"${target}\" is used for tao_idl_sources(), this is likely to be an error unless \"${target}\" is intentionlly skipped.")
+  endif()
+endmacro()
 
 function(tao_idl_sources)
   set(multiValueArgs TARGETS STUB_TARGETS SKEL_TARGETS ANYOP_TARGETS IDL_FLAGS IDL_FILES WORKING_DIRECTORY ASPECTS)
@@ -202,25 +211,25 @@ function(tao_idl_sources)
     list(APPEND _arg_IDL_FLAGS ${${aspect}_TAO_IDL_FLAGS})
   endforeach()
 
-  add_tao_idl_command(_idls
+  tao_idl_command(_idls
     IDL_FLAGS ${_arg_IDL_FLAGS}
     IDL_FILES ${_arg_IDL_FILES}
     WORKING_DIRECTORY ${rel_path}
   )
   foreach(anyop_target ${_arg_ANYOP_TARGETS})
-    target_sources(${anyop_target} PRIVATE ${_idls_ANYOP_FILES} ${_arg_IDL_FILES})
+    tao_target_sources_on_target_exists(${anyop_target} ${_idls_ANYOP_FILES} ${_arg_IDL_FILES})
   endforeach()
 
   foreach(skel_target ${_arg_SKEL_TARGETS})
-    target_sources(${skel_target} PRIVATE ${_idls_SKEL_FILES} ${_arg_IDL_FILES})
+    tao_target_sources_on_target_exists(${skel_target} ${_idls_SKEL_FILES} ${_arg_IDL_FILES})
   endforeach()
 
   foreach(stub_target ${_arg_STUB_TARGETS})
-    target_sources(${stub_target} PRIVATE ${_idls_STUB_FILES} ${_arg_IDL_FILES})
+    tao_target_sources_on_target_exists(${stub_target} ${_idls_STUB_FILES} ${_arg_IDL_FILES})
   endforeach()
 
   foreach(target ${_arg_TARGETS})
-    target_sources(${target} PRIVATE ${_idls_ANYOP_FILES} ${_idls_SKEL_FILES} ${_idls_STUB_FILES} ${_arg_IDL_FILES})
+    tao_target_sources_on_target_exists(${target} ${_idls_ANYOP_FILES} ${_idls_SKEL_FILES} ${_idls_STUB_FILES} ${_arg_IDL_FILES})
   endforeach()
 
   set(CMAKE_INCLUDE_CURRENT_DIR_IN_INTERFACE ON PARENT_SCOPE)

@@ -16,7 +16,6 @@ include(cmake/ace_utils.cmake)
 include(cmake/ace_options.cmake)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/cmake)
-set(WHITELIST_TARGETS "" CACHE STRING "")
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 option(BUILD_SHARED_LIBS "" ON)
