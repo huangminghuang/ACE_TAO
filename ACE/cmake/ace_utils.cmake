@@ -73,7 +73,7 @@ endfunction()
 function(ace_target_cxx_sources target)
 
   get_property(SKIPPED_TARGETS DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY ACE_CURRENT_SKIPPED_TARGETS)
-  if(NOT ${target} IN_LIST SKIPPED_TARGETS)
+  if(${target} IN_LIST SKIPPED_TARGETS)
     return()
   endif()
 
