@@ -23,6 +23,13 @@ option(BUILD_SHARED_LIBS "" ON)
 enable_testing()
 ace_add_package(ACE VERSION ${ACE_VERSION})
 
+
+if (DEFINED ACE_WHITELIST_TARGETS)
+  set(WHITELIST_TARGETS_VAR ACE_WHITELIST_TARGETS)
+else()
+  set(WHITELIST_TARGETS_VAR WHITELIST_TARGETS)
+endif()
+
 add_subdirectory(ace)
 ace_add_optional_subdirectory(ACEXML)
 ace_add_optional_subdirectory(apps)
