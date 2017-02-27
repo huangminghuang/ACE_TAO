@@ -22,6 +22,11 @@ include(cmake/tao_idl_sources.cmake)
 
 ace_add_package(TAO VERSION ${TAO_VERSION})
 
+if (DEFINED TAO_WHITELIST_TARGETS)
+  set(WHITELIST_TARGETS_VAR TAO_WHITELIST_TARGETS)
+else()
+  set(WHITELIST_TARGETS_VAR WHITELIST_TARGETS)
+endif()
 
 add_subdirectory(TAO_IDL)
 add_subdirectory(tao)

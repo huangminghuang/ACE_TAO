@@ -99,7 +99,6 @@ ace_add_lib(ACE_INet_SSL
   PACKAGE ACE
   FOLDER ACE/protocols/ace/INet
   DEFINE_SYMBOL ACE_INET_SSL_BUILD_DLL
-  PUBLIC_INCLUDE_DIRECTORIES ${ACE_ROOT}/protocols
   PUBLIC_LINK_LIBRARIES ACE_INet
                         ACE_SSL
                         ACE

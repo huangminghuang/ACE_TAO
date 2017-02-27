@@ -44,6 +44,14 @@ function(ace_install_package_files package)
 endfunction()
 
 
+function(ace_target_sources target)
+  get_property(SKIPPED_TARGETS DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY ACE_CURRENT_SKIPPED_TARGETS)
+  if(NOT ${target} IN_LIST SKIPPED_TARGETS)
+    target_sources(${target} PRIVATE ${ARGN})
+  endif()
+endfunction()
+
+
 ##  ace_target_cxx_sources(<target> [SOURCE_FILE <cpp_file> ...]
 ##                            [HEADER_FILES <h_file> ...]
 ##                            [INLINE_FILES <inl_file> ...]
@@ -64,7 +72,8 @@ endfunction()
 ##
 function(ace_target_cxx_sources target)
 
-  if (NOT TARGET ${target})
+  get_property(SKIPPED_TARGETS DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY ACE_CURRENT_SKIPPED_TARGETS)
+  if(NOT ${target} IN_LIST SKIPPED_TARGETS)
     return()
   endif()
 
@@ -106,7 +115,8 @@ endfunction()
 ##  and TEMPLATE_FILES respectively.
 ##
 function(ace_glob_target_cxx_sources target)
-  if (NOT TARGET ${target})
+  get_property(SKIPPED_TARGETS DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY ACE_CURRENT_SKIPPED_TARGETS)
+  if(NOT ${target} IN_LIST SKIPPED_TARGETS)
     return()
   endif()
 
@@ -138,10 +148,15 @@ macro(ace_requires)
 endmacro()
 
 macro(ace_parse_arguments options oneValueArgs multiValueArgs)
-  if (WHITELIST_TARGETS)
-    if (NOT target IN_LIST WHITELIST_TARGETS)
+  if (NOT DEFINED WHITELIST_TARGETS_VAR)
+    set(WHITELIST_TARGETS_VAR WHITELIST_TARGETS)
+  endif()
+
+  if (${WHITELIST_TARGETS_VAR})
+    if (NOT target IN_LIST ${WHITELIST_TARGETS_VAR})
+      set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} APPEND PROPERTY ACE_CURRENT_SKIPPED_TARGETS ${target})
       return()
-    endif()
+    endif(NOT target IN_LIST ${WHITELIST_TARGETS_VAR})
   endif()
 
   cmake_parse_arguments(_arg "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
@@ -150,6 +165,7 @@ macro(ace_parse_arguments options oneValueArgs multiValueArgs)
     string(REPLACE " " ";" cond ${cond})
     if (${cond})
     else()
+      set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} APPEND PROPERTY ACE_CURRENT_SKIPPED_TARGETS ${target})
       message("Skipping ${target} because it requires ${cond}")
       return()
     endif()
@@ -157,6 +173,7 @@ macro(ace_parse_arguments options oneValueArgs multiValueArgs)
 
   foreach(DEP ${_arg_LINK_LIBRARIES} ${_arg_PUBLIC_LINK_LIBRARIES})
     if ((NOT TARGET ${DEP}) AND (NOT EXISTS ${DEP}) AND (NOT "${DEP}" MATCHES "^[\\$\\-].+"))
+      set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} APPEND PROPERTY ACE_CURRENT_SKIPPED_TARGETS ${target})
       message("Skipping ${target} because it requires ${DEP}")
       return()
     endif()
