@@ -39,7 +39,8 @@ function(ace_install_package_files package)
   set(package_root ${${package}_ROOT})
   set(package_install_dir ${${package}_INSTALL_DIR})
   file(RELATIVE_PATH rel_path ${package_root} ${CMAKE_CURRENT_LIST_DIR})
-  install(FILES ${ARGN}
+  ace_prepend_if_relative(files_to_install ${CMAKE_CURRENT_LIST_DIR} ${ARGN})
+  install(FILES ${files_to_install}
           DESTINATION ${package_install_dir}/${rel_path})
 endfunction()
 
@@ -327,13 +328,13 @@ function(ace_install_package package_name)
   set(install_dir ${${package_name}_INSTALL_DIR})
 
   write_basic_package_version_file(
-    "cmake/${package_name}ConfigVersion.cmake"
+    "${package_name}ConfigVersion.cmake"
     VERSION ${version}
     COMPATIBILITY ExactVersion
   )
 
   export(EXPORT ${package_name}Targets
-    FILE "${CMAKE_CURRENT_BINARY_DIR}/cmake/${package_name}Targets.cmake"
+    FILE "${CMAKE_CURRENT_BINARY_DIR}/${package_name}Targets.cmake"
   )
 
   set(PREREQUISITE_PACKAGES ${_arg_PREREQUISITE})
@@ -342,29 +343,25 @@ function(ace_install_package package_name)
     set(EXTRA_CONFIG_OPTIONS "${EXTRA_CONFIG_OPTIONS}set(${option_name} ${${option_name}})\n")
   endforeach()
 
-  set(ConfigPackageLocation ${install_dir}/cmake/${package_name})
+  set(ConfigPackageLocation ${install_dir})
 
-  if (_arg_EXTRA_CMAKE_FILES)
+  if (_arg_EXTRA_CMAKE_FILES OR _arg_EXTRA_INSTALL_FILES)
     install(
       FILES ${_arg_EXTRA_CMAKE_FILES} ${_arg_EXTRA_INSTALL_FILES}
       DESTINATION ${ConfigPackageLocation}
       COMPONENT Devel
     )
 
-    foreach(_cmake_file ${_arg_EXTRA_CMAKE_FILES})
-      configure_file(${_cmake_file} ${_cmake_file} COPYONLY)
-      get_filename_component(_cmake_file_name ${_cmake_file} NAME)
-      list(APPEND EXTRA_CMAKE_FILES ${_cmake_file_name})
-    endforeach()
-
-    foreach(_file ${_arg_EXTRA_INSTALL_FILES})
+    foreach(_file ${_arg_EXTRA_CMAKE_FILES} ${_arg_EXTRA_INSTALL_FILES})
       configure_file(${_file} ${_file} COPYONLY)
     endforeach()
 
   endif()
+
+  set(EXTRA_CMAKE_FILES ${_arg_EXTRA_CMAKE_FILES})
   set(OPTIONAL_PACKAGES ${_arg_OPTIONAL_PACKAGES})
   configure_file(${ACE_CMAKE_DIR}/PackageConfig.cmake.in
-                 ${CMAKE_CURRENT_BINARY_DIR}/cmake/${package_name}Config.cmake
+                 ${CMAKE_CURRENT_BINARY_DIR}/${package_name}Config.cmake
                  @ONLY)
 
   install(EXPORT ${package_name}Targets
@@ -376,8 +373,8 @@ function(ace_install_package package_name)
 
   install(
     FILES
-      "${CMAKE_CURRENT_BINARY_DIR}/cmake/${package_name}Config.cmake"
-      "${CMAKE_CURRENT_BINARY_DIR}/cmake/${package_name}ConfigVersion.cmake"
+      "${CMAKE_CURRENT_BINARY_DIR}/${package_name}Config.cmake"
+      "${CMAKE_CURRENT_BINARY_DIR}/${package_name}ConfigVersion.cmake"
     DESTINATION
       ${ConfigPackageLocation}
     COMPONENT

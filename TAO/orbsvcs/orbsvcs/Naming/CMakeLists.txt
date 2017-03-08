@@ -20,7 +20,7 @@ ace_add_lib(TAO_CosNaming_Skel
 )
 
 ace_target_cxx_sources(TAO_CosNaming_Skel
-  HEADER_FILES naming_skel_export
+  HEADER_FILES naming_skel_export.h
 )
 
 tao_idl_sources(
