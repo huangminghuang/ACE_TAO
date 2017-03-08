@@ -36,7 +36,7 @@ ace_add_lib(TAO_FT_Naming_Replication
 )
 
 ace_target_cxx_sources(TAO_FT_Naming_Replication
-  HEADER_FILES ftnaming_export
+  HEADER_FILES ftnaming_export.h
 )
 
 tao_idl_sources(

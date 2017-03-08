@@ -12,11 +12,11 @@ endforeach()
 @EXTRA_CONFIG_OPTIONS@
 
 # Compute paths
-get_filename_component(@package_name@_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
-include("${@package_name@_CMAKE_DIR}/@package_name@Targets.cmake" )
+get_filename_component(@package_name@_CONFIG_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+include("${@package_name@_CONFIG_DIR}/@package_name@Targets.cmake" )
 
 foreach(_cmake_file @EXTRA_CMAKE_FILES@)
-  include("${@package_name@_CMAKE_DIR}/${_cmake_file}")
+  include("${@package_name@_CONFIG_DIR}/${_cmake_file}")
 endforeach()
 
 foreach(_comp ${@package_name@_FIND_COMPONENTS})
