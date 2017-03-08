@@ -339,9 +339,19 @@ function(ace_install_package package_name)
 
   set(PREREQUISITE_PACKAGES ${_arg_PREREQUISITE})
 
-  foreach(option_name ${_arg_CONFIG_OPTIONS})
+
+  foreach(option_name ${_arg_CONFIG_OPTIONS} ${PREREQUISITE_PACKAGE_DIRS})
     set(EXTRA_CONFIG_OPTIONS "${EXTRA_CONFIG_OPTIONS}set(${option_name} ${${option_name}})\n")
   endforeach()
+
+  foreach(pkg ${PREREQUISITE_PACKAGES})
+    if (${pkag}_DIR)
+      set(EXTRA_CONFIG_OPTIONS "${EXTRA_CONFIG_OPTIONS}set(${pkg}_DIR ${${pkag}_DIR})\n")
+    else()
+      set(EXTRA_CONFIG_OPTIONS "${EXTRA_CONFIG_OPTIONS}set(${pkg}_DIR \${CMAKE_CURRENT_LIST_DIR}/../${pkg})\n")
+    endif()
+  endforeach()
+
 
   set(ConfigPackageLocation ${install_dir})
 
