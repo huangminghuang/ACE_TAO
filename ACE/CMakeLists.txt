@@ -23,7 +23,6 @@ option(BUILD_SHARED_LIBS "" ON)
 enable_testing()
 ace_add_package(ACE VERSION ${ACE_VERSION})
 
-
 if (DEFINED ACE_WHITELIST_TARGETS)
   set(WHITELIST_TARGETS_VAR ACE_WHITELIST_TARGETS)
 else()
@@ -41,9 +40,11 @@ ace_add_optional_subdirectory(websvcs)
 ace_add_optional_subdirectory(performance-tests)
 ace_add_optional_subdirectory(examples)
 
+add_subdirectory(bin)
+
 ace_install_package(ACE
   CONFIG_OPTIONS ${ACE_OPTIONS} CMAKE_CXX_STANDARD CMAKE_CXX_STANDARD_REQUIRED
-  EXTRA_CMAKE_FILES cmake/ace_utils.cmake
-  EXTRA_INSTALL_FILES cmake/PackageConfig.cmake.in
+  CONFIG_INCLUDE_FILES cmake/ace_utils.cmake
+  INCLUDED_FILES_USE cmake/PackageConfig.cmake.in
   OPTIONAL_PACKAGES Qt4
 )

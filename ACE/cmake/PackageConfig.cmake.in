@@ -1,4 +1,15 @@
-@EXTRA_CONFIG_OPTIONS@
+
+## @package_name@_PACKAGE_DIR is the location of source tree when imported from the
+## built tree; otherwise, it is the location of install tree when imported from install tree.
+set(@package_name@_PACKAGE_DIR @PACKAGE_DIR@)
+
+
+## @package_name@_PACKAGE_BINARY_DIR is the location of build tree when imported
+## from the built tree; otherwise, it is the location of install tree when imported
+## from install tree.
+set(@package_name@_PACKAGE_BINARY_DIR @PACKAGE_BINARY_DIR@)
+
+@PREREQUISITE_LOCATIONS@
 
 foreach(_package @PREREQUISITE_PACKAGES@)
   if (_package AND (NOT TARGET ${_package}))
@@ -9,10 +20,12 @@ foreach(_package @OPTIONAL_PACKAGES@)
   find_package(${_package})
 endforeach()
 
-include("${CMAKE_CURRENT_LIST_DIR}/@package_name@Targets.cmake" )
+@CONFIG_OPTIONS@
 
-foreach(_cmake_file @EXTRA_CMAKE_FILES@)
-  include("${CMAKE_CURRENT_LIST_DIR}/${_cmake_file}")
+include("${@package_name@_PACKAGE_BINARY_DIR}/@package_name@Targets.cmake" )
+
+foreach(_cmake_file @CONFIG_INCLUDE_FILES@)
+  include("${@package_name@_PACKAGE_DIR}/${_cmake_file}")
 endforeach()
 
 foreach(_comp ${@package_name@_FIND_COMPONENTS})
