@@ -37,6 +37,6 @@ ace_add_optional_subdirectory(utils)
 ace_install_package(TAO
   CONFIG_OPTIONS ${TAO_OPTIONS}
   PREREQUISITE ACE
-  EXTRA_CMAKE_FILES cmake/tao_aspects.cmake
-                    cmake/tao_idl_sources.cmake
+  CONFIG_INCLUDE_FILES cmake/tao_aspects.cmake
+                       cmake/tao_idl_sources.cmake
 )

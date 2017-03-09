@@ -15,6 +15,8 @@ function(ace_add_package name)
     set(_arg_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/share/${name}-${_arg_VERSION})
   endif()
 
+  set(${name}_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR} CACHE INTERNAL "")
+  set(${name}_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR} CACHE INTERNAL "")
   set(${name}_INSTALL_DIR ${_arg_INSTALL_DIR} CACHE INTERNAL "")
   set(${name}_PACKAGE_VERSION ${_arg_VERSION} CACHE INTERNAL "")
   set(${name}_ROOT ${CMAKE_CURRENT_LIST_DIR} CACHE INTERNAL "")
@@ -261,6 +263,11 @@ function(ace_add_lib target)
 
 endfunction()
 
+
+##  ace_add_exe
+##  -----------------
+##
+##
 function(ace_add_exe target)
 
   set(oneValueArgs OUTPUT_NAME PACKAGE FOLDER)
@@ -319,9 +326,32 @@ function(ace_add_exe target)
   endif()
 endfunction()
 
-
+##  ace_install_package(<PACKAGE_NAME>
+##                     [CONFIG_OPTIONS <var> ...]
+##                     [PREREQUISITE <package> ...]
+##                     [CONFIG_INCLUDE_FILES <file_to_be_included> ...]
+##                     [INCLUDED_FILES_USE <file_to_install> ...]
+##                     [OPTIONAL_PACKAGES <package>]
+##  -----------------
+##  install a package name <PACKAGE_NAME> (spcecified by ace_add_package).
+##
+##  <PACKAGE_NAME> must be declard by the command ace_add_package.
+##
+##  CONFIG_OPTIONS specifies the extra variables needed to be imported when
+##  find_package(<PACKAGE_NAME>) is used.
+##
+##  CONFIG_INCLUDE_FILES specifies a list files to install and be included by the generated cmake config file.
+##
+##  INCLUDED_FILES_USE  specifies a list files to install and be used by the cmake included files.
+##
+##  PREREQUISITE specifies extra packages required to be exported. At the moment, only
+##  packages which provide CMAKE config files are supported.
+##
+##  OPTIONAL_PACKAGES specifies extra packages to be exported only when those packages are found
+##  by find_package() command during configuration time.
+##
 function(ace_install_package package_name)
-  cmake_parse_arguments(_arg "" "" "CONFIG_OPTIONS;PREREQUISITE;EXTRA_CMAKE_FILES;EXTRA_INSTALL_FILES;OPTIONAL_PACKAGES" ${ARGN})
+  cmake_parse_arguments(_arg "" "" "CONFIG_OPTIONS;PREREQUISITE;CONFIG_INCLUDE_FILES;INCLUDED_FILES_USE;OPTIONAL_PACKAGES" ${ARGN})
 
   set(version ${${package_name}_PACKAGE_VERSION})
   message("${package_name}_PACKAGE_VERSION=${${package_name}_PACKAGE_VERSION}")
@@ -337,58 +367,73 @@ function(ace_install_package package_name)
     FILE "${CMAKE_CURRENT_BINARY_DIR}/${package_name}Targets.cmake"
   )
 
-  set(PREREQUISITE_PACKAGES ${_arg_PREREQUISITE})
-
-
-  foreach(option_name ${_arg_CONFIG_OPTIONS} ${PREREQUISITE_PACKAGE_DIRS})
-    set(EXTRA_CONFIG_OPTIONS "${EXTRA_CONFIG_OPTIONS}set(${option_name} ${${option_name}})\n")
+  foreach(_file ${_arg_CONFIG_INCLUDE_FILES} ${_arg_INCLUDED_FILES_USE})
+    install(
+      FILES ${_file}
+      DESTINATION ${install_dir}/${_file}
+      COMPONENT Devel
+    )
   endforeach()
 
-  foreach(pkg ${PREREQUISITE_PACKAGES})
-    if (${pkag}_DIR)
-      set(EXTRA_CONFIG_OPTIONS "${EXTRA_CONFIG_OPTIONS}set(${pkg}_DIR ${${pkag}_DIR})\n")
-    else()
-      set(EXTRA_CONFIG_OPTIONS "${EXTRA_CONFIG_OPTIONS}set(${pkg}_DIR \${CMAKE_CURRENT_LIST_DIR}/../${pkg})\n")
+  foreach(pkg ${_arg_PREREQUISITE})
+      if (${pkg}_INSTALL_DIR)
+        ## this means the ${pkg} is defined in our source tree
+        string(CONCAT PREREQUISITE_LOCATIONS "${PREREQUISITE_LOCATIONS}" "set(${pkg}_DIR ${${pkg}_BINARY_DIR})\n")
+        ## we need relative path for prerequiste config locations
+        file(RELATIVE_PATH rel_path ${${package_name}_INSTALL_DIR} ${${pkg}_INSTALL_DIR})
+        string(CONCAT PREREQUISITE_LOCATIONS_FOR_INSTALL "${PREREQUISITE_LOCATIONS_FOR_INSTALL}" "set(${pkg}_DIR \${CMAKE_CURRENT_LIST_DIR}/${rel_path})\n")
+      else()
+        ## this means the ${pkg} is imported from find_package() statement
+        ## this means the ${pkg} is defined in our source tree
+        string(CONCAT PREREQUISITE_LOCATIONS "${PREREQUISITE_LOCATIONS}" "set(${pkg}_DIR ${${pkg}_DIR})\n")
+        string(CONCAT PREREQUISITE_LOCATIONS_FOR_INSTALL "${PREREQUISITE_LOCATIONS_FOR_INSTALL}" "set(${pkg}_DIR ${${pkg}_DIR})\n")
+      endif()
+    endforeach()
+
+
+  foreach(pkg ${_arg_OPTIONAL_PACKAGES})
+    if (${pkg}_FOUND)
+      list(APPEND OPTIONAL_PACKAGES ${pkg})
     endif()
   endforeach()
 
+  foreach(option_name ${_arg_CONFIG_OPTIONS})
+    string(CONCAT CONFIG_OPTIONS "${CONFIG_OPTIONS}" "set(${option_name} ${${option_name}})\n")
+  endforeach()
 
-  set(ConfigPackageLocation ${install_dir})
 
-  if (_arg_EXTRA_CMAKE_FILES OR _arg_EXTRA_INSTALL_FILES)
-    install(
-      FILES ${_arg_EXTRA_CMAKE_FILES} ${_arg_EXTRA_INSTALL_FILES}
-      DESTINATION ${ConfigPackageLocation}
-      COMPONENT Devel
-    )
+  set(CONFIG_INCLUDE_FILES ${_arg_CONFIG_INCLUDE_FILES})
+  set(PREREQUISITE_PACKAGES ${_arg_PREREQUISITE})
 
-    foreach(_file ${_arg_EXTRA_CMAKE_FILES} ${_arg_EXTRA_INSTALL_FILES})
-      configure_file(${_file} ${_file} COPYONLY)
-    endforeach()
+  # configure the package config file for build tree
+  set(CONFIG_OPTIONS ${CONFIG_OPTIONS_BASE})
+  set(PACKAGE_DIR ${CMAKE_CURRENT_LIST_DIR})
+  set(PACKAGE_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR})
 
-  endif()
-
-  set(EXTRA_CMAKE_FILES ${_arg_EXTRA_CMAKE_FILES})
-  set(OPTIONAL_PACKAGES ${_arg_OPTIONAL_PACKAGES})
   configure_file(${ACE_CMAKE_DIR}/PackageConfig.cmake.in
                  ${CMAKE_CURRENT_BINARY_DIR}/${package_name}Config.cmake
                  @ONLY)
 
+  # configure the package config file for install tree
+  set(CONFIG_OPTIONS ${CONFIG_OPTIONS_BASE})
+  set(PREREQUISITE_LOCATIONS ${PREREQUISITE_LOCATIONS_FOR_INSTALL})
+
+  set(PACKAGE_DIR "\${CMAKE_CURRENT_LIST_DIR}")
+  set(PACKAGE_BINARY_DIR "\${CMAKE_CURRENT_LIST_DIR}")
+  configure_file(${ACE_CMAKE_DIR}/PackageConfig.cmake.in
+                 ${CMAKE_CURRENT_BINARY_DIR}/export/${package_name}Config.cmake
+                 @ONLY)
+
   install(EXPORT ${package_name}Targets
-    FILE
-      ${package_name}Targets.cmake
-    DESTINATION
-      ${ConfigPackageLocation}
+    FILE ${package_name}Targets.cmake
+    DESTINATION ${install_dir}
   )
 
   install(
-    FILES
-      "${CMAKE_CURRENT_BINARY_DIR}/${package_name}Config.cmake"
-      "${CMAKE_CURRENT_BINARY_DIR}/${package_name}ConfigVersion.cmake"
-    DESTINATION
-      ${ConfigPackageLocation}
-    COMPONENT
-      Devel
+    FILES "${CMAKE_CURRENT_BINARY_DIR}/export/${package_name}Config.cmake"
+          "${CMAKE_CURRENT_BINARY_DIR}/${package_name}ConfigVersion.cmake"
+    DESTINATION ${install_dir}
+    COMPONENT Devel
   )
 
   # This makes the project importable from the build directory
