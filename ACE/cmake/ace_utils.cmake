@@ -194,7 +194,8 @@ endmacro()
 ##
 function(ace_add_lib target)
   set(oneValueArgs OUTPUT_NAME DEFINE_SYMBOL PACKAGE FOLDER)
-  set(multiValueArgs PUBLIC_LINK_LIBRARIES
+  set(multiValueArgs LINK_LIBRARIES
+                     PUBLIC_LINK_LIBRARIES
                      INCLUDE_DIRECTORIES
                      PUBLIC_INCLUDE_DIRECTORIES
                      COMPILE_DEFINITIONS
@@ -221,7 +222,7 @@ function(ace_add_lib target)
 
   target_include_directories(${target} PRIVATE ${_arg_INCLUDE_DIRECTORIES} PUBLIC ${_arg_PUBLIC_INCLUDE_DIRECTORIES})
   target_compile_definitions(${target} PRIVATE ${_arg_COMPILE_DEFINITIONS} PUBLIC ${_arg_PUBLIC_COMPILE_DEFINITIONS})
-  target_link_libraries(${target} PUBLIC ${_arg_PUBLIC_LINK_LIBRARIES})
+  target_link_libraries(${target} PRIVATE ${_arg_LINK_LIBRARIES} PUBLIC ${_arg_PUBLIC_LINK_LIBRARIES})
 
   if (_arg_PACKAGE)
     set_target_properties(${target} PROPERTIES
