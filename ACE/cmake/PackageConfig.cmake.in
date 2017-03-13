@@ -1,13 +1,13 @@
 
 ## @package_name@_PACKAGE_DIR is the location of source tree when imported from the
 ## built tree; otherwise, it is the location of install tree when imported from install tree.
-set(@package_name@_PACKAGE_DIR @PACKAGE_DIR@)
+set(@package_name@_PACKAGE_DIR @PACKAGE_DIR@ CACHE INTERNAL "")
 
 
 ## @package_name@_PACKAGE_BINARY_DIR is the location of build tree when imported
 ## from the built tree; otherwise, it is the location of install tree when imported
 ## from install tree.
-set(@package_name@_PACKAGE_BINARY_DIR @PACKAGE_BINARY_DIR@)
+set(@package_name@_PACKAGE_BINARY_DIR @PACKAGE_BINARY_DIR@ CACHE INTERNAL "")
 
 @PREREQUISITE_LOCATIONS@
 
