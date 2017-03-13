@@ -406,7 +406,6 @@ function(ace_install_package package_name)
   set(PREREQUISITE_PACKAGES ${_arg_PREREQUISITE})
 
   # configure the package config file for build tree
-  set(CONFIG_OPTIONS ${CONFIG_OPTIONS_BASE})
   set(PACKAGE_DIR ${CMAKE_CURRENT_LIST_DIR})
   set(PACKAGE_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR})
 
@@ -415,7 +414,6 @@ function(ace_install_package package_name)
                  @ONLY)
 
   # configure the package config file for install tree
-  set(CONFIG_OPTIONS ${CONFIG_OPTIONS_BASE})
   set(PREREQUISITE_LOCATIONS ${PREREQUISITE_LOCATIONS_FOR_INSTALL})
 
   set(PACKAGE_DIR "\${CMAKE_CURRENT_LIST_DIR}")
