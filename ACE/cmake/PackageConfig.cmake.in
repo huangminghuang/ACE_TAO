@@ -1,14 +1,3 @@
-
-## @package_name@_PACKAGE_DIR is the location of source tree when imported from the
-## built tree; otherwise, it is the location of install tree when imported from install tree.
-set(@package_name@_PACKAGE_DIR @PACKAGE_DIR@ CACHE INTERNAL "")
-
-
-## @package_name@_PACKAGE_BINARY_DIR is the location of build tree when imported
-## from the built tree; otherwise, it is the location of install tree when imported
-## from install tree.
-set(@package_name@_PACKAGE_BINARY_DIR @PACKAGE_BINARY_DIR@ CACHE INTERNAL "")
-
 @PREREQUISITE_LOCATIONS@
 
 foreach(_package @PREREQUISITE_PACKAGES@)
@@ -19,6 +8,18 @@ endforeach()
 foreach(_package @OPTIONAL_PACKAGES@)
   find_package(${_package})
 endforeach()
+
+## !!! Important, always setting config variables after find_package(); otherwise, they might
+## !!! not visible to clients.
+
+## @package_name@_PACKAGE_DIR is the location of source tree when imported from the
+## built tree; otherwise, it is the location of install tree.
+set(@package_name@_PACKAGE_DIR @PACKAGE_DIR@ CACHE INTERNAL "")
+
+
+## @package_name@_PACKAGE_BINARY_DIR is the location of build tree when imported
+## from the built tree; otherwise, it is the location of install tree.
+set(@package_name@_PACKAGE_BINARY_DIR @PACKAGE_BINARY_DIR@ CACHE INTERNAL "")
 
 @CONFIG_OPTIONS@
 
