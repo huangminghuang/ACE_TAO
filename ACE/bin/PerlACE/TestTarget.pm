@@ -114,10 +114,14 @@ sub GetConfigSettings ($)
     if (exists $ENV{$env_name}) {
         $self->{ace_root} = $ENV{$env_name};
     }
-    else {
+    elsif(exists $ENV{'ACE_ROOT'}) {
         # Fall back to naked ACE_ROOT if no config-specific one.
         $self->{ace_root} = $ENV{'ACE_ROOT'};
     }
+    else {
+      $self->{ace_root} = dirname(dirname(__FILE__));
+    }
+
     $tgt_fs_root = dirname($self->{ace_root});
     if (exists $ENV{'ACE_ROOT'}) {
         $fs_root = dirname($ENV{'ACE_ROOT'});
