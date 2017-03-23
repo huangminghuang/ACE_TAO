@@ -15,6 +15,7 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/cmake)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 option(BUILD_SHARED_LIBS "" ON)
+set(CMAKE_LINK_DEPENDS_NO_SHARED ON)
 
 include(cmake/tao_options.cmake)
 include(cmake/tao_aspects.cmake)
