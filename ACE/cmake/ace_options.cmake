@@ -1,5 +1,5 @@
 
-option(ACE_HAS_IPV6 "" ON)
+option(ACE_HAS_IPV6 "" OFF)
 option(ACE_INLINE "" ON)
 option(ACE_HAS_ATM "" OFF)
 option(ACE_HAS_THREADS "" ON)
