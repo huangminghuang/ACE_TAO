@@ -1,11 +1,4 @@
 
-if (NOT TAO_ROOT AND TARGET TAO)
-# TAO_ROOT is not set, it indicates this file is included from the projects other than TAO
-  get_target_property(TAO_INCLUDE_DIRS TAO INTERFACE_INCLUDE_DIRECTORIES)
-  # set TAO_ROOT to be first element in ${TAO_INCLUDE_DIRS}
-  list(GET TAO_INCLUDE_DIRS 0 TAO_ROOT)
-endif()
-
 
 set(TAO_VERSIONING_IDL_FLAGS
   -Wb,versioning_begin=TAO_BEGIN_VERSIONED_NAMESPACE_DECL
@@ -133,7 +126,7 @@ function(tao_idl_command name)
     add_custom_command(
       OUTPUT ${_OUTPUT_FILES}
       DEPENDS TAO_IDL_EXE ace_gperf ${idl_file}
-      COMMAND TAO_IDL_EXE -g $<TARGET_FILE:ace_gperf> ${TAO_CORBA_IDL_FLAGS} -Wb,pre_include=ace/pre.h -Wb,post_include=ace/post.h -I${TAO_ROOT} -I${_working_source_dir} ${_converted_flags} ${idl_file_path}
+      COMMAND TAO_IDL_EXE -g $<TARGET_FILE:ace_gperf> ${TAO_CORBA_IDL_FLAGS} -Wb,pre_include=ace/pre.h -Wb,post_include=ace/post.h -I${TAO_INCLUDE_DIR} -I${_working_source_dir} ${_converted_flags} ${idl_file_path}
       WORKING_DIRECTORY ${_arg_WORKING_DIRECTORY}
       VERBATIM
     )
