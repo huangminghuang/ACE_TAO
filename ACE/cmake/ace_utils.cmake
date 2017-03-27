@@ -16,10 +16,11 @@ function(ace_add_package name)
   endif()
 
   set(${name}_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR} CACHE INTERNAL "")
+  set(${name}_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR} CACHE INTERNAL "")
   set(${name}_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR} CACHE INTERNAL "")
   set(${name}_INSTALL_DIR ${_arg_INSTALL_DIR} CACHE INTERNAL "")
   set(${name}_PACKAGE_VERSION ${_arg_VERSION} CACHE INTERNAL "")
-  set(${name}_ROOT ${CMAKE_CURRENT_LIST_DIR} CACHE INTERNAL "")
+  set(${name}_ROOT ${CMAKE_CURRENT_SOURCE_DIR} CACHE INTERNAL "")
 endfunction()
 
 ## ace_prepend_if_relative(<outvar> <string> <path> ...)

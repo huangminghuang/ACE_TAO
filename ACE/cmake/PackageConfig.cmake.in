@@ -12,9 +12,9 @@ endforeach()
 ## !!! Important, always setting config variables after find_package(); otherwise, they might
 ## !!! not visible to clients.
 
-## @package_name@_PACKAGE_DIR is the location of source tree when imported from the
+## @package_name@_INCLUDE_DIR is the location of source tree when imported from the
 ## built tree; otherwise, it is the location of install tree.
-set(@package_name@_PACKAGE_DIR @PACKAGE_DIR@ CACHE INTERNAL "")
+set(@package_name@_INCLUDE_DIR @PACKAGE_DIR@ CACHE INTERNAL "")
 
 
 ## @package_name@_PACKAGE_BINARY_DIR is the location of build tree when imported
@@ -26,7 +26,7 @@ set(@package_name@_PACKAGE_BINARY_DIR @PACKAGE_BINARY_DIR@ CACHE INTERNAL "")
 include("${@package_name@_PACKAGE_BINARY_DIR}/@package_name@Targets.cmake" )
 
 foreach(_cmake_file @CONFIG_INCLUDE_FILES@)
-  include("${@package_name@_PACKAGE_DIR}/${_cmake_file}")
+  include("${@package_name@_INCLUDE_DIR}/${_cmake_file}")
 endforeach()
 
 foreach(_comp ${@package_name@_FIND_COMPONENTS})
