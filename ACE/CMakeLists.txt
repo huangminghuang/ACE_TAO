@@ -41,6 +41,7 @@ ace_add_optional_subdirectory(netsvcs)
 ace_add_optional_subdirectory(websvcs)
 ace_add_optional_subdirectory(performance-tests)
 ace_add_optional_subdirectory(examples)
+ace_add_optional_subdirectory(tests)
 
 add_subdirectory(bin)
 
