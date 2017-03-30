@@ -1,5 +1,7 @@
-add_subdirectory(SSL)
 find_package(Motif)
+
+file(GLOB testfiles *.conf *.ini *.xml *.tcl)
+file(COPY ${testfiles} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 ace_add_lib(Test_Output
   OUTPUT_NAME Test_Output
@@ -19,6 +21,7 @@ ace_add_lib(Framework_Component_DLL
   FOLDER ACE/tests
   DEFINE_SYMBOL FRAMEWORK_COMPONENT_DLL_BUILD_DLL
   PUBLIC_LINK_LIBRARIES ACE
+  REQUIRES BIULD_SHARED_LIBS
 )
 ace_target_cxx_sources(Framework_Component_DLL
   SOURCE_FILES Framework_Component_DLL.cpp
@@ -32,6 +35,7 @@ ace_add_lib(DLL_Test_Parent_Lib
   FOLDER ACE/tests
   DEFINE_SYMBOL DLL_TEST_PARENT_BUILD_DLL
   PUBLIC_LINK_LIBRARIES ACE
+  REQUIRES BIULD_SHARED_LIBS
 )
 ace_target_cxx_sources(DLL_Test_Parent_Lib
   SOURCE_FILES DLL_Test_Parent.cpp
@@ -46,6 +50,7 @@ ace_add_lib(DLL_Test_Lib
   FOLDER ACE/tests
   DEFINE_SYMBOL ACE_SVC_BUILD_DLL
   PUBLIC_LINK_LIBRARIES DLL_Test_Parent_Lib
+  REQUIRES BIULD_SHARED_LIBS
 )
 ace_target_cxx_sources(DLL_Test_Lib
   SOURCE_FILES DLL_Test_Impl.cpp
@@ -59,6 +64,7 @@ ace_add_lib(Based_Pointer_Test_Lib
   FOLDER ACE/tests
   DEFINE_SYMBOL ACE_SVC_BUILD_DLL
   PUBLIC_LINK_LIBRARIES ACE
+  REQUIRES BIULD_SHARED_LIBS
 )
 ace_target_cxx_sources(Based_Pointer_Test_Lib
   SOURCE_FILES Based_Pointer_Test_Lib.cpp
@@ -69,6 +75,7 @@ ace_add_lib(Service_Config_DLL
   FOLDER ACE/tests
   DEFINE_SYMBOL SERVICE_CONFIG_DLL_BUILD_DLL
   PUBLIC_LINK_LIBRARIES ACE
+  REQUIRES BIULD_SHARED_LIBS
 )
 ace_target_cxx_sources(Service_Config_DLL
   SOURCE_FILES Service_Config_DLL.cpp
@@ -219,6 +226,7 @@ ace_add_lib(Bug_2980_Regression_Dll
   FOLDER ACE/tests
   DEFINE_SYMBOL TEST_OUTPUT_BUILD_DLL
   PUBLIC_LINK_LIBRARIES ACE
+  REQUIRES BUILD_SHARED_LIBS
 )
 ace_target_cxx_sources(Bug_2980_Regression_Dll
   SOURCE_FILES Bug_2980_Regression_Dll.cpp
@@ -634,9 +642,9 @@ ace_add_test_exe(Log_Msg_Backend_Test)
 
 
 
-ace_add_test_exe(Logging_Strategy_Test)
-
-
+ace_add_test_exe(Logging_Strategy_Test
+  REQUIRES BUILD_SHARED_LIBS
+)
 
 ace_add_test_exe(Malloc_Test)
 
@@ -1027,9 +1035,9 @@ ace_add_test_exe(TSS_Test)
 
 
 
-ace_add_test_exe(TSS_Static_Test)
-
-
+ace_add_test_exe(TSS_Static_Test
+  REQUIRES BUILD_SHARED_LIBS
+)
 
 ace_add_test_exe(Vector_Test)
 
@@ -1112,11 +1120,14 @@ ace_add_test_exe(CDR_Array_Test)
 
 
 
-ace_add_test_exe(Service_Config_Test)
+ace_add_test_exe(Service_Config_Test
+  REQUIRES BUILD_SHARED_LIBS
+)
 
 
-
-ace_add_test_exe(Framework_Component_Test)
+ace_add_test_exe(Framework_Component_Test
+  REQUIRES BUILD_SHARED_LIBS
+)
 
 
 
@@ -1142,8 +1153,7 @@ ace_add_test_exe(Reference_Counted_Event_Handler_Test)
 
 ace_add_test_exe(Refcounted_Event_Handler_Test_DevPoll)
 
-
-
+ace_add_test_exe(MT_Reference_Counted_Event_Handler_Test)
 
 ace_add_test_exe(MT_Reference_Counted_Notify_Test)
 
@@ -1214,8 +1224,13 @@ ace_add_test_exe(QtReactor_Test
 
 
 
-ace_add_test_exe(Based_Pointer_Test)
+ace_add_test_exe(Based_Pointer_Test
+  REQUIRES BUILD_SHARED_LIBS
+)
 
+ace_add_test_exe(Unload_libACE
+  REQUIRES BUILD_SHARED_LIBS
+)
 
 ace_add_test_exe(Bug_2659_Regression_Test)
 
@@ -1246,6 +1261,7 @@ ace_add_lib(Service_Config_Stream_DLL
   FOLDER ACE/tests
   DEFINE_SYMBOL SERVICE_CONFIG_STREAM_DLL_BUILD_DLL
   PUBLIC_LINK_LIBRARIES ACE
+  REQUIRES BUILD_SHARED_LIBS
 )
 ace_target_cxx_sources(Service_Config_Stream_DLL
   SOURCE_FILES Service_Config_Stream_DLL.cpp
@@ -1260,14 +1276,21 @@ ace_add_test_exe(Service_Config_Stream_Test
 
 
 
-ace_add_test_exe(Bug_3334_Regression_Test)
+ace_add_test_exe(Bug_3334_Regression_Test
+  REQUIRES BUILD_SHARED_LIBS
+)
 
 
 
-ace_add_test_exe(Bug_3912_Regression_Test)
+ace_add_test_exe(Bug_3912_Regression_Test
+  REQUIRES BIULD_SHARED_LIBS
+)
 
 
 
-ace_add_test_exe(Missing_Svc_Conf_Test)
+ace_add_test_exe(Missing_Svc_Conf_Test
+  REQUIRES BIULD_SHARED_LIBS
+)
 
+add_subdirectory(SSL)
 
