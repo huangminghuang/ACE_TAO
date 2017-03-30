@@ -44,7 +44,7 @@ void eval (const char *s)
       char *wrk = new char[n + 80];
       ACE_OS::snprintf (wrk, n + 80, "tkerror \"%s\"", s);
       Tcl_GlobalEval(tcl_interp, wrk);
-      delete wrk;
+      delete [] wrk;
       //exit(1);
     }
 }
