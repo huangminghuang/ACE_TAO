@@ -60,7 +60,7 @@ XML_Backing_Store::persist ()
       return -1;
     }
   ACE_OS::fprintf (fp,"<?xml version=\"1.0\"?>\n");
-  ACE_OS::fprintf (fp,"<%s>\n", Locator_XMLHandler::ROOT_TAG);
+  ACE_OS::fprintf (fp,"<%s>\n", ACE_TEXT_ALWAYS_CHAR(Locator_XMLHandler::ROOT_TAG));
 
   // Save servers
   Locator_Repository::SIMap::ENTRY* sientry = 0;
@@ -79,7 +79,7 @@ XML_Backing_Store::persist ()
       persist(fp, *aientry->int_id_, "\t");
     }
 
-  ACE_OS::fprintf (fp,"</%s>\n", Locator_XMLHandler::ROOT_TAG);
+  ACE_OS::fprintf (fp,"</%s>\n", ACE_TEXT_ALWAYS_CHAR(Locator_XMLHandler::ROOT_TAG));
   ACE_OS::fclose (fp);
 
   return 0;
@@ -117,21 +117,21 @@ XML_Backing_Store::persist (FILE* fp,
     ImR_Utils::activationModeToString (info.activation_mode_);
 
   ACE_OS::fprintf (fp,"%s<%s", tag_prepend,
-    Locator_XMLHandler::SERVER_INFO_TAG);
-  ACE_OS::fprintf (fp, " %s=\"%s\"", Locator_XMLHandler::SERVER_TAG, server_id.c_str ());
-  ACE_OS::fprintf (fp, " %s=\"%s\"", Locator_XMLHandler::POANAME_TAG, pname.c_str ());
-  ACE_OS::fprintf (fp, " %s=\"%s\"", Locator_XMLHandler::ACTNAME_TAG, activator.c_str ());
-  ACE_OS::fprintf (fp, " %s=\"%s\"", Locator_XMLHandler::CMDLINE_TAG, cmdline.c_str ());
-  ACE_OS::fprintf (fp, " %s=\"%s\"", Locator_XMLHandler::DIR_TAG, wdir.c_str ());
-  ACE_OS::fprintf (fp, " %s=\"%s\"", Locator_XMLHandler::MODE_TAG, amodestr.c_str ());
-  ACE_OS::fprintf (fp, " %s=\"%d\"", Locator_XMLHandler::LIMIT_TAG, info.start_limit_);
-  ACE_OS::fprintf (fp, " %s=\"%s\"", Locator_XMLHandler::PARTIOR_TAG, partial_ior.c_str ());
-  ACE_OS::fprintf (fp, " %s=\"%s\"", Locator_XMLHandler::IOR_TAG, ior.c_str ());
-  ACE_OS::fprintf (fp, " %s=\"%d\"", Locator_XMLHandler::STARTED_TAG, !CORBA::is_nil(info.server.in()));
-  ACE_OS::fprintf (fp, " %s=\"%d\"", Locator_XMLHandler::JACORB_TAG, info.is_jacorb);
-  ACE_OS::fprintf (fp, " %s=\"%d\"", Locator_XMLHandler::PID_TAG, info.pid);
-  ACE_OS::fprintf (fp, " %s= \"%s\"", Locator_XMLHandler::KEYNAME_TAG, keyname.c_str ());
-  ACE_OS::fprintf (fp, " %s= \"%s\"", Locator_XMLHandler::ALTKEY_TAG, altkey.c_str ());
+    ACE_TEXT_ALWAYS_CHAR(Locator_XMLHandler::SERVER_INFO_TAG));
+  ACE_OS::fprintf (fp, " %s=\"%s\"", ACE_TEXT_ALWAYS_CHAR(Locator_XMLHandler::SERVER_TAG), server_id.c_str ());
+  ACE_OS::fprintf (fp, " %s=\"%s\"", ACE_TEXT_ALWAYS_CHAR(Locator_XMLHandler::POANAME_TAG), pname.c_str ());
+  ACE_OS::fprintf (fp, " %s=\"%s\"", ACE_TEXT_ALWAYS_CHAR(Locator_XMLHandler::ACTNAME_TAG), activator.c_str ());
+  ACE_OS::fprintf (fp, " %s=\"%s\"", ACE_TEXT_ALWAYS_CHAR(Locator_XMLHandler::CMDLINE_TAG), cmdline.c_str ());
+  ACE_OS::fprintf (fp, " %s=\"%s\"", ACE_TEXT_ALWAYS_CHAR(Locator_XMLHandler::DIR_TAG), wdir.c_str ());
+  ACE_OS::fprintf (fp, " %s=\"%s\"", ACE_TEXT_ALWAYS_CHAR(Locator_XMLHandler::MODE_TAG), amodestr.c_str ());
+  ACE_OS::fprintf (fp, " %s=\"%d\"", ACE_TEXT_ALWAYS_CHAR(Locator_XMLHandler::LIMIT_TAG), info.start_limit_);
+  ACE_OS::fprintf (fp, " %s=\"%s\"", ACE_TEXT_ALWAYS_CHAR(Locator_XMLHandler::PARTIOR_TAG), partial_ior.c_str ());
+  ACE_OS::fprintf (fp, " %s=\"%s\"", ACE_TEXT_ALWAYS_CHAR(Locator_XMLHandler::IOR_TAG), ior.c_str ());
+  ACE_OS::fprintf (fp, " %s=\"%d\"", ACE_TEXT_ALWAYS_CHAR(Locator_XMLHandler::STARTED_TAG), !CORBA::is_nil(info.server.in()));
+  ACE_OS::fprintf (fp, " %s=\"%d\"", ACE_TEXT_ALWAYS_CHAR(Locator_XMLHandler::JACORB_TAG), info.is_jacorb);
+  ACE_OS::fprintf (fp, " %s=\"%d\"", ACE_TEXT_ALWAYS_CHAR(Locator_XMLHandler::PID_TAG), info.pid);
+  ACE_OS::fprintf (fp, " %s= \"%s\"", ACE_TEXT_ALWAYS_CHAR(Locator_XMLHandler::KEYNAME_TAG), keyname.c_str ());
+  ACE_OS::fprintf (fp, " %s= \"%s\"", ACE_TEXT_ALWAYS_CHAR(Locator_XMLHandler::ALTKEY_TAG), altkey.c_str ());
 
   NameValues::const_iterator name_value;
   for (name_value = name_values.begin(); name_value != name_values.end(); ++name_value)
@@ -149,7 +149,7 @@ XML_Backing_Store::persist (FILE* fp,
       for (CORBA::ULong i = 0; i < elen; ++i)
         {
           ACE_OS::fprintf (fp,"%s\t<%s", tag_prepend,
-            Locator_XMLHandler::ENVIRONMENT_TAG);
+            ACE_TEXT_ALWAYS_CHAR(Locator_XMLHandler::ENVIRONMENT_TAG));
           ACE_OS::fprintf (fp," name=\"%s\"", info.env_vars[i].name.in ());
           ACE_CString val = ACEXML_escape_cstring(info.env_vars[i].value.in());
           ACE_OS::fprintf (fp," value=\"%s\"", val.c_str());
@@ -158,13 +158,13 @@ XML_Backing_Store::persist (FILE* fp,
       for (CORBA::ULong i = 0; i < plen; ++i)
         {
           ACE_OS::fprintf (fp,"%s\t<%s", tag_prepend,
-            Locator_XMLHandler::PEER_TAG);
+            ACE_TEXT_ALWAYS_CHAR(Locator_XMLHandler::PEER_TAG));
           ACE_CString name = ACEXML_escape_cstring(info.peers[i].in());
           ACE_OS::fprintf (fp," name=\"%s\"", name.c_str());
           ACE_OS::fprintf (fp,"/>\n");
         }
 
-      ACE_OS::fprintf (fp,"%s</%s>\n", tag_prepend, Locator_XMLHandler::SERVER_INFO_TAG);
+      ACE_OS::fprintf (fp,"%s</%s>\n", tag_prepend, ACE_TEXT_ALWAYS_CHAR(Locator_XMLHandler::SERVER_INFO_TAG));
     }
   else
     {
@@ -179,7 +179,7 @@ XML_Backing_Store::persist (FILE* fp,
                             const NameValues& name_values)
 {
   ACE_OS::fprintf (fp,"%s<%s", tag_prepend,
-    Locator_XMLHandler::ACTIVATOR_INFO_TAG);
+    ACE_TEXT_ALWAYS_CHAR(Locator_XMLHandler::ACTIVATOR_INFO_TAG));
   ACE_OS::fprintf( fp," name=\"%s\"", info.name.c_str ());
   ACE_OS::fprintf (fp," token=\"%d\"", info.token);
   ACE_OS::fprintf (fp," ior=\"%s\"", info.ior.c_str ());
