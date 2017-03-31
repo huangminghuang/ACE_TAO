@@ -1,4 +1,4 @@
-
+ace_requires("NOT ACE_USES_WCHAR")
 ace_add_lib(TAO_IFRService
   DEFINE_SYMBOL TAO_IFRSERVICE_BUILD_DLL
   PACKAGE TAO

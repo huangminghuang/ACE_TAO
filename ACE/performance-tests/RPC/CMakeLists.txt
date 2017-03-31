@@ -2,7 +2,7 @@
 
 find_program(RPCGEN NAMES rpcgen)
 
-ace_requires(RPCGEN)
+ace_requires(RPCGEN "NOT ACE_USES_WCHAR")
 
 ## linux rpcgen requires ping.x to be in the build tree
 configure_file(ping.x ping.x)

@@ -1080,15 +1080,15 @@ ace_add_test_exe(XtMotifReactor_Test
 
 
 
-ace_add_test_exe(XtAthenaReactor_Test
-  LINK_LIBRARIES ACE_XtReactor
-)
+# ace_add_test_exe(XtAthenaReactor_Test
+#   LINK_LIBRARIES ACE_XtReactor
+# )
+#
 
 
-
-ace_add_test_exe(XtAthena3dReactor_Test
-  LINK_LIBRARIES ACE_XtReactor
-)
+# ace_add_test_exe(XtAthena3dReactor_Test
+#   LINK_LIBRARIES ACE_XtReactor
+# )
 
 
 
@@ -1228,9 +1228,16 @@ ace_add_test_exe(Based_Pointer_Test
   REQUIRES BUILD_SHARED_LIBS
 )
 
-ace_add_test_exe(Unload_libACE
+ace_add_exe(Unload_libACE
+  OUTPUT_NAME UnloadLibACE
+  FOLDER ACE/tests
+  LINK_LIBRARIES ACE
   REQUIRES BUILD_SHARED_LIBS
 )
+ace_target_cxx_sources(Unload_libACE
+  SOURCE_FILES Unload_libACE.cpp
+)
+
 
 ace_add_test_exe(Bug_2659_Regression_Test)
 
