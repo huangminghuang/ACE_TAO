@@ -1,4 +1,6 @@
-find_package(zziplib)
+if (NOT ACE_USES_WCHAR)
+  find_package(zziplib)
+endif()
 
 ace_add_lib(ACEXML
   OUTPUT_NAME ACEXML
