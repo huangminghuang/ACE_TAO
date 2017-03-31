@@ -236,4 +236,5 @@
 #error "Compiler must be upgraded, see http://developer.apple.com"
 #endif /* __APPLE_CC__ */
 
+#define ACE_HAS_2_PARAM_ASCTIME_R_AND_CTIME_R
 #endif /* ACE_CONFIG_MACOSX_LEOPARD_H */
