@@ -1,5 +1,5 @@
 ace_target_cxx_sources(TAO_IDL_FE
-  SOURCE_FILES utl_scope_T.cpp
+  TEMPLATE_FILES utl_scope_T.cpp
   HEADER_FILES ast.h
                ast_argument.h
                ast_array.h
