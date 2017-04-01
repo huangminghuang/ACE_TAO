@@ -30,10 +30,11 @@ else()
 endif()
 
 add_subdirectory(TAO_IDL)
-add_subdirectory(tao)
-ace_add_optional_subdirectory(orbsvcs)
-ace_add_optional_subdirectory(tests)
-ace_add_optional_subdirectory(utils)
+if (NOT TAO_IDL_ONLY)
+  add_subdirectory(tao)
+  ace_add_optional_subdirectory(orbsvcs)
+  ace_add_optional_subdirectory(tests)
+  ace_add_optional_subdirectory(utils)
 
 ace_install_package(TAO
   CONFIG_OPTIONS ${TAO_OPTIONS}
@@ -41,3 +42,4 @@ ace_install_package(TAO
   CONFIG_INCLUDE_FILES cmake/tao_aspects.cmake
                        cmake/tao_idl_sources.cmake
 )
+endif()
