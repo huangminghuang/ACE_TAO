@@ -31,17 +31,15 @@ else()
   set(WHITELIST_TARGETS_VAR WHITELIST_TARGETS)
 endif()
 
-add_subdirectory(ace)
-ace_add_optional_subdirectory(ACEXML)
-ace_add_optional_subdirectory(apps)
-ace_add_optional_subdirectory(ASNMP)
-ace_add_optional_subdirectory(protocols)
-ace_add_optional_subdirectory(Kokyu)
-ace_add_optional_subdirectory(netsvcs)
-ace_add_optional_subdirectory(websvcs)
-ace_add_optional_subdirectory(performance-tests)
-ace_add_optional_subdirectory(examples)
-ace_add_optional_subdirectory(tests)
+
+set(ACE_SUBDIRS
+  "ace;ACEXML;apps;ASNMP;protocols;Kokyu;netsvcs;websvcs;performance-tests;examples;tests"
+  CACHE STRING ""
+)
+
+foreach(subdir ${ACE_SUBDIRS})
+  add_subdirectory(${subdir})
+endforeach()
 
 add_subdirectory(bin)
 
