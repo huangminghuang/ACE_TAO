@@ -4,6 +4,13 @@ include(ace_system_checks.cmake)
 
 ## system_name is used for configure the config.h file
 string(TOLOWER ${CMAKE_SYSTEM_NAME} system_name )
+
+if (ACE_FACE_SAFETY STREQUAL "BASE")
+  set(ACE_FACE_SAFETY_BASE ON)
+elseif(ACE_FACE_SAFETY STREQUAL "EXTENDED")
+  set(ACE_FACE_SAFETY_EXTENDED ON)
+endif()
+
 configure_file(config.h.in config.h)
 
 if (ACE_HAS_THREADS)
