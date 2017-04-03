@@ -179,7 +179,7 @@ namespace ACE_TMCast
                   // cerr << "link failure" << endl;
                   throw false;
                 }
-                else if ((data = dynamic_cast<LinkData*> (m.get ())))
+                else if (data = dynamic_cast<LinkData*> (m.get ()))
                 {
 
                   // INSYNC, TL, CT
