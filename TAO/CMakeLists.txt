@@ -29,17 +29,16 @@ else()
   set(WHITELIST_TARGETS_VAR WHITELIST_TARGETS)
 endif()
 
-add_subdirectory(TAO_IDL)
-if (NOT TAO_IDL_ONLY)
-  add_subdirectory(tao)
-  ace_add_optional_subdirectory(orbsvcs)
-  ace_add_optional_subdirectory(tests)
-  ace_add_optional_subdirectory(utils)
+set(TAO_SUBDIRS "TAO_IDL;tao;orbsvcs;utils;tests" CACHE STRING "")
 
-ace_install_package(TAO
-  CONFIG_OPTIONS ${TAO_OPTIONS}
-  PREREQUISITE ACE
-  CONFIG_INCLUDE_FILES cmake/tao_aspects.cmake
-                       cmake/tao_idl_sources.cmake
-)
+foreach(subdir ${TAO_SUBDIRS})
+  add_subdirectory(${subdir})
+endforeach()
+
+if (tao IN_LIST TAO_SUBDIRS)
+  ace_install_package(TAO
+    CONFIG_OPTIONS ${TAO_OPTIONS}
+    PREREQUISITE ACE
+    CONFIG_INCLUDE_FILES cmake/tao_idl_sources.cmake
+  )
 endif()
