@@ -1,3 +1,7 @@
+if (NOT TARGET TAO_IDL_FE)
+  return()
+endif()
+
 if (BISON_FOUND AND FLEX_FOUND AND SED_EXECUTABLE AND NOT ACE_USES_WCHAR)
 
   file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/fe)
@@ -44,6 +48,7 @@ endif()
 target_sources(TAO_IDL_FE
   PRIVATE ${generated_fe_files}
 )
+
 source_group("Generated Files" FILES ${generated_fe_files})
 
 ace_target_cxx_sources(TAO_IDL_FE
