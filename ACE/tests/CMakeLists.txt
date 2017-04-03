@@ -21,7 +21,7 @@ ace_add_lib(Framework_Component_DLL
   FOLDER ACE/tests
   DEFINE_SYMBOL FRAMEWORK_COMPONENT_DLL_BUILD_DLL
   PUBLIC_LINK_LIBRARIES ACE
-  REQUIRES BIULD_SHARED_LIBS
+  REQUIRES BUILD_SHARED_LIBS
 )
 ace_target_cxx_sources(Framework_Component_DLL
   SOURCE_FILES Framework_Component_DLL.cpp
@@ -35,7 +35,7 @@ ace_add_lib(DLL_Test_Parent_Lib
   FOLDER ACE/tests
   DEFINE_SYMBOL DLL_TEST_PARENT_BUILD_DLL
   PUBLIC_LINK_LIBRARIES ACE
-  REQUIRES BIULD_SHARED_LIBS
+  REQUIRES BUILD_SHARED_LIBS
 )
 ace_target_cxx_sources(DLL_Test_Parent_Lib
   SOURCE_FILES DLL_Test_Parent.cpp
@@ -50,7 +50,7 @@ ace_add_lib(DLL_Test_Lib
   FOLDER ACE/tests
   DEFINE_SYMBOL ACE_SVC_BUILD_DLL
   PUBLIC_LINK_LIBRARIES DLL_Test_Parent_Lib
-  REQUIRES BIULD_SHARED_LIBS
+  REQUIRES BUILD_SHARED_LIBS
 )
 ace_target_cxx_sources(DLL_Test_Lib
   SOURCE_FILES DLL_Test_Impl.cpp
@@ -64,7 +64,7 @@ ace_add_lib(Based_Pointer_Test_Lib
   FOLDER ACE/tests
   DEFINE_SYMBOL ACE_SVC_BUILD_DLL
   PUBLIC_LINK_LIBRARIES ACE
-  REQUIRES BIULD_SHARED_LIBS
+  REQUIRES BUILD_SHARED_LIBS
 )
 ace_target_cxx_sources(Based_Pointer_Test_Lib
   SOURCE_FILES Based_Pointer_Test_Lib.cpp
@@ -75,7 +75,7 @@ ace_add_lib(Service_Config_DLL
   FOLDER ACE/tests
   DEFINE_SYMBOL SERVICE_CONFIG_DLL_BUILD_DLL
   PUBLIC_LINK_LIBRARIES ACE
-  REQUIRES BIULD_SHARED_LIBS
+  REQUIRES BUILD_SHARED_LIBS
 )
 ace_target_cxx_sources(Service_Config_DLL
   SOURCE_FILES Service_Config_DLL.cpp
@@ -1290,13 +1290,13 @@ ace_add_test_exe(Bug_3334_Regression_Test
 
 
 ace_add_test_exe(Bug_3912_Regression_Test
-  REQUIRES BIULD_SHARED_LIBS
+  REQUIRES BUILD_SHARED_LIBS
 )
 
 
 
 ace_add_test_exe(Missing_Svc_Conf_Test
-  REQUIRES BIULD_SHARED_LIBS
+  REQUIRES BUILD_SHARED_LIBS
 )
 
 add_subdirectory(SSL)
