@@ -123,10 +123,18 @@ function(tao_idl_command name)
                     )
     get_filename_component(idl_file_path "${idl_file}" ABSOLUTE)
 
+    set(GPERF_LOCATION $<TARGET_FILE:ace_gperf>)
+    if(CMAKE_CONFIGURATION_TYPES)
+      get_target_property(is_gperf_imported ace_gperf IMPORTED)
+      if (is_gperf_imported)
+        set(GPERF_LOCATION $<TARGET_PROPERTY:ace_gperf,LOCATION>)
+      endif(is_gperf_imported)
+    endif(CMAKE_CONFIGURATION_TYPES)
+
     add_custom_command(
       OUTPUT ${_OUTPUT_FILES}
       DEPENDS TAO_IDL_EXE ace_gperf ${idl_file}
-      COMMAND TAO_IDL_EXE -g $<TARGET_FILE:ace_gperf> ${TAO_CORBA_IDL_FLAGS} -Wb,pre_include=ace/pre.h -Wb,post_include=ace/post.h -I${TAO_INCLUDE_DIR} -I${_working_source_dir} ${_converted_flags} ${idl_file_path}
+      COMMAND TAO_IDL_EXE -g ${GPERF_LOCATION} ${TAO_CORBA_IDL_FLAGS} -Wb,pre_include=ace/pre.h -Wb,post_include=ace/post.h -I${TAO_INCLUDE_DIR} -I${_working_source_dir} ${_converted_flags} ${idl_file_path}
       WORKING_DIRECTORY ${_arg_WORKING_DIRECTORY}
       VERBATIM
     )

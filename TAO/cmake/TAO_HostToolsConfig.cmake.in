@@ -1,0 +1,12 @@
+set(TAO_HostTools_DIR ${CMAKE_CURRENT_LIST_DIR})
+
+include(${TAO_HostTools_DIR}/TAO_HostTools_Targets.cmake)
+
+
+set(TAO_HostTools_FOUND 1)
+foreach(target TAO_IDL_EXE ace_gperf)
+  if(NOT TARGET ${target})
+    set(TAO_HostTools_FOUND 0)
+    return()
+  endif()
+endforeach()
