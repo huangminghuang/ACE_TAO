@@ -214,6 +214,11 @@ function(ace_add_lib target)
     )
   endif()
 
+  if (NOT _arg_FOLDER AND ACEUTIL_TOP_LEVEL_FOLDER_DIR AND ACEUTIL_TOP_LEVEL_FOLDER_NAME)
+    file(RELATIVE_PATH folder ${ACEUTIL_TOP_LEVEL_FOLDER_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
+    set(_arg_FOLDER ${ACEUTIL_TOP_LEVEL_FOLDER_NAME}/${folder})
+  endif()
+
   set_target_properties(${target} PROPERTIES
     OUTPUT_NAME "${_arg_OUTPUT_NAME}"
     DEFINE_SYMBOL "${_arg_DEFINE_SYMBOL}"
@@ -286,6 +291,11 @@ function(ace_add_exe target)
     set(version
       VERSION "${${_arg_PACKAGE}_PACKAGE_VERSION}"
     )
+  endif()
+
+  if (NOT _arg_FOLDER AND ACEUTIL_TOP_LEVEL_FOLDER_DIR AND ACEUTIL_TOP_LEVEL_FOLDER_NAME)
+    file(RELATIVE_PATH folder ${ACEUTIL_TOP_LEVEL_FOLDER_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
+    set(_arg_FOLDER ${ACEUTIL_TOP_LEVEL_FOLDER_NAME}/${folder})
   endif()
 
   set_target_properties(${target} PROPERTIES

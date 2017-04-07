@@ -14,6 +14,9 @@ endif()
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/cmake)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+set(ACEUTIL_TOP_LEVEL_FOLDER_NAME TAO)
+set(ACEUTIL_TOP_LEVEL_FOLDER_DIR ${CMAKE_CURRENT_SOURCE_DIR})
+
 option(BUILD_SHARED_LIBS "" ON)
 set(CMAKE_LINK_DEPENDS_NO_SHARED ON)
 
@@ -34,6 +37,8 @@ set(TAO_SUBDIRS "TAO_IDL;tao;orbsvcs;utils;tests" CACHE STRING "")
 foreach(subdir ${TAO_SUBDIRS})
   add_subdirectory(${subdir})
 endforeach()
+
+include(cmake/export_tao_hosttools.cmake)
 
 if (tao IN_LIST TAO_SUBDIRS)
   ace_install_package(TAO
