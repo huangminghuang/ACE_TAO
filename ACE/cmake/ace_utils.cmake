@@ -250,22 +250,6 @@ function(ace_add_lib target)
     )
 
     set(PACKAGE_OF_${target} ${_arg_PACKAGE} CACHE INTERNAL "")
-  else()
-    # First for the generic no-config case (e.g. with mingw)
-    set_target_properties(${target} PROPERTIES
-      ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
-      LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
-      RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
-    )
-    # Second, for multi-config builds (e.g. msvc)
-    foreach( OUTPUTCONFIG ${CMAKE_CONFIGURATION_TYPES} )
-        string( TOUPPER ${OUTPUTCONFIG} OUTPUTCONFIG )
-        set_target_properties(${target} PROPERTIES
-          ARCHIVE_OUTPUT_DIRECTORY_${OUTPUTCONFIG} "${CMAKE_CURRENT_BINARY_DIR}"
-          LIBRARY_OUTPUT_DIRECTORY_${OUTPUTCONFIG} "${CMAKE_CURRENT_BINARY_DIR}"
-          RUNTIME_OUTPUT_DIRECTORY_${OUTPUTCONFIG} "${CMAKE_CURRENT_BINARY_DIR}"
-        )
-    endforeach( OUTPUTCONFIG CMAKE_CONFIGURATION_TYPES )
   endif()
 
 endfunction()
@@ -323,18 +307,6 @@ function(ace_add_exe target)
     )
 
     set(PACKAGE_OF_${target} ${_arg_PACKAGE} CACHE INTERNAL "")
-  else()
-    # First for the generic no-config case (e.g. with mingw)
-    set_target_properties(${target} PROPERTIES
-      RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
-    )
-    # Second, for multi-config builds (e.g. msvc)
-    foreach( OUTPUTCONFIG ${CMAKE_CONFIGURATION_TYPES} )
-        string( TOUPPER ${OUTPUTCONFIG} OUTPUTCONFIG )
-        set_target_properties(${target} PROPERTIES
-          RUNTIME_OUTPUT_DIRECTORY_${OUTPUTCONFIG} "${CMAKE_CURRENT_BINARY_DIR}"
-        )
-    endforeach( OUTPUTCONFIG CMAKE_CONFIGURATION_TYPES )
   endif()
 endfunction()
 
