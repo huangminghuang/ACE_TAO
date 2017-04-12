@@ -2,7 +2,10 @@ if (NOT TARGET TAO_IDL_FE)
   return()
 endif()
 
-if (BISON_FOUND AND FLEX_FOUND AND SED_EXECUTABLE AND NOT ACE_USES_WCHAR)
+if (BISON_FOUND AND FLEX_FOUND AND SED_EXECUTABLE AND NOT ACE_USES_WCHAR AND NOT XCODE_VERSION)
+
+  ## for some unknown reason, generate bison/flex files under Xcode causses the TAO_IDL_BE to be
+  ## always rebuilt.
 
   file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/fe)
 
