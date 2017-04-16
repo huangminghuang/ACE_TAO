@@ -7,8 +7,6 @@ ace_add_lib(TAO_ObjRefTemplate
   PACKAGE TAO
   FOLDER TAO/tao/ObjRefTemplate
   DEFINE_SYMBOL TAO_ORT_BUILD_DLL
-  PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-                             $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
   PUBLIC_LINK_LIBRARIES TAO_AnyTypeCode
                         TAO_Valuetype
                         TAO_PortableServer

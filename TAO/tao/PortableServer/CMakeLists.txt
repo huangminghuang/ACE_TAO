@@ -5,8 +5,6 @@ ace_add_lib(TAO_PortableServer
   PACKAGE TAO
   FOLDER TAO/tao/PortableServer
   DEFINE_SYMBOL TAO_PORTABLESERVER_BUILD_DLL
-  PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-                             $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
   PUBLIC_LINK_LIBRARIES TAO_AnyTypeCode
 )
 ace_target_cxx_sources(TAO_PortableServer

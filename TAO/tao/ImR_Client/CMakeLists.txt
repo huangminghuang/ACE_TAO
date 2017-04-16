@@ -7,8 +7,6 @@ ace_add_lib(TAO_ImR_Client
   PACKAGE TAO
   FOLDER TAO/tao/ImR_Client
   DEFINE_SYMBOL TAO_IMR_CLIENT_BUILD_DLL
-  PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-                             $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
   PUBLIC_LINK_LIBRARIES TAO_IORManip
                         TAO_AnyTypeCode
                         TAO_Valuetype

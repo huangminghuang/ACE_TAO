@@ -5,8 +5,6 @@ ace_add_lib(TAO_Monitor
   PACKAGE TAO
   FOLDER TAO/tao/Monitor
   DEFINE_SYMBOL TAO_MONITOR_BUILD_DLL
-  PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-                             $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
   PUBLIC_LINK_LIBRARIES TAO_PortableServer
                         ACE_Monitor_Control
 )

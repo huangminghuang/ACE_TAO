@@ -220,7 +220,6 @@ function(tao_idl_sources)
     ace_target_sources(${target} PRIVATE ${_idls_ANYOP_FILES} ${_idls_SKEL_FILES} ${_idls_STUB_FILES} ${_arg_IDL_FILES})
   endforeach()
 
-  set(CMAKE_INCLUDE_CURRENT_DIR_IN_INTERFACE ON PARENT_SCOPE)
   set(CMAKE_INCLUDE_CURRENT_DIR ON PARENT_SCOPE)
 
   set_source_files_properties(${_arg_IDL_FILES} ${_idls_SKEL_HEADER_FILES} PROPERTIES HEADER_FILE_ONLY ON)
