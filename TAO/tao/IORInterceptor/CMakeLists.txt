@@ -5,8 +5,6 @@ ace_add_lib(TAO_IORInterceptor
   PACKAGE TAO
   FOLDER TAO/tao/IORInterceptor
   DEFINE_SYMBOL TAO_IORINTERCEPTOR_BUILD_DLL
-  PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-                             $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
   PUBLIC_LINK_LIBRARIES TAO_PI
                         TAO_ObjRefTemplate
                         TAO_PortableServer

@@ -7,7 +7,6 @@
 #cmakedefine ACE_LACKS_ACE_TOKEN
 
 #if _MSC_VER
-#define _CRT_SECURE_NO_WARNINGS
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 #endif
 

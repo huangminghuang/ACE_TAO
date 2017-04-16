@@ -7,8 +7,6 @@ ace_add_lib(TAO_RTScheduler
   PACKAGE TAO
   FOLDER TAO/tao/RTScheduling
   DEFINE_SYMBOL TAO_RTSCHEDULER_BUILD_DLL
-  PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-                             $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
   PUBLIC_LINK_LIBRARIES TAO_PI
                         TAO_PI_Server
                         TAO_PortableServer
