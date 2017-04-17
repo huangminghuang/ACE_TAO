@@ -685,6 +685,10 @@ if(TAO_HAS_CORBA_MESSAGING)
   )
 endif()
 
+if (MSVC)
+  target_compile_options(TAO PUBLIC "/wd4290")
+endif()
+
 ## we need to use include() instead of add_subdirectory() here,
 ## otherwise, cmake have trouble to deduce the dependencies of
 ## the generated files in the current directory
