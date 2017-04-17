@@ -1,12 +1,14 @@
 
 
+set(ORBSVCS_LIB_INCLUDE_DIRS $<BUILD_INTERFACE:${TAO_SOURCE_DIR}/orbsvcs>
+                             $<BUILD_INTERFACE:${TAO_BINARY_DIR}/orbsvcs>
+                             $<INSTALL_INTERFACE:${TAO_INSTALL_DIR}/orbsvcs>)
+
 ace_add_lib(TAO_Svc_Utils
   DEFINE_SYMBOL TAO_SVC_UTILS_BUILD_DLL
   PACKAGE TAO
   FOLDER TAO/orbsvcs/orbsvcs
-  PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
-                             $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/..>
-                             $<INSTALL_INTERFACE:${TAO_INSTALL_DIR}/orbsvcs>
+  PUBLIC_INCLUDE_DIRECTORIES ${ORBSVCS_LIB_INCLUDE_DIRS}
   PUBLIC_LINK_LIBRARIES TAO_PortableServer TAO_AnyTypeCode
 )
 
