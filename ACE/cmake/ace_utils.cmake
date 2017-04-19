@@ -110,6 +110,42 @@ function(ace_target_cxx_sources target)
   if (PACKAGE_OF_${target})
     ace_install_package_files(${PACKAGE_OF_${target}} ${headers} ${inlines} ${templates})
   endif()
+
+  get_property(source_files_properties TARGET ${target} PROPERTY ACE_TARGET_SOURCE_FILES_PROPERTIES)
+  if (source_files_properties)
+    set_source_files_properties(${sources} PROPERTIES ${source_files_properties})
+  endif()
+endfunction()
+
+
+function(ace_target_set_precompiled_header target header)
+  if (MSVC)
+    string(REGEX REPLACE "\\.[^.]*$" "" header_without_ext ${header})
+    set(pch_cpp ${header_without_ext}.cpp)
+    target_compile_definitions(${target} PRIVATE USING_PCH)
+    target_sources(${target} PRIVATE ${pch_cpp})
+
+    if (CMAKE_CONFIGURATION_TYPES)
+      ## intended for MSVC IDE
+      set_target_properties(${target} PROPERTIES COMPILE_FLAGS "/Yu\"${header}\"")
+      set_source_files_properties(${pch_cpp} PROPERTIES COMPILE_FLAGS "/Yc\"${header}\"")
+
+    else(CMAKE_CONFIGURATION_TYPES)
+      ## intended for ninja generator where the dependency between precompiled header and the object uses precompiled
+      ## header needed to be specified explicitly
+      file(TO_NATIVE_PATH "${CMAKE_CURRENT_BINARY_DIR}/CMakeFiles/${target}.dir/${header_without_ext}.pch" pch_object)
+      set(source_files_properties
+        COMPILE_FLAGS "/Yu\"${header}\" /Fp\"${pch_object}\""
+        OBJECT_DEPENDS "${pch_object}")
+
+      set_property(TARGET ${target} PROPERTY ACE_TARGET_SOURCE_FILES_PROPERTIES "${source_files_properties}")
+
+      set_source_files_properties(${pch_cpp} PROPERTIES
+        COMPILE_FLAGS "/Yc\"${header}\" /Fp\"${pch_object}\""
+        OBJECT_OUTPUTS "${pch_object}"
+      )
+    endif(CMAKE_CONFIGURATION_TYPES)
+  endif(MSVC)
 endfunction()
 
 ##  ace_glob_target_cxx_sources(<target> [SUBGROUP <subgroup>])
@@ -194,7 +230,7 @@ endmacro()
 ##
 ##
 function(ace_add_lib target)
-  set(oneValueArgs OUTPUT_NAME DEFINE_SYMBOL PACKAGE FOLDER)
+  set(oneValueArgs OUTPUT_NAME DEFINE_SYMBOL PACKAGE FOLDER PRECOMPILED_HEADER)
   set(multiValueArgs LINK_LIBRARIES
                      PUBLIC_LINK_LIBRARIES
                      INCLUDE_DIRECTORIES
@@ -252,6 +288,10 @@ function(ace_add_lib target)
     set(PACKAGE_OF_${target} ${_arg_PACKAGE} CACHE INTERNAL "")
   endif()
 
+  if (_arg_PRECOMPILED_HEADER)
+    ace_target_set_precompiled_header(${target} ${_arg_PRECOMPILED_HEADER})
+  endif()
+
 endfunction()
 
 
@@ -261,7 +301,7 @@ endfunction()
 ##
 function(ace_add_exe target)
 
-  set(oneValueArgs OUTPUT_NAME PACKAGE FOLDER)
+  set(oneValueArgs OUTPUT_NAME PACKAGE FOLDER PRECOMPILED_HEADER)
   set(multiValueArgs LINK_LIBRARIES
                      INCLUDE_DIRECTORIES
                      COMPILE_DEFINITIONS
@@ -308,6 +348,11 @@ function(ace_add_exe target)
 
     set(PACKAGE_OF_${target} ${_arg_PACKAGE} CACHE INTERNAL "")
   endif()
+
+  if (_arg_PRECOMPILED_HEADER)
+    ace_target_set_precompiled_header(${target} ${_arg_PRECOMPILED_HEADER})
+  endif()
+
 endfunction()
 
 ##  ace_install_package(<PACKAGE_NAME>
