@@ -17,13 +17,15 @@ endforeach()
 set(@package_name@_INCLUDE_DIR @PACKAGE_DIR@ CACHE INTERNAL "")
 
 
-## @package_name@_PACKAGE_BINARY_DIR is the location of build tree when imported
+## @package_name@_BINARY_DIR is the location of build tree when imported
 ## from the built tree; otherwise, it is the location of install tree.
-set(@package_name@_PACKAGE_BINARY_DIR @PACKAGE_BINARY_DIR@ CACHE INTERNAL "")
+set(@package_name@_BINARY_DIR @PACKAGE_BINARY_DIR@ CACHE INTERNAL "")
+
+set(@package_name@_LIB_DIR @PACKAGE_LIB_DIR@ CACHE INTERNAL "")
 
 @CONFIG_OPTIONS@
 
-include("${@package_name@_PACKAGE_BINARY_DIR}/@package_name@Targets.cmake" )
+include("${@package_name@_BINARY_DIR}/@package_name@Targets.cmake" )
 
 foreach(_cmake_file @CONFIG_INCLUDE_FILES@)
   include("${@package_name@_INCLUDE_DIR}/${_cmake_file}")
