@@ -15,12 +15,30 @@ function(ace_add_package name)
     set(_arg_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/share/${name}-${_arg_VERSION})
   endif()
 
-  set(${name}_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR} CACHE INTERNAL "")
   set(${name}_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR} CACHE INTERNAL "")
-  set(${name}_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR} CACHE INTERNAL "")
   set(${name}_INSTALL_DIR ${_arg_INSTALL_DIR} CACHE INTERNAL "")
+  set(${name}_LIB_DIR ${CMAKE_BINARY_DIR}/lib CACHE INTERNAL "")
   set(${name}_PACKAGE_VERSION ${_arg_VERSION} CACHE INTERNAL "")
-  set(${name}_ROOT ${CMAKE_CURRENT_SOURCE_DIR} CACHE INTERNAL "")
+
+
+  option(USE_FOLDERS "Organizing targets into a hierarchy of folders" ON)
+  set_property(GLOBAL PROPERTY USE_FOLDERS ${USE_FOLDERS})
+  set(CMAKE_LINK_DEPENDS_NO_SHARED ON)
+
+  set(${name}_WHITELIST_TARGETS "ALL" CACHE STRING "Whitelist the targets within the subdirectories to be built")
+
+  if (NOT "ALL" STREQUAL "${${name}_WHITELIST_TARGETS}")
+    set(WHITELIST_TARGETS_VAR ${name}_WHITELIST_TARGETS)
+  else()
+    set(WHITELIST_TARGETS_VAR WHITELIST_TARGETS)
+  endif()
+
+  # set(ACEUTIL_TOP_LEVEL_FOLDER_NAME ${name})
+  # set(ACEUTIL_TOP_LEVEL_FOLDER_DIR ${CMAKE_CURRENT_SOURCE_DIR})
+
+  set(ACEUTIL_TOP_LEVEL_FOLDER_NAME ${name} PARENT_SCOPE)
+  set(ACEUTIL_TOP_LEVEL_FOLDER_DIR ${CMAKE_CURRENT_SOURCE_DIR} PARENT_SCOPE)
+  set(WHITELIST_TARGETS_VAR ${WHITELIST_TARGETS_VAR} PARENT_SCOPE)
 endfunction()
 
 ## ace_prepend_if_relative(<outvar> <string> <path> ...)
@@ -188,15 +206,12 @@ macro(ace_requires)
 endmacro()
 
 macro(ace_parse_arguments options oneValueArgs multiValueArgs)
-  if (NOT DEFINED WHITELIST_TARGETS_VAR)
-    set(WHITELIST_TARGETS_VAR WHITELIST_TARGETS)
-  endif()
 
   if (${WHITELIST_TARGETS_VAR})
-    if (NOT target IN_LIST ${WHITELIST_TARGETS_VAR})
+    if (NOT ${target} IN_LIST ${WHITELIST_TARGETS_VAR})
       set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} APPEND PROPERTY ACE_CURRENT_SKIPPED_TARGETS ${target})
       return()
-    endif(NOT target IN_LIST ${WHITELIST_TARGETS_VAR})
+    endif(NOT ${target} IN_LIST ${WHITELIST_TARGETS_VAR})
   endif()
 
   cmake_parse_arguments(_arg "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
@@ -268,9 +283,9 @@ function(ace_add_lib target)
 
   if (_arg_PACKAGE)
     set_target_properties(${target} PROPERTIES
-      ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
-      LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
-      RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
+      ARCHIVE_OUTPUT_DIRECTORY "${${_arg_PACKAGE}_LIB_DIR}"
+      LIBRARY_OUTPUT_DIRECTORY "${${_arg_PACKAGE}_LIB_DIR}"
+      RUNTIME_OUTPUT_DIRECTORY "${${_arg_PACKAGE}_LIB_DIR}"
     )
 
     if (APPLE)
@@ -437,6 +452,7 @@ function(ace_install_package package_name)
   # configure the package config file for build tree
   set(PACKAGE_DIR ${CMAKE_CURRENT_LIST_DIR})
   set(PACKAGE_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR})
+  set(PACKAGE_LIB_DIR ${${package_name}_LIB_DIR})
 
   configure_file(${ACE_CMAKE_DIR}/PackageConfig.cmake.in
                  ${CMAKE_CURRENT_BINARY_DIR}/${package_name}Config.cmake
@@ -447,6 +463,7 @@ function(ace_install_package package_name)
 
   set(PACKAGE_DIR "\${CMAKE_CURRENT_LIST_DIR}")
   set(PACKAGE_BINARY_DIR "\${CMAKE_CURRENT_LIST_DIR}")
+  set(PACKAGE_LIB_DIR "\${CMAKE_CURRENT_LIST_DIR}/lib")
   configure_file(${ACE_CMAKE_DIR}/PackageConfig.cmake.in
                  ${CMAKE_CURRENT_BINARY_DIR}/export/${package_name}Config.cmake
                  @ONLY)

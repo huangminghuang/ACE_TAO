@@ -12,27 +12,14 @@ if (NOT TAO_VERSION)
 endif()
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/cmake)
-
-set_property(GLOBAL PROPERTY USE_FOLDERS ON)
-set(ACEUTIL_TOP_LEVEL_FOLDER_NAME TAO)
-set(ACEUTIL_TOP_LEVEL_FOLDER_DIR ${CMAKE_CURRENT_SOURCE_DIR})
+include(tao_options)
+include(tao_idl_sources)
 
 option(BUILD_SHARED_LIBS "" ON)
-set(CMAKE_LINK_DEPENDS_NO_SHARED ON)
-
-include(cmake/tao_options.cmake)
-include(cmake/tao_aspects.cmake)
-include(cmake/tao_idl_sources.cmake)
 
 ace_add_package(TAO VERSION ${TAO_VERSION})
 
-if (DEFINED TAO_WHITELIST_TARGETS)
-  set(WHITELIST_TARGETS_VAR TAO_WHITELIST_TARGETS)
-else()
-  set(WHITELIST_TARGETS_VAR WHITELIST_TARGETS)
-endif()
-
-set(TAO_SUBDIRS "TAO_IDL;tao;orbsvcs;utils;tests" CACHE STRING "")
+set(TAO_SUBDIRS "TAO_IDL;tao;orbsvcs;utils;tests" CACHE STRING "Specify the TAO subdirectories to be built")
 
 foreach(subdir ${TAO_SUBDIRS})
   add_subdirectory(${subdir})

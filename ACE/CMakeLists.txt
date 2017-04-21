@@ -10,35 +10,20 @@ if (NOT ACE_VERSION)
   string(REGEX MATCH "([0-9]\\.)+[0-9]" ACE_VERSION ${VERSION_FILE_CONTENT})
 endif()
 
-include(cmake/disable_warnings.cmake)
-include(cmake/visibility_check.cmake)
-include(cmake/ace_utils.cmake)
-include(cmake/ace_options.cmake)
-
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/cmake)
-
-set_property(GLOBAL PROPERTY USE_FOLDERS ON)
-
-set(ACEUTIL_TOP_LEVEL_FOLDER_NAME ACE)
-set(ACEUTIL_TOP_LEVEL_FOLDER_DIR ${CMAKE_CURRENT_SOURCE_DIR})
+include(disable_warnings)
+include(visibility_check)
+include(ace_utils)
+include(ace_options)
 
 option(BUILD_SHARED_LIBS "" ON)
-set(CMAKE_LINK_DEPENDS_NO_SHARED ON)
-
-
 enable_testing()
+
 ace_add_package(ACE VERSION ${ACE_VERSION})
-
-if (DEFINED ACE_WHITELIST_TARGETS)
-  set(WHITELIST_TARGETS_VAR ACE_WHITELIST_TARGETS)
-else()
-  set(WHITELIST_TARGETS_VAR WHITELIST_TARGETS)
-endif()
-
 
 set(ACE_SUBDIRS
   "ace;ACEXML;apps;ASNMP;protocols;Kokyu;netsvcs;websvcs;performance-tests;examples;tests"
-  CACHE STRING ""
+  CACHE STRING "Specify the ACE subdirectories to build"
 )
 
 foreach(subdir ${ACE_SUBDIRS})
