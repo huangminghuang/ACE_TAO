@@ -246,7 +246,13 @@ endmacro()
 ##
 ##
 function(ace_add_lib target)
-  set(oneValueArgs OUTPUT_NAME DEFINE_SYMBOL PACKAGE FOLDER PRECOMPILED_HEADER)
+  set(oneValueArgs OUTPUT_NAME
+                   DEFINE_SYMBOL
+                   PACKAGE
+                   FOLDER
+                   PRECOMPILED_HEADER
+                   RUNTIME_OUTPUT_DIRECTORY
+                 )
   set(multiValueArgs LINK_LIBRARIES
                      PUBLIC_LINK_LIBRARIES
                      INCLUDE_DIRECTORIES
@@ -306,7 +312,11 @@ function(ace_add_lib target)
     )
 
     set(PACKAGE_OF_${target} ${_arg_PACKAGE} CACHE INTERNAL "")
-  endif()
+  elseif(_arg_RUNTIME_OUTPUT_DIRECTORY)
+    set_target_properties(${target} PROPERTIES
+      RUNTIME_OUTPUT_DIRECTORY "${_arg_RUNTIME_OUTPUT_DIRECTORY}"
+    )
+  endif(_arg_PACKAGE)
 
   if (_arg_PRECOMPILED_HEADER)
     ace_target_set_precompiled_header(${target} ${_arg_PRECOMPILED_HEADER})
