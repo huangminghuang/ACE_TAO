@@ -387,6 +387,29 @@ int run_main (int, ACE_TCHAR *[])
 #if defined (ACE_HAS_IPV6)
   if (ACE::ipv6_enabled ())
     {
+      char local_host_name[1024];
+      ACE_OS::hostname(local_host_name, 1024);
+      const char* local_names[] = {"localhost", local_host_name};
+
+      for (int i = 0; i < 2; ++i)
+      {
+         ACE_INET_Addr addr;
+         int old_type = addr.get_type();
+         if (addr.set(12345, local_names[i]) == 0) {
+           if (addr.get_type() != old_type) {
+             ACE_ERROR ((LM_ERROR,
+                         ACE_TEXT ("IPv6 set failed: addr.set(12345, \"%s\"), old addr.type() = %d, new addr_type()= %d\n"),
+                         local_names[i],
+                         old_type,
+                         addr.get_type ()));
+             status = 1;
+           }
+         }
+         else {
+           ACE_DEBUG ((LM_DEBUG, ACE_TEXT ("IPv6 set failed: addr.set(12345, \"localhost\") returns nonzero\n")));
+         }
+      }
+
       const char *ipv6_addresses[] = {
         "1080::8:800:200c:417a", // unicast address
         "ff01::101",             // multicast address
