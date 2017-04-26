@@ -58,7 +58,7 @@ function(ace_prepend_if_relative result prepend_string)
 endfunction()
 
 function(ace_install_package_files package)
-  set(package_root ${${package}_ROOT})
+  set(package_root ${${package}_SOURCE_DIR})
   set(package_install_dir ${${package}_INSTALL_DIR})
   file(RELATIVE_PATH rel_path ${package_root} ${CMAKE_CURRENT_LIST_DIR})
   ace_prepend_if_relative(files_to_install ${CMAKE_CURRENT_LIST_DIR} ${ARGN})

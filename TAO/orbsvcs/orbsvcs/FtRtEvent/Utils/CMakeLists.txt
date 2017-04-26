@@ -32,9 +32,9 @@ ace_target_cxx_sources(TAO_FtRtEvent
 tao_idl_sources(
   TARGETS TAO_FtRtEvent
   IDL_FLAGS ${TAO_VERSIONING_IDL_FLAGS}
-            -I${TAO_ROOT}/tao
-            -I${TAO_ROOT}/orbsvcs
-            -I${TAO_ROOT}/orbsvcs/orbsvcs
+            -I${TAO_INCLUDE_DIR}/tao
+            -I${TAO_INCLUDE_DIR}/orbsvcs
+            -I${TAO_INCLUDE_DIR}/orbsvcs/orbsvcs
             -Wb,export_macro=TAO_FtRtEvent_Export
             -Wb,export_include=orbsvcs/FtRtEvent/Utils/ftrtevent_export.h
   IDL_FILES ../../FtRtecEventChannelAdmin.idl
@@ -44,9 +44,9 @@ tao_idl_sources(
 tao_idl_sources(
   TARGETS TAO_FtRtEvent
   IDL_FLAGS ${TAO_VERSIONING_IDL_FLAGS}
-            -I${TAO_ROOT}/tao
-            -I${TAO_ROOT}/orbsvcs
-            -I${TAO_ROOT}/orbsvcs/orbsvcs
+            -I${TAO_INCLUDE_DIR}/tao
+            -I${TAO_INCLUDE_DIR}/orbsvcs
+            -I${TAO_INCLUDE_DIR}/orbsvcs/orbsvcs
             -GC -Wb,export_macro=TAO_FtRtEvent_Export
             -Wb,export_include=orbsvcs/FtRtEvent/Utils/ftrtevent_export.h
   IDL_FILES ../../FTRT.idl

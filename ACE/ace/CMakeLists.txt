@@ -1,7 +1,7 @@
 
 
 include(ace_system_checks.cmake)
-
+include(CheckCXXSourceCompiles)
 ## system_name is used for configure the config.h file
 string(TOLOWER ${CMAKE_SYSTEM_NAME} system_name )
 

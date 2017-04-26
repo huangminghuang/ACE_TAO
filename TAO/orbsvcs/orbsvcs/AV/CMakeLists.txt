@@ -76,9 +76,9 @@ ace_target_cxx_sources(TAO_AV
 tao_idl_sources(
   TARGETS TAO_AV
   IDL_FLAGS ${TAO_VERSIONING_IDL_FLAGS}
-            -I${TAO_ROOT}/tao
-            -I${TAO_ROOT}/orbsvcs
-            -I${TAO_ROOT}/orbsvcs/orbsvcs
+            -I${TAO_INCLUDE_DIR}/tao
+            -I${TAO_INCLUDE_DIR}/orbsvcs
+            -I${TAO_INCLUDE_DIR}/orbsvcs/orbsvcs
             -Wb,export_macro=TAO_AV_Export
             -Wb,export_include=orbsvcs/AV/AV_export.h
   IDL_FILES  ../AVStreams.idl

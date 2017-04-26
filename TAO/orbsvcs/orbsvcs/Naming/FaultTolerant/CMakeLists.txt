@@ -21,7 +21,7 @@ tao_idl_sources(
             -I${CMAKE_CURRENT_SOURCE_DIR}/../..
             -GC -Wb,export_macro=TAO_FtNaming_Intf_Export
             -Wb,export_include=orbsvcs/Naming/FaultTolerant/ftnaming_intf_export.h
-            -I${TAO_ROOT}/tao
+            -I${TAO_INCLUDE_DIR}/tao
   IDL_FILES ../../FT_NamingManager.idl
   WORKING_DIRECTORY ../..
 )
@@ -44,7 +44,7 @@ tao_idl_sources(
   IDL_FLAGS ${TAO_VERSIONING_IDL_FLAGS}
             -I${CMAKE_CURRENT_SOURCE_DIR}/../../..
             -I${CMAKE_CURRENT_SOURCE_DIR}/../..
-            -I${TAO_ROOT}/tao
+            -I${TAO_INCLUDE_DIR}/tao
             -GC -Wb,export_macro=TAO_FtNaming_Export
             -Wb,export_include=orbsvcs/Naming/FaultTolerant/ftnaming_export.h
   IDL_FILES ../../FT_NamingReplication.idl

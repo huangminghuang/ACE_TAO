@@ -181,7 +181,7 @@ tao_idl_sources(
   STUB_TARGETS TAO_RTEventLogAdmin
   SKEL_TARGETS TAO_RTEventLogAdmin_Skel
   IDL_FLAGS ${TAO_VERSIONING_IDL_FLAGS}
-            -I${TAO_ROOT}/tao
+            -I${TAO_INCLUDE_DIR}/tao
             -I${CMAKE_CURRENT_SOURCE_DIR}/../..
             -I${CMAKE_CURRENT_SOURCE_DIR}/..
             -Wb,stub_export_macro=TAO_RTEventLog_Export
