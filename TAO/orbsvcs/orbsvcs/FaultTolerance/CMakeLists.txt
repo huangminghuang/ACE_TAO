@@ -109,7 +109,7 @@ ace_target_cxx_sources(TAO_FaultTolerance
 tao_idl_sources(
   TARGETS TAO_FaultTolerance
   IDL_FLAGS ${TAO_VERSIONING_IDL_FLAGS}
-            -I${TAO_ROOT}/tao
+            -I${TAO_INCLUDE_DIR}/tao
             -I${CMAKE_CURRENT_SOURCE_DIR}/../..
             -I${CMAKE_CURRENT_SOURCE_DIR}/..
             -Wb,export_macro=TAO_FT_Export

@@ -3,7 +3,6 @@
 ace_add_exe(asnmp_agent
   OUTPUT_NAME agent
   FOLDER ACE/ASNMP/agent
-  INCLUDE_DIRECTORIES ${ACE_ROOT}/ASNMP
   LINK_LIBRARIES asnmp_lib
                  ACE
 )

@@ -34,7 +34,7 @@ tao_idl_sources(
   IDL_FLAGS ${TAO_VERSIONING_IDL_FLAGS}
             -Wb,export_macro=TAO_Notify_MC_Ext_Export
             -Wb,export_include=orbsvcs/Notify/MonitorControlExt/notify_mc_ext_export.h
-            -I${TAO_ROOT}/tao
-            -I${TAO_ROOT}/orbsvcs
+            -I${TAO_INCLUDE_DIR}/tao
+            -I${TAO_INCLUDE_DIR}/orbsvcs
   IDL_FILES NotifyMonitoringExt.idl
 )

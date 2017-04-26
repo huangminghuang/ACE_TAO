@@ -18,10 +18,10 @@ ace_target_cxx_sources(TAO_Async_ImR_Client_IDL
 
 set(TAO_Async_ImR_Client_IDL_FLAGS ${TAO_VERSIONING_IDL_FLAGS}
                                    -Gp -Gd -Sorb
-                                   -I${TAO_ROOT}/tao/ImR_Client
+                                   -I${TAO_INCLUDE_DIR}/tao/ImR_Client
                                    -Wb,export_macro=Async_IMR_Client_Export
                                    -Wb,export_include=async_imr_client_export.h
-                                   -I${TAO_ROOT}/orbsvcs)
+                                   -I${TAO_INCLUDE_DIR}/orbsvcs)
 tao_idl_sources(
   TARGETS TAO_Async_ImR_Client_IDL
   IDL_FLAGS ${TAO_Async_ImR_Client_IDL_FLAGS}
@@ -60,8 +60,8 @@ tao_idl_sources(
   IDL_FLAGS ${TAO_VERSIONING_IDL_FLAGS}
             -Wb,export_macro=ActivatorIDL_Export
             -Wb,export_include=activator_idl_export.h
-            -I${TAO_ROOT}/tao/ImR_Client
-            -I${TAO_ROOT}/orbsvcs -GH -GC
+            -I${TAO_INCLUDE_DIR}/tao/ImR_Client
+            -I${TAO_INCLUDE_DIR}/orbsvcs -GH -GC
   IDL_FILES ImR_Activator.idl
 )
 
@@ -90,8 +90,8 @@ tao_idl_sources(
   IDL_FLAGS ${TAO_VERSIONING_IDL_FLAGS}
             -Wb,export_macro=LocatorIDL_Export
             -Wb,export_include=locator_idl_export.h
-            -I${TAO_ROOT}/tao/ImR_Client
-            -I${TAO_ROOT}/orbsvcs -GH
+            -I${TAO_INCLUDE_DIR}/tao/ImR_Client
+            -I${TAO_INCLUDE_DIR}/orbsvcs -GH
   IDL_FILES ImR_Locator.idl
 )
 

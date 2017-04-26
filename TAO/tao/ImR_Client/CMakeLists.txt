@@ -36,7 +36,7 @@ tao_idl_sources(
   TARGETS TAO_ImR_Client
   IDL_FLAGS ${ImR_Client_Idl_FLAGS} -Gp
             -Gd -Sorb -GX
-            -I${TAO_ROOT}/tao/ImR_Client
+            -I${TAO_INCLUDE_DIR}/tao/ImR_Client
             -Wb,export_macro=TAO_IMR_Client_Export
             -Wb,export_include=tao/ImR_Client/imr_client_export.h
             -iC tao/ImR_Client
