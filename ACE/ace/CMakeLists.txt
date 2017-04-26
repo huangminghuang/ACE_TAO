@@ -51,6 +51,19 @@ ace_add_lib(ACE
   PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
                              $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/..>
 )
+
+if (CMAKE_COMPILER_IS_GNUCXX OR (CMAKE_CXX_COMPILER_ID MATCHES "Clang"))
+  check_cxx_source_compiles("
+    #include <memory>
+    int main() {
+      std::unique_ptr<int> x;
+      return 0;
+    }
+  " HAVE_STD_UNIQUE_PTR)
+  target_compile_options(ACE PUBLIC -Wno-deprecated)
+endif(CMAKE_COMPILER_IS_GNUCXX OR (CMAKE_CXX_COMPILER_ID MATCHES "Clang"))
+
+
 ace_target_cxx_sources(ACE
   SOURCE_FILES ACE.cpp
                ACE_crc32.cpp
