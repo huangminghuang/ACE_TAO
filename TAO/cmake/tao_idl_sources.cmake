@@ -134,7 +134,7 @@ function(tao_idl_command name)
     add_custom_command(
       OUTPUT ${_OUTPUT_FILES}
       DEPENDS TAO_IDL_EXE ace_gperf ${idl_file}
-      COMMAND TAO_IDL_EXE -g ${GPERF_LOCATION} ${TAO_CORBA_IDL_FLAGS} -Wb,pre_include=ace/pre.h -Wb,post_include=ace/post.h -I${TAO_INCLUDE_DIR} -I${_working_source_dir} ${_converted_flags} ${idl_file_path}
+      COMMAND TAO_IDL_EXE -g ${GPERF_LOCATION} ${TAO_CORBA_IDL_FLAGS} -Sg -Wb,pre_include=ace/pre.h -Wb,post_include=ace/post.h -I${TAO_INCLUDE_DIR} -I${_working_source_dir} ${_converted_flags} ${idl_file_path}
       WORKING_DIRECTORY ${_arg_WORKING_DIRECTORY}
       VERBATIM
     )

@@ -1,6 +1,6 @@
 
 project(Mem_Map_File_Reverse CXX)
-cmake_minimum_required(VERSION 3.3)
+cmake_minimum_required(VERSION 3.4)
 
 if (NOT TARGET ACE)
   find_package(ACE REQUIRED CONFIG)

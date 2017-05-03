@@ -1,5 +1,5 @@
 project(TAO)
-cmake_minimum_required(VERSION 3.3)
+cmake_minimum_required(VERSION 3.4)
 
 if(NOT TARGET ACE)
   find_package(ACE REQUIRED COMPONENTS ace_gperf CONFIG)
@@ -11,9 +11,10 @@ if (NOT TAO_VERSION)
   string(REGEX MATCH "([0-9]\\.)+[0-9]" TAO_VERSION ${VERSION_FILE_CONTENT})
 endif()
 
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/cmake)
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/cmake ${ACE_INCLUDE_DIR}/cmake)
 include(tao_options)
 include(tao_idl_sources)
+include(try_enable_ccache)
 
 option(BUILD_SHARED_LIBS "" ON)
 

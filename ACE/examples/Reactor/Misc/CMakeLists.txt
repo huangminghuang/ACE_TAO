@@ -1,6 +1,6 @@
 
 project(Reactor_Misc CXX)
-cmake_minimum_required(VERSION 3.3)
+cmake_minimum_required(VERSION 3.4)
 
 if (NOT TARGET ACE)
   find_package(ACE REQUIRED CONFIG)
