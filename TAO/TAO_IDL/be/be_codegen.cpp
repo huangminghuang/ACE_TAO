@@ -2348,6 +2348,10 @@ TAO_CodeGen::gen_ifndef_string (const char *fname,
 
       this->make_rand_extension (t);
     }
+  else
+    {
+      this->make_hash_extension (macro_name, fname);
+    }
 
   ACE_OS::strcat (macro_name, suffix);
 
@@ -3808,6 +3812,19 @@ TAO_CodeGen::make_rand_extension (char * const t)
 
       t[n] = static_cast<char> (ACE_OS::ace_toupper (r));
     }
+}
+
+void
+TAO_CodeGen::make_hash_extension(char * const t, const char* fname)
+{
+  char cwd_path[MAXPATHLEN+1];
+  if (ACE_OS::getcwd(cwd_path, MAXPATHLEN+1) == 0) {
+    ACE_ERROR((LM_ERROR, ACE_TEXT("Could not get current directory\n")));
+  }
+  int len = ACE_OS::strlen(cwd_path);
+  ACE_OS::snprintf( cwd_path + len, MAXPATHLEN+1-len, "/%s", fname);
+  u_long hash_value = ACE::hash_pjw(cwd_path);
+  ACE_OS::snprintf(t + ACE_OS::strlen(t),sizeof(u_long)+2, "_%lX", hash_value);
 }
 
 void

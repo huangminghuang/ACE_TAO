@@ -434,6 +434,7 @@ private:
                         bool for_skel = false);
 
   void make_rand_extension (char * const t);
+  void make_hash_extension (char * const t, const char* fname);
 
   void gen_conn_ts_includes (ACE_Unbounded_Queue<char *> &ts_files);
 
