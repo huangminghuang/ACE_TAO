@@ -4,7 +4,7 @@ if(CCACHE_PROGRAM)
     # Set up wrapper scripts
     set(CXX_LAUNCHER "${CCACHE_PROGRAM}")
 
-    file(WRITE ${CMAKE_BINARY_DIR}/launch-cxx "#!/bin/sh\nif [[ \"$1\" = \"${CMAKE_CXX_COMPILER}\" ]] ; then shift; fi\nexport CCACHE_CPP2=true\nexec \"${CXX_LAUNCHER}\" \"${CMAKE_CXX_COMPILER}\" \"$@\"")
+    file(WRITE ${CMAKE_BINARY_DIR}/launch-cxx "#!/bin/bash\nif [[ \"$1\" = \"${CMAKE_CXX_COMPILER}\" ]] ; then shift; fi\nexport CCACHE_CPP2=true\nexec \"${CXX_LAUNCHER}\" \"${CMAKE_CXX_COMPILER}\" \"$@\"")
     execute_process(COMMAND chmod a+rx "${CMAKE_BINARY_DIR}/launch-cxx")
 
     if(CMAKE_GENERATOR STREQUAL "Xcode")
