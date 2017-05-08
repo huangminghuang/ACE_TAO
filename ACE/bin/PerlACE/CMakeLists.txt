@@ -1,4 +1,5 @@
 
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/
         DESTINATION ${ACE_INSTALL_DIR}/bin/PerlACE
+        COMPONENT ACE
         PATTERN "CMakeLists.txt" EXCLUDE)

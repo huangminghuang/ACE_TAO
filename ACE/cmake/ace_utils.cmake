@@ -63,7 +63,8 @@ function(ace_install_package_files package)
   file(RELATIVE_PATH rel_path ${package_root} ${CMAKE_CURRENT_LIST_DIR})
   ace_prepend_if_relative(files_to_install ${CMAKE_CURRENT_LIST_DIR} ${ARGN})
   install(FILES ${files_to_install}
-          DESTINATION ${package_install_dir}/${rel_path})
+          DESTINATION ${package_install_dir}/${rel_path}
+          COMPONENT ${package})
 endfunction()
 
 
@@ -301,6 +302,7 @@ function(ace_add_lib target)
             LIBRARY DESTINATION ${${_arg_PACKAGE}_INSTALL_DIR}/lib
             ARCHIVE DESTINATION ${${_arg_PACKAGE}_INSTALL_DIR}/lib
             INCLUDES DESTINATION ${${_arg_PACKAGE}_INSTALL_DIR}
+            COMPONENT ${_arg_PACKAGE}
     )
 
     set(PACKAGE_OF_${target} ${_arg_PACKAGE} CACHE INTERNAL "")
@@ -308,7 +310,8 @@ function(ace_add_lib target)
 
   if (_arg_PRECOMPILED_HEADER)
     ace_target_set_precompiled_header(${target} ${_arg_PRECOMPILED_HEADER})
-  elseif (MSVC)
+  elseif (MSVC AND NOT MSVC_IDE)
+    ### using /MP option does not work well with targets with idl generated files.
     target_compile_options(${target} PRIVATE "/MP")
   endif()
 
@@ -368,6 +371,7 @@ function(ace_add_exe target)
     install(TARGETS ${target}
             EXPORT "${_arg_PACKAGE}Targets"
             RUNTIME DESTINATION ${${_arg_PACKAGE}_INSTALL_DIR}/bin
+            COMPONENT ${_arg_PACKAGE}
     )
 
     set(PACKAGE_OF_${target} ${_arg_PACKAGE} CACHE INTERNAL "")
@@ -430,7 +434,7 @@ function(ace_install_package package_name)
     install(
       FILES ${_file}
       DESTINATION ${install_dir}/${_file}
-      COMPONENT Devel
+      COMPONENT ${package_name}
     )
   endforeach()
 
@@ -489,13 +493,14 @@ function(ace_install_package package_name)
   install(EXPORT ${package_name}Targets
     FILE ${package_name}Targets.cmake
     DESTINATION ${install_dir}
+    COMPONENT ${package_name}
   )
 
   install(
     FILES "${CMAKE_CURRENT_BINARY_DIR}/export/${package_name}Config.cmake"
           "${CMAKE_CURRENT_BINARY_DIR}/${package_name}ConfigVersion.cmake"
     DESTINATION ${install_dir}
-    COMPONENT Devel
+    COMPONENT ${package_name}
   )
 
   # This makes the project importable from the build directory
@@ -535,13 +540,4 @@ function(ace_target_qt_sources target)
       message(SEND_ERROR "You are on an unsupported platform! (Not Win32, Mac OS X or Unix)")
     endif(WIN32)
   endif(TARGET ${target})
-endfunction()
-
-function(ace_add_optional_subdirectory dir)
-  file(RELATIVE_PATH rel_dir ${CMAKE_HOME_DIRECTORY} ${CMAKE_CURRENT_SOURCE_DIR}/${dir})
-  string(REPLACE "/" "_" VAR ${rel_dir})
-  option(BUILD_${VAR} "" ON)
-  if (${BUILD_${VAR}})
-    add_subdirectory(${dir})
-  endif()
 endfunction()

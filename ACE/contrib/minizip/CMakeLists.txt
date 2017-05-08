@@ -19,9 +19,14 @@ if (ZLIB_FOUND)
           EXPORT  minizipConfig
           LIBRARY DESTINATION lib
           ARCHIVE DESTINATION lib
-          PUBLIC_HEADER DESTINATION "include")
+          PUBLIC_HEADER DESTINATION "include"
+          COMPONENT minizip
+        )
 
-  install(EXPORT minizipConfig DESTINATION lib/minizip/cmake)
+  install(EXPORT minizipConfig
+          DESTINATION lib/minizip/cmake
+          COMPONENT minizip
+  )
   # This makes the project importable from the build directory
   export(PACKAGE minizip)
   export(TARGETS minizip FILE minizipConfig.cmake)
