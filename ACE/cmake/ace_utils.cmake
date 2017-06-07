@@ -7,6 +7,12 @@ endif()
 
 set(ACE_CMAKE_DIR ${CMAKE_CURRENT_LIST_DIR} CACHE INTERNAL "")
 
+list(LENGTH CMAKE_CONFIGURATION_TYPES ACE_CMAKE_CONFIGURATION_TYPES_LEN)
+
+if (ACE_CMAKE_CONFIGURATION_TYPES_LEN GREATER 1)
+  set(ACE_MULTI_CONFIGURATION_GENERATOR ON)
+endif()
+
 function(ace_add_package name)
   set(oneValueArgs VERSION INSTALL_DIRECTORY)
   cmake_parse_arguments(_arg "" "${oneValueArgs}" "" ${ARGN})
@@ -145,11 +151,11 @@ function(ace_target_set_precompiled_header target header)
     target_compile_definitions(${target} PRIVATE USING_PCH)
     target_sources(${target} PRIVATE ${pch_cpp})
 
-    if (CMAKE_CONFIGURATION_TYPES)
-      ## intended for MSVC IDE
+    if (CMAKE_GENERATOR MATCHES "Visual Studio ")
+      ## intended for MS Build
       set_target_properties(${target} PROPERTIES COMPILE_FLAGS "/Yu\"${header}\" /MP")
       set_source_files_properties(${pch_cpp} PROPERTIES COMPILE_FLAGS "/Yc\"${header}\"")
-    else(CMAKE_CONFIGURATION_TYPES)
+    else(CMAKE_GENERATOR MATCHES "Visual Studio ")
       ## intended for ninja generator where the dependency between precompiled header and the object uses precompiled
       ## header needed to be specified explicitly
       file(TO_NATIVE_PATH "${CMAKE_CURRENT_BINARY_DIR}/CMakeFiles/${target}.dir/${header_without_ext}.pch" pch_object)
@@ -163,7 +169,7 @@ function(ace_target_set_precompiled_header target header)
         COMPILE_FLAGS "/Yc\"${header}\" /Fp\"${pch_object}\""
         OBJECT_OUTPUTS "${pch_object}"
       )
-    endif(CMAKE_CONFIGURATION_TYPES)
+    endif(CMAKE_GENERATOR MATCHES "Visual Studio ")
   endif(MSVC)
 endfunction()
 
@@ -298,6 +304,14 @@ function(ace_add_lib target)
       RUNTIME_OUTPUT_DIRECTORY "${${_arg_PACKAGE}_BIN_DIR}"
     )
 
+    if (ACE_CMAKE_CONFIGURATION_TYPES_LEN EQUAL 1)
+      set_target_properties(${target} PROPERTIES
+        ARCHIVE_OUTPUT_DIRECTORY_${CMAKE_CONFIGURATION_TYPES} "${${_arg_PACKAGE}_LIB_DIR}"
+        LIBRARY_OUTPUT_DIRECTORY_${CMAKE_CONFIGURATION_TYPES} "${${_arg_PACKAGE}_LIB_DIR}"
+        RUNTIME_OUTPUT_DIRECTORY_${CMAKE_CONFIGURATION_TYPES} "${${_arg_PACKAGE}_BIN_DIR}"
+      )
+    endif(ACE_CMAKE_CONFIGURATION_TYPES_LEN EQUAL 1)
+
     if (APPLE)
       set_target_properties(${target} PROPERTIES
         INSTALL_RPATH “@loader_path”)
@@ -313,8 +327,23 @@ function(ace_add_lib target)
 
     set(PACKAGE_OF_${target} ${_arg_PACKAGE} CACHE INTERNAL "")
   elseif(_arg_RUNTIME_OUTPUT_DIRECTORY)
+
     set_target_properties(${target} PROPERTIES
       RUNTIME_OUTPUT_DIRECTORY "${_arg_RUNTIME_OUTPUT_DIRECTORY}"
+    )
+
+    foreach(CONFIG_TYPE CMAKE_CONFIGURATION_TYPES)
+      set_target_properties(${target} PROPERTIES
+        ARCHIVE_OUTPUT_DIRECTORY_${CONFIG_TYPE} "${_arg_RUNTIME_OUTPUT_DIRECTORY}/${CONFIG_TYPE}"
+        LIBRARY_OUTPUT_DIRECTORY_${CONFIG_TYPE} "${_arg_RUNTIME_OUTPUT_DIRECTORY}/${CONFIG_TYPE}"
+        RUNTIME_OUTPUT_DIRECTORY_${CONFIG_TYPE} "${_arg_RUNTIME_OUTPUT_DIRECTORY}/${CONFIG_TYPE}"
+      )
+    endforeach(CONFIG_TYPE CMAKE_CONFIGURATION_TYPES)
+  elseif(ACE_CMAKE_CONFIGURATION_TYPES_LEN EQUAL 1)
+    set_target_properties(${target} PROPERTIES
+      ARCHIVE_OUTPUT_DIRECTORY_${CMAKE_CONFIGURATION_TYPES} "${CMAKE_CURRENT_BINARY_DIR}"
+      LIBRARY_OUTPUT_DIRECTORY_${CMAKE_CONFIGURATION_TYPES} "${CMAKE_CURRENT_BINARY_DIR}"
+      RUNTIME_OUTPUT_DIRECTORY_${CMAKE_CONFIGURATION_TYPES} "${CMAKE_CURRENT_BINARY_DIR}"
     )
   endif(_arg_PACKAGE)
 
@@ -372,6 +401,11 @@ function(ace_add_exe target)
     set_target_properties(${target} PROPERTIES
       RUNTIME_OUTPUT_DIRECTORY "${${_arg_PACKAGE}_BIN_DIR}"
     )
+    if (ACE_CMAKE_CONFIGURATION_TYPES_LEN EQUAL 1)
+      set_target_properties(${target} PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY_${CMAKE_CONFIGURATION_TYPES} "${${_arg_PACKAGE}_BIN_DIR}"
+      )
+    endif()
 
     if (APPLE)
       set_target_properties(${target} PROPERTIES
@@ -385,6 +419,10 @@ function(ace_add_exe target)
     )
 
     set(PACKAGE_OF_${target} ${_arg_PACKAGE} CACHE INTERNAL "")
+  elseif(ACE_CMAKE_CONFIGURATION_TYPES_LEN EQUAL 1)
+    set_target_properties(${target} PROPERTIES
+      RUNTIME_OUTPUT_DIRECTORY_${CMAKE_CONFIGURATION_TYPES} "${CMAKE_CURRENT_BINARY_DIR}"
+    )
   endif()
 
   if (_arg_PRECOMPILED_HEADER)

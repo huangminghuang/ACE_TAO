@@ -101,9 +101,11 @@ function(ace_add_test_exe target)
   if (WIN32 AND BUILD_SHARED_LIBS)
     set(path $ENV{PATH})
     file(TO_NATIVE_PATH "${ACE_BINARY_DIR}/bin" ace_bin)
-    if (CMAKE_CONFIGURATION_TYPES)
+
+    if (ACE_MULTI_CONFIGURATION_GENERATOR)
       set(ace_bin "${ace_bin}\\${CONFIG}")
-    endif(CMAKE_CONFIGURATION_TYPES)
+    endif(ACE_MULTI_CONFIGURATION_GENERATOR)
+
     string(REPLACE ";" "\\;" path "${ace_bin};${path}")
     set_tests_properties("${name}" PROPERTIES
       ENVIRONMENT "PATH=${path}"
