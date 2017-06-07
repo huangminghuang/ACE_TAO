@@ -40,9 +40,7 @@ ace_install_package(ACE
   OPTIONAL_PACKAGES Qt4
 )
 
-
 include (InstallRequiredSystemLibraries)
-set(CPACK_COMPONENTS_ALL Common Unspecified Unspecified)
 set(CPACK_PACKAGE_FILE_NAME "ACE")
 set(CPACK_OUTPUT_CONFIG_FILE "CPackConfig-ACE.cmake")
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/COPYING")

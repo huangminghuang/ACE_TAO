@@ -12,7 +12,7 @@ function(ace_add_package name)
   cmake_parse_arguments(_arg "" "${oneValueArgs}" "" ${ARGN})
 
   if (NOT _arg_INSTALL_DIR)
-    set(_arg_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/share/${name}-${_arg_VERSION})
+    set(_arg_INSTALL_DIR share/${name}-${_arg_VERSION})
   endif()
 
   set(${name}_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR} CACHE INTERNAL "")
@@ -453,11 +453,10 @@ function(ace_install_package package_name)
         ## this means the ${pkg} is defined in our source tree
         string(CONCAT PREREQUISITE_LOCATIONS "${PREREQUISITE_LOCATIONS}" "set(${pkg}_DIR ${${pkg}_BINARY_DIR})\n")
         ## we need relative path for prerequiste config locations
-        file(RELATIVE_PATH rel_path ${${package_name}_INSTALL_DIR} ${${pkg}_INSTALL_DIR})
+        file(RELATIVE_PATH rel_path ${CMAKE_INSTALL_PREFIX}/${${package_name}_INSTALL_DIR} ${CMAKE_INSTALL_PREFIX}/${${pkg}_INSTALL_DIR})
         string(CONCAT PREREQUISITE_LOCATIONS_FOR_INSTALL "${PREREQUISITE_LOCATIONS_FOR_INSTALL}" "set(${pkg}_DIR \${CMAKE_CURRENT_LIST_DIR}/${rel_path})\n")
       else()
         ## this means the ${pkg} is imported from find_package() statement
-        ## this means the ${pkg} is defined in our source tree
         string(CONCAT PREREQUISITE_LOCATIONS "${PREREQUISITE_LOCATIONS}" "set(${pkg}_DIR ${${pkg}_DIR})\n")
         string(CONCAT PREREQUISITE_LOCATIONS_FOR_INSTALL "${PREREQUISITE_LOCATIONS_FOR_INSTALL}" "set(${pkg}_DIR ${${pkg}_DIR})\n")
       endif()
