@@ -80,7 +80,7 @@ function(ace_install_package_files package)
   ace_prepend_if_relative(files_to_install ${CMAKE_CURRENT_LIST_DIR} ${ARGN})
   install(FILES ${files_to_install}
           DESTINATION ${package_install_dir}/${rel_path}
-          COMPONENT ${package})
+          COMPONENT ${package}_devel)
 endfunction()
 
 
@@ -321,13 +321,16 @@ function(ace_add_lib target)
 
     install(TARGETS ${target}
             EXPORT  "${_arg_PACKAGE}Targets"
-            LIBRARY DESTINATION ${${_arg_PACKAGE}_INSTALL_DIR}/lib
-            ARCHIVE DESTINATION ${${_arg_PACKAGE}_INSTALL_DIR}/lib
-            INCLUDES DESTINATION ${${_arg_PACKAGE}_INSTALL_DIR}
-            COMPONENT ${_arg_PACKAGE}
+            LIBRARY DESTINATION ${${_arg_PACKAGE}_INSTALL_DIR}/lib COMPONENT ${_arg_PACKAGE}_devel
+            ARCHIVE DESTINATION ${${_arg_PACKAGE}_INSTALL_DIR}/lib COMPONENT ${_arg_PACKAGE}_devel
+            RUNTIME DESTINATION ${${_arg_PACKAGE}_INSTALL_DIR}/bin COMPONENT ${_arg_PACKAGE}_runtime
+            INCLUDES DESTINATION ${${_arg_PACKAGE}_INSTALL_DIR} COMPONENT ${_arg_PACKAGE}_devel
     )
 
     set(PACKAGE_OF_${target} ${_arg_PACKAGE} CACHE INTERNAL "")
+
+    set_property(GLOBAL APPEND PROPERTY ${_arg_PACKAGE}_LIB_TARGET_LIST ${target})
+
   elseif(_arg_RUNTIME_OUTPUT_DIRECTORY)
 
     set_target_properties(${target} PROPERTIES
@@ -369,7 +372,7 @@ endfunction()
 ##
 function(ace_add_exe target)
 
-  set(oneValueArgs OUTPUT_NAME PACKAGE FOLDER PRECOMPILED_HEADER)
+  set(oneValueArgs OUTPUT_NAME PACKAGE FOLDER PRECOMPILED_HEADER COMPONENT)
   set(multiValueArgs LINK_LIBRARIES
                      INCLUDE_DIRECTORIES
                      COMPILE_DEFINITIONS
@@ -409,13 +412,19 @@ function(ace_add_exe target)
         INSTALL_RPATH “@loader_path/../lib”)
     endif()
 
+    if (NOT _arg_COMPONENT)
+      set(_arg_COMPONENT ${_arg_PACKAGE}_runtime)
+    endif()
+
     install(TARGETS ${target}
             EXPORT "${_arg_PACKAGE}Targets"
             RUNTIME DESTINATION ${${_arg_PACKAGE}_INSTALL_DIR}/bin
-            COMPONENT ${_arg_PACKAGE}
+            COMPONENT ${_arg_COMPONENT}
     )
 
     set(PACKAGE_OF_${target} ${_arg_PACKAGE} CACHE INTERNAL "")
+
+    set_property(GLOBAL APPEND PROPERTY ${_arg_PACKAGE}_EXE_TARGET_LIST ${target})
   else()
     set_target_properties(${target} PROPERTIES
       RUNTIME_OUTPUT_DIRECTORY${ACE_SOLE_CONFIGURATION_SUFFIX} "${CMAKE_CURRENT_BINARY_DIR}"
@@ -479,7 +488,7 @@ function(ace_install_package package_name)
     install(
       FILES ${_file}
       DESTINATION ${install_dir}/${_file}
-      COMPONENT ${package_name}
+      COMPONENT ${package_name}_devel
     )
   endforeach()
 
@@ -537,18 +546,63 @@ function(ace_install_package package_name)
   install(EXPORT ${package_name}Targets
     FILE ${package_name}Targets.cmake
     DESTINATION ${install_dir}
-    COMPONENT ${package_name}
+    COMPONENT ${_arg_PACKAGE}_devel
   )
 
   install(
     FILES "${CMAKE_CURRENT_BINARY_DIR}/export/${package_name}Config.cmake"
           "${CMAKE_CURRENT_BINARY_DIR}/${package_name}ConfigVersion.cmake"
     DESTINATION ${install_dir}
-    COMPONENT ${package_name}
+    COMPONENT ${package_name}_devel
   )
 
   # This makes the project importable from the build directory
   export(PACKAGE "${package_name}")
+
+  if (UNIX)
+    get_property(EXE_TARGETS GLOBAL PROPERTY ${package_name}_EXE_TARGET_LIST)
+    get_property(LIB_TARGETS GLOBAL PROPERTY ${package_name}_LIB_TARGET_LIST)
+
+    foreach(target ${EXE_TARGETS})
+      list(APPEND EXE_TARGET_NAMES $<TARGET_PROPERTY:${target},OUTPUT_NAME>)
+      list(APPEND EXE_TARGET_FILENAMES $<TARGET_FILE_NAME:${target}>)
+    endforeach()
+
+    foreach(target ${LIB_TARGETS})
+      list(APPEND LIB_TARGET_FILENAMES $<TARGET_FILE_NAME:${target}>)
+      list(APPEND LIB_TARGET_LINKER_FILENAMES $<TARGET_LINKER_FILE_NAME:${target}>)
+    endforeach()
+
+    set(INSTALL_SYMLINKS_CONTENT
+      "function(symlink source target) "
+      "  execute_process(COMMAND \${CMAKE_COMMAND} -E create_symlink \${source} \${target}) "
+      "  message(\"creating symoblic link \${target} --> \${source}\") "
+      "endfunction() "
+      "file(MAKE_DIRECTORY \$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/lib) "
+      "file(MAKE_DIRECTORY \$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/bin) "
+      "set(bin_namelinks \"${EXE_TARGET_NAMES}\") "
+      "set(bin_names \"${EXE_TARGET_FILENAMES}\") "
+      "set(lib_namelinks \"${LIB_TARGET_LINKER_FILENAMES}\") "
+      "set(lib_names \"${LIB_TARGET_FILENAMES}\") "
+      "foreach(type bin lib) "
+      "  list(LENGTH \${type}_names targets_len) "
+      "  math(EXPR targets_max_index \"\${targets_len} - 1\") "
+      "  foreach(idx RANGES \${targets_max_index}) "
+      "    list(GET \${type}_names \${idx} name) "
+      "    list(GET \${type}_namelinks \${idx} namelink) "
+      "    symlink(../${${package_name}_INSTALL_DIR}/\${type}/\${name} \$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/\${type}/\${name}) "
+      "    symlink(../${${package_name}_INSTALL_DIR}/\${type}/\${name} \$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/\${type}/\${namelink}) "
+      "  endforeach() "
+      "endforeach(type bin lib)"
+    )
+
+    string(REPLACE " ;" "\n" INSTALL_SYMLINKS_CONTENT "${INSTALL_SYMLINKS_CONTENT}")
+
+    file(GENERATE OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${package_name}_install_symlinks.cmake
+         CONTENT "${INSTALL_SYMLINKS_CONTENT}\n")
+
+    install(SCRIPT ${CMAKE_CURRENT_BINARY_DIR}/${package_name}_install_symlinks.cmake)
+  endif(UNIX)
 
 endfunction()
 

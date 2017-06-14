@@ -240,7 +240,7 @@ function(tao_idl_sources)
     file(RELATIVE_PATH rel_path ${package_root} ${CMAKE_CURRENT_LIST_DIR})
     install(FILES ${_arg_IDL_FILES} ${_idls_HEADER_FILES}
             DESTINATION ${package_install_dir}/${rel_path}
-            COMPONENT ${package})
+            COMPONENT ${package}_devel)
   endforeach()
 
 endfunction()
