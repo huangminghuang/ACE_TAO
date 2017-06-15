@@ -604,6 +604,19 @@ function(ace_install_package package_name)
     install(SCRIPT ${CMAKE_CURRENT_BINARY_DIR}/${package_name}_install_symlinks.cmake)
   endif(UNIX)
 
+
+  set(CPACK_COMPONENT_${package_name}_DEVEL_DISPLAY_NAME "${package_name} Development files" CACHE INTERNAL "")
+  set(CPACK_COMPONENT_${package_name}_RUNTIME_DISPLAY_NAME "${package_name} Runtime files" CACHE INTERNAL "")
+  set(CPACK_COMPONENT_${package_name}_DEVEL_GROUP "Development" CACHE INTERNAL "")
+  set(CPACK_COMPONENT_${package_name}_RUNTIME_GROUP "Runtime" CACHE INTERNAL "")
+  set(CPACK_COMPONENT_${package_name}_DEVEL_DEPENDS ${package_name}_runtime CACHE INTERNAL "")
+
+  foreach(pkg ${_arg_PREREQUISITE})
+    if (${pkg}_INSTALL_DIR)
+      set(CPACK_COMPONENT_${package_name}_DEVEL_DEPENDS ${pkg}_devel)
+      set(CPACK_COMPONENT_${package_name}_runtime_DEPENDS ${pkg}_runtime)
+    endif()
+  endforeach()
 endfunction()
 
 function(ace_target_qt_sources target)
