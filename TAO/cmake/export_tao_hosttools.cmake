@@ -1,5 +1,10 @@
 if (NOT (TARGET TAO_IDL_EXE) OR NOT (TARGET ace_gperf))
   return()
+else()
+  get_target_property(IS_TAO_IDL_IMPORTED TAO_IDL_EXE IMPORTED)
+  if (IS_TAO_IDL_IMPORTED)
+    return()
+  endif(IS_TAO_IDL_IMPORTED)
 endif()
 
 export(TARGETS TAO_IDL_EXE ace_gperf
