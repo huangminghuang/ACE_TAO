@@ -15,7 +15,8 @@ include(disable_warnings)
 include(visibility_check)
 include(ace_utils)
 include(ace_options)
-include(try_enable_ccache)
+
+ace_try_enable_ccache()
 
 option(BUILD_SHARED_LIBS "" ON)
 enable_testing()
@@ -35,7 +36,7 @@ add_subdirectory(bin)
 
 ace_install_package(ACE
   CONFIG_OPTIONS ${ACE_OPTIONS} CMAKE_CXX_STANDARD CMAKE_CXX_STANDARD_REQUIRED
-  CONFIG_INCLUDE_FILES cmake/ace_utils.cmake cmake/try_enable_ccache.cmake
+  CONFIG_INCLUDE_FILES cmake/ace_utils.cmake
   INCLUDED_FILES_USE cmake/PackageConfig.cmake.in
   OPTIONAL_PACKAGES Qt4
 )
