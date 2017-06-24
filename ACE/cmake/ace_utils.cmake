@@ -587,7 +587,7 @@ function(ace_install_package package_name)
       "foreach(type bin lib) "
       "  list(LENGTH \${type}_names targets_len) "
       "  math(EXPR targets_max_index \"\${targets_len} - 1\") "
-      "  foreach(idx RANGES \${targets_max_index}) "
+      "  foreach(idx RANGE \${targets_max_index}) "
       "    list(GET \${type}_names \${idx} name) "
       "    list(GET \${type}_namelinks \${idx} namelink) "
       "    symlink(../${${package_name}_INSTALL_DIR}/\${type}/\${name} \$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/\${type}/\${name}) "
