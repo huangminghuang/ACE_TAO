@@ -254,6 +254,7 @@ ace_target_cxx_sources(TAO_PortableServer
                  Fixed_Array_SArgument_T.cpp
                  Fixed_Size_SArgument_T.cpp
                  Object_SArgument_T.cpp
+                 Servant_var.cpp
                  Special_Basic_SArgument_T.cpp
                  UB_String_SArgument_T.cpp
                  Var_Array_SArgument_T.cpp

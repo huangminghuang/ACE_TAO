@@ -12,6 +12,9 @@ elseif(ACE_FACE_SAFETY STREQUAL "EXTENDED")
 endif()
 
 configure_file(config.h.in config.h)
+ace_install_package_files(ACE
+  ${CMAKE_CURRENT_BINARY_DIR}/config.h
+)
 
 if (ACE_HAS_THREADS)
   find_package(Threads)
@@ -48,8 +51,9 @@ ace_add_lib(ACE
   DEFINE_SYMBOL ACE_BUILD_DLL
   PUBLIC_LINK_LIBRARIES $<$<PLATFORM_ID:Windows>:iphlpapi>
   PUBLIC_COMPILE_DEFINITIONS ${ACE_COMPILE_DEFINITIONS}
-  PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
+  PUBLIC_INCLUDE_DIRECTORIES ..
                              $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/..>
+
 )
 
 if (CMAKE_COMPILER_IS_GNUCXX OR (CMAKE_CXX_COMPILER_ID MATCHES "Clang"))
@@ -1080,44 +1084,71 @@ ace_target_cxx_sources(ACE
                Vector_T.inl
                WFMO_Reactor.inl
                ace_wchar.inl
-  TEMPLATE_FILES Active_Map_Manager_T.cpp
+  TEMPLATE_FILES ARGV.cpp
+                 Abstract_Timer_Queue.cpp
+                 Acceptor.cpp
+                 Active_Map_Manager_T.cpp
+                 Arg_Shifter.cpp
+                 Array_Base.cpp
+                 Array_Map.cpp
                  Atomic_Op_GCC_T.cpp
                  Atomic_Op_T.cpp
+                 Auto_Event.cpp
                  Auto_IncDec_T.cpp
+                 Auto_Ptr.cpp
                  Based_Pointer_T.cpp
+                 Bound_Ptr.cpp
                  Cache_Map_Manager_T.cpp
                  Cached_Connect_Strategy_T.cpp
                  Caching_Strategies_T.cpp
                  Caching_Utility_T.cpp
                  Cleanup_Strategies_T.cpp
                  Condition_T.cpp
+                 Connector.cpp
                  Containers_T.cpp
                  Countdown_Time_T.cpp
                  Dump_T.cpp
+                 Dynamic_Service.cpp
                  Env_Value_T.cpp
+                 Event.cpp
                  Event_Handler_T.cpp
                  Framework_Component_T.cpp
+                 Free_List.cpp
                  Functor_T.cpp
                  Guard_T.cpp
                  Hash_Cache_Map_Manager_T.cpp
                  Hash_Map_Manager_T.cpp
                  Hash_Map_With_Allocator_T.cpp
                  Hash_Multi_Map_Manager_T.cpp
+                 Intrusive_List.cpp
+                 Intrusive_List_Node.cpp
+                 Intrusive_Auto_Ptr.cpp
                  IOStream_T.cpp
                  Local_Name_Space_T.cpp
                  Lock_Adapter_T.cpp
                  Malloc_T.cpp
+                 Managed_Object.cpp
+                 Manual_Event.cpp
+                 Map_Manager.cpp
                  Map_T.cpp
                  Message_Block_T.cpp
                  Message_Queue_T.cpp
                  Metrics_Cache_T.cpp
+                 Module.cpp
+                 Node.cpp
                  Obstack_T.cpp
                  Pair_T.cpp
+                 RB_Tree.cpp
                  Reactor_Token_T.cpp
                  Refcountable_T.cpp
+                 Refcounted_Auto_Ptr.cpp
                  Reverse_Lock_T.cpp
                  Select_Reactor_T.cpp
+                 Singleton.cpp
                  Strategies_T.cpp
+                 String_Base.cpp
+                 Stream_Modules.cpp
+                 Svc_Handler.cpp
                  TSS_T.cpp
                  Task_Ex_T.cpp
                  Task_T.cpp
@@ -1128,8 +1159,12 @@ ace_target_cxx_sources(ACE
                  Timer_Heap_T.cpp
                  Timer_List_T.cpp
                  Timer_Queue_T.cpp
+                 Timer_Queue_Iterator.cpp
                  Timer_Wheel_T.cpp
                  Tokenizer_T.cpp
+                 Unbounded_Queue.cpp
+                 Unbounded_Set.cpp
+                 Unbounded_Set_Ex.cpp
                  Vector_T.cpp
 )
 
@@ -1268,11 +1303,6 @@ if(ACE_HAS_ATM)
                  XTI_ATM_Mcast.inl
   )
 endif()
-include("os_include/CMakeLists.txt")
-include("os_include/arpa/CMakeLists.txt")
-include("os_include/net/CMakeLists.txt")
-include("os_include/netinet/CMakeLists.txt")
-include("os_include/sys/CMakeLists.txt")
 file(GLOB config_files config-*.h)
 
 ace_target_cxx_sources(ACE
@@ -1298,6 +1328,10 @@ if (BUILD_SHARED_LIBS)
 else(BUILD_SHARED_LIBS)
   target_compile_definitions(ACE INTERFACE ACE_AS_STATIC_LIBS)
 endif(BUILD_SHARED_LIBS)
+
+ace_install_package_directories(ACE
+  os_include
+)
 
 add_subdirectory(Compression)
 add_subdirectory(ETCL)

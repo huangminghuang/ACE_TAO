@@ -24,6 +24,7 @@ ace_target_cxx_sources(TAO_Svc_Utils
                Shutdown_Utilities.h
                Time_Utilities.h
                svc_utils_export.h
+  INLINE_FILES Time_Utilities.inl
 )
 
 tao_idl_sources(

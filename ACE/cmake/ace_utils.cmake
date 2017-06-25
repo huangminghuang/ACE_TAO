@@ -84,6 +84,16 @@ function(ace_install_package_files package)
 endfunction()
 
 
+function(ace_install_package_directories package)
+  set(package_root ${${package}_SOURCE_DIR})
+  set(package_install_dir ${${package}_INSTALL_DIR})
+  file(RELATIVE_PATH rel_path ${package_root} ${CMAKE_CURRENT_LIST_DIR})
+  ace_prepend_if_relative(dirs_to_install ${CMAKE_CURRENT_LIST_DIR} ${ARGN})
+  install(DIRECTORY ${dirs_to_install}
+          DESTINATION ${package_install_dir}/${rel_path}
+          COMPONENT ${package}_devel)
+endfunction()
+
 function(ace_target_sources target)
   get_property(SKIPPED_TARGETS DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY ACE_CURRENT_SKIPPED_TARGETS)
   if(NOT ${target} IN_LIST SKIPPED_TARGETS)
@@ -255,6 +265,18 @@ macro(ace_parse_arguments options oneValueArgs multiValueArgs)
     set(_arg_OUTPUT_NAME ${target})
   endif()
 
+  set(pub_include_dirs)
+  foreach(dir ${_arg_PUBLIC_INCLUDE_DIRECTORIES})
+    if ((${dir} MATCHES "^\\$<") OR (IS_ABSOLUTE ${dir}) OR (NOT _arg_PACKAGE))
+      list(APPEND pub_include_dirs ${dir})
+    else()
+      list(APPEND pub_include_dirs $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/${dir}>)
+      string(REPLACE "${${_arg_PACKAGE}_INCLUDE_DIR}" "${${_arg_PACKAGE}_INSTALL_DIR}" install_dir ${CMAKE_CURRENT_SOURCE_DIR})
+      list(APPEND pub_include_dirs $<INSTALL_INTERFACE:${install_dir}/${dir}>)
+    endif()
+  endforeach()
+  set(_arg_PUBLIC_INCLUDE_DIRECTORIES ${pub_include_dirs})
+
 endmacro()
 
 ##  ace_add_lib
@@ -321,10 +343,18 @@ function(ace_add_lib target)
 
     install(TARGETS ${target}
             EXPORT  "${_arg_PACKAGE}Targets"
-            LIBRARY DESTINATION ${${_arg_PACKAGE}_INSTALL_DIR}/lib COMPONENT ${_arg_PACKAGE}_devel
-            ARCHIVE DESTINATION ${${_arg_PACKAGE}_INSTALL_DIR}/lib COMPONENT ${_arg_PACKAGE}_devel
-            RUNTIME DESTINATION ${${_arg_PACKAGE}_INSTALL_DIR}/bin COMPONENT ${_arg_PACKAGE}_runtime
-            INCLUDES DESTINATION ${${_arg_PACKAGE}_INSTALL_DIR} COMPONENT ${_arg_PACKAGE}_devel
+            LIBRARY
+              DESTINATION "${${_arg_PACKAGE}_INSTALL_DIR}/lib"
+              COMPONENT "${_arg_PACKAGE}_devel"
+            ARCHIVE
+              DESTINATION "${${_arg_PACKAGE}_INSTALL_DIR}/lib"
+              COMPONENT "${_arg_PACKAGE}_devel"
+            RUNTIME
+              DESTINATION "${${_arg_PACKAGE}_INSTALL_DIR}/bin"
+              COMPONENT "${_arg_PACKAGE}_runtime"
+            PUBLIC_HEADER
+              DESTINATION "${${_arg_PACKAGE}_INSTALL_DIR}"
+              COMPONENT "${_arg_PACKAGE}_devel"
     )
 
     set(PACKAGE_OF_${target} ${_arg_PACKAGE} CACHE INTERNAL "")
@@ -485,9 +515,11 @@ function(ace_install_package package_name)
   )
 
   foreach(_file ${_arg_CONFIG_INCLUDE_FILES} ${_arg_INCLUDED_FILES_USE})
+
+    get_filename_component(_filedir ${_file} DIRECTORY)
     install(
       FILES ${_file}
-      DESTINATION ${install_dir}/${_file}
+      DESTINATION ${install_dir}/${_filedir}
       COMPONENT ${package_name}_devel
     )
   endforeach()
@@ -544,8 +576,8 @@ function(ace_install_package package_name)
                  @ONLY)
 
   install(EXPORT ${package_name}Targets
-    FILE ${package_name}Targets.cmake
     DESTINATION ${install_dir}
+    FILE ${package_name}Targets.cmake
     COMPONENT ${_arg_PACKAGE}_devel
   )
 

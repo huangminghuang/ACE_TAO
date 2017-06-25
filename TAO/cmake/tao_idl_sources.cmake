@@ -39,7 +39,10 @@ function(tao_idl_command name)
     message(FATAL_ERROR "using tao_idl_command(${name}) without specifying IDL_FILES")
   endif()
 
-  if (NOT IS_ABSOLUTE "${_arg_WORKING_DIRECTORY}")
+  if (NOT _arg_WORKING_DIRECTORY)
+    set(_working_binary_dir ${CMAKE_CURRENT_BINARY_DIR})
+    set(_working_source_dir ${CMAKE_CURRENT_SOURCE_DIR})
+  elseif (NOT IS_ABSOLUTE "${_arg_WORKING_DIRECTORY}")
     set(_working_binary_dir ${CMAKE_CURRENT_BINARY_DIR}/${_arg_WORKING_DIRECTORY})
     set(_working_source_dir ${CMAKE_CURRENT_SOURCE_DIR}/${_arg_WORKING_DIRECTORY})
   else()
@@ -54,10 +57,16 @@ function(tao_idl_command name)
        list(APPEND _converted_flags -I${_rel_path_to_source_tree}/${CMAKE_MATCH_1})
      else()
        list(APPEND _converted_flags ${flag})
+       # if the flag is like "-Wb,stub_export_file=filename" then set the varilabe
+       # "idl_cmd_arg-wb-stub_export_file" to filename
+       string(REGEX MATCH "^-Wb,([^=]+)=(.+)" m "${flag}")
+       if (m)
+         set(idl_cmd_arg-wb-${CMAKE_MATCH_1} ${CMAKE_MATCH_2})
+       endif()
     endif()
   endforeach()
 
-  set(optionArgs -Sch -Sci -Scc -Ssh -SS -GA -GT)
+  set(optionArgs -Sch -Sci -Scc -Ssh -SS -GA -GT -GX -Gxhst -Gxhsk)
   cmake_parse_arguments(_idl_cmd_arg "${optionArgs}" "-o;-oS;-oA" "" ${_arg_IDL_FLAGS})
 
   if ("${_idl_cmd_arg_-o}" STREQUAL "")
@@ -77,7 +86,6 @@ function(tao_idl_command name)
   else()
     set(_anyop_output_dir "${_working_binary_dir}/${_idl_cmd_arg_-oA}")
   endif()
-
 
   foreach(idl_file ${_arg_IDL_FILES})
 
@@ -108,10 +116,14 @@ function(tao_idl_command name)
     if (_idl_cmd_arg_-GA)
       set(_ANYOP_HEADER_FILES "${_anyop_output_dir}/${idl_file_base}A.h")
       set(_ANYOP_CPP_FILES "${_anyop_output_dir}/${idl_file_base}A.cpp")
+    elseif (_idl_cmd_arg_-GX)
+      set(_ANYOP_HEADER_FILES "${_anyop_output_dir}/${idl_file_base}A.h")
     endif()
 
     if (_idl_cmd_arg_-GT)
-      list(APPEND ${idl_file_base}_SKEL_HEADER_FILES "${_skel_output_dir}/${idl_file_base}S_T.h" "${_skel_output_dir}/${idl_file_base}S_T.cpp")
+      list(APPEND ${idl_file_base}_SKEL_HEADER_FILES
+        "${_skel_output_dir}/${idl_file_base}S_T.h"
+        "${_skel_output_dir}/${idl_file_base}S_T.cpp")
     endif()
 
     set(_OUTPUT_FILES ${_STUB_CPP_FILES}
@@ -146,6 +158,15 @@ function(tao_idl_command name)
     list(APPEND ${name}_ANYOP_CPP_FILES ${_ANYOP_CPP_FILES})
     list(APPEND ${name}_ANYOP_HEADER_FILES ${_ANYOP_HEADER_FILES})
   endforeach()
+
+  if (_idl_cmd_arg_-Gxhst)
+    list(APPEND ${name}_STUB_HEADER_FILES ${CMAKE_CURRENT_BINARY_DIR}/${idl_cmd_arg-wb-stub_export_file})
+  endif()
+
+  if (_idl_cmd_arg_-Gxhsk)
+    list(APPEND ${name}_SKEL_HEADER_FILES ${CMAKE_CURRENT_BINARY_DIR}/${idl_cmd_arg-wb-skel_export_file})
+  endif()
+
   set(${name}_STUB_CPP_FILES ${${name}_STUB_CPP_FILES} PARENT_SCOPE)
   set(${name}_STUB_HEADER_FILES ${${name}_STUB_HEADER_FILES} PARENT_SCOPE)
   set(${name}_STUB_FILES ${${name}_STUB_CPP_FILES} ${${name}_STUB_HEADER_FILES})
@@ -227,7 +248,9 @@ function(tao_idl_sources)
   source_group("IDL Files" FILES ${_arg_IDL_FILES})
 
   foreach(target ${_arg_TARGETS} ${_arg_STUB_TARGETS} ${_arg_SKEL_TARGETS} ${_arg_ANYOP_TARGETS})
-    list(APPEND packages ${PACKAGE_OF_${target}})
+    if (TARGET ${target})
+      list(APPEND packages ${PACKAGE_OF_${target}})
+    endif()
   endforeach()
 
   if (packages)
@@ -235,12 +258,33 @@ function(tao_idl_sources)
   endif()
 
   foreach (package ${packages})
-    set(package_root ${${package}_SOURCE_DIR})
-    set(package_install_dir ${${package}_INSTALL_DIR})
-    file(RELATIVE_PATH rel_path ${package_root} ${CMAKE_CURRENT_LIST_DIR})
-    install(FILES ${_arg_IDL_FILES} ${_idls_HEADER_FILES}
-            DESTINATION ${package_install_dir}/${rel_path}
-            COMPONENT ${package}_devel)
-  endforeach()
+    ## All files listed in _arg_IDL_FILES and _idls_HEADER_FILES are absolute paths.
+    ## In addition, they can be either in the source tree or in the binary tree.
+    ## We need to identify where they are and install them to the install tree based
+    ## on their relative path to either source tree root or binary tree root.
+    foreach(file ${_arg_IDL_FILES} ${_idls_HEADER_FILES})
+      ## first we check if the file startswith ${CMAKE_CURRENT_BINARY_DIR}
+      string(FIND ${file} ${CMAKE_CURRENT_BINARY_DIR} prefix_index)
+      if (${prefix_index} EQUAL 0)
+        ## the file is in the binary tree
+        file(RELATIVE_PATH rel_path  ${${package}_BINARY_DIR} ${file})
+
+      else()
+        string(FIND ${file} ${CMAKE_CURRENT_SOURCE_DIR} prefix_index)
+        if (${prefix_index} EQUAL 0)
+          file(RELATIVE_PATH rel_path  ${${package}_SOURCE_DIR} ${file})
+        else()
+          ## the file is neither in the source nor the binary tree, treat it as an external file, don't install it.
+          continue()
+        endif()
+      endif()
+
+      get_filename_component(dest "${${package}_INSTALL_DIR}/${rel_path}" DIRECTORY)
+
+      install(FILES ${file}
+              DESTINATION ${dest}
+              COMPONENT ${package}_devel)
+    endforeach(file)
+  endforeach(package)
 
 endfunction()

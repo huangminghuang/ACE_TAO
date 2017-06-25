@@ -33,7 +33,7 @@ tao_idl_sources(
 
 tao_idl_sources(
   TARGETS TAO_CodecFactory
-  IDL_FLAGS ${CodecFactory_Idl_FLAGS} -Sa
+  IDL_FLAGS ${CodecFactory_Idl_FLAGS}
             -St -Sci -SS -Sorb -Sa -GX
             -Wb,export_macro=TAO_CODECFACTORY_Export
             -Wb,export_include=tao/CodecFactory/codecfactory_export.h
