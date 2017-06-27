@@ -126,6 +126,14 @@ function(tao_idl_command name)
         "${_skel_output_dir}/${idl_file_base}S_T.cpp")
     endif()
 
+    if (_idl_cmd_arg_-Gxhst)
+      list(APPEND _STUB_HEADER_FILES ${CMAKE_CURRENT_BINARY_DIR}/${idl_cmd_arg-wb-stub_export_file})
+    endif()
+
+    if (_idl_cmd_arg_-Gxhsk)
+      list(APPEND _SKEL_HEADER_FILES ${CMAKE_CURRENT_BINARY_DIR}/${idl_cmd_arg-wb-skel_export_file})
+    endif()
+
     set(_OUTPUT_FILES ${_STUB_CPP_FILES}
                       ${_STUB_HEADER_FILES}
                       ${_SKEL_CPP_FILES}
@@ -159,13 +167,7 @@ function(tao_idl_command name)
     list(APPEND ${name}_ANYOP_HEADER_FILES ${_ANYOP_HEADER_FILES})
   endforeach()
 
-  if (_idl_cmd_arg_-Gxhst)
-    list(APPEND ${name}_STUB_HEADER_FILES ${CMAKE_CURRENT_BINARY_DIR}/${idl_cmd_arg-wb-stub_export_file})
-  endif()
 
-  if (_idl_cmd_arg_-Gxhsk)
-    list(APPEND ${name}_SKEL_HEADER_FILES ${CMAKE_CURRENT_BINARY_DIR}/${idl_cmd_arg-wb-skel_export_file})
-  endif()
 
   set(${name}_STUB_CPP_FILES ${${name}_STUB_CPP_FILES} PARENT_SCOPE)
   set(${name}_STUB_HEADER_FILES ${${name}_STUB_HEADER_FILES} PARENT_SCOPE)
