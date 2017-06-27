@@ -12,11 +12,11 @@ endif()
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/cmake)
 include(disable_warnings)
-include(visibility_check)
 include(ace_utils)
 include(ace_options)
 
 ace_try_enable_ccache()
+ace_try_set_cxx_visibility_hidden()
 
 option(BUILD_SHARED_LIBS "" ON)
 enable_testing()

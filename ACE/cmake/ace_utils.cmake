@@ -706,3 +706,21 @@ macro(ace_try_enable_ccache)
       endif()
   endif()
 endmacro(ace_try_enable_ccache)
+
+
+macro(ace_try_set_cxx_visibility_hidden)
+  set(CMAKE_CXX_VISIBILITY_PRESET default)
+  if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+      if (NOT CMAKE_CXX_COMPILER_VERSION VERSION_LESS 4.2)
+          set(CMAKE_CXX_VISIBILITY_PRESET hidden)
+      endif(NOT CMAKE_CXX_COMPILER_VERSION VERSION_LESS 4.2)
+  ## Even though Clang also supports hidden visibility, current
+  ## ACE header files needs to be adapted before we can enable it.
+  endif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+
+  if (CMAKE_CXX_VISIBILITY_PRESET STREQUAL "hidden")
+      set(CMAKE_VISIBILITY_INLINES_HIDDEN ON)
+  else(CMAKE_CXX_VISIBILITY_PRESET STREQUAL "hidden")
+      add_definitions("-DACE_HAS_CUSTOM_EXPORT_MACROS=0")
+  endif(CMAKE_CXX_VISIBILITY_PRESET STREQUAL "hidden")
+endmacro()

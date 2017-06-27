@@ -1333,6 +1333,10 @@ ace_install_package_directories(ACE
   os_include
 )
 
+if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+  target_compile_options(ACE BEFORE PUBLIC -fno-strict-aliasing)
+endif()
+
 add_subdirectory(Compression)
 add_subdirectory(ETCL)
 add_subdirectory(FlReactor)

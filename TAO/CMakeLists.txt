@@ -15,6 +15,7 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/cmake)
 include(tao_options)
 include(tao_idl_sources)
 ace_try_enable_ccache()
+ace_try_set_cxx_visibility_hidden()
 
 option(BUILD_SHARED_LIBS "" ON)
 
