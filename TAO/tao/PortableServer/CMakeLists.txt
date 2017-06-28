@@ -6,6 +6,7 @@ ace_add_lib(TAO_PortableServer
   FOLDER TAO/tao/PortableServer
   DEFINE_SYMBOL TAO_PORTABLESERVER_BUILD_DLL
   PUBLIC_LINK_LIBRARIES TAO_AnyTypeCode
+  COMPILE_DEFINITIONS $<$<BOOL:${TAO_HAS_VALUETYPE_OUT_INDIRECTION}>:TAO_HAS_VALUETYPE_OUT_INDIRECTION>
 )
 ace_target_cxx_sources(TAO_PortableServer
   SOURCE_FILES Acceptor_Filter_Factory.cpp
