@@ -58,3 +58,8 @@ add_subdirectory(Log)
 add_subdirectory(FtRtEvent)
 add_subdirectory(AV)
 
+add_library(For_OrbsvcsExe INTERFACE)
+target_link_libraries(For_OrbsvcsExe INTERFACE Negotiate_Codesets TAO_AnyTypeCode)
+install(TARGETS For_OrbsvcsExe
+        EXPORT  TAOTargets)
+

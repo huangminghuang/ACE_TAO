@@ -844,3 +844,20 @@ add_subdirectory(RTScheduling)
 add_subdirectory(CSD_ThreadPool)
 add_subdirectory(RTPortableServer)
 add_subdirectory(Dynamic_TP)
+
+
+add_library(For_TAO_Client INTERFACE)
+add_library(For_TAO_Server INTERFACE)
+add_library(For_RT_Client INTERFACE)
+add_library(For_RT_Server INTERFACE)
+
+target_link_libraries(For_TAO_Client INTERFACE Negotiate_Codesets)
+target_link_libraries(For_TAO_Server INTERFACE TAO_PortableServer Negotiate_Codesets)
+target_link_libraries(For_RT_Client INTERFACE TAO_RTCORBA Negotiate_Codesets)
+target_link_libraries(For_RT_Server INTERFACE TAO_RTPortableServer Negotiate_Codesets)
+
+install(TARGETS For_TAO_Client
+                For_TAO_Server
+                For_RT_Client
+                For_RT_Server
+        EXPORT  TAOTargets)

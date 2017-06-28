@@ -1,0 +1,10 @@
+add_library(Negotiate_Codesets INTERFACE)
+if (TAO_EXPLICIT_NEGOTIATE_CODESETS)
+  target_link_libraries(Negotiate_Codesets INTERFACE TAO_Codeset)
+  target_compile_definitions(Negotiate_Codesets INTERFACE TAO_EXPLICIT_NEGOTIATE_CODESETS)
+else(TAO_EXPLICIT_NEGOTIATE_CODESETS)
+  target_link_libraries(Negotiate_Codesets INTERFACE TAO)
+endif(TAO_EXPLICIT_NEGOTIATE_CODESETS)
+
+install(TARGETS Negotiate_Codesets
+        EXPORT  TAOTargets)

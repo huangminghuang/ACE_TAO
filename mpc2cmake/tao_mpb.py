@@ -4,13 +4,12 @@ from ace_mpb import CXXSourceGroup
 class Handler(ace_mpb.Handler):
 
   def handle_mpb_negotiate_codesets(self):
-    self.add_lib('$<TAO_NEGOTIATE_CODESETS:TAO_Codeset>')
-    self.compile_definitions.add ('$<TAO_NEGOTIATE_CODESETS:TAO_EXPLICIT_NEGOTIATE_CODESETS>')
+    self.add_lib('Negotiate_Codesets')
 
   def handle_mpb_orbsvcsexe(self):
     # self.handle_mpb_taoexe()
     # self.handle_mpb_negotiate_codesets()
-    self.handle_mpb_anytypecode()
+    self.add_lib('For_OrbsvcsExe')
 
   def handle_mpb_codeset(self):
     self.add_lib('TAO_Codeset')
@@ -112,7 +111,7 @@ class Handler(ace_mpb.Handler):
     pass
 
   def handle_mpb_valuetype_out_indirection(self):
-    pass
+    self.compile_definitions = [ "$<$<BOOL:${TAO_HAS_VALUETYPE_OUT_INDIRECTION}>:TAO_HAS_VALUETYPE_OUT_INDIRECTION>" ]
 
   def handle_mpb_pi_server(self):
     self.add_lib('TAO_PI_Server')
@@ -136,21 +135,21 @@ class Handler(ace_mpb.Handler):
   def handle_mpb_taoclient(self):
     self.is_exe = True
     self.output_name = 'client'
-    self.add_lib('TAO')
+    self.add_lib('For_TAO_Client')
 
   def handle_mpb_taoserver(self):
     self.is_exe = True
     self.output_name = 'server'
-    self.add_lib('TAO_PortableServer')
+    self.add_lib('For_TAO_Server')
 
-  def handle_mpb_rt_cleint(self):
+  def handle_mpb_rt_client(self):
     self.is_exe = True
-    self.add_lib('TAO_RTCORBA')
+    self.add_lib('For_RT_Client')
     self.output_name = 'client'
 
   def handle_mpb_rt_server(self):
     self.is_exe = True
-    self.add_lib('TAO_RTPortableServer')
+    self.add_lib('For_RT_Server')
     self.output_name = 'server'
 
   def handle_mpb_nolink_codecfactory(self):

@@ -4,7 +4,7 @@ ace_add_exe(Naming_Service
   OUTPUT_NAME tao_cosnaming
   PACKAGE TAO
   FOLDER TAO/orbsvcs/Naming_Service
-  LINK_LIBRARIES TAO_AnyTypeCode
+  LINK_LIBRARIES For_OrbsvcsExe
                  TAO_CosNaming_Serv
                  TAO_Svc_Utils
                  TAO_ImR_Client
@@ -21,7 +21,7 @@ ace_add_exe(NT_Naming_Service
   PACKAGE TAO
   REQUIRES WIN32
   FOLDER TAO/orbsvcs/Naming_Service
-  LINK_LIBRARIES TAO_AnyTypeCode
+  LINK_LIBRARIES For_OrbsvcsExe
                  TAO_CosNaming_Serv
                  TAO_Svc_Utils
 )
