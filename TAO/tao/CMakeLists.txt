@@ -30,11 +30,15 @@ endif()
 
 if (TAO_HAS_VALUETYPE_OUT_INDIRECTION)
   ## this flag does not affect the TAO public headers
-  set(TAO_COMPILE_DEFINITIONS TAO_HAS_VALUETYPE_OUT_INDIRECTION)
+  list(APPEND TAO_COMPILE_DEFINITIONS TAO_HAS_VALUETYPE_OUT_INDIRECTION)
+endif()
+
+if (NOT BUILD_SHARED_LIBS)
+  list(APPEND TAO_COMPILE_DEFINITIONS TAO_AS_STATIC_LIBS)
 endif()
 
 if (CMAKE_CXX_COMPILER_ID MATCHES Clang)
-  set(TAO_COMPILE_OPTIONS "-fdelayed-template-parsing")
+  list(APPEND TAO_COMPILE_OPTIONS "-fdelayed-template-parsing")
 endif()
 
 ace_add_lib(TAO
