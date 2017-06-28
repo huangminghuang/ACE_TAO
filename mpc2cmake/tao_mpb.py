@@ -173,8 +173,7 @@ class Handler(ace_mpb.Handler):
     self.requires.add('TAO_HAS_CORBA_MESSAGING')
 
   def handle_mpb_messaging(self):
-    self.handle_mpb_corba_messaging()
-    self.add_lib('TAO_Messaging')
+    self.add_lib('Messaging_Optional')
 
   def handle_mpb_async_iortable(self):
     self.handle_mpb_dynamicinterface()

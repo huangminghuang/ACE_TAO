@@ -124,3 +124,11 @@ tao_idl_sources(
   IDL_FILES Messaging.pidl
 )
 
+add_library(Messaging_Optional INTERFACE)
+if (TAO_HAS_CORBA_MESSAGING)
+  target_link_libraries(Messaging_Optional INTERFACE TAO_Messaging)
+else(TAO_HAS_CORBA_MESSAGING)
+  target_link_libraries(Messaging_Optional INTERFACE TAO)
+endif(TAO_HAS_CORBA_MESSAGING)
+install(TARGETS Messaging_Optional
+        EXPORT  TAOTargets)

@@ -55,7 +55,7 @@ ace_add_lib(TAO_CosEvent_Serv
   PUBLIC_LINK_LIBRARIES TAO_Svc_Utils
                         TAO_CosNaming
                         TAO_CosEvent_Skel
-                        TAO_Messaging
+                        Messaging_Optional
 )
 
 ace_target_cxx_sources(TAO_CosEvent_Serv
@@ -112,9 +112,9 @@ ace_target_cxx_sources(TAO_CosEvent_Serv
                CEC_SupplierAdmin.inl
 )
 
-option(EC_TYPED_EVENT "" ON)
+option(TAO_HAS_TYPED_EVENT_CHANNEL "" ON)
 
-if (EC_TYPED_EVENT)
+if (TAO_HAS_TYPED_EVENT_CHANNEL AND TARGET TAO_CosEvent)
 
   tao_idl_sources(
     STUB_TARGETS TAO_CosEvent
@@ -125,9 +125,7 @@ if (EC_TYPED_EVENT)
     WORKING_DIRECTORY ..
   )
 
-  if (TARGET TAO_CosEvent)
-    target_compile_definitions(TAO_CosEvent PUBLIC TAO_HAS_TYPED_EVENT_CHANNEL)
-  endif(TARGET TAO_CosEvent)
+  target_compile_definitions(TAO_CosEvent PUBLIC TAO_HAS_TYPED_EVENT_CHANNEL)
 
   ace_target_cxx_sources(TAO_CosEvent_Serv
     SOURCE_FILES CEC_TypedEvent.cpp
@@ -158,5 +156,5 @@ if (EC_TYPED_EVENT)
     )
   endif(TARGET TAO_CosEvent_Serv)
 
-endif(EC_TYPED_EVENT)
+endif(TAO_HAS_TYPED_EVENT_CHANNEL AND TARGET TAO_CosEvent)
 

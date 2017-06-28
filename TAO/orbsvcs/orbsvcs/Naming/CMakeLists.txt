@@ -43,7 +43,7 @@ ace_add_lib(TAO_CosNaming_Serv
   FOLDER TAO/orbsvcs/orbsvcs/Naming
   PUBLIC_LINK_LIBRARIES TAO_CosNaming_Skel
                         TAO_IORTable
-                        TAO_Messaging
+                        Messaging_Optional
 )
 
 ace_target_cxx_sources(TAO_CosNaming_Serv
