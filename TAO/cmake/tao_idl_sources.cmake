@@ -193,7 +193,7 @@ function(tao_idl_command name)
 endfunction(tao_idl_command name)
 
 function(tao_idl_sources)
-  set(multiValueArgs TARGETS STUB_TARGETS SKEL_TARGETS ANYOP_TARGETS IDL_FLAGS IDL_FILES WORKING_DIRECTORY ASPECTS)
+  set(multiValueArgs TARGETS STUB_TARGETS SKEL_TARGETS ANYOP_TARGETS IDL_FLAGS IDL_FILES WORKING_DIRECTORY)
 
   cmake_parse_arguments(_arg "" "${outValueArgs}" "${multiValueArgs}" ${ARGN})
 
@@ -217,10 +217,6 @@ function(tao_idl_sources)
   else(_arg_WORKING_DIRECTORY)
     file(RELATIVE_PATH rel_path ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_LIST_DIR})
   endif(_arg_WORKING_DIRECTORY)
-
-  foreach(aspect ${_arg_ASPECTS})
-    list(APPEND _arg_IDL_FLAGS ${${aspect}_TAO_IDL_FLAGS})
-  endforeach()
 
   tao_idl_command(_idls
     IDL_FLAGS ${_arg_IDL_FLAGS}

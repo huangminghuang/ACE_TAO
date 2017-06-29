@@ -121,7 +121,6 @@ endfunction()
 ##  All files specified should be absolute path or relative to CMAKE_CURRENT_LIST_DIR
 ##
 function(ace_target_cxx_sources target)
-
   get_property(SKIPPED_TARGETS DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY ACE_CURRENT_SKIPPED_TARGETS)
   if(${target} IN_LIST SKIPPED_TARGETS)
     return()
@@ -129,18 +128,34 @@ function(ace_target_cxx_sources target)
 
   set(oneValueArgs SUBGROUP)
   set(multiValueArgs SOURCE_FILES HEADER_FILES INLINE_FILES TEMPLATE_FILES)
-  cmake_parse_arguments(_arg "" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+  cmake_parse_arguments(_arg "GLOB_HEADERS" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
   if (_arg_SUBGROUP)
     if (NOT "${_arg_SUBGROUP}" MATCHES "^\\\\")
       message(FATAL_ERROR "SUBGROUP ${_arg_SUBGROUP} must start with \\\\ i.e. two backslashes")
     endif()
-  endif()
+  else(_arg_SUBGROUP)
+    file(RELATIVE_PATH subdir ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_LIST_DIR})
+    if (subdir)
+      string(REPLACE "/" "\\\\" _arg_SUBGROUP "/${subdir}")
+    endif(subdir)
+  endif(_arg_SUBGROUP)
 
   ace_prepend_if_relative(sources ${CMAKE_CURRENT_LIST_DIR} ${_arg_SOURCE_FILES})
   ace_prepend_if_relative(headers ${CMAKE_CURRENT_LIST_DIR} ${_arg_HEADER_FILES})
   ace_prepend_if_relative(inlines ${CMAKE_CURRENT_LIST_DIR} ${_arg_INLINE_FILES})
   ace_prepend_if_relative(templates ${CMAKE_CURRENT_LIST_DIR} ${_arg_TEMPLATE_FILES})
+
+  if (_arg_GLOB_HEADERS)
+    if (_arg_HEADER_FILES OR _arg_INLINE_FILES OR _arg_TEMPLATE_FILES)
+      message(FATAL_ERROR "GLOB_HEADERS cannot be specified if HEADER_FILES, INLINE_FILES or TEMPLATE_FILES exists")
+    else()
+      file(GLOB headers ${CMAKE_CURRENT_LIST_DIR}/*.h)
+      file(GLOB inlines ${CMAKE_CURRENT_LIST_DIR}/*.inl)
+      file(GLOB templates ${CMAKE_CURRENT_LIST_DIR}/*.cpp)
+      list(REMOVE_ITEM templates ${sources})
+    endif()
+  endif(_arg_GLOB_HEADERS)
 
   target_sources(${target}
     PRIVATE ${sources} ${headers} ${inlines} ${templates}
@@ -191,33 +206,6 @@ function(ace_target_set_precompiled_header target header)
       )
     endif(CMAKE_GENERATOR MATCHES "Visual Studio ")
   endif(MSVC)
-endfunction()
-
-##  ace_glob_target_cxx_sources(<target> [SUBGROUP <subgroup>])
-##  -----------------
-##  glob ${CMAKE_CURRENT_LIST_DIR} for the patterns *.cpp *.h *.inl *_T.cpp
-##  and add them to the target with groups SOURCE_FILES, HEADER_FILES, INLINE_FILES
-##  and TEMPLATE_FILES respectively.
-##
-function(ace_glob_target_cxx_sources target)
-  get_property(SKIPPED_TARGETS DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY ACE_CURRENT_SKIPPED_TARGETS)
-  if(NOT ${target} IN_LIST SKIPPED_TARGETS)
-    return()
-  endif()
-
-  file(GLOB sources ${CMAKE_CURRENT_LIST_DIR}/*.cpp)
-  file(GLOB headers ${CMAKE_CURRENT_LIST_DIR}/*.h)
-  file(GLOB inlines ${CMAKE_CURRENT_LIST_DIR}/*.inl)
-  file(GLOB templates ${CMAKE_CURRENT_LIST_DIR}/*_T.cpp)
-  list(REMOVE_ITEM sources "${templates}")
-
-  ace_target_cxx_sources(${target}
-    SOURCE_FILES ${sources}
-    HEADER_FILES ${headers}
-    INLINE_FILES ${inlines}
-    TEMPLATE_FILES ${templates}
-    SUBGROUP ${ARGV1}
-  )
 endfunction()
 
 
