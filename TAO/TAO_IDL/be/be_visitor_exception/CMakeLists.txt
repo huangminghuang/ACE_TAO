@@ -10,6 +10,5 @@ ace_target_cxx_sources(TAO_IDL_BE
                any_op_ch.cpp
                exception_ctor.cpp
   HEADER_FILES exception.h
-  SUBGROUP \\be\\be_visitor_exception
 )
 

@@ -8,6 +8,5 @@ ace_target_cxx_sources(TAO_IDL_BE
                typedef_ch.cpp
                any_op_ch.cpp
   HEADER_FILES typedef.h
-  SUBGROUP \\be\\be_visitor_typedef
 )
 

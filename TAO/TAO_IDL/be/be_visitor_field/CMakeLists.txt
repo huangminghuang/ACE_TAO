@@ -5,6 +5,5 @@ ace_target_cxx_sources(TAO_IDL_BE
                cdr_op_cs.cpp
                field_ci.cpp
   HEADER_FILES field.h
-  SUBGROUP \\be\\be_visitor_field
 )
 

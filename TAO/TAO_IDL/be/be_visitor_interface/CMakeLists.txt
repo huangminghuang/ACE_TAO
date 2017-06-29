@@ -31,6 +31,5 @@ ace_target_cxx_sources(TAO_IDL_BE
                amh_rh_ss.cpp
                ami4ccm_rh_ex_idl.cpp
   HEADER_FILES interface.h
-  SUBGROUP \\be\\be_visitor_interface
 )
 

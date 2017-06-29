@@ -8,6 +8,5 @@ ace_target_cxx_sources(TAO_IDL_BE
                sequence_ch.cpp
                any_op_ch.cpp
   HEADER_FILES sequence.h
-  SUBGROUP \\be\\be_visitor_sequence
 )
 

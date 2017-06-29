@@ -3,6 +3,5 @@ ace_target_cxx_sources(TAO_IDL_BE
                cdr_op_ch.cpp
                any_op_ch.cpp
   HEADER_FILES valuetype_fwd.h
-  SUBGROUP \\be\\be_visitor_valuetype_fwd
 )
 

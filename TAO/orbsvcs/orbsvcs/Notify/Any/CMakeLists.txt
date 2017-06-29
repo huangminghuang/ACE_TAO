@@ -13,6 +13,5 @@ ace_target_cxx_sources(TAO_CosNotification_Serv
                ProxyPushSupplier.h
                PushConsumer.h
                PushSupplier.h
-  SUBGROUP \\Any
 )
 

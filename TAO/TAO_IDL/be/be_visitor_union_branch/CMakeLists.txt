@@ -9,6 +9,5 @@ ace_target_cxx_sources(TAO_IDL_BE
                public_ch.cpp
                cdr_op_cs.cpp
   HEADER_FILES union_branch.h
-  SUBGROUP \\be\\be_visitor_union_branch
 )
 

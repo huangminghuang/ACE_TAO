@@ -10,6 +10,7 @@ ace_add_lib(TAO_RTCORBA
   PUBLIC_LINK_LIBRARIES TAO_PI
 )
 ace_target_cxx_sources(TAO_RTCORBA
+  GLOB_HEADERS
   SOURCE_FILES Continuous_Priority_Mapping.cpp
                Direct_Priority_Mapping.cpp
                Linear_Network_Priority_Mapping.cpp
@@ -40,44 +41,6 @@ ace_target_cxx_sources(TAO_RTCORBA
                RT_Transport_Descriptor.cpp
                RT_Transport_Descriptor_Property.cpp
                Thread_Pool.cpp
-  HEADER_FILES Continuous_Priority_Mapping.h
-               Direct_Priority_Mapping.h
-               Linear_Network_Priority_Mapping.h
-               Linear_Priority_Mapping.h
-               Multi_Priority_Mapping.h
-               Network_Priority_Mapping.h
-               Network_Priority_Mapping_Manager.h
-               Priority_Mapping.h
-               Priority_Mapping_Manager.h
-               RTCORBA.h
-               RT_Current.h
-               RT_Endpoint_Selector_Factory.h
-               RT_Endpoint_Utils.h
-               RT_Invocation_Endpoint_Selectors.h
-               RT_Mutex.h
-               RT_ORB.h
-               RT_ORBInitializer.h
-               RT_ORB_Loader.h
-               RT_PolicyFactory.h
-               RT_Policy_i.h
-               RT_ProtocolPropertiesA.h
-               RT_ProtocolPropertiesC.h
-               RT_ProtocolPropertiesS.h
-               RT_Protocols_Hooks.h
-               RT_Service_Context_Handler.h
-               RT_Stub.h
-               RT_Stub_Factory.h
-               RT_Thread_Lane_Resources_Manager.h
-               RT_Transport_Descriptor.h
-               RT_Transport_Descriptor_Property.h
-               Thread_Pool.h
-               rtcorba_export.h
-               rtcorba_typedefs.h
-  INLINE_FILES Network_Priority_Mapping_Manager.inl
-               Priority_Mapping_Manager.inl
-               RT_Transport_Descriptor.inl
-               RT_Transport_Descriptor_Property.inl
-               Thread_Pool.inl
 )
 
 

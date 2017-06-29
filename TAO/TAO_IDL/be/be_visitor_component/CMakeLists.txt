@@ -23,6 +23,5 @@ ace_target_cxx_sources(TAO_IDL_BE
                component_exh.cpp
                executor_exh.cpp
   HEADER_FILES component.h
-  SUBGROUP \\be\\be_visitor_component
 )
 

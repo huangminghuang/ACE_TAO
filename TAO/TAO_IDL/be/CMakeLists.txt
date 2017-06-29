@@ -81,6 +81,5 @@ ace_target_cxx_sources(TAO_IDL_BE
                be_extended_port.cpp
                be_template_module_inst.cpp
                be_helper.cpp
-  SUBGROUP \\be
 )
 

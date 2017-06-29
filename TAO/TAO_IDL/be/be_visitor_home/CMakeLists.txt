@@ -5,6 +5,5 @@ ace_target_cxx_sources(TAO_IDL_BE
                home_ex_idl.cpp
                home_svs.cpp
   HEADER_FILES home.h
-  SUBGROUP \\be\\be_visitor_home
 )
 

@@ -8,6 +8,5 @@ ace_target_cxx_sources(TAO_IDL_BE
                objref_typecode.cpp
                value_typecode.cpp
   HEADER_FILES typecode.h
-  SUBGROUP \\be\\be_visitor_typecode
 )
 

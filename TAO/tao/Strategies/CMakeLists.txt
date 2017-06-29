@@ -9,6 +9,7 @@ ace_add_lib(TAO_Strategies
                         TAO_AnyTypeCode
 )
 ace_target_cxx_sources(TAO_Strategies
+  GLOB_HEADERS
   SOURCE_FILES COIOP_Acceptor.cpp
                COIOP_Connection_Handler.cpp
                COIOP_Connector.cpp
@@ -53,59 +54,6 @@ ace_target_cxx_sources(TAO_Strategies
                UIOP_Profile.cpp
                UIOP_Transport.cpp
                advanced_resource.cpp
-  HEADER_FILES COIOP_Acceptor.h
-               COIOP_Connection_Handler.h
-               COIOP_Connector.h
-               COIOP_Endpoint.h
-               COIOP_Factory.h
-               COIOP_Profile.h
-               COIOP_Transport.h
-               DIOP_Acceptor.h
-               DIOP_Connection_Handler.h
-               DIOP_Connector.h
-               DIOP_Endpoint.h
-               DIOP_Factory.h
-               DIOP_Profile.h
-               DIOP_Transport.h
-               FIFO_Connection_Purging_Strategy.h
-               LFU_Connection_Purging_Strategy.h
-               LF_Strategy_Null.h
-               NULL_Connection_Purging_Strategy.h
-               OC_Endpoint_Selector_Factory.h
-               OC_Endpoint_Selector_Loader.h
-               Optimized_Connection_Endpoint_Selector.h
-               SCIOP_Acceptor.h
-               SCIOP_Connection_Handler.h
-               SCIOP_Connector.h
-               SCIOP_Endpoint.h
-               SCIOP_Factory.h
-               SCIOP_Profile.h
-               SCIOP_Transport.h
-               SHMIOP_Acceptor.h
-               SHMIOP_Connection_Handler.h
-               SHMIOP_Connector.h
-               SHMIOP_Endpoint.h
-               SHMIOP_Factory.h
-               SHMIOP_Profile.h
-               SHMIOP_Transport.h
-               Strategies_ORBInitializer.h
-               UIOP_Acceptor.h
-               UIOP_Connection_Handler.h
-               UIOP_Connector.h
-               UIOP_Endpoint.h
-               UIOP_Factory.h
-               UIOP_Profile.h
-               UIOP_Transport.h
-               advanced_resource.h
-               strategies_export.h
-  INLINE_FILES COIOP_Endpoint.inl
-               DIOP_Acceptor.inl
-               DIOP_Endpoint.inl
-               LF_Strategy_Null.inl
-               SCIOP_Acceptor.inl
-               SCIOP_Endpoint.inl
-               SHMIOP_Endpoint.inl
-               UIOP_Endpoint.inl
 )
 
 

@@ -3,6 +3,5 @@ ace_target_cxx_sources(TAO_IDL_BE
                attribute.cpp
                ccm_init.cpp
   HEADER_FILES attribute.h
-  SUBGROUP \\be\\be_visitor_attribute
 )
 

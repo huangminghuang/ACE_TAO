@@ -6,6 +6,5 @@ ace_target_cxx_sources(TAO_IDL_BE
                module_sh.cpp
                module_ih.cpp
   HEADER_FILES module.h
-  SUBGROUP \\be\\be_visitor_module
 )
 

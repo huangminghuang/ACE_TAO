@@ -11,6 +11,5 @@ ace_target_cxx_sources(TAO_IDL_BE
                discriminant_ch.cpp
                any_op_ch.cpp
   HEADER_FILES union.h
-  SUBGROUP \\be\\be_visitor_union
 )
 

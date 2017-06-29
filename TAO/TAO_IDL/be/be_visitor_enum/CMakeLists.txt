@@ -6,6 +6,5 @@ ace_target_cxx_sources(TAO_IDL_BE
                enum_ch.cpp
                cdr_op_cs.cpp
   HEADER_FILES enum.h
-  SUBGROUP \\be\\be_visitor_enum
 )
 

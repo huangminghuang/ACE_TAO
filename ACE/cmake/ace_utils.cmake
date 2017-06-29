@@ -102,11 +102,13 @@ function(ace_target_sources target)
 endfunction()
 
 
-##  ace_target_cxx_sources(<target> [SOURCE_FILE <cpp_file> ...]
-##                            [HEADER_FILES <h_file> ...]
-##                            [INLINE_FILES <inl_file> ...]
-##                            [TEMPLATE_FILES <template_file> ...]
-##                            [SUBGROUP <subgroup>] )
+##  ace_target_cxx_sources(<target>
+##     [REQUIRES <condition_var> | GLOB_HEADERS]
+##     [SOURCE_FILE <cpp_file> ...]
+##     [HEADER_FILES <h_file> ...]
+##     [INLINE_FILES <inl_file> ...]
+##     [TEMPLATE_FILES <template_file> ...]
+##     [SUBGROUP <subgroup>] )
 ##  ------------------------------------------------------------------
 ##
 ##  Specify sources with IDE groupoing to use when compiling a given target.
@@ -115,6 +117,11 @@ endfunction()
 ##  have been created by a command such as add_executable() or add_library() and must not be an IMPORTED Target.
 ##  If the target is part of package, it would generate installation rules for all the files specified excluding those
 ##  in SOURCE_FILES.
+##
+##  If REQUIRES is specified, the set of sources is only added to the target when ${condition_var} is TRUE.
+##
+##  If GLOB_HEADERS is specified, all the unspecified .h,.inl and .cpp files in current list directory will be
+##. considiered as header/inline/template files for the target.
 ##
 ##  If subgroup is specified, it must starts with backslashes "\\".
 ##
@@ -126,7 +133,7 @@ function(ace_target_cxx_sources target)
     return()
   endif()
 
-  set(oneValueArgs SUBGROUP)
+  set(oneValueArgs SUBGROUP REQUIRES)
   set(multiValueArgs SOURCE_FILES HEADER_FILES INLINE_FILES TEMPLATE_FILES)
   cmake_parse_arguments(_arg "GLOB_HEADERS" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
@@ -146,36 +153,68 @@ function(ace_target_cxx_sources target)
   ace_prepend_if_relative(inlines ${CMAKE_CURRENT_LIST_DIR} ${_arg_INLINE_FILES})
   ace_prepend_if_relative(templates ${CMAKE_CURRENT_LIST_DIR} ${_arg_TEMPLATE_FILES})
 
-  if (_arg_GLOB_HEADERS)
-    if (_arg_HEADER_FILES OR _arg_INLINE_FILES OR _arg_TEMPLATE_FILES)
-      message(FATAL_ERROR "GLOB_HEADERS cannot be specified if HEADER_FILES, INLINE_FILES or TEMPLATE_FILES exists")
+  set(header_files_only)
+  foreach(file ${headers})
+    if (IS_DIRECTORY ${file})
+      file(GLOB globed_files ${file}/*)
+      get_filename_component(file_name ${file} NAME)
+      ace_target_cxx_sources(${target}
+                             HEADER_FILES ${globed_files}
+                             SUBGROUP "${_arg_SUBGROUP}\\\\${file_name}")
     else()
-      file(GLOB headers ${CMAKE_CURRENT_LIST_DIR}/*.h)
-      file(GLOB inlines ${CMAKE_CURRENT_LIST_DIR}/*.inl)
-      file(GLOB templates ${CMAKE_CURRENT_LIST_DIR}/*.cpp)
-      list(REMOVE_ITEM templates ${sources})
+      list(APPEND header_files_only ${file})
+    endif(IS_DIRECTORY ${file})
+  endforeach(file ${headers})
+  set(headers ${header_files_only})
+
+  if (_arg_GLOB_HEADERS)
+    file(GLOB headers ${CMAKE_CURRENT_LIST_DIR}/*.h)
+    if (__${target}_header_files__)
+      list(REMOVE_ITEM headers ${__${target}_header_files__})
     endif()
+
+    file(GLOB inlines ${CMAKE_CURRENT_LIST_DIR}/*.inl)
+    if (__${target}_inline_files__)
+      list(REMOVE_ITEM inlines ${__${target}_inline_files__})
+    endif()
+
+    file(GLOB templates ${CMAKE_CURRENT_LIST_DIR}/*.cpp)
+    list(REMOVE_ITEM templates ${sources} ${__${target}_source_files__} ${__${target}_template_files__})
+  else()
+
+    list(APPEND __${target}_source_files__ ${sources})
+    list(APPEND __${target}_header_files__ ${headers})
+    list(APPEND __${target}_inline_files__ ${inlines})
+    list(APPEND __${target}_template_files__ ${template})
+
+    set(__${target}_source_files__ ${__${target}_source_files__} PARENT_SCOPE)
+    set(__${target}_header_files__ ${__${target}_header_files__} PARENT_SCOPE)
+    set(__${target}_inline_files__ ${__${target}_inline_files__} PARENT_SCOPE)
+    set(__${target}_template_files__ ${__${target}_template_files__} PARENT_SCOPE)
   endif(_arg_GLOB_HEADERS)
 
-  target_sources(${target}
-    PRIVATE ${sources} ${headers} ${inlines} ${templates}
-  )
+  if ((NOT _arg_REQUIRES) OR (${${_arg_REQUIRES}}))
+    target_sources(${target}
+      PRIVATE ${sources} ${headers} ${inlines} ${templates}
+    )
 
-  source_group("Source Files${_arg_SUBGROUP}" FILES ${sources})
-  source_group("Header Files${_arg_SUBGROUP}" FILES ${headers})
-  source_group("Inline Files${_arg_SUBGROUP}" FILES ${inlines})
-  source_group("Template Files${_arg_SUBGROUP}" FILES ${templates})
+    source_group("Source Files${_arg_SUBGROUP}" FILES ${sources})
+    source_group("Header Files${_arg_SUBGROUP}" FILES ${headers})
+    source_group("Inline Files${_arg_SUBGROUP}" FILES ${inlines})
+    source_group("Template Files${_arg_SUBGROUP}" FILES ${templates})
 
-  set_source_files_properties(${templates} PROPERTIES HEADER_FILE_ONLY ON)
+    set_source_files_properties(${templates} PROPERTIES HEADER_FILE_ONLY ON)
 
-  if (PACKAGE_OF_${target})
-    ace_install_package_files(${PACKAGE_OF_${target}} ${headers} ${inlines} ${templates})
-  endif()
+    if (PACKAGE_OF_${target})
+      ace_install_package_files(${PACKAGE_OF_${target}} ${headers} ${inlines} ${templates})
+    endif()
 
-  get_property(source_files_properties TARGET ${target} PROPERTY ACE_TARGET_SOURCE_FILES_PROPERTIES)
-  if (source_files_properties)
-    set_source_files_properties(${sources} PROPERTIES ${source_files_properties})
-  endif()
+    get_property(source_files_properties TARGET ${target} PROPERTY ACE_TARGET_SOURCE_FILES_PROPERTIES)
+    if (source_files_properties)
+      set_source_files_properties(${sources} PROPERTIES ${source_files_properties})
+    endif()
+  endif((NOT _arg_REQUIRES) OR (${${_arg_REQUIRES}}))
+
 endfunction()
 
 

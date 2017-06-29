@@ -20,6 +20,5 @@ ace_target_cxx_sources(TAO_IDL_BE
                root_exh.cpp
                root_ss.cpp
   HEADER_FILES root.h
-  SUBGROUP \\be\\be_visitor_root
 )
 

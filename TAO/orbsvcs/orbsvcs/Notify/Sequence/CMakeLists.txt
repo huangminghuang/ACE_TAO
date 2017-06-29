@@ -7,6 +7,5 @@ ace_target_cxx_sources(TAO_CosNotification_Serv
                SequenceProxyPushSupplier.h
                SequencePushConsumer.h
                SequencePushSupplier.h
-  SUBGROUP \\Sequence
 )
 

@@ -65,6 +65,5 @@ ace_target_cxx_sources(TAO_IDL_FE
                fe_declarator.cpp
                fe_init.cpp
                fe_component_header.cpp
-  SUBGROUP \\fe
 )
 

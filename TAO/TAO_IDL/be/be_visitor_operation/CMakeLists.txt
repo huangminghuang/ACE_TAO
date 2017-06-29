@@ -30,6 +30,5 @@ ace_target_cxx_sources(TAO_IDL_BE
                amh_rh_ss.cpp
                arglist.cpp
   HEADER_FILES operation.h
-  SUBGROUP \\be\\be_visitor_operation
 )
 

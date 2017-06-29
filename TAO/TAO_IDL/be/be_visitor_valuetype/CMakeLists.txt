@@ -27,6 +27,5 @@ ace_target_cxx_sources(TAO_IDL_BE
                valuetype_init_ci.cpp
                arglist.cpp
   HEADER_FILES valuetype.h
-  SUBGROUP \\be\\be_visitor_valuetype
 )
 

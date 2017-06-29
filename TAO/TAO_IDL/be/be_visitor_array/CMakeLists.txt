@@ -8,6 +8,5 @@ ace_target_cxx_sources(TAO_IDL_BE
                array_cs.cpp
                cdr_op_cs.cpp
   HEADER_FILES array.h
-  SUBGROUP \\be\\be_visitor_array
 )
 

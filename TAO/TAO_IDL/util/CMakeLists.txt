@@ -14,6 +14,5 @@ ace_target_cxx_sources(TAO_IDL_FE
                utl_namelist.cpp
                utl_list.cpp
                utl_labellist.cpp
-  SUBGROUP \\util
 )
 

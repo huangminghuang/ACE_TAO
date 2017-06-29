@@ -3,6 +3,5 @@ ace_target_cxx_sources(TAO_IDL_BE
                component_fwd_ch.cpp
                any_op_ch.cpp
   HEADER_FILES component_fwd.h
-  SUBGROUP \\be\\be_visitor_component_fwd
 )
 

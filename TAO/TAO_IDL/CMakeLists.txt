@@ -13,9 +13,12 @@ ace_add_lib(TAO_IDL_FE
   PUBLIC_LINK_LIBRARIES ACE
 )
 
+ace_target_cxx_sources(TAO_IDL_FE
+  HEADER_FILES include
+)
+
 include(ast/CMakeLists.txt)
 include(fe/CMakeLists.txt)
-include(include/CMakeLists.txt)
 include(narrow/CMakeLists.txt)
 include(util/CMakeLists.txt)
 
@@ -27,7 +30,11 @@ ace_add_lib(TAO_IDL_BE
   PUBLIC_LINK_LIBRARIES TAO_IDL_FE
 )
 
-file(GLOB_RECURSE sublists be/CMakeList*.txt be_include/CMakeList*.txt)
+ace_target_cxx_sources(TAO_IDL_BE
+  HEADER_FILES be_include
+)
+
+file(GLOB_RECURSE sublists be/CMakeList*.txt)
 foreach(list ${sublists})
   include(${list})
 endforeach()

@@ -59,6 +59,5 @@ ace_target_cxx_sources(TAO_IDL_FE
                ast_visitor.cpp
                ast_constant.cpp
                ast_native.cpp
-  SUBGROUP \\ast
 )
 

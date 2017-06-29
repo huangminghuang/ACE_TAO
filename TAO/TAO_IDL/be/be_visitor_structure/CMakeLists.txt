@@ -8,6 +8,5 @@ ace_target_cxx_sources(TAO_IDL_BE
                any_op_ch.cpp
                structure.cpp
   HEADER_FILES structure.h
-  SUBGROUP \\be\\be_visitor_structure
 )
 
