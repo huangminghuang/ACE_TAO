@@ -686,11 +686,11 @@ function(ace_target_qt_sources target)
 endfunction()
 
 macro(ace_try_enable_ccache)
-  find_program(CCACHE_PROGRAM ccache)
+  find_program(CCACHE ccache)
 
-  if(CCACHE_PROGRAM)
+  if(CCACHE)
       # Set up wrapper scripts
-      set(CXX_LAUNCHER "${CCACHE_PROGRAM}")
+      set(CXX_LAUNCHER "${CCACHE}")
 
       file(WRITE ${CMAKE_BINARY_DIR}/launch-cxx "#!/bin/bash\nif [[ \"$1\" = \"${CMAKE_CXX_COMPILER}\" ]] ; then shift; fi\nexport CCACHE_CPP2=true\nexec \"${CXX_LAUNCHER}\" \"${CMAKE_CXX_COMPILER}\" \"$@\"")
       execute_process(COMMAND chmod a+rx "${CMAKE_BINARY_DIR}/launch-cxx")
