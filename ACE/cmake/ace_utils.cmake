@@ -364,8 +364,10 @@ function(ace_add_lib target)
     )
 
     if (APPLE)
-      set_target_properties(${target} PROPERTIES
-        INSTALL_RPATH “@loader_path”)
+      set_property(TARGET ${target}
+                     PROPERTY INSTALL_RPATH
+                     @loader_path
+                     @loader_path/../../../lib)
     endif()
 
     install(TARGETS ${target}
@@ -465,8 +467,11 @@ function(ace_add_exe target)
     )
 
     if (APPLE)
-      set_target_properties(${target} PROPERTIES
-        INSTALL_RPATH “@loader_path/../lib”)
+      set_property(TARGET ${target}
+                     PROPERTY INSTALL_RPATH
+                     @executable_path/../lib
+                     @executable_path/../../../lib
+                   )
     endif()
 
     if (NOT _arg_COMPONENT)
