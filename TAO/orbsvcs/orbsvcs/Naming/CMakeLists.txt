@@ -73,7 +73,6 @@ if (NOT TAO_HAS_CORBA_E_MICRO)
                  Storable_Naming_Context_Activator.cpp
                  Storable_Naming_Context_ReaderWriter.cpp
                  Persistent_Naming_Context_Factory.cpp
-                 Storable_Naming_Context_Factory.cpp
     HEADER_FILES Persistent_Context_Index.h
                  Persistent_Entries.h
                  Persistent_Naming_Context.h
@@ -82,7 +81,6 @@ if (NOT TAO_HAS_CORBA_E_MICRO)
                  Storable_Naming_Context_Activator.h
                  Storable_Naming_Context_ReaderWriter.h
                  Persistent_Naming_Context_Factory.h
-                 Storable_Naming_Context_Factory.h
     INLINE_FILES Storable.inl
 )
 endif()

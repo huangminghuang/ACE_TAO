@@ -6,6 +6,7 @@ ace_add_lib(TAO_FTRT_EventChannel
                         TAO_RTEvent_Serv
                         TAO_PI_Server
                         TAO_Utils
+  UNITY_CXX_MINIMUM_PARTITIONS 2
 )
 
 ace_target_cxx_sources(TAO_FTRT_EventChannel
@@ -30,11 +31,9 @@ ace_target_cxx_sources(TAO_FTRT_EventChannel
                FtEventServiceInterceptor.cpp
                GroupInfoPublisher.cpp
                IOGR_Maker.cpp
-               Identification_Service.cpp
                ObjectGroupManagerHandler.cpp
                ProxyConsumerStateWorker.cpp
                ProxySupplierStateWorker.cpp
-               Replication_Service.cpp
                Replication_Strategy.cpp
                Request_Context_Repository.cpp
                SCTP_Fault_Detector.cpp
@@ -43,6 +42,11 @@ ace_target_cxx_sources(TAO_FTRT_EventChannel
                UpdateableHandler.cpp
                create_persistent_poa.cpp
                replace_key.cpp
+               ###
+               Replication_Service.cpp
+               Identification_Service.cpp
+
+
   HEADER_FILES AMI_Primary_Replication_Strategy.h
                AMI_Replication_Strategy.h
                Basic_Replication_Strategy.h

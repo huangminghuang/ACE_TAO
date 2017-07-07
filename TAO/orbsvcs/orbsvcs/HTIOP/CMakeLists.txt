@@ -5,6 +5,16 @@ ace_add_lib(TAO_HTIOP
   PACKAGE TAO
   FOLDER TAO/orbsvcs/orbsvcs/HTIOP
   PUBLIC_LINK_LIBRARIES ACE_HTBP TAO_Svc_Utils
+  UNITY_CXX_MINIMUM_PARTITIONS 2
+)
+
+tao_idl_sources(
+  TARGETS TAO_HTIOP
+  IDL_FLAGS ${TAO_VERSIONING_IDL_FLAGS}
+            -Wb,export_macro=HTIOP_Export
+            -Wb,export_include=orbsvcs/HTIOP/HTIOP_Export.h -SS
+  IDL_FILES ../HTIOP.idl
+  WORKING_DIRECTORY ..
 )
 
 ace_target_cxx_sources(TAO_HTIOP
@@ -33,14 +43,7 @@ ace_target_cxx_sources(TAO_HTIOP
                HTIOP_Endpoint.inl
 )
 
-tao_idl_sources(
-  TARGETS TAO_HTIOP
-  IDL_FLAGS ${TAO_VERSIONING_IDL_FLAGS}
-            -Wb,export_macro=HTIOP_Export
-            -Wb,export_include=orbsvcs/HTIOP/HTIOP_Export.h -SS
-  IDL_FILES ../HTIOP.idl
-  WORKING_DIRECTORY ..
-)
+
 
 tao_idl_sources(
   TARGETS TAO_HTIOP

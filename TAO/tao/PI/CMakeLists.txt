@@ -41,7 +41,6 @@ set(PI_Idl_FLAGS ${TAO_VERSIONING_IDL_FLAGS}
                  -iC tao/PI)
 tao_idl_sources(
   TARGETS TAO_PI
-  STUB_TARGETS TAO_PI
   IDL_FLAGS ${PI_Idl_FLAGS} -Sa -St -Sorb -GX
             -Wb,unique_include=tao/PI/PI.h
   IDL_FILES PI_include.pidl
@@ -49,7 +48,6 @@ tao_idl_sources(
 
 tao_idl_sources(
   TARGETS TAO_PI
-  STUB_TARGETS TAO_PI
   IDL_FLAGS ${PI_Idl_FLAGS} -Sorb -Sal -GX
             -Wb,include_guard=TAO_PI_SAFE_INCLUDE
             -Wb,safe_include=tao/PI/PI.h
@@ -58,7 +56,6 @@ tao_idl_sources(
 
 tao_idl_sources(
   TARGETS TAO_PI
-  STUB_TARGETS TAO_PI
   IDL_FLAGS ${PI_Idl_FLAGS} -GA -Sorb -Sal
             -Wb,include_guard=TAO_PI_SAFE_INCLUDE
             -Wb,safe_include=tao/PI/PI.h
@@ -73,14 +70,12 @@ tao_idl_sources(
 
 tao_idl_sources(
   TARGETS TAO_PI
-  STUB_TARGETS TAO_PI
   IDL_FLAGS ${PI_Idl_FLAGS} -GA -Sorb -Sal
   IDL_FILES Interceptor.pidl
 )
 
 tao_idl_sources(
   TARGETS TAO_PI
-  STUB_TARGETS TAO_PI
   IDL_FLAGS ${PI_Idl_FLAGS} -GA -Sal
             -Wb,include_guard=TAO_PI_SAFE_INCLUDE
             -Wb,safe_include=tao/PI/PI.h

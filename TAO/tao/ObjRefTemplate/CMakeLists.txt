@@ -26,7 +26,6 @@ ace_target_cxx_sources(TAO_ObjRefTemplate
 set(ObjRefTemplate_Idl_FLAGS ${TAO_VERSIONING_IDL_FLAGS})
 tao_idl_sources(
   TARGETS TAO_ObjRefTemplate
-  STUB_TARGETS TAO_ObjRefTemplate
   IDL_FLAGS ${ObjRefTemplate_Idl_FLAGS}
             -Gp -Gd -SS -Sorb -GX
             -Wb,export_macro=TAO_ORT_Export
@@ -39,7 +38,6 @@ tao_idl_sources(
 
 tao_idl_sources(
   TARGETS TAO_ObjRefTemplate
-  STUB_TARGETS TAO_ObjRefTemplate
   IDL_FLAGS ${ObjRefTemplate_Idl_FLAGS}
             -Sa -St -Sa -St -SS -Sorb -GX
             -Sci
@@ -52,7 +50,6 @@ tao_idl_sources(
 
 tao_idl_sources(
   TARGETS TAO_ObjRefTemplate
-  STUB_TARGETS TAO_ObjRefTemplate
   IDL_FLAGS ${ObjRefTemplate_Idl_FLAGS}
             -Gp -Gd -SS -GA -Sorb
             -Wb,export_macro=TAO_ORT_Export

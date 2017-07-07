@@ -12,6 +12,7 @@ ace_add_lib(Timer_Queue_Library
   FOLDER ACE/examples/Timer_Queue
   DEFINE_SYMBOL ACE_BUILD_SVC_DLL
   PUBLIC_LINK_LIBRARIES ACE
+  UNITY_CXX_MINIMUM_PARTITIONS 2
 )
 ace_target_cxx_sources(Timer_Queue_Library
   SOURCE_FILES Async_Timer_Queue_Test.cpp

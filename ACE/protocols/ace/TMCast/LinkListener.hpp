@@ -1,5 +1,8 @@
 // author    : Boris Kolpackov <boris@dre.vanderbilt.edu>
 
+#if !defined (ACE_LACKS_PRAGMA_ONCE)
+# pragma once
+#endif /* ACE_LACKS_PRAGMA_ONCE */
 // OS primitives
 #include <ace/OS_NS_string.h>
 #include <ace/OS_NS_stdlib.h>

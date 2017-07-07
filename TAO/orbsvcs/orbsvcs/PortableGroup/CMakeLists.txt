@@ -12,6 +12,7 @@ ace_add_lib(TAO_PortableGroup
                          TAO_IORManip
                          TAO_Messaging
                          TAO_Svc_Utils
+  UNITY_CXX_MINIMUM_PARTITIONS 2
 )
 
 ace_target_cxx_sources(TAO_PortableGroup
@@ -50,15 +51,16 @@ ace_target_cxx_sources(TAO_PortableGroup
                UIPMC_Connection_Handler.cpp
                UIPMC_Connector.cpp
                UIPMC_Endpoint.cpp
-               UIPMC_Factory.cpp
                UIPMC_Mcast_Connection_Handler.cpp
                UIPMC_Mcast_Transport.cpp
                UIPMC_Message_Block_Data_Iterator.cpp
-               UIPMC_Profile.cpp
                UIPMC_Transport.cpp
                UIPMC_Transport_Recv_Packet.cpp
                UIPMC_Wait_Never.cpp
                miop_resource.cpp
+               UIPMC_Profile.cpp
+               UIPMC_Factory.cpp
+
   HEADER_FILES Fragments_Cleanup_Strategy.h
                GOA.h
                MIOP.h

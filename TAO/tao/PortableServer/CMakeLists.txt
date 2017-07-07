@@ -108,7 +108,6 @@ ace_target_cxx_sources(TAO_PortableServer
 set(PortableServer_Idl_FLAGS ${TAO_VERSIONING_IDL_FLAGS})
 tao_idl_sources(
   TARGETS TAO_PortableServer
-  STUB_TARGETS TAO_PortableServer
   IDL_FLAGS ${PortableServer_Idl_FLAGS}
             -Gp -Gd -Sci -SS -Sorb -GA
             -Wb,export_macro=TAO_PortableServer_Export
@@ -119,7 +118,6 @@ tao_idl_sources(
 
 tao_idl_sources(
   TARGETS TAO_PortableServer
-  STUB_TARGETS TAO_PortableServer
   IDL_FLAGS ${PortableServer_Idl_FLAGS}
             -Gp -Gd -Sci -SS -Sorb -GA
             -Sal
@@ -141,7 +139,6 @@ tao_idl_sources(
 
 tao_idl_sources(
   TARGETS TAO_PortableServer
-  STUB_TARGETS TAO_PortableServer
   IDL_FLAGS ${PortableServer_Idl_FLAGS}
             -Gp -Gd -Sci -SS -Sorb
             -Wb,export_macro=TAO_PortableServer_Export
@@ -155,7 +152,6 @@ tao_idl_sources(
 
 tao_idl_sources(
   TARGETS TAO_PortableServer
-  STUB_TARGETS TAO_PortableServer
   IDL_FLAGS ${PortableServer_Idl_FLAGS}
             -Sa -St -Sa -St -Sa -St -Sci
             -SS -Sorb -Sa -GX
@@ -168,7 +164,6 @@ tao_idl_sources(
 
 tao_idl_sources(
   TARGETS TAO_PortableServer
-  STUB_TARGETS TAO_PortableServer
   IDL_FLAGS ${PortableServer_Idl_FLAGS}
             -Sa -St -Sa -St -Sa -St -Sci
             -SS -Sorb -Sa -GX

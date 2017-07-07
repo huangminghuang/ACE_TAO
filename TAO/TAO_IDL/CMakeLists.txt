@@ -11,6 +11,7 @@ ace_add_lib(TAO_IDL_FE
   PUBLIC_INCLUDE_DIRECTORIES ..
                              include
   PUBLIC_LINK_LIBRARIES ACE
+  UNITY_CXX_MINIMUM_PARTITIONS 2
 )
 
 ace_target_cxx_sources(TAO_IDL_FE

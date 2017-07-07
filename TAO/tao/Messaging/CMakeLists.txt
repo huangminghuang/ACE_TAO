@@ -54,7 +54,6 @@ ace_target_cxx_sources(TAO_Messaging
 set(Messaging_Idl_FLAGS ${TAO_VERSIONING_IDL_FLAGS})
 tao_idl_sources(
   TARGETS TAO_Messaging
-  STUB_TARGETS TAO_Messaging
   IDL_FLAGS ${Messaging_Idl_FLAGS} -SS
             -GA -Gp -Gd -Sorb -Sal
             -Wb,export_macro=TAO_Messaging_Export
@@ -65,7 +64,6 @@ tao_idl_sources(
 
 tao_idl_sources(
   TARGETS TAO_Messaging
-  STUB_TARGETS TAO_Messaging
   IDL_FLAGS ${Messaging_Idl_FLAGS} -Sci
             -SS -Gp -Gd -Sorb -Sal -GX
             -Wb,export_macro=TAO_Messaging_Export
@@ -76,7 +74,6 @@ tao_idl_sources(
 
 tao_idl_sources(
   TARGETS TAO_Messaging
-  STUB_TARGETS TAO_Messaging
   IDL_FLAGS ${Messaging_Idl_FLAGS} -Sci
             -SS -Gp -Gd -Sorb -Sal -GX
             -Wb,export_macro=TAO_Messaging_Export
@@ -87,7 +84,6 @@ tao_idl_sources(
 
 tao_idl_sources(
   TARGETS TAO_Messaging
-  STUB_TARGETS TAO_Messaging
   IDL_FLAGS ${Messaging_Idl_FLAGS} -Sci
             -SS -GA -Gp -Gd -Sorb -Sal
             -Wb,export_macro=TAO_Messaging_Export
@@ -100,7 +96,6 @@ tao_idl_sources(
 
 tao_idl_sources(
   TARGETS TAO_Messaging
-  STUB_TARGETS TAO_Messaging
   IDL_FLAGS ${Messaging_Idl_FLAGS} -Sci
             -SS -GA -Gp -Gd -Sorb -Sal
             -Wb,export_macro=TAO_Messaging_Export
@@ -113,7 +108,6 @@ tao_idl_sources(
 
 tao_idl_sources(
   TARGETS TAO_Messaging
-  STUB_TARGETS TAO_Messaging
   IDL_FLAGS ${Messaging_Idl_FLAGS} -GA
             -Gp -Gd -Sorb -Sal
             -Wb,export_macro=TAO_Messaging_Export

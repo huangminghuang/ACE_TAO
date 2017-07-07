@@ -53,6 +53,7 @@ ace_add_lib(ACE
   PUBLIC_COMPILE_DEFINITIONS ${ACE_COMPILE_DEFINITIONS}
   PUBLIC_INCLUDE_DIRECTORIES ..
                              $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/..>
+  UNITY_CXX_MINIMUM_PARTITIONS 2
 
 )
 
@@ -380,7 +381,6 @@ ace_target_cxx_sources(ACE
                POSIX_CB_Proactor.cpp
                POSIX_Proactor.cpp
                Pagefile_Memory_Pool.cpp
-               Parse_Node.cpp
                Ping_Socket.cpp
                Pipe.cpp
                Priority_Reactor.cpp

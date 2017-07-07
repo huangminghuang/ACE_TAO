@@ -8,7 +8,8 @@ ace_add_lib(asnmp_lib
   PUBLIC_LINK_LIBRARIES ACE
 )
 ace_target_cxx_sources(asnmp_lib
-  SOURCE_FILES address.cpp
+  SOURCE_FILES snmp.cpp # snmp.cpp must be in the front to make unity build work
+               address.cpp
                asn1.cpp
                counter.cpp
                ctr64.cpp
@@ -18,7 +19,6 @@ ace_target_cxx_sources(asnmp_lib
                oid.cpp
                pdu.cpp
                sagent.cpp
-               snmp.cpp
                target.cpp
                timetick.cpp
                transaction.cpp

@@ -7,6 +7,7 @@ ace_add_lib(TAO_Strategies
   DEFINE_SYMBOL TAO_STRATEGIES_BUILD_DLL
   PUBLIC_LINK_LIBRARIES TAO_PI
                         TAO_AnyTypeCode
+  UNITY_CXX_MINIMUM_PARTITIONS 4
 )
 ace_target_cxx_sources(TAO_Strategies
   GLOB_HEADERS
@@ -42,18 +43,20 @@ ace_target_cxx_sources(TAO_Strategies
                SHMIOP_Connection_Handler.cpp
                SHMIOP_Connector.cpp
                SHMIOP_Endpoint.cpp
-               SHMIOP_Factory.cpp
-               SHMIOP_Profile.cpp
                SHMIOP_Transport.cpp
                Strategies_ORBInitializer.cpp
                UIOP_Acceptor.cpp
                UIOP_Connection_Handler.cpp
                UIOP_Connector.cpp
                UIOP_Endpoint.cpp
-               UIOP_Factory.cpp
-               UIOP_Profile.cpp
                UIOP_Transport.cpp
                advanced_resource.cpp
+               ## the floowing 4 file all defined the same symbol which couldn't
+               ## be put into the same translation unit
+               SHMIOP_Factory.cpp
+               SHMIOP_Profile.cpp
+               UIOP_Factory.cpp
+               UIOP_Profile.cpp
 )
 
 

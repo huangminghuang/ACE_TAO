@@ -224,19 +224,19 @@ function(tao_idl_sources)
     WORKING_DIRECTORY ${rel_path}
   )
   foreach(anyop_target ${_arg_ANYOP_TARGETS})
-    ace_target_sources(${anyop_target} PRIVATE ${_idls_ANYOP_FILES} ${_arg_IDL_FILES})
+    ace_target_sources(${anyop_target} ${_idls_ANYOP_FILES} ${_arg_IDL_FILES})
   endforeach()
 
   foreach(skel_target ${_arg_SKEL_TARGETS})
-    ace_target_sources(${skel_target} PRIVATE ${_idls_SKEL_FILES} ${_arg_IDL_FILES})
+    ace_target_sources(${skel_target} ${_idls_SKEL_FILES} ${_arg_IDL_FILES})
   endforeach()
 
   foreach(stub_target ${_arg_STUB_TARGETS})
-    ace_target_sources(${stub_target} PRIVATE ${_idls_STUB_FILES} ${_arg_IDL_FILES})
+    ace_target_sources(${stub_target} ${_idls_STUB_FILES} ${_arg_IDL_FILES})
   endforeach()
 
   foreach(target ${_arg_TARGETS})
-    ace_target_sources(${target} PRIVATE ${_idls_ANYOP_FILES} ${_idls_SKEL_FILES} ${_idls_STUB_FILES} ${_arg_IDL_FILES})
+    ace_target_sources(${target} ${_idls_ANYOP_FILES} ${_idls_SKEL_FILES} ${_idls_STUB_FILES} ${_arg_IDL_FILES})
   endforeach()
 
   set(CMAKE_INCLUDE_CURRENT_DIR ON PARENT_SCOPE)

@@ -5,23 +5,58 @@ if (POLICY CMP0063)
   cmake_policy(SET CMP0063 NEW)
 endif()
 
-set(ACE_CMAKE_DIR ${CMAKE_CURRENT_LIST_DIR} CACHE INTERNAL "")
+if (NOT ACE_CMAKE_COMMAND)
 
-list(LENGTH CMAKE_CONFIGURATION_TYPES ALL_CMAKE_CONFIGURATION_TYPES_LEN)
+  set(ACE_CMAKE_DIR ${CMAKE_CURRENT_LIST_DIR} CACHE INTERNAL "")
+  set(ACE_CMAKE_UTIL ${CMAKE_CURRENT_LIST_FILE} CACHE INTERNAL "")
+  option(ACE_UNITY_BUILD "" )
 
-foreach(CONFIG_TYPE ${CMAKE_CONFIGURATION_TYPES})
-  string(TOUPPER ${CONFIG_TYPE} CONFIG_TYPE)
-  list(APPEND ALL_CONFIGURATION_TYPES_UPPER ${CONFIG_TYPE})
-endforeach()
+  list(LENGTH CMAKE_CONFIGURATION_TYPES ALL_CMAKE_CONFIGURATION_TYPES_LEN)
 
-set(CMAKE_CONFIGURATION_TYPES_UPPER ${ALL_CONFIGURATION_TYPES_UPPER} CACHE INTERNAL "")
+  foreach(CONFIG_TYPE ${CMAKE_CONFIGURATION_TYPES})
+    string(TOUPPER ${CONFIG_TYPE} CONFIG_TYPE)
+    list(APPEND ALL_CONFIGURATION_TYPES_UPPER ${CONFIG_TYPE})
+  endforeach()
 
-if (ALL_CMAKE_CONFIGURATION_TYPES_LEN GREATER 1)
-  set(ACE_MULTI_CONFIGURATION_GENERATOR ON CACHE INTERNAL "")
-elseif(ALL_CMAKE_CONFIGURATION_TYPES_LEN EQUAL 1)
-  set(ACE_SOLE_CONFIGURATION_SUFFIX _${CMAKE_CONFIGURATION_TYPES_UPPER} CACHE INTERNAL "")
+  set(CMAKE_CONFIGURATION_TYPES_UPPER ${ALL_CONFIGURATION_TYPES_UPPER} CACHE INTERNAL "")
+
+  if (ALL_CMAKE_CONFIGURATION_TYPES_LEN GREATER 1)
+    set(ACE_MULTI_CONFIGURATION_GENERATOR ON CACHE INTERNAL "")
+  elseif(ALL_CMAKE_CONFIGURATION_TYPES_LEN EQUAL 1)
+    set(ACE_SOLE_CONFIGURATION_SUFFIX _${CMAKE_CONFIGURATION_TYPES_UPPER} CACHE INTERNAL "")
+  endif()
+
+  define_property(TARGET PROPERTY ACE_TARGET_UNITY_BUILD
+    BRIEF_DOCS "Whether unity build is allowed for the target"
+    FULL_DOCS "Whether unity build is allowed for the target"
+  )
+
+  define_property(TARGET PROPERTY ACE_TARGET_UNITY_INCLUDES_CXX_SOURCES
+    BRIEF_DOCS "The list of C++ source files to be included by generated C++ unity source"
+    FULL_DOCS "The list of C++ source files to be included by generated C++ unity source"
+  )
+
+  define_property(TARGET PROPERTY ACE_TARGET_UNITY_CXX
+    BRIEF_DOCS "The generated unity C++ files for the target"
+    FULL_DOCS "The generated unity C++ files for the target"
+  )
+
+  define_property(TARGET PROPERTY ACE_TARGET_UNITY_C
+    BRIEF_DOCS "The generated unity C files for the target"
+    FULL_DOCS "The generated unity C files for the target"
+  )
+
+  define_property(TARGET PROPERTY ACE_TARGET_UNITY_C_MINIMUM_PARTITIONS
+    BRIEF_DOCS "The minimum number of generated unity C files for the target"
+    FULL_DOCS "The minimum number of generated unity C files for the target"
+  )
+
+  define_property(TARGET PROPERTY ACE_TARGET_UNITY_CXX_MINIMUM_PARTITIONS
+    BRIEF_DOCS "The minimum number of generated unity C files for the target"
+    FULL_DOCS "The minimum number of generated unity C files for the target"
+  )
+
 endif()
-
 
 function(ace_add_package name)
   set(oneValueArgs VERSION INSTALL_DIRECTORY)
@@ -94,11 +129,99 @@ function(ace_install_package_directories package)
           COMPONENT ${package}_devel)
 endfunction()
 
+
+function(ace_filter_files_with_suffix result)
+  cmake_parse_arguments(_arg "" "" "SUFFIX;FROM" ${ARGN})
+
+  set(r "")
+  foreach(filename ${_arg_FROM})
+    foreach(suffix ${_arg_SUFFIX})
+      string(TOLOWER ${filename} filename_lower)
+      if (${filename_lower} MATCHES "${suffix}")
+        list(APPEND r ${filename})
+        break()
+      endif()
+    endforeach(suffix ${_arg_SUFFIX})
+  endforeach(filename ${_arg_FROM})
+  set(${result} ${r} PARENT_SCOPE)
+endfunction()
+
+set(ACE_C_SOURCE_SUFFIXES "\\.c$" CACHE INTERNAL "")
+set(ACE_CXX_SOURCE_SUFFIXES "\\.cpp$" "\\.cxx$" CACHE INTERNAL "")
+
+function(ace_target_gen_unity_filenames target language result)
+  get_property(num TARGET ${target} PROPERTY ACE_TARGET_UNITY_${language}_MINIMUM_PARTITIONS)
+  string(TOLOWER ${language} lang_suffix)
+  set(unity_filenames "")
+  if (num AND "${num}" GREATER 1)
+    foreach(i RANGE 1 ${num})
+      list(APPEND unity_filenames ${CMAKE_CURRENT_BINARY_DIR}/${target}_${language}_unity_${i}.${lang_suffix})
+    endforeach()
+  else(num AND "${num}" GREATER 1)
+    set(unity_filenames ${CMAKE_CURRENT_BINARY_DIR}/${target}_${language}_unity.${lang_suffix})
+  endif(num AND "${num}" GREATER 1)
+  set("${result}" ${unity_filenames} PARENT_SCOPE)
+endfunction()
+
+function(ace_target_prepare_unity_files target language)
+
+  ace_filter_files_with_suffix(sources SUFFIX ${ACE_${language}_SOURCE_SUFFIXES} FROM ${ARGN})
+
+  get_property(unity_includes TARGET ${target} PROPERTY ACE_TARGET_UNITY_INCLUDES_${language}_SOURCES)
+  list(APPEND unity_includes ${sources})
+  list(LENGTH unity_includes unity_includes_len)
+  set_property(TARGET ${target} PROPERTY ACE_TARGET_UNITY_INCLUDES_${language}_SOURCES ${unity_includes})
+
+  if (${target} STREQUAL "Hello_Client")
+    message("ace_target_prepare_unity_files(${target}) unity_includes_len=${unity_includes_len}")
+  endif()
+
+  if (unity_includes_len GREATER 1)
+
+    set_source_files_properties(${unity_includes} PROPERTIES HEADER_FILE_ONLY ON)
+    get_property(unity_files TARGET ${target} PROPERTY ACE_TARGET_UNITY_${language})
+    if (NOT unity_files)
+
+      ace_target_gen_unity_filenames(${target} ${language} unity_files)
+
+      add_custom_command(
+        OUTPUT ${unity_files}
+        COMMAND ${CMAKE_COMMAND}
+                "-DACE_CMAKE_COMMAND=GENERATE_UNITY_FILES"
+                "-DACE_TARGET_UNITY_INCLUDES=\"$<TARGET_PROPERTY:${target},ACE_TARGET_UNITY_INCLUDES_${language}_SOURCES>\""
+                "-DACE_TARGET_UNITY_FILENAMES=\"${unity_files}\""
+                -P "${ACE_CMAKE_UTIL}"
+        DEPENDS ${ACE_CMAKE_UTIL}
+      )
+
+      target_sources(${target} PRIVATE ${unity_files})
+      set_property(TARGET ${target}
+                   PROPERTY ACE_TARGET_UNITY_${language} ${unity_files})
+      source_group("Unity Files" FILES ${unity_files})
+
+    endif(NOT unity_files)
+  endif(unity_includes_len GREATER 1)
+endfunction()
+
+function(ace_target_add_unity_includes target)
+
+  # if (${target} STREQUAL "Hello_Client")
+  #   message("ace_target_add_unity_includes(${target} ${ARGN})")
+  # endif()
+
+  get_property(target_allow_unity_build TARGET ${target} PROPERTY ACE_TARGET_UNITY_BUILD)
+  if (ACE_UNITY_BUILD AND target_allow_unity_build)
+    ace_target_prepare_unity_files(${target} CXX ${ARGN})
+    ace_target_prepare_unity_files(${target} C ${ARGN})
+  endif(ACE_UNITY_BUILD AND target_allow_unity_build)
+endfunction()
+
 function(ace_target_sources target)
   get_property(SKIPPED_TARGETS DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY ACE_CURRENT_SKIPPED_TARGETS)
   if(NOT ${target} IN_LIST SKIPPED_TARGETS)
     target_sources(${target} PRIVATE ${ARGN})
-  endif()
+    ace_target_add_unity_includes(${target} ${ARGN})
+  endif(NOT ${target} IN_LIST SKIPPED_TARGETS)
 endfunction()
 
 
@@ -135,7 +258,7 @@ function(ace_target_cxx_sources target)
 
   set(oneValueArgs SUBGROUP REQUIRES)
   set(multiValueArgs SOURCE_FILES HEADER_FILES INLINE_FILES TEMPLATE_FILES)
-  cmake_parse_arguments(_arg "GLOB_HEADERS" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+  cmake_parse_arguments(_arg "GLOB_HEADERS;UNITY_EXCLUDED" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
   if (_arg_SUBGROUP)
     if (NOT "${_arg_SUBGROUP}" MATCHES "^\\\\")
@@ -194,6 +317,7 @@ function(ace_target_cxx_sources target)
   endif(_arg_GLOB_HEADERS)
 
   if ((NOT _arg_REQUIRES) OR (${${_arg_REQUIRES}}))
+
     target_sources(${target}
       PRIVATE ${sources} ${headers} ${inlines} ${templates}
     )
@@ -204,6 +328,9 @@ function(ace_target_cxx_sources target)
     source_group("Template Files${_arg_SUBGROUP}" FILES ${templates})
 
     set_source_files_properties(${templates} PROPERTIES HEADER_FILE_ONLY ON)
+    if (NOT _arg_UNITY_EXCLUDED)
+      ace_target_add_unity_includes(${target} ${sources})
+    endif()
 
     if (PACKAGE_OF_${target})
       ace_install_package_files(${PACKAGE_OF_${target}} ${headers} ${inlines} ${templates})
@@ -304,6 +431,12 @@ macro(ace_parse_arguments options oneValueArgs multiValueArgs)
   endforeach()
   set(_arg_PUBLIC_INCLUDE_DIRECTORIES ${pub_include_dirs})
 
+  if (_arg_NO_UNITY_BUILD)
+    set(target_allow_unity_build FALSE)
+  else()
+    set(target_allow_unity_build TRUE)
+  endif()
+
 endmacro()
 
 ##  ace_add_lib
@@ -317,6 +450,8 @@ function(ace_add_lib target)
                    FOLDER
                    PRECOMPILED_HEADER
                    RUNTIME_OUTPUT_DIRECTORY
+                   UNITY_C_MINIMUM_PARTITIONS
+                   UNITY_CXX_MINIMUM_PARTITIONS
                  )
   set(multiValueArgs LINK_LIBRARIES
                      PUBLIC_LINK_LIBRARIES
@@ -328,7 +463,7 @@ function(ace_add_lib target)
                      COMPILE_OPTIONS
                      REQUIRES
   )
-  ace_parse_arguments("" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+  ace_parse_arguments("NO_UNITY_BUILD" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
   add_library(${target} "")
 
@@ -349,6 +484,9 @@ function(ace_add_lib target)
     DEFINE_SYMBOL "${_arg_DEFINE_SYMBOL}"
     ${version}
     FOLDER "${_arg_FOLDER}"
+    ACE_TARGET_UNITY_BUILD "${target_allow_unity_build}"
+    ACE_TARGET_UNITY_C_MINIMUM_PARTITIONS "${_arg_UNITY_C_MINIMUM_PARTITIONS}"
+    ACE_TARGET_UNITY_CXX_MINIMUM_PARTITIONS "${_arg_UNITY_CXX_MINIMUM_PARTITIONS}"
   )
 
   target_include_directories(${target} PRIVATE ${_arg_INCLUDE_DIRECTORIES} PUBLIC ${_arg_PUBLIC_INCLUDE_DIRECTORIES})
@@ -431,13 +569,20 @@ endfunction()
 ##
 function(ace_add_exe target)
 
-  set(oneValueArgs OUTPUT_NAME PACKAGE FOLDER PRECOMPILED_HEADER COMPONENT)
+  set(oneValueArgs OUTPUT_NAME
+                   PACKAGE
+                   FOLDER
+                   PRECOMPILED_HEADER
+                   COMPONENT
+                   UNITY_C_MINIMUM_PARTITIONS
+                   UNITY_CXX_MINIMUM_PARTITIONS)
+
   set(multiValueArgs LINK_LIBRARIES
                      INCLUDE_DIRECTORIES
                      COMPILE_DEFINITIONS
                      REQUIRES
   )
-  ace_parse_arguments("" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+  ace_parse_arguments("NO_UNITY_BUILD" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
   add_executable(${target} "")
 
@@ -459,6 +604,9 @@ function(ace_add_exe target)
                         INCLUDE_DIRECTORIES "${_arg_INCLUDE_DIRECTORIES}"
                         LINK_LIBRARIES "${_arg_LINK_LIBRARIES}"
                         FOLDER "${_arg_FOLDER}"
+                        ACE_TARGET_UNITY_BUILD "${target_allow_unity_build}"
+                        ACE_TARGET_UNITY_C_MINIMUM_PARTITIONS "${_arg_UNITY_C_MINIMUM_PARTITIONS}"
+                        ACE_TARGET_UNITY_CXX_MINIMUM_PARTITIONS "${_arg_UNITY_CXX_MINIMUM_PARTITIONS}"
   )
 
   if (_arg_PACKAGE)
@@ -756,3 +904,36 @@ macro(ace_try_set_cxx_visibility_hidden)
       add_definitions("-DACE_HAS_CUSTOM_EXPORT_MACROS=0")
   endif(CMAKE_CXX_VISIBILITY_PRESET STREQUAL "hidden")
 endmacro()
+
+
+function(ace_target_generate_unity_files)
+
+  list(LENGTH ACE_TARGET_UNITY_FILENAMES num_unity_files)
+
+  foreach (i RANGE 1 ${num_unity_files})
+    set(partition${i} "")
+  endforeach()
+
+  set(index 0)
+  foreach(include_file ${ACE_TARGET_UNITY_INCLUDES})
+    math(EXPR index "(${index}%${num_unity_files})+1")
+    list(APPEND partition${index} "#include \"${include_file}\"")
+  endforeach(include_file ${ACE_TARGET_UNITY_INCLUDES})
+
+  list(GET ACE_TARGET_UNITY_FILENAMES 0 first_unity_file)
+  if ("${first_unity_file}" MATCHES "${ACE_C_SOURCE_SUFFIXES}")
+    set(n "n")
+  endif()
+
+  set(index 0)
+  foreach(unity_file ${ACE_TARGET_UNITY_FILENAMES})
+    math(EXPR index "${index}+1")
+    set(content "#if${n}def __cplusplus" "${partition${index}}" "#endif")
+    string(REPLACE ";" "\n" content "${content}")
+    file(WRITE ${unity_file} ${content})
+  endforeach(unity_file ${unity_files})
+endfunction()
+
+if ("${ACE_CMAKE_COMMAND}" STREQUAL "GENERATE_UNITY_FILES")
+  ace_target_generate_unity_files()
+endif()

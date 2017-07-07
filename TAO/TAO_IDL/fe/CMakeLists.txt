@@ -48,8 +48,8 @@ else()
   )
 endif()
 
-target_sources(TAO_IDL_FE
-  PRIVATE ${generated_fe_files}
+ace_target_sources(TAO_IDL_FE
+  ${generated_fe_files}
 )
 
 source_group("Generated Files" FILES ${generated_fe_files})

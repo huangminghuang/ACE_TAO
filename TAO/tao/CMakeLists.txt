@@ -52,6 +52,7 @@ ace_add_lib(TAO
   PUBLIC_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/..>
                              ..
   PUBLIC_LINK_LIBRARIES ACE
+  UNITY_CXX_MINIMUM_PARTITIONS 2
 )
 
 ace_target_cxx_sources(TAO
@@ -195,7 +196,6 @@ ace_target_cxx_sources(TAO
                PolicyFactory_Registry_Factory.cpp
                Policy_Current.cpp
                Policy_Current_Impl.cpp
-               Policy_Manager.cpp
                Policy_Set.cpp
                Policy_Validator.cpp
                Principal.cpp

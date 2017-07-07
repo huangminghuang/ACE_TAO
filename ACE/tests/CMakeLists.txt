@@ -157,6 +157,10 @@ ace_add_lib(Bug_2980_Regression_Dll
   DEFINE_SYMBOL TEST_OUTPUT_BUILD_DLL
   PUBLIC_LINK_LIBRARIES ACE
   REQUIRES BUILD_SHARED_LIBS
+  NO_UNITY_BUILD
+  # we cannot turn on unity build for this target
+  # because Test_Output.cpp is ued by another target
+  # which is not a unity build either
 )
 ace_target_cxx_sources(Bug_2980_Regression_Dll
   SOURCE_FILES Bug_2980_Regression_Dll.cpp

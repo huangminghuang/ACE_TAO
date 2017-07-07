@@ -7,6 +7,24 @@ ace_add_lib(TAO_Security
   PUBLIC_LINK_LIBRARIES TAO_Messaging TAO_Svc_Utils
 )
 
+tao_idl_sources(
+  TARGETS TAO_Security
+  IDL_FLAGS ${TAO_VERSIONING_IDL_FLAGS}
+            -I${CMAKE_CURRENT_SOURCE_DIR}/../../../tao
+            -I${CMAKE_CURRENT_SOURCE_DIR}/../..
+            -I${CMAKE_CURRENT_SOURCE_DIR}/..
+            -Wb,export_macro=TAO_Security_Export
+            -Wb,export_include=orbsvcs/Security/security_export.h
+  IDL_FILES ../CSI.idl
+            ../CSIIOP.idl
+            ../GSSUP.idl
+            ../Security.idl
+            ../SecurityLevel1.idl
+            ../SecurityLevel2.idl
+            ../SecurityLevel3.idl
+  WORKING_DIRECTORY ..
+)
+
 ace_target_cxx_sources(TAO_Security
   SOURCE_FILES CSI_Utils.cpp
                SL2_EstablishTrustPolicy.cpp
@@ -45,20 +63,3 @@ ace_target_cxx_sources(TAO_Security
                Security_Current.inl
 )
 
-tao_idl_sources(
-  TARGETS TAO_Security
-  IDL_FLAGS ${TAO_VERSIONING_IDL_FLAGS}
-            -I${CMAKE_CURRENT_SOURCE_DIR}/../../../tao
-            -I${CMAKE_CURRENT_SOURCE_DIR}/../..
-            -I${CMAKE_CURRENT_SOURCE_DIR}/..
-            -Wb,export_macro=TAO_Security_Export
-            -Wb,export_include=orbsvcs/Security/security_export.h
-  IDL_FILES ../CSI.idl
-            ../CSIIOP.idl
-            ../GSSUP.idl
-            ../Security.idl
-            ../SecurityLevel1.idl
-            ../SecurityLevel2.idl
-            ../SecurityLevel3.idl
-  WORKING_DIRECTORY ..
-)
