@@ -902,7 +902,11 @@ macro(ace_try_enable_ccache)
       # Set up wrapper scripts
       set(CXX_LAUNCHER "${CCACHE}")
 
-      file(WRITE ${CMAKE_BINARY_DIR}/launch-cxx "#!/bin/bash\nif [[ \"$1\" = \"${CMAKE_CXX_COMPILER}\" ]] ; then shift; fi\nexport CCACHE_CPP2=true\nexec \"${CXX_LAUNCHER}\" \"${CMAKE_CXX_COMPILER}\" \"$@\"")
+      if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+        set(_CCACHE_ENVS_ "export CCACHE_CPP2=true\n")
+      endif()
+
+      file(WRITE ${CMAKE_BINARY_DIR}/launch-cxx "#!/bin/bash\nif [[ \"$1\" = \"${CMAKE_CXX_COMPILER}\" ]] ; then shift; fi\n${_CCACHE_ENVS_}exec \"${CXX_LAUNCHER}\" \"${CMAKE_CXX_COMPILER}\" \"$@\"")
       execute_process(COMMAND chmod a+rx "${CMAKE_BINARY_DIR}/launch-cxx")
 
       if(CMAKE_GENERATOR STREQUAL "Xcode")
@@ -914,7 +918,11 @@ macro(ace_try_enable_ccache)
           # Support Unix Makefiles and Ninja
           set(CMAKE_CXX_COMPILER_LAUNCHER      "${CMAKE_BINARY_DIR}/launch-cxx")
       endif()
-  endif()
+  else(CCACHE)
+    set(CMAKE_XCODE_ATTRIBUTE_CXX "" CACHE INTERNAL "")
+    set(CMAKE_XCODE_ATTRIBUTE_LDPLUSPLUS "" CACHE INTERNAL "")
+    set(CMAKE_CXX_COMPILER_LAUNCHER "" CACHE INTERNAL "")
+  endif(CCACHE)
 endmacro(ace_try_enable_ccache)
 
 
