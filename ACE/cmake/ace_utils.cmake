@@ -346,7 +346,9 @@ endfunction()
 
 
 function(ace_target_set_precompiled_header target header)
-  if (MSVC)
+  get_property(target_allow_unity_build TARGET ${target} PROPERTY ACE_TARGET_UNITY_BUILD)
+
+  if (MSVC AND NOT (ACE_UNITY_BUILD AND target_allow_unity_build))
     string(REGEX REPLACE "\\.[^.]*$" "" header_without_ext ${header})
     set(pch_cpp ${header_without_ext}.cpp)
     target_compile_definitions(${target} PRIVATE USING_PCH)
@@ -371,7 +373,7 @@ function(ace_target_set_precompiled_header target header)
         OBJECT_OUTPUTS "${pch_object}"
       )
     endif(CMAKE_GENERATOR MATCHES "Visual Studio ")
-  endif(MSVC)
+  endif(MSVC AND NOT (ACE_UNITY_BUILD AND target_allow_unity_build))
 endfunction()
 
 
@@ -437,6 +439,7 @@ macro(ace_parse_arguments options oneValueArgs multiValueArgs)
     set(target_allow_unity_build TRUE)
   endif()
 
+
 endmacro()
 
 ##  ace_add_lib
@@ -452,6 +455,7 @@ function(ace_add_lib target)
                    RUNTIME_OUTPUT_DIRECTORY
                    UNITY_C_MINIMUM_PARTITIONS
                    UNITY_CXX_MINIMUM_PARTITIONS
+                   COMPONENT
                  )
   set(multiValueArgs LINK_LIBRARIES
                      PUBLIC_LINK_LIBRARIES
@@ -463,9 +467,13 @@ function(ace_add_lib target)
                      COMPILE_OPTIONS
                      REQUIRES
   )
-  ace_parse_arguments("NO_UNITY_BUILD" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+  ace_parse_arguments("NO_UNITY_BUILD;EXCLUDE_FROM_ALL" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
-  add_library(${target} "")
+  if (_arg_EXCLUDE_FROM_ALL)
+    add_library(${target} EXCLUDE_FROM_ALL "")
+  else()
+    add_library(${target} "")
+  endif()
 
   if (_arg_PACKAGE)
     set(version
@@ -508,21 +516,39 @@ function(ace_add_lib target)
                      @loader_path/../../../lib)
     endif()
 
-    install(TARGETS ${target}
-            EXPORT  "${_arg_PACKAGE}Targets"
-            LIBRARY
-              DESTINATION "${${_arg_PACKAGE}_INSTALL_DIR}/lib"
-              COMPONENT "${_arg_PACKAGE}_devel"
-            ARCHIVE
-              DESTINATION "${${_arg_PACKAGE}_INSTALL_DIR}/lib"
-              COMPONENT "${_arg_PACKAGE}_devel"
-            RUNTIME
-              DESTINATION "${${_arg_PACKAGE}_INSTALL_DIR}/bin"
-              COMPONENT "${_arg_PACKAGE}_runtime"
-            PUBLIC_HEADER
-              DESTINATION "${${_arg_PACKAGE}_INSTALL_DIR}"
-              COMPONENT "${_arg_PACKAGE}_devel"
-    )
+    if (NOT _arg_COMPONENT)
+      install(TARGETS ${target}
+              EXPORT  "${_arg_PACKAGE}Targets"
+              LIBRARY
+                DESTINATION "${${_arg_PACKAGE}_INSTALL_DIR}/lib"
+                COMPONENT "${_arg_PACKAGE}_runtime"
+              ARCHIVE
+                DESTINATION "${${_arg_PACKAGE}_INSTALL_DIR}/lib"
+                COMPONENT "${_arg_PACKAGE}_devel"
+              RUNTIME
+                DESTINATION "${${_arg_PACKAGE}_INSTALL_DIR}/bin"
+                COMPONENT "${_arg_PACKAGE}_runtime"
+              PUBLIC_HEADER
+                DESTINATION "${${_arg_PACKAGE}_INSTALL_DIR}"
+                COMPONENT "${_arg_PACKAGE}_devel"
+      )
+    else()
+      install(TARGETS ${target}
+              EXPORT  "${_arg_PACKAGE}Targets"
+              LIBRARY
+                DESTINATION "${${_arg_PACKAGE}_INSTALL_DIR}/lib"
+                COMPONENT "${_arg_COMPONENT}"
+              ARCHIVE
+                DESTINATION "${${_arg_PACKAGE}_INSTALL_DIR}/lib"
+                COMPONENT "${_arg_COMPONENT}"
+              RUNTIME
+                DESTINATION "${${_arg_PACKAGE}_INSTALL_DIR}/bin"
+                COMPONENT "${_arg_COMPONENT}"
+              PUBLIC_HEADER
+                DESTINATION "${${_arg_PACKAGE}_INSTALL_DIR}"
+                COMPONENT "${_arg_COMPONENT}"
+      )
+    endif()
 
     set(PACKAGE_OF_${target} ${_arg_PACKAGE} CACHE INTERNAL "")
 
@@ -582,9 +608,13 @@ function(ace_add_exe target)
                      COMPILE_DEFINITIONS
                      REQUIRES
   )
-  ace_parse_arguments("NO_UNITY_BUILD" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+  ace_parse_arguments("NO_UNITY_BUILD;EXCLUDE_FROM_ALL" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
-  add_executable(${target} "")
+  if (_arg_EXCLUDE_FROM_ALL)
+    add_executable(${target} EXCLUDE_FROM_ALL "")
+  else()
+    add_executable(${target} "")
+  endif()
 
   if (_arg_PACKAGE)
     set(version
