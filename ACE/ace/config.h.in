@@ -18,6 +18,7 @@
 
 #cmakedefine ACE_FACE_SAFETY_BASE
 #cmakedefine ACE_FACE_SAFETY_EXTENDED
+#cmakedefine ACE_FACE_DEV
 
 #if defined(ACE_FACE_SAFETY_EXTENDED) && !defined(ACE_HAS_ALLOC_HOOKS)
 #define ACE_HAS_ALLOC_HOOKS
