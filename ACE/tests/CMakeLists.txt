@@ -272,6 +272,8 @@ ace_add_test_exe(Compiler_Features_33_Test)
 ace_add_test_exe(Compiler_Features_34_Test)
 ace_add_test_exe(Compiler_Features_35_Test)
 ace_add_test_exe(Compiler_Features_36_Test)
+ace_add_test_exe(Compiler_Features_37_Test)
+
 ace_add_test_exe(Config_Test)
 ace_add_test_exe(Conn_Test)
 ace_add_test_exe(Date_Time_Test)
