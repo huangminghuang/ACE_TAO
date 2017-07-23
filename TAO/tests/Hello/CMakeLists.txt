@@ -1,7 +1,6 @@
 
 ace_add_exe(Hello_Server
   OUTPUT_NAME server
-  FOLDER TAO/tests/Hello
   LINK_LIBRARIES For_TAO_Server
 )
 ace_target_cxx_sources(Hello_Server
@@ -13,7 +12,6 @@ ace_target_cxx_sources(Hello_Server
 
 ace_add_exe(Hello_Client
   OUTPUT_NAME client
-  FOLDER TAO/tests/Hello
   LINK_LIBRARIES For_TAO_Client
 )
 ace_target_cxx_sources(Hello_Client
