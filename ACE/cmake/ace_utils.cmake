@@ -927,19 +927,32 @@ endmacro(ace_try_enable_ccache)
 
 
 macro(ace_try_set_cxx_visibility_hidden)
-  set(CMAKE_CXX_VISIBILITY_PRESET default)
-  if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+
+  message("CMAKE_SYSTEM_NAME=${CMAKE_SYSTEM_NAME}")
+
+  if (CMAKE_SYSTEM_NAME STREQUAL "Android")
+    set(CMAKE_CXX_VISIBILITY_PRESET default)
+  endif()
+
+  message("CMAKE_CXX_VISIBILITY_PRESET=${CMAKE_CXX_VISIBILITY_PRESET}")
+
+
+  if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND NOT CMAKE_CXX_VISIBILITY_PRESET)
       if (NOT CMAKE_CXX_COMPILER_VERSION VERSION_LESS 4.2)
           set(CMAKE_CXX_VISIBILITY_PRESET hidden)
       endif(NOT CMAKE_CXX_COMPILER_VERSION VERSION_LESS 4.2)
   ## Even though Clang also supports hidden visibility, current
   ## ACE header files needs to be adapted before we can enable it.
-  endif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+  endif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND NOT CMAKE_CXX_VISIBILITY_PRESET)
+
+  message("CMAKE_CXX_VISIBILITY_PRESET=${CMAKE_CXX_VISIBILITY_PRESET}")
+
 
   if (CMAKE_CXX_VISIBILITY_PRESET STREQUAL "hidden")
       set(CMAKE_VISIBILITY_INLINES_HIDDEN ON)
   else(CMAKE_CXX_VISIBILITY_PRESET STREQUAL "hidden")
       add_definitions("-DACE_HAS_CUSTOM_EXPORT_MACROS=0")
+      set(CMAKE_VISIBILITY_INLINES_HIDDEN OFF)
   endif(CMAKE_CXX_VISIBILITY_PRESET STREQUAL "hidden")
 endmacro()
 

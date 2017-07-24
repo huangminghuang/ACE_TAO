@@ -19,7 +19,7 @@ if (BISON_FOUND AND FLEX_FOUND AND SED_EXECUTABLE AND NOT ACE_USES_WCHAR AND NOT
 
   add_custom_command(
     OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/fe/idl.yy.cpp
-    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/fe/idl.ll
+    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/fe/idl.ll ${CMAKE_CURRENT_SOURCE_DIR}/idl.yy.sed
     COMMAND ${FLEX_EXECUTABLE} -t -P tao_yy ${CMAKE_CURRENT_SOURCE_DIR}/fe/idl.ll | ${SED_EXECUTABLE} -f ${CMAKE_CURRENT_SOURCE_DIR}/idl.yy.sed > fe/idl.yy.cpp
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
     VERBATIM
@@ -27,7 +27,7 @@ if (BISON_FOUND AND FLEX_FOUND AND SED_EXECUTABLE AND NOT ACE_USES_WCHAR AND NOT
 
   add_custom_command(
     OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/fe/fe_lookup.cpp
-    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/fe/keywords.dat
+    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/fe/keywords.dat ${CMAKE_CURRENT_SOURCE_DIR}/fe_lookup.sed
     COMMAND $<TARGET_FILE:ace_gperf>  -M -J -c -C -D -E -T -f 0 -a -o -t -p -K keyword_ -L C++ -Z TAO_IDL_CPP_Keyword_Table -N lookup -k1,2,$  ${CMAKE_CURRENT_SOURCE_DIR}/fe/keywords.dat | ${SED_EXECUTABLE} -f ${CMAKE_CURRENT_SOURCE_DIR}/fe_lookup.sed > fe/fe_lookup.cpp
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
     VERBATIM
