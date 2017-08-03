@@ -73,6 +73,21 @@ trademarks or registered trademarks of Sun Microsystems, Inc.
 #include "ast_porttype.h"
 
 #include "fe_utils.h"
+#ifdef __SANITIZE_ADDRESS__
+# define LEAK_SANITIZER
+#elif defined(__has_feature)
+# if __has_feature(address_sanitizer)
+#  define LEAK_SANITIZER
+# endif
+#endif
+
+#ifdef LEAK_SANITIZER
+# include <sanitizer/lsan_interface.h>
+# define annotate_leaked_object(a)  __lsan_ignore_object((a))
+#else
+# define annotate_leaked_object(a)  do { } while (0)
+#endif
+
 
 class UTL_LabelList;
 class UTL_ExprList;

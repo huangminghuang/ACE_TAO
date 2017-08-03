@@ -227,6 +227,7 @@ AST_Generator::create_interface_fwd (UTL_ScopedName *n,
                                          0,
                                          is_local,
                                          is_abstract);
+  annotate_leaked_object(full_defn);
   AST_InterfaceFwd *retval = 0;
   ACE_NEW_RETURN (retval,
                   AST_InterfaceFwd (full_defn, n),
@@ -292,7 +293,7 @@ AST_Generator::create_valuetype_fwd (UTL_ScopedName *n,
                                                      is_abstract,
                                                      false,
                                                      false);
-
+  annotate_leaked_object(full_defn);
   AST_ValueTypeFwd *retval = 0;
   ACE_NEW_RETURN (retval,
                   AST_ValueTypeFwd (full_defn,
@@ -914,6 +915,7 @@ AST_Generator::create_fixed (AST_Expression *digits,
   UTL_ScopedName name (&id, 0);
   AST_Fixed *retval = 0;
   ACE_NEW_RETURN (retval, AST_Fixed (&name, digits, scale), 0);
+  annotate_leaked_object(retval);
   return retval;
 }
 

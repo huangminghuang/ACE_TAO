@@ -118,6 +118,23 @@ trademarks or registered trademarks of Sun Microsystems, Inc.
 #include "nr_extern.h"
 #include "ace/config-all.h"
 
+
+#ifdef __SANITIZE_ADDRESS__
+# define LEAK_SANITIZER
+#elif defined(__has_feature)
+# if __has_feature(address_sanitizer)
+#  define LEAK_SANITIZER
+# endif
+#endif
+
+#ifdef LEAK_SANITIZER
+# include <sanitizer/lsan_interface.h>
+# define annotate_leaked_object(a)  __lsan_ignore_object((a))
+#else
+# define annotate_leaked_object(a)  do { } while (0)
+#endif
+
+
 AST_Root *
 be_generator::create_root (UTL_ScopedName *n)
 {
@@ -217,6 +234,8 @@ be_generator::create_interface (UTL_ScopedName *n,
                                 l,
                                 a),
                   0);
+
+  annotate_leaked_object(retval);
 
   /// Trigger this interation over the included pragmas when the
   /// first local interface is seen in the main file. In an
@@ -931,6 +950,7 @@ be_generator::create_fixed (AST_Expression *digits,
   UTL_ScopedName name (&id, 0);
   AST_Fixed *retval = 0;
   ACE_NEW_RETURN (retval, be_fixed (&name, digits, scale), 0);
+  annotate_leaked_object(retval);
   return retval;
 }
 

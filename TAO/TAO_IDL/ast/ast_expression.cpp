@@ -2651,6 +2651,8 @@ AST_Expression::coerce (AST_Expression::ExprType t)
                   AST_ExprValue,
                   0);
 
+  annotate_leaked_object(copy);
+
   copy->et = this->pd_ev->et;
 
   switch (this->pd_ev->et)
