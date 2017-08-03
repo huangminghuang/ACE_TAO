@@ -447,6 +447,9 @@ endmacro()
 ##
 ##
 function(ace_add_lib target)
+  set(options NO_UNITY_BUILD
+              EXCLUDE_FROM_ALL)
+
   set(oneValueArgs OUTPUT_NAME
                    DEFINE_SYMBOL
                    PACKAGE
@@ -467,7 +470,7 @@ function(ace_add_lib target)
                      COMPILE_OPTIONS
                      REQUIRES
   )
-  ace_parse_arguments("NO_UNITY_BUILD;EXCLUDE_FROM_ALL" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+  ace_parse_arguments("${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
   if (_arg_EXCLUDE_FROM_ALL)
     add_library(${target} EXCLUDE_FROM_ALL "")
@@ -485,6 +488,10 @@ function(ace_add_lib target)
   if (NOT _arg_FOLDER AND ACEUTIL_TOP_LEVEL_FOLDER_DIR AND ACEUTIL_TOP_LEVEL_FOLDER_NAME)
     file(RELATIVE_PATH folder ${ACEUTIL_TOP_LEVEL_FOLDER_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
     set(_arg_FOLDER ${ACEUTIL_TOP_LEVEL_FOLDER_NAME}/${folder})
+  endif()
+
+  if (COMMAND add_sanitizers)
+    add_sanitizers(${target})
   endif()
 
   set_target_properties(${target} PROPERTIES
@@ -595,6 +602,9 @@ endfunction()
 ##
 function(ace_add_exe target)
 
+  set(options NO_UNITY_BUILD
+              EXCLUDE_FROM_ALL)
+
   set(oneValueArgs OUTPUT_NAME
                    PACKAGE
                    FOLDER
@@ -608,7 +618,7 @@ function(ace_add_exe target)
                      COMPILE_DEFINITIONS
                      REQUIRES
   )
-  ace_parse_arguments("NO_UNITY_BUILD;EXCLUDE_FROM_ALL" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+  ace_parse_arguments("${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
   if (_arg_EXCLUDE_FROM_ALL)
     add_executable(${target} EXCLUDE_FROM_ALL "")
@@ -625,6 +635,10 @@ function(ace_add_exe target)
   if (NOT _arg_FOLDER AND ACEUTIL_TOP_LEVEL_FOLDER_DIR AND ACEUTIL_TOP_LEVEL_FOLDER_NAME)
     file(RELATIVE_PATH folder ${ACEUTIL_TOP_LEVEL_FOLDER_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
     set(_arg_FOLDER ${ACEUTIL_TOP_LEVEL_FOLDER_NAME}/${folder})
+  endif()
+
+  if (COMMAND add_sanitizers)
+    add_sanitizers(${target})
   endif()
 
   set_target_properties(${target} PROPERTIES
@@ -928,14 +942,9 @@ endmacro(ace_try_enable_ccache)
 
 macro(ace_try_set_cxx_visibility_hidden)
 
-  message("CMAKE_SYSTEM_NAME=${CMAKE_SYSTEM_NAME}")
-
   if (CMAKE_SYSTEM_NAME STREQUAL "Android")
     set(CMAKE_CXX_VISIBILITY_PRESET default)
   endif()
-
-  message("CMAKE_CXX_VISIBILITY_PRESET=${CMAKE_CXX_VISIBILITY_PRESET}")
-
 
   if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND NOT CMAKE_CXX_VISIBILITY_PRESET)
       if (NOT CMAKE_CXX_COMPILER_VERSION VERSION_LESS 4.2)
@@ -944,9 +953,6 @@ macro(ace_try_set_cxx_visibility_hidden)
   ## Even though Clang also supports hidden visibility, current
   ## ACE header files needs to be adapted before we can enable it.
   endif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND NOT CMAKE_CXX_VISIBILITY_PRESET)
-
-  message("CMAKE_CXX_VISIBILITY_PRESET=${CMAKE_CXX_VISIBILITY_PRESET}")
-
 
   if (CMAKE_CXX_VISIBILITY_PRESET STREQUAL "hidden")
       set(CMAKE_VISIBILITY_INLINES_HIDDEN ON)
