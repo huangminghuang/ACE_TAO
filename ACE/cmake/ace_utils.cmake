@@ -56,6 +56,11 @@ if (NOT ACE_CMAKE_COMMAND)
     FULL_DOCS "The minimum number of generated unity C files for the target"
   )
 
+  define_property(TARGET PROPERTY ACE_PRECOMPILED_HEADER_CPP
+    BRIEF_DOCS "The corresponding c++ source file for precompiled header"
+    FULL_DOCS "The corresponding c++ source file for precompiled header"
+  )
+
 endif()
 
 function(ace_add_package name)
@@ -302,7 +307,10 @@ function(ace_target_cxx_sources target)
     endif()
 
     file(GLOB templates ${CMAKE_CURRENT_LIST_DIR}/*.cpp)
-    list(REMOVE_ITEM templates ${sources} ${__${target}_source_files__} ${__${target}_template_files__})
+    get_property(precompiled_header_cpp TARGET ${target} PROPERTY ACE_PRECOMPILED_HEADER_CPP)
+
+    list(REMOVE_ITEM templates ${sources} ${__${target}_source_files__} ${__${target}_template_files__} ${precompiled_header_cpp})
+
   else()
 
     list(APPEND __${target}_source_files__ ${sources})
@@ -351,6 +359,7 @@ function(ace_target_set_precompiled_header target header)
   if (MSVC AND NOT (ACE_UNITY_BUILD AND target_allow_unity_build))
     string(REGEX REPLACE "\\.[^.]*$" "" header_without_ext ${header})
     set(pch_cpp ${header_without_ext}.cpp)
+
     target_compile_definitions(${target} PRIVATE USING_PCH)
     target_sources(${target} PRIVATE ${pch_cpp})
 
@@ -373,6 +382,12 @@ function(ace_target_set_precompiled_header target header)
         OBJECT_OUTPUTS "${pch_object}"
       )
     endif(CMAKE_GENERATOR MATCHES "Visual Studio ")
+
+    if (NOT IS_ABSOLUTE ${pch_cpp})
+          set(pch_cpp ${CMAKE_CURRENT_LIST_DIR}/${pch_cpp})
+    endif()
+    set_target_properties(${target} PROPERTIES ACE_PRECOMPILED_HEADER_CPP ${pch_cpp})
+
   endif(MSVC AND NOT (ACE_UNITY_BUILD AND target_allow_unity_build))
 endfunction()
 
