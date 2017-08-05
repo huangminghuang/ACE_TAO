@@ -212,5 +212,5 @@ Init (rtems_task_argument not_used)
 
 #elif !defined (__GNUC__) && !defined (__INTEL_COMPILER)
 /* Make compilers stop complaining about an empty translation unit */
-static int shut_up_compiler = 0;
+static int rtems_init_shut_up_compiler = 0;
 #endif /* ACE_HAS_RTEMS */

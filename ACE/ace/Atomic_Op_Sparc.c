@@ -183,5 +183,5 @@ ace_atomic_swap_add_long (volatile unsigned long *dest, long rhs)
 
 #elif !defined (__GNUC__) && !defined (__INTEL_COMPILER)
 /* Make compilers stop complaining about an empty translation unit */
-static int shut_up_compiler = 0;
+static int atomic_op_sparc_shut_up_compiler = 0;
 #endif /* ACE_INCLUDE_ATOMIC_OP_SPARC */

@@ -177,10 +177,6 @@ function(ace_target_prepare_unity_files target language)
   list(LENGTH unity_includes unity_includes_len)
   set_property(TARGET ${target} PROPERTY ACE_TARGET_UNITY_INCLUDES_${language}_SOURCES ${unity_includes})
 
-  if (${target} STREQUAL "Hello_Client")
-    message("ace_target_prepare_unity_files(${target}) unity_includes_len=${unity_includes_len}")
-  endif()
-
   if (unity_includes_len GREATER 1)
 
     set_source_files_properties(${unity_includes} PROPERTIES HEADER_FILE_ONLY ON)
@@ -189,11 +185,14 @@ function(ace_target_prepare_unity_files target language)
 
       ace_target_gen_unity_filenames(${target} ${language} unity_files)
 
+      file(GENERATE OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${target}_${language}_sources.list
+           CONTENT "$<TARGET_PROPERTY:${target},ACE_TARGET_UNITY_INCLUDES_${language}_SOURCES>")
+
       add_custom_command(
         OUTPUT ${unity_files}
         COMMAND ${CMAKE_COMMAND}
                 "-DACE_CMAKE_COMMAND=GENERATE_UNITY_FILES"
-                "-DACE_TARGET_UNITY_INCLUDES=\"$<TARGET_PROPERTY:${target},ACE_TARGET_UNITY_INCLUDES_${language}_SOURCES>\""
+                "-DACE_TARGET_SOURCES_LIST=${CMAKE_CURRENT_BINARY_DIR}/${target}_${language}_sources.list"
                 "-DACE_TARGET_UNITY_FILENAMES=\"${unity_files}\""
                 -P "${ACE_CMAKE_UTIL}"
         DEPENDS ${ACE_CMAKE_UTIL}
@@ -988,6 +987,7 @@ function(ace_target_generate_unity_files)
   endforeach()
 
   set(index 0)
+  file(READ ${ACE_TARGET_SOURCES_LIST} ACE_TARGET_UNITY_INCLUDES)
   foreach(include_file ${ACE_TARGET_UNITY_INCLUDES})
     math(EXPR index "(${index}%${num_unity_files})+1")
     list(APPEND partition${index} "#include \"${include_file}\"")
