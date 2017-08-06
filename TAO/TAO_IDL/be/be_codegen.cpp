@@ -142,7 +142,10 @@ TAO_CodeGen::start_client_header (const char *fname)
 
   if (this->client_header_->open (fname, TAO_OutStream::TAO_CLI_HDR) == -1)
     {
-      return -1;
+      ACE_ERROR_RETURN ((LM_ERROR,
+                         ACE_TEXT ("ERROR, Unable to open file '%s'\n"),
+                         fname),
+                        -1);
     }
 
   *this->client_header_ << be_nl << "// TAO_IDL - Generated from" << be_nl
