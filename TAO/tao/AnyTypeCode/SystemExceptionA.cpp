@@ -19,6 +19,9 @@ TAO_BEGIN_VERSIONED_NAMESPACE_DECL
 
 // List of standard/system exceptions ... used to create static
 // storage for their typecodes.
+#ifdef STANDARD_EXCEPTION_LIST
+#undef STANDARD_EXCEPTION_LIST
+#endif
 
 #define STANDARD_EXCEPTION_LIST \
     TAO_SYSTEM_EXCEPTION (UNKNOWN) \
