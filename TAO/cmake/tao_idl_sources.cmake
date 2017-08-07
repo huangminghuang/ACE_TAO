@@ -151,9 +151,13 @@ function(tao_idl_command name)
       endif(is_gperf_imported)
     endif(CMAKE_CONFIGURATION_TYPES)
 
+    if (BUILD_SHARED_LIB AND TARGET TAO_IDL_BE)
+      set(tao_idl_shared_libs TAO_IDL_BE TAO_IDL_FE)
+    endif()
+
     add_custom_command(
       OUTPUT ${_OUTPUT_FILES}
-      DEPENDS TAO_IDL_EXE TAO_IDL_BE TAO_IDL_FE ace_gperf ${idl_file}
+      DEPENDS TAO_IDL_EXE ${tao_idl_shared_libs} ace_gperf ${idl_file}
       COMMAND TAO_IDL_EXE -g ${GPERF_LOCATION} ${TAO_CORBA_IDL_FLAGS} -Sg -Wb,pre_include=ace/pre.h -Wb,post_include=ace/post.h -I${TAO_INCLUDE_DIR} -I${_working_source_dir} ${_converted_flags} ${idl_file_path}
       WORKING_DIRECTORY ${_arg_WORKING_DIRECTORY}
       VERBATIM
