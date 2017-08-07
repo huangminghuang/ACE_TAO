@@ -153,7 +153,7 @@ function(tao_idl_command name)
 
     add_custom_command(
       OUTPUT ${_OUTPUT_FILES}
-      DEPENDS TAO_IDL_EXE ace_gperf ${idl_file}
+      DEPENDS TAO_IDL_EXE TAO_IDL_BE TAO_IDL_FE ace_gperf ${idl_file}
       COMMAND TAO_IDL_EXE -g ${GPERF_LOCATION} ${TAO_CORBA_IDL_FLAGS} -Sg -Wb,pre_include=ace/pre.h -Wb,post_include=ace/post.h -I${TAO_INCLUDE_DIR} -I${_working_source_dir} ${_converted_flags} ${idl_file_path}
       WORKING_DIRECTORY ${_arg_WORKING_DIRECTORY}
       VERBATIM
@@ -223,6 +223,7 @@ function(tao_idl_sources)
     IDL_FILES ${_arg_IDL_FILES}
     WORKING_DIRECTORY ${rel_path}
   )
+
   foreach(anyop_target ${_arg_ANYOP_TARGETS})
     ace_target_sources(${anyop_target} ${_idls_ANYOP_FILES} ${_arg_IDL_FILES})
   endforeach()
@@ -238,6 +239,39 @@ function(tao_idl_sources)
   foreach(target ${_arg_TARGETS})
     ace_target_sources(${target} ${_idls_ANYOP_FILES} ${_idls_SKEL_FILES} ${_idls_STUB_FILES} ${_arg_IDL_FILES})
   endforeach()
+
+  if (CMAKE_GENERATOR MATCHES "Visual Studio")
+    ## the following is a workaround to avoid the same tao_idl command been triggered twice from two different target.
+    ## This seems only happens to MSVC generator.
+    set(all_targets ${_arg_TARGETS}  ${_arg_STUB_TARGETS} ${_arg_SKEL_TARGETS} ${_arg_ANYOP_TARGETS})
+    list(LENGTH all_targets all_targets_len)
+
+    if (all_targets_len GREATER 1)
+      foreach(target ${all_targets})
+        if (TARGET ${target})
+          string(RANDOM rand)
+          list(GET all_targets 0 first_target)
+          set(idl_target_name ${first_target}_idls_${rand})
+
+          get_target_property(target_folder ${first_target} FOLDER)
+
+          add_custom_target(${idl_target_name}
+            DEPENDS ${_idls_OUTPUT_FILES}
+          )
+
+          set_target_properties(${idl_target_name} PROPERTIES FOLDER ${target_folder})
+          message("all_targets=${all_targets} idl_target_name=${idl_target_name}")
+          foreach(tgt ${all_targets})
+            if (TARGET ${t})
+              add_dependencies(${tgt} ${idl_target_name})
+            endif(TARGET ${t})
+          endforeach(tgt ${all_targets})
+          break()
+        endif(TARGET ${target})
+      endforeach()
+    endif(all_targets_len GREATER 1)
+  endif(CMAKE_GENERATOR MATCHES "Visual Studio")
+
 
   set(CMAKE_INCLUDE_CURRENT_DIR ON PARENT_SCOPE)
 
