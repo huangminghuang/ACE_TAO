@@ -9,7 +9,10 @@ ace_add_lib(TAO_PI_Server
                         TAO_PortableServer
 )
 ace_target_cxx_sources(TAO_PI_Server
-  SOURCE_FILES PICurrent_Guard.cpp
+  ### ServerRequestInterceptorC.cpp needs to be in the front of the source file list
+  ### to avoid inconsistent dll linkage warnings on Windows with ACE_UNITY_BUILD enabled.
+  SOURCE_FILES ServerRequestInterceptorC.cpp
+               PICurrent_Guard.cpp
                PI_Server.cpp
                PI_Server_Loader.cpp
                PortableServer_ORBInitializer.cpp
@@ -18,7 +21,6 @@ ace_target_cxx_sources(TAO_PI_Server
                ServerRequestDetails.cpp
                ServerRequestInfo.cpp
                ServerRequestInterceptorA.cpp
-               ServerRequestInterceptorC.cpp
                ServerRequestInterceptor_Factory_Impl.cpp
   HEADER_FILES PICurrent_Guard.h
                PI_Server.h
