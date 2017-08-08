@@ -31,7 +31,7 @@ endif()
 
 function(tao_idl_command name)
   set(multiValueArgs IDL_FLAGS IDL_FILES WORKING_DIRECTORY)
-  cmake_parse_arguments(_arg "" "" "${multiValueArgs}" ${ARGN})
+  cmake_parse_arguments(_arg "EXCLUDE_CPPS_FROM_COMMAND_OUTPUT" "" "${multiValueArgs}" ${ARGN})
 
   set(_arg_IDL_FLAGS ${TAO_BASE_IDL_FLAGS} ${_arg_IDL_FLAGS})
 
@@ -134,13 +134,20 @@ function(tao_idl_command name)
       list(APPEND _SKEL_HEADER_FILES ${CMAKE_CURRENT_BINARY_DIR}/${idl_cmd_arg-wb-skel_export_file})
     endif()
 
-    set(_OUTPUT_FILES ${_STUB_CPP_FILES}
-                      ${_STUB_HEADER_FILES}
-                      ${_SKEL_CPP_FILES}
+
+    set(_OUTPUT_FILES ${_STUB_HEADER_FILES}
                       ${_SKEL_HEADER_FILES}
-                      ${_ANYOP_CPP_FILES}
-                      ${_ANYOP_HEADER_FILES}
-                    )
+                      ${_ANYOP_HEADER_FILES})
+
+
+    if (NOT ${_arg_EXCLUDE_CPPS_FROM_COMMAND_OUTPUT})
+      list(APPEND _OUTPUT_FILES
+                  ${_STUB_CPP_FILES}
+                  ${_SKEL_CPP_FILES}
+                  ${_ANYOP_CPP_FILES}
+      )
+    endif()
+
     get_filename_component(idl_file_path "${idl_file}" ABSOLUTE)
 
     set(GPERF_LOCATION $<TARGET_FILE:ace_gperf>)
@@ -157,7 +164,8 @@ function(tao_idl_command name)
 
     add_custom_command(
       OUTPUT ${_OUTPUT_FILES}
-      DEPENDS TAO_IDL_EXE ${tao_idl_shared_libs} ace_gperf ${idl_file}
+      DEPENDS TAO_IDL_EXE ${tao_idl_shared_libs} ace_gperf
+      MAIN_DEPENDENCY ${idl_file}
       COMMAND TAO_IDL_EXE -g ${GPERF_LOCATION} ${TAO_CORBA_IDL_FLAGS} -Sg -Wb,pre_include=ace/pre.h -Wb,post_include=ace/post.h -I${TAO_INCLUDE_DIR} -I${_working_source_dir} ${_converted_flags} ${idl_file_path}
       WORKING_DIRECTORY ${_arg_WORKING_DIRECTORY}
       VERBATIM
@@ -171,7 +179,12 @@ function(tao_idl_command name)
     list(APPEND ${name}_ANYOP_HEADER_FILES ${_ANYOP_HEADER_FILES})
   endforeach()
 
-
+  if (_arg_EXCLUDE_CPPS_FROM_COMMAND_OUTPUT)
+    add_custom_command(
+      OUTPUT ${${name}_ANYOP_CPP_FILES} ${${name}_SKEL_CPP_FILES} ${${name}_STUB_CPP_FILES}
+      COMMAND ${CMAKE_COMMAND} -E echo ""
+    )
+  endif()
 
   set(${name}_STUB_CPP_FILES ${${name}_STUB_CPP_FILES} PARENT_SCOPE)
   set(${name}_STUB_HEADER_FILES ${${name}_STUB_HEADER_FILES} PARENT_SCOPE)
@@ -196,47 +209,46 @@ function(tao_idl_command name)
   set(${name}_OUTPUT_FILES ${${name}_OUTPUT_FILES} PARENT_SCOPE)
 endfunction(tao_idl_command name)
 
+macro(tao_filter_valid_targets)
+  foreach(__target_list ${ARGN})
+    set(__source_list ${${__target_list}})
+    set(${__target_list})
+    foreach(t ${__source_list})
+      if (TARGET ${t})
+        list(APPEND ${__target_list} ${t})
+      endif()
+    endforeach()
+  endforeach(__target_list ${ARGN})
+endmacro()
 
-function(tao_add_targets_dependencies)
-  cmake_parse_arguments(_arg "" "" "DEPEND" ${ARGN})
+macro(tao_setup_visual_studio_idl_dependency is_multiple_targets all_targets)
   if (CMAKE_GENERATOR MATCHES "Visual Studio")
-    ## the following is a workaround to avoid the same tao_idl command been triggered twice from two different target.
-    ## This seems only happens to MSVC generator.
-    set(all_targets ${_arg_UNPARSED_ARGUMENTS})
-    list(LENGTH all_targets all_targets_len)
-
-    if (all_targets_len GREATER 1)
-      foreach(target ${all_targets})
-        if (TARGET ${target})
-          string(RANDOM rand)
-          list(GET all_targets 0 first_target)
-          set(idl_target_name ${first_target}_idls_${rand})
-
-          get_target_property(target_folder ${first_target} FOLDER)
-
-          add_custom_target(${idl_target_name}
-            DEPENDS ${_arg_DEPEND}
-          )
-
-          set_target_properties(${idl_target_name} PROPERTIES FOLDER ${target_folder})
-          foreach(tgt ${all_targets})
-            if (TARGET ${tgt})
-              add_dependencies(${tgt} ${idl_target_name})
-            endif(TARGET ${tgt})
-          endforeach(tgt ${all_targets})
-          break()
-        endif(TARGET ${target})
-      endforeach()
-    endif(all_targets_len GREATER 1)
-  endif(CMAKE_GENERATOR MATCHES "Visual Studio")
-endfunction(tao_add_targets_dependencies)
+    set(first_target)
+    foreach(target ${all_targets})
+      if (first_target)
+        add_dependencies(${target} ${first_target})
+        set(${is_multiple_targets} "EXCLUDE_CPPS_FROM_COMMAND_OUTPUT")
+      else()
+        target_sources(${target} PRIVATE ${ARGN})
+        set(first_target ${target})
+      endif()
+    endforeach()
+  endif()
+endmacro(tao_setup_visual_studio_idl_dependency)
 
 function(tao_idl_sources)
   set(multiValueArgs TARGETS STUB_TARGETS SKEL_TARGETS ANYOP_TARGETS IDL_FLAGS IDL_FILES WORKING_DIRECTORY)
 
   cmake_parse_arguments(_arg "" "${outValueArgs}" "${multiValueArgs}" ${ARGN})
 
-  get_property(SKIPPED_TARGETS DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY ACE_CURRENT_SKIPPED_TARGETS)
+  #filter out invliad targets in each list
+  tao_filter_valid_targets(_arg_TARGETS _arg_STUB_TARGETS _arg_SKEL_TARGETS _arg_ANYOP_TARGETS)
+
+  set(all_targets ${_arg_TARGETS} ${_arg_STUB_TARGETS} ${_arg_SKEL_TARGETS} ${_arg_ANYOP_TARGETS})
+  if (NOT all_targets)
+    ## no valid target exists, just skip the rest
+    return()
+  endif()
 
   foreach(path ${_arg_IDL_FILES})
     if (IS_ABSOLUTE ${path})
@@ -257,31 +269,32 @@ function(tao_idl_sources)
     file(RELATIVE_PATH rel_path ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_LIST_DIR})
   endif(_arg_WORKING_DIRECTORY)
 
+  tao_setup_visual_studio_idl_dependency(
+    vs_and_used_by_multiple_targets "${all_targets}" ${_arg_IDL_FILES}
+  )
+
   tao_idl_command(_idls
     IDL_FLAGS ${_arg_IDL_FLAGS}
     IDL_FILES ${_arg_IDL_FILES}
+    ${vs_and_used_by_multiple_targets}
     WORKING_DIRECTORY ${rel_path}
   )
 
-  foreach(anyop_target ${_arg_ANYOP_TARGETS})
-    ace_target_sources(${anyop_target} ${_idls_ANYOP_FILES} ${_arg_IDL_FILES})
+  foreach(target ${_arg_ANYOP_TARGETS})
+    ace_target_sources("${target}" ${_idls_ANYOP_CPP_FILES})
   endforeach()
 
-  foreach(skel_target ${_arg_SKEL_TARGETS})
-    ace_target_sources(${skel_target} ${_idls_SKEL_FILES} ${_arg_IDL_FILES})
+  foreach(target ${_arg_SKEL_TARGETS})
+    ace_target_sources("${target}" ${_idls_SKEL_CPP_FILES})
   endforeach()
 
-  foreach(stub_target ${_arg_STUB_TARGETS})
-    ace_target_sources(${stub_target} ${_idls_STUB_FILES} ${_arg_IDL_FILES})
+  foreach(target ${_arg_STUB_TARGETS})
+    ace_target_sources("${target}" ${_idls_STUB_CPP_FILES})
   endforeach()
 
   foreach(target ${_arg_TARGETS})
-    ace_target_sources(${target} ${_idls_ANYOP_FILES} ${_idls_SKEL_FILES} ${_idls_STUB_FILES} ${_arg_IDL_FILES})
+    ace_target_sources("${target}" ${_idls_ANYOP_CPP_FILES} ${_idls_SKEL_CPP_FILES} ${_idls_STUB_CPP_FILES})
   endforeach()
-
-  tao_add_targets_dependencies(${_arg_TARGETS}  ${_arg_STUB_TARGETS} ${_arg_SKEL_TARGETS} ${_arg_ANYOP_TARGETS}
-    DEPEND ${_idls_OUTPUT_FILES}
-  )
 
   set(CMAKE_INCLUDE_CURRENT_DIR ON PARENT_SCOPE)
 

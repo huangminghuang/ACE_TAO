@@ -222,11 +222,10 @@ function(ace_target_add_unity_includes target)
 endfunction()
 
 function(ace_target_sources target)
-  get_property(SKIPPED_TARGETS DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY ACE_CURRENT_SKIPPED_TARGETS)
-  if(NOT ${target} IN_LIST SKIPPED_TARGETS)
+  if(TARGET ${target})
     target_sources(${target} PRIVATE ${ARGN})
     ace_target_add_unity_includes(${target} ${ARGN})
-  endif(NOT ${target} IN_LIST SKIPPED_TARGETS)
+  endif(TARGET ${target})
 endfunction()
 
 
