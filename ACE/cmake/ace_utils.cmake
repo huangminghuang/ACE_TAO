@@ -195,7 +195,7 @@ function(ace_target_prepare_unity_files target language)
                 "-DACE_TARGET_SOURCES_LIST=${CMAKE_CURRENT_BINARY_DIR}/${target}_${language}_sources.list"
                 "-DACE_TARGET_UNITY_FILENAMES=\"${unity_files}\""
                 -P "${ACE_CMAKE_UTIL}"
-        DEPENDS ${ACE_CMAKE_UTIL}
+        DEPENDS ${ACE_CMAKE_UTIL} ${CMAKE_CURRENT_BINARY_DIR}/${target}_${language}_sources.list
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
       )
 
