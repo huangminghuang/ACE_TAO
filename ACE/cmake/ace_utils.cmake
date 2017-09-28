@@ -655,6 +655,11 @@ function(ace_add_exe target)
     add_sanitizers(${target})
   endif()
 
+  get_filename_component(OUTDIR "${_arg_OUTPUT_NAME}" DIRECTORY)
+  if (OUTDIR AND NOT IS_ABSOLUTE ${OUTDIR})
+    file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/${OUTDIR}")
+  endif ()
+
   set_target_properties(${target} PROPERTIES
                         OUTPUT_NAME "${_arg_OUTPUT_NAME}"
                         ${version}
