@@ -33,14 +33,14 @@ before_script:
       BUILD_FLAGS="$BUILD_FLAGS -DCMAKE_BUILD_TYPE=DEBUG";
     fi
   - if [ "$MATRIX_NAME" == "WChar" ]; then BUILD_FLAGS="$BUILD_FLAGS -DACE_USES_WCHAR=ON"; fi
-  - if [ "$MATRIX_NAME" == "SafetyBase" ]; then
-         DDS_BUILD_FLAGS="$DDS_BUILD_FLAGS -DOPENDDS_SAFETY_PROFILE=BASE -DACE_FACE_DEV=ON";
-    fi
   - if [ "$MATRIX_NAME" == "Android" ]; then
       BUILD_FLAGS="$BUILD_FLAGS -DCMAKE_SYSTEM_NAME=Android -DCMAKE_SYSTEM_VERSION=21 -DCMAKE_FIND_ROOT_PATH_MODE_INCLUDE=ONLY";
     fi
+  - if [ "$MATRIX_NAME" == "MacOS" ]; then
+      BUILD_FLAGS="$BUILD_FLAGS -DCMAKE_DISABLE_FIND_PACKAGE_X11=TRUE";
+    fi
   ## we need to disable ccahe explicitly because it is installed in the travis ci environment but the environment
-  ## does not have enough disk space or network bandwidth to cache all OpenDDS object code
+  ## does not have enough disk space or network bandwidth to cache all object code
   - export BUILD_FLAGS="$BUILD_FLAGS -DCCACHE=OFF -DACE_UNITY_BUILD=ON"
 
 jobs:
@@ -57,16 +57,18 @@ jobs:
     install:
       - export CXX=g++-6
     script:
-      - echo $DDS_BUILD_FLAGS
+      - echo $BUILD_FLAGS
       - cmake -GNinja -H. -Bbuild $BUILD_FLAGS
       - cmake --build build -- -j 4
     after_success:
       - echo $TRAVIS_COMMIT > build/ACE_TAO.commit
       - echo "-b $TRAVIS_BRANCH $(git remote get-url origin)"> build/ACE_TAO.clone_loc
-      - tar --exclude='build/ACE/ASNMP' --exclude='build/ACE/examples' --exclude='build/ACE/Kokyu' --exclude='build/ACE/netsvcs'
-            --exclude='build/ACE/performance-tests' --exclude='build/ACE/protocols' --exclude='build/ACE/tests' --exclude='build/ACE/websvcs'
-            --exclude='*.o' -czf build.tar.gz build
-      - aws s3 cp build.tar.gz s3://com.ociweb.opendds/artifacts/ace-tao-${TRAVIS_BRANCH}-${MATRIX_NAME}.tar.gz
+      - cd ..
+      - tar --exclude='ACE_TAO/build/ACE/ASNMP' --exclude='ACE_TAO/build/ACE/examples' --exclude='ACE_TAO/build/ACE/Kokyu'
+            --exclude='ACE_TAO/build/ACE/netsvcs' --exclude='ACE_TAO/build/ACE/performance-tests'
+            --exclude='ACE_TAO/build/ACE/protocols' --exclude='ACE_TAO/build/ACE/tests' --exclude='ACE_TAO/build/ACE/websvcs'
+            --exclude='.git' --exclude='*.o' -czf ace-tao.tar.gz ACE_TAO
+      - aws s3 cp ace-tao.tar.gz s3://com.ociweb.opendds/artifacts/ace-tao-${TRAVIS_BRANCH}-${MATRIX_NAME}.tar.gz
 
   _clang-Env: &clang-Env
     addons:
@@ -79,6 +81,7 @@ jobs:
            - clang++-3.9
     install:
       - export CXX=clang++-3.9
+      - export CC=clang
     env: "MATRIX_NAME=Clang"
 
   _macOS-Env: &macos-Env

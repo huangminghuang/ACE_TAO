@@ -38,6 +38,7 @@ ace_add_exe(C++NPv1_Ppc_logging_server
   OUTPUT_NAME ppc_logging_server
   FOLDER ACE/examples/C++NPv1
   LINK_LIBRARIES ACE
+  UNITY_CXX_MINIMUM_PARTITIONS 3
 )
 ace_target_cxx_sources(C++NPv1_Ppc_logging_server
   SOURCE_FILES Logging_Handler.cpp
