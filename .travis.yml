@@ -4,6 +4,7 @@ language: cpp
 
 cache: pip
 before_install:
+  - git submodule update --init --recursive
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
       mkdir $HOME/usr;
       export PATH="$HOME/usr/bin:$PATH";
@@ -32,6 +33,7 @@ before_script:
     else
       BUILD_FLAGS="$BUILD_FLAGS -DCMAKE_BUILD_TYPE=DEBUG";
     fi
+  - if [ "$MATRIX_NAME" == "ASan" ]; then BUILD_FLAGS="$BUILD_FLAGS -DSANITIZE_ADDRESS=ON"; fi
   - if [ "$MATRIX_NAME" == "WChar" ]; then BUILD_FLAGS="$BUILD_FLAGS -DACE_USES_WCHAR=ON"; fi
   - if [ "$MATRIX_NAME" == "Android" ]; then
       BUILD_FLAGS="$BUILD_FLAGS -DCMAKE_SYSTEM_NAME=Android -DCMAKE_SYSTEM_VERSION=21 -DCMAKE_FIND_ROOT_PATH_MODE_INCLUDE=ONLY";
@@ -55,7 +57,8 @@ jobs:
           - ninja-build
           - g++-6
     install:
-      - export CXX=g++-6
+      - export CXX="g++-6 -fuse-ld=gold"
+      - export CC="gcc-6 -fuse-ld=gold"
     script:
       - echo $BUILD_FLAGS
       - cmake -GNinja -H. -Bbuild $BUILD_FLAGS
@@ -82,7 +85,6 @@ jobs:
     install:
       - export CXX=clang++-3.9
       - export CC=clang
-    env: "MATRIX_NAME=Clang"
 
   _macOS-Env: &macos-Env
     os: osx
@@ -110,4 +112,7 @@ jobs:
       env: &WChar-Env "MATRIX_NAME=WChar"
     - <<: *build-staging
       <<: *clang-Env
+      env: "MATRIX_NAME=Clang"
+    - <<: *build-staging
+      env: "MATRIX_NAME=ASan"
 

@@ -38,6 +38,13 @@ ace_add_exe(C++NPv1_Ppc_logging_server
   OUTPUT_NAME ppc_logging_server
   FOLDER ACE/examples/C++NPv1
   LINK_LIBRARIES ACE
+  ## The UNITY_CXX_MINIMUM_PARTITIONS here exists only because the unity build
+  ## for this target would exceed the RAM limitation on TRAVIS CI build node.
+  ## By specifying UNITY_CXX_MINIMUM_PARTITIONS, we essentailly diable the unity
+  ## build for this target. Notice that using NO_UNITY_BUILD flag here won't work,
+  ## because Logging_Handler.cpp and Logginging_Server.cpp are also used by other targets
+  ## which allow unity build. That means those two cpp files would be considered as
+  ## header files.
   UNITY_CXX_MINIMUM_PARTITIONS 3
 )
 ace_target_cxx_sources(C++NPv1_Ppc_logging_server
