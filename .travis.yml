@@ -57,8 +57,8 @@ jobs:
           - ninja-build
           - g++-6
     install:
-      - export CXX="g++-6 -fuse-ld=gold"
-      - export CC="gcc-6 -fuse-ld=gold"
+      - export CXX="g++-6"
+      - export CC="gcc-6"
     script:
       - echo $BUILD_FLAGS
       - cmake -GNinja -H. -Bbuild $BUILD_FLAGS
@@ -113,6 +113,6 @@ jobs:
     - <<: *build-staging
       <<: *clang-Env
       env: "MATRIX_NAME=Clang"
-    - <<: *build-staging
-      env: "MATRIX_NAME=ASan"
+    # - <<: *build-staging
+    #   env: "MATRIX_NAME=ASan"
 
