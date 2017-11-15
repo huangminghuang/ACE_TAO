@@ -31,6 +31,7 @@ include(cmake/export_tao_hosttools.cmake)
 
 if (tao IN_LIST TAO_SUBDIRS)
   ace_install_package(TAO
+    ADD_SYMLINK_IN_ACE_LIB # create symlink for all TAO shared libs to ${ACE_INSTALL_DIR}/lib, required for TAO to work
     CONFIG_OPTIONS ${TAO_OPTIONS}
     PREREQUISITE ACE
     CONFIG_INCLUDE_FILES cmake/tao_idl_sources.cmake

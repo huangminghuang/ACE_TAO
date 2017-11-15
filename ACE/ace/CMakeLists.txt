@@ -54,7 +54,6 @@ ace_add_lib(ACE
   PUBLIC_INCLUDE_DIRECTORIES ..
                              $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/..>
   UNITY_CXX_MINIMUM_PARTITIONS 2
-
 )
 
 if (CMAKE_COMPILER_IS_GNUCXX OR (CMAKE_CXX_COMPILER_ID MATCHES "Clang"))
@@ -68,6 +67,11 @@ if (CMAKE_COMPILER_IS_GNUCXX OR (CMAKE_CXX_COMPILER_ID MATCHES "Clang"))
   target_compile_options(ACE PUBLIC -Wno-deprecated)
 endif(CMAKE_COMPILER_IS_GNUCXX OR (CMAKE_CXX_COMPILER_ID MATCHES "Clang"))
 
+## The RPATH setting below is required for TAO to work when gold or lld linker are used.
+set_target_properties(ACE PROPERTIES
+  BUILD_RPATH "\$ORIGIN"
+  INSTALL_RPATH "\$ORIGIN"
+)
 
 ace_target_cxx_sources(ACE
   REQUIRES ACE_SVCCONF

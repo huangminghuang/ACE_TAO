@@ -741,7 +741,7 @@ endfunction()
 ##  by find_package() command during configuration time.
 ##
 function(ace_install_package package_name)
-  cmake_parse_arguments(_arg "" "" "CONFIG_OPTIONS;PREREQUISITE;CONFIG_INCLUDE_FILES;INCLUDED_FILES_USE;OPTIONAL_PACKAGES" ${ARGN})
+  cmake_parse_arguments(_arg "ADD_SYMLINK_IN_ACE_LIB" "" "CONFIG_OPTIONS;PREREQUISITE;CONFIG_INCLUDE_FILES;INCLUDED_FILES_USE;OPTIONAL_PACKAGES" ${ARGN})
 
   set(version ${${package_name}_PACKAGE_VERSION})
   message("${package_name}_PACKAGE_VERSION=${${package_name}_PACKAGE_VERSION}")
@@ -859,6 +859,7 @@ function(ace_install_package package_name)
       "set(bin_names \"${EXE_TARGET_FILENAMES}\") "
       "set(lib_namelinks \"${LIB_TARGET_LINKER_FILENAMES}\") "
       "set(lib_names \"${LIB_TARGET_FILENAMES}\") "
+      "set(ADD_SYMLINK_IN_ACE_LIB ${_arg_ADD_SYMLINK_IN_ACE_LIB}) "
       "foreach(type bin lib) "
       "  list(LENGTH \${type}_names targets_len) "
       "  math(EXPR targets_max_index \"\${targets_len} - 1\") "
@@ -867,6 +868,9 @@ function(ace_install_package package_name)
       "    list(GET \${type}_namelinks \${idx} namelink) "
       "    symlink(../${${package_name}_INSTALL_DIR}/\${type}/\${name} \$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/\${type}/\${name}) "
       "    symlink(../${${package_name}_INSTALL_DIR}/\${type}/\${name} \$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/\${type}/\${namelink}) "
+      "    if (ADD_SYMLINK_IN_ACE_LIB AND \${type} STREQUAL lib) "
+      "      symlink(../${${package_name}_INSTALL_DIR}/\${type}/\${name} \$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${ACE_INSTALL_DIR}/\${type}/\${namelink}) "
+      "    endif()"
       "  endforeach() "
       "endforeach(type bin lib)"
     )
