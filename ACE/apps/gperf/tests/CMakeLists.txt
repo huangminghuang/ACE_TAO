@@ -15,7 +15,7 @@ function(add_gperf_test test_name)
 
     target_link_libraries(${test_name}_bin ACE)
 
-    set_target_properties(${test_name} PROPERTIES
+    set_target_properties(${test_name}_bin PROPERTIES
       FOLDER ACE/apps/gperf/tests
     )
 
