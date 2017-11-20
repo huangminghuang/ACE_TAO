@@ -24,6 +24,10 @@ documentation and/or software.
  */
 
 /* MD5 context. */
+
+#ifndef MD5_H_FE2771FA
+#define MD5_H_FE2771FA
+
 typedef struct {
   UINT4 state[4];                                   /* state (ABCD) */
   UINT4 count[2];        /* number of bits, modulo 2^64 (lsb first) */
@@ -45,3 +49,6 @@ void MD5Final (unsigned char digest[16], MD5_CTX *context);
 #ifdef __cplusplus
 }
 #endif
+
+#endif /* end of include guard: MD5_H_FE2771FA */
+

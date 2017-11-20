@@ -12,6 +12,13 @@ ace_target_cxx_sources(TAO_IFR_Client
   HEADER_FILES IFR_Client_Adapter_Impl.h
 )
 
+if (TARGET TAO_IFR_Client AND WIN32)
+  ## disable unity build for windows
+  set_target_properties(TAO_IFR_Client PROPERTIES
+    ACE_TARGET_UNITY_BUILD FALSE
+  )
+endif()
+
 
 ace_add_lib(TAO_IFR_Client_skel
   OUTPUT_NAME TAO_IFR_Client_skel

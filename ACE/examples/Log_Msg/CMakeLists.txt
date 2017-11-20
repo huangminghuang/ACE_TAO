@@ -36,4 +36,4 @@ ace_target_cxx_sources(Log_Msg_Test_callback
   SOURCE_FILES test_callback.cpp
 )
 
-add_subdirectory(Log_Msg_MFC)
+# add_subdirectory(Log_Msg_MFC)
