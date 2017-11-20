@@ -13,6 +13,7 @@ ace_add_exe(Log_Msg_MFC
   OUTPUT_NAME Log_Msg_MFC
   FOLDER ACE/examples/Log_Msg/Log_Msg_MFC
   LINK_LIBRARIES ACE
+  NO_UNITY_BUILD
 )
 ace_target_cxx_sources(Log_Msg_MFC
   SOURCE_FILES Log_Msg_MFC.cpp
