@@ -20,7 +20,12 @@ build:
   project: build/ACE_TAO.sln
 
 after_build:
-  - 7z a %APPVEYOR_BUILD_FOLDER%\..\ace_tao_build.zip %APPVEYOR_BUILD_FOLDER% -xr!.git -xr!examples -x!*.obj -x!*.pdb
+  - >
+    7z a %APPVEYOR_BUILD_FOLDER%\..\ace_tao_build.zip %APPVEYOR_BUILD_FOLDER%
+      -x!ace-tao\build\ACE\ASNMP -x!ace-tao\build\ACE\Kokyu -x!ace-tao\build\ACE\netsvcs
+      -x!ace-tao\build\ACE\performance-tests -x!ace-tao\build\ACE\protocols -x!ace-tao\build\ACE\tests
+      -xr!.git -xr!examples -xr!*.obj -xr!*.pdb
+
   - move %APPVEYOR_BUILD_FOLDER%\..\ace_tao_build.zip ace_tao_build.zip
 artifacts:
   - path: ace_tao_build.zip
