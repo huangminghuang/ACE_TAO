@@ -20,7 +20,7 @@ build:
   project: build/ACE_TAO.sln
 
 after_build:
-  - 7z a %APPVEYOR_BUILD_FOLDER%\..\ace_tao_build.zip %APPVEYOR_BUILD_FOLDER%\build -xr!.git -xr!examples
+  - 7z a %APPVEYOR_BUILD_FOLDER%\..\ace_tao_build.zip %APPVEYOR_BUILD_FOLDER% -xr!.git -xr!examples -x!*.obj -x!*.pdb
   - move %APPVEYOR_BUILD_FOLDER%\..\ace_tao_build.zip ace_tao_build.zip
 artifacts:
   - path: ace_tao_build.zip
