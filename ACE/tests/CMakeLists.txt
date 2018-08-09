@@ -70,20 +70,24 @@ ace_target_cxx_sources(Service_Config_DLL
 )
 
 function(ace_add_test_exe target)
-  cmake_parse_arguments(_arg "" "COMPILE_DEFINITIONS" "REQUIRES;LINK_LIBRARIES;INCLUDE_DIRECTORIES;LABELS" ${ARGN})
+  cmake_parse_arguments(_arg "" "COMPILE_DEFINITIONS" "REQUIRES;LINK_LIBRARIES;INCLUDE_DIRECTORIES;LABELS;SOURCE_FILES" ${ARGN})
   ace_add_exe(${target}
     OUTPUT_NAME ${target}
     COMPILE_DEFINITIONS ${_arg_COMPILE_DEFINITIONS}
     INCLUDE_DIRECTORIES ${_arg_INCLUDE_DIRECTORIES}
     REQUIRES ${_arg_REQUIRES}
-      LINK_LIBRARIES Test_Output ${_arg_LINK_LIBRARIES}
+    LINK_LIBRARIES Test_Output ${_arg_LINK_LIBRARIES}
   )
   if (EXISTS ${target}.h)
     set(header ${target}.h)
   endif()
+  
+  if (NOT _arg_SOURCE_FILES)
+    set(_arg_SOURCE_FILES Main.cpp ${target}.cpp)
+  endif()
+  
   ace_target_cxx_sources(${target}
-    SOURCE_FILES Main.cpp
-                 ${target}.cpp
+    SOURCE_FILES ${_arg_SOURCE_FILES}
     HEADER_FILES ${header}
   )
 
@@ -273,6 +277,7 @@ ace_add_test_exe(Compiler_Features_34_Test)
 ace_add_test_exe(Compiler_Features_35_Test)
 ace_add_test_exe(Compiler_Features_36_Test)
 ace_add_test_exe(Compiler_Features_37_Test)
+ace_add_test_exe(Compiler_Features_38_Test)
 
 ace_add_test_exe(Config_Test)
 ace_add_test_exe(Conn_Test)
@@ -392,6 +397,12 @@ ace_add_test_exe(Sigset_Ops_Test)
 ace_add_test_exe(Simple_Message_Block_Test)
 ace_add_test_exe(Message_Block_Large_Copy_Test)
 ace_add_test_exe(Singleton_Test)
+
+ace_add_test_exe(Singleton_Restart_Test
+  SOURCE_FILES Singleton_Restart_Test.cpp
+)
+
+ace_add_test_exe(SOCK_Acceptor_Test)
 ace_add_test_exe(SOCK_Test)
 ace_add_test_exe(SOCK_Dgram_Test)
 ace_add_test_exe(SOCK_Connector_Test)
