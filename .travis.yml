@@ -35,11 +35,11 @@ before_script:
     fi
   - if [ "$MATRIX_NAME" == "ASan" ]; then BUILD_FLAGS="$BUILD_FLAGS -DSANITIZE_ADDRESS=ON"; fi
   - if [ "$MATRIX_NAME" == "WChar" ]; then BUILD_FLAGS="$BUILD_FLAGS -DACE_USES_WCHAR=ON"; fi
-  - if [ "$MATRIX_NAME" == "Android" ]; then
-      BUILD_FLAGS="$BUILD_FLAGS -DCMAKE_SYSTEM_NAME=Android -DCMAKE_SYSTEM_VERSION=21 -DCMAKE_FIND_ROOT_PATH_MODE_INCLUDE=ONLY";
-    fi
   - if [ "$MATRIX_NAME" == "MacOS" ]; then
       BUILD_FLAGS="$BUILD_FLAGS -DCMAKE_DISABLE_FIND_PACKAGE_X11=TRUE";
+    fi
+  - if [ "$MATRIX_NAME" == "Versioned" ]; then
+      BUILD_FLAGS="$BUILD_FLAGS -DACE_HAS_VERSIONED_NAMESPACE=1";
     fi
   ## we need to disable ccahe explicitly because it is installed in the travis ci environment but the environment
   ## does not have enough disk space or network bandwidth to cache all object code
@@ -114,6 +114,8 @@ jobs:
     - <<: *build-staging
       <<: *clang-Env
       env: "MATRIX_NAME=Clang"
+    - <<: *build-staging
+      env: &Versioned-Env "MATRIX_NAME=Versioned"
     # - <<: *build-staging
     #   env: "MATRIX_NAME=ASan"
 
