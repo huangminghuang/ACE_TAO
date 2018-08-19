@@ -1,5 +1,4 @@
 
-
 ace_add_lib(TAO_PortableServer
   OUTPUT_NAME TAO_PortableServer
   PACKAGE TAO
@@ -8,6 +7,11 @@ ace_add_lib(TAO_PortableServer
   PUBLIC_LINK_LIBRARIES TAO_AnyTypeCode
   COMPILE_DEFINITIONS $<$<BOOL:${TAO_HAS_VALUETYPE_OUT_INDIRECTION}>:TAO_HAS_VALUETYPE_OUT_INDIRECTION>
 )
+
+if (ACE_HAS_VERSIONED_NAMESPACE)
+  set_target_properties(TAO_PortableServer PROPERTIES ACE_TARGET_UNITY_BUILD OFF)
+endif(ACE_HAS_VERSIONED_NAMESPACE)
+
 ace_target_cxx_sources(TAO_PortableServer
   GLOB_HEADERS
   SOURCE_FILES Acceptor_Filter_Factory.cpp
