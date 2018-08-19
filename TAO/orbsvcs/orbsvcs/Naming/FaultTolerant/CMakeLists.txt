@@ -16,8 +16,7 @@ ace_target_cxx_sources(TAO_FT_Naming
 
 tao_idl_sources(
   TARGETS TAO_FT_Naming
-  IDL_FLAGS ${TAO_VERSIONING_IDL_FLAGS}
-            -I${CMAKE_CURRENT_SOURCE_DIR}/../../..
+  IDL_FLAGS -I${CMAKE_CURRENT_SOURCE_DIR}/../../..
             -I${CMAKE_CURRENT_SOURCE_DIR}/../..
             -GC -Wb,export_macro=TAO_FtNaming_Intf_Export
             -Wb,export_include=orbsvcs/Naming/FaultTolerant/ftnaming_intf_export.h
@@ -41,8 +40,7 @@ ace_target_cxx_sources(TAO_FT_Naming_Replication
 
 tao_idl_sources(
   TARGETS TAO_FT_Naming_Replication
-  IDL_FLAGS ${TAO_VERSIONING_IDL_FLAGS}
-            -I${CMAKE_CURRENT_SOURCE_DIR}/../../..
+  IDL_FLAGS -I${CMAKE_CURRENT_SOURCE_DIR}/../../..
             -I${CMAKE_CURRENT_SOURCE_DIR}/../..
             -I${TAO_INCLUDE_DIR}/tao
             -GC -Wb,export_macro=TAO_FtNaming_Export
