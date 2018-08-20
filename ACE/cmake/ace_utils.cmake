@@ -202,6 +202,12 @@ function(ace_target_prepare_unity_files target language)
       target_sources(${target} PRIVATE ${unity_files})
       set_property(TARGET ${target}
                    PROPERTY ACE_TARGET_UNITY_${language} ${unity_files})
+
+      if (CMAKE_VERSION VERSION_GREATER_EQUAL 3.10)
+        set_property(SOURCE ${unity_files}
+                     PROPERTY SKIP_AUTOGEN ON)
+      endif(CMAKE_VERSION VERSION_GREATER_EQUAL 3.10)
+
       source_group("Unity Files" FILES ${unity_files})
 
     endif(NOT unity_files)
